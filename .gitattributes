@@ -36,3 +36,7 @@ evals/results/stairs_motion_integrity_20261101_v1/** -text
 evals/results/go2_stairs_command_contrast_s200_20261101_v1/** -text
 evals/results/agentic_input_guard_cpu_development_20261101_v1/** -text
 evals/results/five_type_sources_s2550_s2559_20261101_v1/** -text
+# Meta 검증·요청 묶음은 Windows에서 획득한 원문 바이트와 SHA 결합을 보존한다.
+evals/results/meta_behavior_stairs_flow_20261103_v1/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+evals/results/meta_tools_prepared_20261103_v1/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+submission/meta-behavior-20261103-v1/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol

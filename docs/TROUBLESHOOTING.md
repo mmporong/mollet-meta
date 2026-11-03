@@ -1080,3 +1080,9 @@
 - 관찰: Go2 0.25 m/s 상행의 상태 원문을 연결하자 `samples[83].values.base_height_m`에서 검증이 거부됐다. 원문의 세계 좌표 z는 지형 원점 때문에 음수가 될 수 있으며 원기록은 정상적인 유한 수다.
 - 수정: [관측 스키마](../src/rl_triage/behavior_authoring/schema.py)는 높이 필드를 부호 있는 세계 z로 허용하고, 화면의 세계 좌표 단위 설명을 유지한다. 원문을 0으로 자르거나 지면 대비 높이를 만들어 넣지 않는다. 공개 contrast 결과의 영상·상태 SHA로 결합한 Go2 0.25 두 원문만 연결한다.
 - 검증: 음수 세계 z 보존·변조된 상태 SHA 거부·사족 자세 PASS/FAIL을 포함해 관련 53개 회귀가 통과했다. [로컬 HTTP 검사](../evals/results/meta_behavior_stairs_flow_20261103_v1/verification.json)는 6개 영상의 원본 바이트, 4개 상태 조건, 6개 내보내기 JSON의 재검증을 확인했다. 브라우저 조작 통과로 해석하지 않는다.
+
+### META-003: Git 줄바꿈 정규화가 검증 산출물의 SHA를 바꿈
+
+- 관찰: Windows에서 저장한 내보내기 JSON의 SHA와 Git blob의 SHA가 달랐다. `.gitattributes`의 기본 `text=auto eol=lf`가 CRLF 원문을 LF로 바꿨다.
+- 수정: 이번 Meta 검증·요청·영상 묶음에만 `-text`를 지정해 원문 바이트를 보존한다. 결과 파일 내용은 덮어쓰지 않고 해당 파일의 index를 원문으로 다시 기록했다.
+- 검증: 관련 파일의 Git index/blob와 작업 파일 바이트를 대조하고 내보내기·영상 manifest의 SHA를 확인했다.
