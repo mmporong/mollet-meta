@@ -1,0 +1,58 @@
+{
+  "contract_version": "meta-track-v6-20261103-offline-behavior-authoring",
+  "previous_version": "meta-track-v5-20261031-tools-first",
+  "mode": "authorized_local_implementation",
+  "selected_direction": "사용자 행동 조건 저작·검토·저장 RL 기록 판정",
+  "implementation_base": "94fe8740277c9ecc556096fa4d00df0ad0bb7749",
+  "official_event_url": "https://dev.meta.ai/events/global-hackathon",
+  "organizer_notice": {
+    "channel": "연결된 주최 측 알림 이메일의 text/plain 본문",
+    "sent_at": "2026-11-03T02:00:25Z",
+    "checked_at": "2026-11-03T12:26:14+09:00",
+    "excerpt": "Submissions are due on Nov 4th at 9:00 PM ET. Ensure your github is open source. 3-minute demo video.",
+    "source_scope": "사용자가 붙인 안내와 같은 주최 알림 원문 확인. 연락처·계정 ID·MIME 원문은 복제하지 않음",
+    "requirements": {
+      "submission_deadline_et": "2026-11-04T21:00:00-05:00",
+      "submission_deadline_kst": "2026-11-05T11:00:00+09:00",
+      "open_source_repository": "모든 프로젝트의 필수 조건",
+      "demo_guidance": "3분 데모 영상에 시간을 투자하라는 권장",
+      "form_guidance": "문항이 많으므로 일찍 작성하고 검토하라는 권장"
+    }
+  },
+  "repository": {
+    "url": "https://github.com/mmporong/rl-triage-agent",
+    "visibility_observed": "public",
+    "license_observed": "Apache-2.0",
+    "feature_branch": "feat/meta-behavior-authoring",
+    "feature_remote_status": "local_only_not_pushed"
+  },
+  "submission_form": {
+    "details_url": "https://cerebralvalley.ai/e/meta-ai-developer-hackathon/details",
+    "details_observation": "Loading shell only",
+    "submit_url_attempt": "https://cerebralvalley.ai/e/meta-ai-developer-hackathon/submit",
+    "submit_observation": "web tool inaccessible",
+    "field_count": null,
+    "submitted": false
+  },
+  "actual_model_status": {
+    "spark": "request_builder_and_saved_response_import_only",
+    "sam": "request_builder_and_saved_response_import_only_bbox_center_no_mask_decode",
+    "paid_api_calls": 0,
+    "live_model_quality_verified": false
+  },
+  "remaining_gates": [
+    "유료 API 금지의 변경 없이 실제 모델 호출을 진행하지 않음",
+    "예제 원본의 영상 캡처 승인 보류를 모델 응답이나 조건 검토로 해제하지 않음",
+    "실제 브라우저 호스트가 없어 렌더링·화면 조작 검증은 미실행",
+    "최종 3분 영상은 동선 초안만 있으며 미촬영",
+    "새 기능은 아직 GitHub에 공개되지 않았음",
+    "최신 Official Rules의 기존 자산 재사용 조건과 실제 제출 문항은 미확정"
+  ],
+  "constraints": {
+    "paid_api_calls": "forbidden_until_new_user_authorization",
+    "gpu_jobs": "forbidden",
+    "push": "forbidden",
+    "applications": "forbidden",
+    "submissions": "forbidden"
+  }
+}
