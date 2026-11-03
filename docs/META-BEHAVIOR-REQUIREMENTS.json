@@ -40,6 +40,15 @@
     "paid_api_calls": 0,
     "live_model_quality_verified": false
   },
+  "local_playback": {
+    "dataset_revision": "stairs-20261103-v1",
+    "default_example": "h1-up",
+    "h1_state_backed_examples": ["h1-up", "h1-down"],
+    "go2_summary_only_examples": ["go2-up-slow", "go2-down-slow", "go2-up-fast", "go2-down-fast"],
+    "h1_video_frame_to_state_row_offset": 1,
+    "legacy_deferred_render": "CLI_regression_only_excluded_from_UI",
+    "model_input_approval_granted": false
+  },
   "remaining_gates": [
     "유료 API 금지의 변경 없이 실제 모델 호출을 진행하지 않음",
     "예제 원본의 영상 캡처 승인 보류를 모델 응답이나 조건 검토로 해제하지 않음",

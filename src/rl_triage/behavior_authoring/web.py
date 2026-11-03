@@ -9,7 +9,7 @@ from pathlib import Path
 from urllib.parse import parse_qs, urlsplit
 
 from .adapters import build_sam_request, build_spark_request, import_sam_response, import_spark_response
-from .datasets import default_contract, example_paths, list_examples, load_example
+from .datasets import example_paths, list_examples, load_example_view, stairs_contract
 from .evaluate import evaluate_contract
 from .schema import contract_digest, validate_contract, validate_observations
 
@@ -58,10 +58,10 @@ class Handler(BaseHTTPRequestHandler):
         url=urlsplit(self.path);route=url.path
         try:
             if route=='/api/examples':
-                self._send({'examples':list_examples(),'default_contract':default_contract(),'model_api_calls':0});return
+                self._send({'examples':list_examples(),'default_example':'h1-up','default_contract':stairs_contract(),'model_api_calls':0});return
             if route=='/api/example':
-                example=parse_qs(url.query).get('id',['reference'])[0]
-                self._send({'observations':load_example(example),'video_url':f'/media/{example}'});return
+                example=parse_qs(url.query).get('id',['h1-up'])[0]
+                self._send(load_example_view(example));return
             if route.startswith('/media/'):
                 key=route.removeprefix('/media/');_,path,_=example_paths(key)
                 size=path.stat().st_size;start=0;end=size-1;status=200;headers={'Accept-Ranges':'bytes'}

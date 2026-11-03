@@ -12,6 +12,16 @@ EXAMPLES = {
     'reference': ('none', '기준 정책의 저장 기록'),
     'case': ('f1', '보상 결함 정책의 저장 기록'),
 }
+H1_ARCHIVE = Path('docs/media/stairs_h1_s172_20261030_v1')
+GO2_ARCHIVE = Path('evals/results/go2_stairs_command_contrast_s200_20261101_v1')
+STAIRS_EXAMPLES = {
+    'h1-up': ('h1', 'biped-stairs-up', '이족 H1 · 계단 상행'),
+    'h1-down': ('h1', 'biped-stairs-down', '이족 H1 · 계단 하행'),
+    'go2-up-slow': ('go2', 'quadruped-stairs-up-step-0p05-cmd-0p25', '사족 Go2 · 계단 상행 · 0.25 m/s'),
+    'go2-down-slow': ('go2', 'quadruped-stairs-down-step-0p05-cmd-0p25', '사족 Go2 · 계단 하행 · 0.25 m/s'),
+    'go2-up-fast': ('go2', 'quadruped-stairs-up-step-0p05-cmd-0p75', '사족 Go2 · 계단 상행 · 0.75 m/s'),
+    'go2-down-fast': ('go2', 'quadruped-stairs-down-step-0p05-cmd-0p75', '사족 Go2 · 계단 하행 · 0.75 m/s'),
+}
 
 
 def digest_file(path: Path) -> str:
@@ -19,6 +29,13 @@ def digest_file(path: Path) -> str:
 
 
 def example_paths(example_id: str, root: Path = ROOT) -> tuple[Path, Path, Path]:
+    if example_id in STAIRS_EXAMPLES:
+        robot, clip, _ = STAIRS_EXAMPLES[example_id]
+        if robot == 'h1':
+            base = root / H1_ARCHIVE / clip
+            return base / 'state-trace.jsonl', base / 'video/rl-video-step-0.mp4', base / 'manifest.json'
+        base = root / GO2_ARCHIVE
+        return base / 'cases.json', base / 'media' / f'{clip}.mp4', base / 'media.json'
     if example_id not in EXAMPLES:
         raise ValueError('알 수 없는 예제입니다.')
     base = root / ARCHIVE / EXAMPLES[example_id][0]
@@ -26,12 +43,17 @@ def example_paths(example_id: str, root: Path = ROOT) -> tuple[Path, Path, Path]
 
 
 def list_examples(root: Path = ROOT) -> list[dict]:
-    return [dict(id=key, name=value[1], video_url=f'/media/{key}',
+    return [dict(id=key, name=value[2], video_url=f'/media/{key}', state_available=value[0] == 'h1',
                  available=all(p.is_file() for p in example_paths(key, root)))
-            for key, value in EXAMPLES.items()]
+            for key, value in STAIRS_EXAMPLES.items()]
 
 
 def load_example(example_id: str, root: Path = ROOT) -> dict:
+    if example_id in STAIRS_EXAMPLES:
+        bundle = load_example_view(example_id, root)['observations']
+        if bundle is None:
+            raise ValueError('이 사족 예제에는 프레임별 상태 기록이 없습니다. 요약 수치로 시간 판정을 만들지 않습니다.')
+        return bundle
     from .schema import validate_observations
     trace_path, video_path, result_path = example_paths(example_id, root)
     trace = json.loads(trace_path.read_text(encoding='utf-8'))
@@ -78,6 +100,117 @@ def load_example(example_id: str, root: Path = ROOT) -> dict:
         },
     }
     return validate_observations(bundle)
+
+
+def _read(path: Path) -> dict:
+    return json.loads(path.read_text(encoding='utf-8'))
+
+
+def _up_axis(row: dict) -> float:
+    w, x, y, z = row['root_quat_w']
+    norm_sq = w*w + x*x + y*y + z*z
+    if not math.isfinite(norm_sq) or norm_sq <= 0:
+        raise ValueError('상태 기록의 자세 quaternion이 유효하지 않습니다.')
+    return max(-1.0, min(1.0, 1.0 - 2.0*(x*x + y*y)/norm_sq))
+
+
+def stairs_contract() -> dict:
+    spec = default_contract()
+    spec.update(title='계단 재생 중 자세 유지', instruction='영상 시작부터 8초 동안 수직축 정렬이 0.8 이상 유지되는지 확인합니다.')
+    spec['trigger']['at_s'] = 0.0
+    spec['condition'].update(metric='up_axis_z', threshold=0.8, deadline_s=0.0, hold_s=8.0)
+    return spec
+
+
+def load_example_view(example_id: str, root: Path = ROOT) -> dict:
+    """영상과 원기록 요약을 제공하며, 없는 상태 시계열은 None으로 남긴다."""
+    from .schema import validate_observations
+    if example_id not in STAIRS_EXAMPLES:
+        bundle = load_example(example_id, root)
+        return {'id': example_id, 'name': EXAMPLES[example_id][1], 'observations': bundle,
+                'video_url': f'/media/{example_id}', 'video_sha256': bundle['video_sha256'],
+                'state_available': True, 'frame_width': 640, 'frame_height': 480,
+                'provenance': bundle['provenance'], 'recorded_assessment': None,
+                'caption': '렌더링 승인 보류 자료입니다. CLI 회귀 예제로만 보존합니다.',
+                'default_contract': default_contract()}
+    robot, clip, name = STAIRS_EXAMPLES[example_id]
+    trace_path, video_path, metadata_path = example_paths(example_id, root)
+    video_sha = digest_file(video_path)
+    observations = None
+    if robot == 'h1':
+        manifest = _read(metadata_path)
+        receipt_path = video_path.with_suffix('.mp4.exact-frames.json')
+        receipt = _read(receipt_path)
+        source_path = root / H1_ARCHIVE / 'source_manifest.json'
+        source_clip = next(row for row in _read(source_path)['clips'] if row['clip_id'] == clip)
+        trace_sha = digest_file(trace_path)
+        if (video_sha != manifest['video']['sha256'] or video_sha != receipt['video_sha256']
+                or video_sha != source_clip['video_sha256']
+                or trace_sha != manifest['state_trace']['sha256'] or trace_sha != source_clip['trace_sha256']
+                or digest_file(metadata_path) != source_clip['manifest_sha256']
+                or digest_file(receipt_path) != source_clip['exact_frames_sha256']):
+            raise ValueError('이족 계단 영상·상태·인코더 기록의 해시 결합이 다릅니다.')
+        rows = [json.loads(line) for line in trace_path.read_text(encoding='utf-8').splitlines()]
+        fps, frames = receipt['fps'], receipt['frames_written']
+        contract = manifest['record_video_contract']
+        if (fps != 50 or frames != 625 or receipt['frames_received'] != frames or len(rows) != frames + 1
+                or contract['step_trigger'] != 'step_id == 0' or contract['executed_steps'] != frames
+                or contract['frames_before_close'] != frames or manifest['render_sync']['calls'] != frames
+                or manifest['render_sync']['physics_state_unchanged'] is not True
+                or any(row['frame'] != i or not math.isclose(row['sim_time_s'], i/fps, abs_tol=1e-9)
+                       for i, row in enumerate(rows))):
+            raise ValueError('이족 계단의 625 영상 프레임과 626 상태 행의 시간 결합이 다릅니다.')
+        command = manifest['terrain']['command']
+        command_speed = math.hypot(command['lin_vel_x'], command['lin_vel_y'])
+        # RecordVideo.step은 env.step 뒤 캡처한다. 초기 상태 행 0은 영상에 없으며,
+        # 영상 frame 0 / PTS 0초는 상태 행 1 / sim_time 0.02초에 대응한다.
+        samples = [{
+            'frame': index, 't_s': index/fps,
+            'values': {'horizontal_speed_mps': math.hypot(*row['root_lin_vel_w'][:2]),
+                       'command_speed_mps': command_speed, 'base_height_m': row['root_pos_w'][2],
+                       'up_axis_z': _up_axis(row)}, 'tracks': [],
+        } for index, row in enumerate(rows[1:])]
+        provenance = {
+            'kind': 'recorded_h1_stairs_playback', 'source_path': metadata_path.relative_to(root).as_posix(),
+            'source_sha256': digest_file(metadata_path), 'source_trace': trace_path.relative_to(root).as_posix(),
+            'source_trace_sha256': trace_sha, 'source_manifest_sha256': digest_file(source_path),
+            'exact_frames_sha256': digest_file(receipt_path), 'video_path': video_path.relative_to(root).as_posix(),
+            'frame_width': receipt['width'], 'frame_height': receipt['height'],
+            'capture_approved': False, 'model_ready': False, 'playback_render_synced': True,
+            'visual_evidence_status': 'render_synced_playback_not_model_input_approval',
+            'time_basis': 'video_frame_index / encoder_fps', 'state_frame_offset': 1,
+            'sim_time_offset_s': 1/fps, 'motion_frame': 'world', 'height_frame': 'world_z_not_ground_clearance',
+            'scope': 'stored_stairs_condition_demo_only_not_recovery_or_generalization',
+            'new_model_api_calls': 0, 'new_training_jobs': 0,
+        }
+        observations = validate_observations({'schema': 'behavior-observations-v1', 'clip_id': example_id,
+                                             'video_sha256': video_sha, 'samples': samples, 'provenance': provenance})
+        assessment = {**manifest['assessment'], 'command_speed_mps': command_speed,
+                      'min_up_axis_z': min(_up_axis(row) for row in rows),
+                      'motion_accepted': manifest['assessment']['outcome'] == 'completed'}
+        caption = 'H1 계단 재생 원본과 렌더 동기화 상태 기록입니다. 아래 시간 조건은 저장 수치로 검사합니다. 모델 입력 승인은 별도입니다.'
+        width, height = receipt['width'], receipt['height']
+    else:
+        row = next(row for row in _read(trace_path)['rows'] if row['condition_id'] == clip)
+        media = next(row for row in _read(metadata_path)['items'] if row['condition_id'] == clip)
+        if video_sha != row['video_sha256'] or video_sha != media['sha256']:
+            raise ValueError('사족 계단 영상과 결과 요약의 해시가 다릅니다.')
+        assessment = {key: row[key] for key in ('root_dx_m', 'root_dz_m', 'motion_accepted',
+                      'progress_condition_pass', 'height_condition_pass', 'termination_seen')}
+        assessment.update(command_speed_mps=row['command_x_m_s'], min_up_axis_z=row['body_up_world_z']['min'])
+        provenance = {'kind': 'recorded_go2_command_contrast_summary',
+                      'source_path': trace_path.relative_to(root).as_posix(), 'source_sha256': digest_file(trace_path),
+                      'source_media_sha256': digest_file(metadata_path), 'source_trace_sha256': row['trace_sha256'],
+                      'video_path': video_path.relative_to(root).as_posix(),
+                      'raw_state_trace_available': False, 'capture_approved': False, 'model_ready': False,
+                      'scope': 'same_policy_command_contrast_only_not_retraining_or_recovery',
+                      'new_model_api_calls': 0, 'new_training_jobs': 0}
+        caption = '동일 정책의 명령 속도 비교 원본입니다. 프레임별 상태 기록이 없어 요약 수치만 표시하며 시간 조건 판정은 보류합니다.'
+        width, height = 1280, 720
+    return {'id': example_id, 'name': name, 'observations': observations, 'video_url': f'/media/{example_id}',
+            'video_sha256': video_sha, 'frame_width': width, 'frame_height': height,
+            'state_available': observations is not None, 'recorded_assessment': assessment,
+            'provenance': provenance, 'caption': caption, 'default_contract': stairs_contract()}
 
 
 def default_contract() -> dict:

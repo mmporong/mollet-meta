@@ -11,7 +11,9 @@ from http.server import ThreadingHTTPServer
 
 import pytest
 
-from rl_triage.behavior_authoring.datasets import ROOT, default_contract, load_example
+from rl_triage.behavior_authoring.datasets import (
+    ROOT, default_contract, example_paths, list_examples, load_example, load_example_view, stairs_contract,
+)
 from rl_triage.behavior_authoring.evaluate import evaluate_contract
 from rl_triage.behavior_authoring.web import Handler
 
@@ -100,3 +102,62 @@ def test_cli_golden_path_and_write_once(tmp_path):
     assert summary['results']=={'reference':'PASS','case':'FAIL'} and summary['model_api_calls']==0
     again=subprocess.run([sys.executable,'-m','rl_triage.behavior_authoring','demo','--out',str(out)],capture_output=True,text=True)
     assert again.returncode==2
+
+
+@pytest.mark.parametrize('key', ['h1-up', 'h1-down'])
+def test_stairs_state_uses_post_step_video_frame_mapping(key):
+    view=load_example_view(key);bundle=view['observations']
+    source=[json.loads(line) for line in example_paths(key)[0].read_text(encoding='utf-8').splitlines()]
+    assert len(source)==626 and len(bundle['samples'])==625
+    assert bundle['samples'][0]['frame']==0 and bundle['samples'][0]['t_s']==0
+    assert bundle['samples'][-1]['frame']==624 and bundle['samples'][-1]['t_s']==12.48
+    assert bundle['samples'][0]['values']['base_height_m']==source[1]['root_pos_w'][2]
+    assert bundle['samples'][0]['values']['base_height_m']!=source[0]['root_pos_w'][2]
+    assert bundle['samples'][-1]['values']['base_height_m']==source[625]['root_pos_w'][2]
+    assert view['frame_width']==1280 and view['frame_height']==720
+    assert bundle['provenance']['state_frame_offset']==1
+    assert bundle['provenance']['playback_render_synced'] is True
+    assert bundle['provenance']['capture_approved'] is False
+    assert evaluate_contract(stairs_contract(),bundle)['verdict']=='PASS'
+
+
+@pytest.mark.parametrize('key,accepted', [('go2-up-slow',False),('go2-down-slow',False),
+                                        ('go2-up-fast',True),('go2-down-fast',True)])
+def test_go2_summary_never_becomes_synthetic_time_series(key,accepted):
+    value=load_example_view(key)
+    assert value['observations'] is None and value['state_available'] is False
+    assert value['recorded_assessment']['motion_accepted'] is accepted
+    assert value['provenance']['raw_state_trace_available'] is False
+    with pytest.raises(ValueError,match='프레임별 상태 기록'):
+        load_example(key)
+    if key=='go2-down-slow':
+        assert value['recorded_assessment']['min_up_axis_z']<0
+        assert value['recorded_assessment']['progress_condition_pass'] is True
+
+
+def test_stairs_http_default_catalog_and_each_original_video(server):
+    status,raw,_=request(server,'/api/examples');catalog=json.loads(raw)
+    assert status==200 and catalog['default_example']=='h1-up'
+    assert len(catalog['examples'])==6 and all(item['available'] for item in catalog['examples'])
+    assert {item['id'] for item in catalog['examples']}=={item['id'] for item in list_examples()}
+    status,raw,_=request(server,'/api/example');value=json.loads(raw)
+    assert status==200 and value['id']=='h1-up' and value['state_available'] is True
+    for item in catalog['examples']:
+        status,raw,_=request(server,'/api/example?id='+item['id']);view=json.loads(raw)
+        assert status==200 and view['id']==item['id']
+        status,body,headers=request(server,view['video_url'],headers={'Range':'bytes=0-63'})
+        assert status==206 and body==example_paths(item['id'])[1].read_bytes()[:64]
+        assert headers['Content-Type']=='video/mp4'
+    assert request(server,'/api/evaluate',{'contract':stairs_contract(),'observations':None})[0]==400
+
+
+def test_stairs_binding_rejects_modified_video(tmp_path):
+    import shutil
+    from rl_triage.behavior_authoring.datasets import H1_ARCHIVE
+    source=ROOT/H1_ARCHIVE
+    target=tmp_path/H1_ARCHIVE
+    shutil.copytree(source,target)
+    video=example_paths('h1-up',tmp_path)[1]
+    with video.open('ab') as stream: stream.write(b'modified')
+    with pytest.raises(ValueError,match='해시 결합'):
+        load_example_view('h1-up',tmp_path)

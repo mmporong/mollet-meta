@@ -8,13 +8,16 @@
   <p id="error" class="error" role="alert" hidden></p>
   <div class="workspace">
     <section class="viewer" aria-labelledby="videoHeading">
-      <div class="section-head"><h2 id="videoHeading">관측 기록</h2><label class="clip-label">기록 선택<select id="clip"><option value="reference">기준 정책의 저장 기록</option><option value="case">보상 결함 정책의 저장 기록</option></select></label></div>
-      <div class="video-wrap"><video id="video" controls preload="metadata" playsinline aria-label="저장된 Isaac Lab 로봇 영상"></video><canvas id="overlay" width="640" height="480" aria-label="지정 영역과 가져온 객체의 위치"></canvas></div>
-      <p class="caption">영상은 참고 재생입니다. 원본의 영상 승인 보류 상태를 유지하며, 아래 판정은 저장된 상태 수치를 사용합니다.</p>
-      <div class="chart-head"><h3>수평 속도</h3><span><i class="legend actual"></i>관측값 <i class="legend threshold"></i>조건 기준</span></div>
+      <div class="section-head"><h2 id="videoHeading">계단 주행 기록</h2><label class="clip-label">기록 선택<select id="clip" aria-label="이족·사족 계단 주행 기록"></select></label></div>
+      <div class="video-wrap"><video id="video" controls preload="metadata" playsinline aria-label="저장된 Isaac Lab 계단 주행 영상"></video><canvas id="overlay" width="1280" height="720" aria-label="지정 영역과 가져온 객체의 위치"></canvas></div>
+      <p id="caption" class="caption">계단 주행 기록을 불러오는 중입니다.</p>
+      <dl id="assessment" class="assessment" aria-label="저장 기록 요약">
+        <div><dt>명령 속도</dt><dd id="commandSummary">—</dd></div><div><dt>전진 변화</dt><dd id="dxSummary">—</dd></div><div><dt>높이 변화</dt><dd id="dzSummary">—</dd></div><div><dt>최저 자세</dt><dd id="upSummary">—</dd></div><div><dt>저장 판정</dt><dd id="acceptanceSummary">—</dd></div>
+      </dl>
+      <div class="chart-head"><h3 id="chartHeading">수평 속도</h3><span><i class="legend actual"></i>관측값 <i class="legend threshold"></i>조건 기준</span></div>
       <canvas id="chart" width="960" height="190" role="img" aria-label="시간에 따른 수평 속도와 조건 임계값"></canvas>
       <div class="chart-meta"><span id="recordInfo">기록을 불러오는 중…</span><span id="timeInfo">0.00초</span></div>
-      <details><summary>입력의 출처와 판단 범위</summary><p id="provenance"></p><p>이 예제는 보관된 개발 자료입니다. 조건 결과는 기존의 26조건 회복 판정이나 모델의 성능을 대신하지 않습니다. 영상 속 객체를 인식한 결과는 현재 들어 있지 않습니다.</p></details>
+      <details><summary>입력의 출처와 판단 범위</summary><p id="provenance"></p><p>이 예제는 보관된 개발 자료입니다. 조건 결과는 기존의 26조건 회복 판정이나 모델의 성능을 대신하지 않습니다. Go2 기록에는 공개된 프레임별 상태가 없어 시간 조건을 판정하지 않습니다.</p></details>
     </section>
     <section class="editor" aria-labelledby="contractHeading">
       <div class="section-head"><h2 id="contractHeading">행동 조건</h2><span id="sourceTag">수동 작성</span></div>
@@ -24,12 +27,12 @@
         <label>검사 시작 기준<select id="trigger"><option value="time">지정한 시각</option><option value="region_entry">객체가 지정 영역에 진입</option></select></label>
         <div id="timeFields"><label>시작 시각 <span>초</span><input id="at" type="number" min="0" step="0.02" required></label></div>
         <fieldset id="regionFields" hidden><legend>화면상 영역 · 정규화 좌표</legend><label>객체 ID<input id="objectId" value="1" maxlength="100"></label><div class="four"><label>왼쪽<input id="x1" type="number" min="0" max="1" step="0.01" value="0.35"></label><label>위<input id="y1" type="number" min="0" max="1" step="0.01" value="0.3"></label><label>오른쪽<input id="x2" type="number" min="0" max="1" step="0.01" value="0.65"></label><label>아래<input id="y2" type="number" min="0" max="1" step="0.01" value="0.8"></label></div><p class="hint">영상 위에서 영역을 그리거나 좌표를 입력하세요. SAM 응답의 객체 bbox 중심을 사용합니다. 예제의 영상 승인이 보류되어 영역 판정도 보류됩니다.</p></fieldset>
-        <label>측정할 지표<select id="metric"><option value="horizontal_speed_mps">몸체 수평 속도 · m/s</option><option value="command_speed_mps">명령 수평 속도 · m/s</option><option value="base_height_m">몸체 높이 · m</option><option value="up_axis_z">수직축 정렬 · -1~1</option></select></label>
+        <label>측정할 지표<select id="metric"><option value="horizontal_speed_mps">세계 좌표 수평 속도 · m/s</option><option value="command_speed_mps">명령 수평 속도 · m/s</option><option value="base_height_m">몸체 기준점 세계 z · m</option><option value="up_axis_z">수직축 정렬 · -1~1</option></select></label>
         <div class="two"><label>비교<select id="op"><option value="gte">이상</option><option value="lte">이하</option></select></label><label>임계값<input id="threshold" type="number" step="0.01" required></label></div>
         <div class="two"><label>충족 시작까지 <span>초 이내</span><input id="deadline" type="number" min="0" step="0.1" required></label><label>유지 시간 <span>초 이상</span><input id="hold" type="number" min="0.01" step="0.1" required></label></div>
         <p id="plainCondition" class="condition-summary"></p>
         <label class="check"><input id="reviewed" type="checkbox"><span>이 조건의 대상·단위·시간 의미를 확인했습니다.</span></label>
-        <button type="submit" class="primary" id="evaluate">저장 기록에서 조건 검사</button>
+        <button type="submit" class="primary" id="evaluate" disabled>저장 기록에서 조건 검사</button>
       </form>
       <p class="hint">조건 확인은 로컬 검토 기록입니다. 실험 실행이나 GPU 사용을 승인하지 않습니다.</p>
     </section>
