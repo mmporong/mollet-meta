@@ -1,0 +1,39 @@
+{
+  "stage": "automated_test",
+  "approval_status": "approved",
+  "verdict": "FAIL",
+  "reason": "전체 관측창이 덮였지만 마감 안에 시작해 유지 시간을 채운 충족 구간이 없습니다.",
+  "trigger_t_s": 3.0,
+  "interval": null,
+  "examined_samples": 101,
+  "warnings": [
+    "승인 기록은 로컬 의미 검토 또는 자동 테스트 표식이며, 사람 인증이나 GPU 실행 권한이 아닙니다."
+  ],
+  "spec_sha256": "8c351b04bf0894d69cf909bf6ca8b1c5b3242670aa1f093f7842dc04551ca916",
+  "observations_sha256": "836af9ed1eabebc9d936bc89f5d6372f1e96975650e4db21630c6e8bd7cc00ef",
+  "approval": {
+    "contract_sha256": "8c351b04bf0894d69cf909bf6ca8b1c5b3242670aa1f093f7842dc04551ca916",
+    "actor": "automated_demo",
+    "scope": "automated_test"
+  },
+  "input_provenance": {
+    "kind": "recorded_rl_development_archive",
+    "source_trace": "evals/results/vision_transferred_pull_record_dev_20261027c_v1/f1/evidence/raw_trace.json",
+    "source_trace_sha256": "469395c6cc0885acf486f0d0b1a5cbb14da214330442260670b4eb0ba5911f74",
+    "source_result_sha256": "e8ad2e8f75fddc07aadda7f53d118fcffb0b75df0e3531e7aacfc8e77c7e79f3",
+    "video_path": "evals/results/vision_transferred_pull_record_dev_20261027c_v1/f1/same_play.mp4",
+    "capture_approved": false,
+    "model_ready": false,
+    "used_for_original_decision": false,
+    "visual_evidence_status": "deferred_archive_not_model_approved",
+    "state_field_source": "vision_play_worker_v1.state_snapshot: root_lin_vel_b[:2], command, base_height, projected_gravity",
+    "time_basis": "relative_actual_video_frame_pts_from_first_decoded_frame",
+    "frame_width": 640.0,
+    "frame_height": 480.0,
+    "new_model_api_calls": 0.0,
+    "new_training_jobs": 0.0,
+    "scope": "stored_state_condition_demo_only_not_recovery_or_generalization"
+  },
+  "model_called": false,
+  "interpretation": "예제 조건의 저장 수치 판정. 기존 회복 판정·영상 동기화 승인·모델 성능을 뜻하지 않음"
+}

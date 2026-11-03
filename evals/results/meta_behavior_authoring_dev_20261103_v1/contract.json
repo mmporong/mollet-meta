@@ -1,0 +1,24 @@
+{
+  "schema": "behavior-contract-v1",
+  "title": "명령 이후 수평 속도 유지",
+  "instruction": "3초부터 1초 안에 수평 속도가 0.4 m/s 이상이 되어 1초 이상 유지되는지 확인합니다.",
+  "trigger": {
+    "kind": "time",
+    "at_s": 3.0,
+    "region": null,
+    "object_id": null
+  },
+  "condition": {
+    "metric": "horizontal_speed_mps",
+    "op": "gte",
+    "threshold": 0.4,
+    "deadline_s": 1.0,
+    "hold_s": 1.0
+  },
+  "max_gap_s": 0.05,
+  "source": {
+    "kind": "manual_example_contract",
+    "model_called": false,
+    "scope": "development_demonstration"
+  }
+}

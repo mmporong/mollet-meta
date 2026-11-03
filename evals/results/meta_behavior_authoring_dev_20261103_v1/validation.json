@@ -1,0 +1,32 @@
+{
+  "checked_at": "2026-11-03T12:48:38+09:00",
+  "targeted_tests": {
+    "command": "python -m pytest -q -s tests/test_behavior_authoring_app.py tests/test_behavior_authoring_engine.py tests/test_behavior_authoring_adapters.py",
+    "passed": 44,
+    "exit_code": 0
+  },
+  "python_compileall": "passed",
+  "javascript_syntax": "passed",
+  "review": {
+    "status": "COMMENT_no_open_code_findings",
+    "resolved": [
+      "SAM import preserves source deferral and dimensions",
+      "normalized integral frame dimensions accepted",
+      "outside anchor reacquisition supports observed entry"
+    ],
+    "scope": "one independent code-review pass with fixes and closure; not product/model/submission approval"
+  },
+  "gaps": [
+    "LSP tooling unavailable",
+    "browser host/native pipe unavailable; no real-browser render or interaction QA",
+    "no live Meta calls or model quality measurement",
+    "three-minute video storyboard exists; no final video file",
+    "feature branch local only; no push or submission"
+  ],
+  "artifacts": {
+    "case-result.json": "adce7a986e301183b254fcfcd9addf15c4e5d0c829d20e948eb705bc15032b90",
+    "contract.json": "9953de10c82f2226e8c7d9631cd469f685bdd437490c58c267ac9ba96e21c875",
+    "reference-result.json": "f8631945f9c2b7c0c4743e01d7c2a847976f0b76e7e02a50d6b649f1e7ae700a",
+    "summary.json": "2edb3ef1ae401c34a37278e292045bfd0ed7c832e9dfc8e39be94287f22976bd"
+  }
+}

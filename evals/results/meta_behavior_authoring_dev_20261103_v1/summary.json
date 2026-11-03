@@ -1,0 +1,17 @@
+{
+  "schema": "behavior-authoring-demo-v1",
+  "results": {
+    "reference": "PASS",
+    "case": "FAIL"
+  },
+  "model_api_calls": 0,
+  "gpu_jobs": 0,
+  "source_kind": "recorded_development_state",
+  "visual_input_status": "deferred_archive_not_model_approved",
+  "generalization_claim": false,
+  "implementation_commit": "014cfcc44712c5ba9f485500770242958089d1e6",
+  "provenance": "same_seen_stored_RL_state_development_demo",
+  "model_quality_claim": false,
+  "visual_diagnosis_gain_claim": false,
+  "existing_recovery_verdict_changed": false
+}
