@@ -1,0 +1,59 @@
+{
+  "clip": {
+    "id": "go2-up-fast",
+    "name": "사족 Go2 · 계단 상행 · 0.75 m/s",
+    "video_sha256": "882bd379cfeb53c61e7fc7c8a4e7895c9ae8f2163d13c92ce9905354e2d2272d",
+    "recorded_assessment": {
+      "root_dx_m": 8.968191146850586,
+      "root_dz_m": 0.33833378553390503,
+      "motion_accepted": true,
+      "progress_condition_pass": true,
+      "height_condition_pass": true,
+      "termination_seen": false,
+      "command_speed_mps": 0.75,
+      "min_up_axis_z": 0.9457813352186196
+    },
+    "provenance": {
+      "kind": "recorded_go2_command_contrast_summary",
+      "source_path": "evals/results/go2_stairs_command_contrast_s200_20261101_v1/cases.json",
+      "source_sha256": "635bdaa75847015600bba3a6c68046ed6449d0da3a879378dc8610b2545f87e8",
+      "source_media_sha256": "5bc64ddea68c4c7d9b2bcd44b8a671ab640894a23877fb72fd370bb6a21c6161",
+      "source_trace_sha256": "99bc01630f4915f9e6006f84b4bdb44c0684a2913bba604a2c1c05b36e1f12bb",
+      "video_path": "evals/results/go2_stairs_command_contrast_s200_20261101_v1/media/quadruped-stairs-up-step-0p05-cmd-0p75.mp4",
+      "raw_state_trace_available": false,
+      "capture_approved": false,
+      "model_ready": false,
+      "scope": "same_policy_command_contrast_only_not_retraining_or_recovery",
+      "new_model_api_calls": 0,
+      "new_training_jobs": 0
+    }
+  },
+  "contract": {
+    "schema": "behavior-contract-v1",
+    "title": "계단 재생 전 구간 자세 유지",
+    "instruction": "영상의 12.48초 상태 구간에서 수직축 정렬이 0.8 이상 유지되는지 확인합니다.",
+    "trigger": {
+      "kind": "time",
+      "at_s": 0.0,
+      "region": null,
+      "object_id": null
+    },
+    "condition": {
+      "metric": "up_axis_z",
+      "op": "gte",
+      "threshold": 0.8,
+      "deadline_s": 0.0,
+      "hold_s": 12.48
+    },
+    "max_gap_s": 0.05,
+    "source": {
+      "kind": "manual_example_contract",
+      "model_called": false,
+      "scope": "development_demonstration"
+    }
+  },
+  "observations": null,
+  "approval": null,
+  "result": null,
+  "model_calls_in_this_app": 0
+}

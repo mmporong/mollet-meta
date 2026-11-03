@@ -1,0 +1,19 @@
+{
+  "sources": [
+    {
+      "url": "https://dev.meta.ai/docs/pricing-rate-limits",
+      "acquisition_file": "$HOME/hackathon-specialist/tmp/meta-tools-official-20261103/pricing.html",
+      "sha256": "362750a52a3ce7230366921c734276a410dc2f17baf84d0d88429e5a631402b8",
+      "checked_at": "2026-11-03T23:28:43.420705+09:00",
+      "excerpt": "age Standard mode (per 1M tokens) Contributor mode (per 1M tokens) Cached input $0.20 Not available Input $4.00 Not available Output $20.00 Not available Muse Spark Models: muse-spark-1.3 , muse-spark-1.2 , and muse-spark-1.1 in Standard mode; muse-spark-1.3-contributor and muse-spark-1.2-contributor in Contributor mod"
+    },
+    {
+      "url": "https://dev.meta.ai/docs/overview",
+      "acquisition_file": "$HOME/hackathon-specialist/tmp/meta-tools-official-20261103/overview.html",
+      "sha256": "1f6a09161970b5d76a2797c01042b5ff324a97b7b0cf4fb17ad0079fbdfd8432",
+      "checked_at": "2026-11-03T23:28:43.433412+09:00",
+      "excerpt": "1.0 Context window 1,048,576 tokens Auth Bearer token ( MODEL_API_KEY ) Pricing Pay-as-you-go; see Pricing and rate limits Make your first call Send a request to the Responses API with your MODEL_API_KEY : shell curl -X POST \"https://api.meta.ai/v1/responses\" \\ -H \"Authorization: Bearer $MODEL_API_KEY\" \\ -H \"Content-Ty"
+    }
+  ],
+  "actual_model_api_calls": 0
+}

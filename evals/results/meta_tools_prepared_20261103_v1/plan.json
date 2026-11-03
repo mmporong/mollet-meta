@@ -1,0 +1,14 @@
+{
+  "schema": "meta-prepared-call-plan-v1",
+  "clip_id": "h1-up",
+  "video_sha256": "82107853548545c0977b8488acd45931689c1de737db29d931d1735505367f10",
+  "frames": 625,
+  "planned_requests": 2,
+  "actual_requests": 0,
+  "sent": false,
+  "blocked_by": "paid_api_forbidden_free_credit_unverified",
+  "response_files": [],
+  "spark_request_bytes": 128704,
+  "sam_request_bytes": 1777077,
+  "existing_key_present_in_process": false
+}

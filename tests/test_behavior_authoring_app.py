@@ -121,8 +121,7 @@ def test_stairs_state_uses_post_step_video_frame_mapping(key):
     assert evaluate_contract(stairs_contract(),bundle)['verdict']=='PASS'
 
 
-@pytest.mark.parametrize('key,accepted', [('go2-up-slow',False),('go2-down-slow',False),
-                                        ('go2-up-fast',True),('go2-down-fast',True)])
+@pytest.mark.parametrize('key,accepted', [('go2-up-fast',True),('go2-down-fast',True)])
 def test_go2_summary_never_becomes_synthetic_time_series(key,accepted):
     value=load_example_view(key)
     assert value['observations'] is None and value['state_available'] is False
@@ -130,9 +129,37 @@ def test_go2_summary_never_becomes_synthetic_time_series(key,accepted):
     assert value['provenance']['raw_state_trace_available'] is False
     with pytest.raises(ValueError,match='프레임별 상태 기록'):
         load_example(key)
-    if key=='go2-down-slow':
+
+
+@pytest.mark.parametrize('key,verdict', [('go2-up-slow','PASS'),('go2-down-slow','FAIL')])
+def test_go2_recorded_trace_is_joined_by_current_result_hash(key,verdict):
+    from rl_triage.behavior_authoring.datasets import digest_file
+    value=load_example_view(key);bundle=value['observations'];provenance=bundle['provenance']
+    assert value['state_available'] is True and len(bundle['samples'])==625
+    path=ROOT/provenance['source_trace']
+    assert digest_file(path)==provenance['source_trace_sha256']
+    rows=[json.loads(line) for line in path.read_text(encoding='utf-8').splitlines()]
+    assert bundle['samples'][0]['values']['base_height_m']==rows[1]['root_pos_w'][2]
+    assert bundle['samples'][-1]['t_s']==12.48
+    assert provenance['binding_kind']=='public_contrast_row_video_and_trace_sha256'
+    assert evaluate_contract(value['default_contract'],bundle)['verdict']==verdict
+    assert value['recorded_assessment']['motion_accepted'] is False
+    if key=='go2-up-slow':
+        assert min(s['values']['base_height_m'] for s in bundle['samples'])<0
+    else:
         assert value['recorded_assessment']['min_up_axis_z']<0
         assert value['recorded_assessment']['progress_condition_pass'] is True
+
+
+def test_go2_content_addressed_join_rejects_changed_trace(tmp_path):
+    import shutil
+    from rl_triage.behavior_authoring.datasets import GO2_ARCHIVE,GO2_STATE_ARCHIVE
+    shutil.copytree(ROOT/GO2_ARCHIVE,tmp_path/GO2_ARCHIVE)
+    target=tmp_path/GO2_STATE_ARCHIVE/'go2-up'
+    shutil.copytree(ROOT/GO2_STATE_ARCHIVE/'go2-up',target)
+    with (target/'state-trace.jsonl').open('ab') as stream:stream.write(b'\n')
+    with pytest.raises(ValueError,match='상태 원문의 SHA'):
+        load_example_view('go2-up-slow',tmp_path)
 
 
 def test_stairs_http_default_catalog_and_each_original_video(server):

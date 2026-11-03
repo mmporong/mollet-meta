@@ -1,0 +1,517 @@
+{
+  "schema": "meta_behavior_demo_v1",
+  "title": "Mollet 행동 조건 편집기 3분 데모",
+  "scope": "stored_source_and_computed_evidence_edit_not_browser_capture",
+  "duration_contract_s": 180.0,
+  "output": {
+    "file": "mollet-meta-behavior-demo-3min.mp4",
+    "sha256": "93e75d92098d333b302d52f002f91c5f463f5deca28a8c99c40724b8a67af91b",
+    "bytes": 9393065,
+    "probe": {
+      "programs": [],
+      "stream_groups": [],
+      "streams": [
+        {
+          "index": 0,
+          "codec_name": "h264",
+          "codec_type": "video",
+          "width": 1280,
+          "height": 720,
+          "pix_fmt": "yuv420p",
+          "r_frame_rate": "30/1"
+        },
+        {
+          "index": 1,
+          "codec_name": "aac",
+          "codec_type": "audio",
+          "sample_rate": "48000",
+          "channels": 2,
+          "r_frame_rate": "0/0"
+        }
+      ],
+      "format": {
+        "duration": "180.000000",
+        "size": "9393065"
+      }
+    },
+    "full_decode_exit": 0
+  },
+  "subtitles": {
+    "file": "mollet-meta-behavior-demo-ko.srt",
+    "sha256": "6e8f43727c40a63bcb51b0c851810f220a8ef6f931cd8acf61bb674a0d0edea8",
+    "cues": 12
+  },
+  "script": {
+    "file": "SCRIPT-ko.md",
+    "sha256": "6090bc72d8f2b09fc44d437c1b3f6ecb7be93e3506a261195e2652de0475ec09"
+  },
+  "builder": {
+    "file": "docs/demo/build_meta_behavior_demo.py",
+    "sha256": "d8b7bd0ace4cea14138ebf380cd19113de3a3d4a1a35e5646223475c999a61e1"
+  },
+  "behavior_contract": {
+    "schema": "behavior-contract-v1",
+    "title": "계단 재생 중 자세 유지",
+    "instruction": "영상 시작부터 8초 동안 수직축 정렬이 0.8 이상 유지되는지 확인합니다.",
+    "trigger": {
+      "kind": "time",
+      "at_s": 0.0,
+      "region": null,
+      "object_id": null
+    },
+    "condition": {
+      "metric": "up_axis_z",
+      "op": "gte",
+      "threshold": 0.8,
+      "deadline_s": 0.0,
+      "hold_s": 8.0
+    },
+    "max_gap_s": 0.05,
+    "source": {
+      "kind": "manual_example_contract",
+      "model_called": false,
+      "scope": "development_demonstration"
+    }
+  },
+  "state_results": {
+    "h1-up": {
+      "stage": "draft",
+      "approval_status": "unreviewed",
+      "verdict": "PASS",
+      "reason": "마감 시점 안에 조건을 시작해 필요한 유지 시간 동안 연속으로 충족했습니다.",
+      "trigger_t_s": 0.0,
+      "interval": {
+        "start_s": 0.0,
+        "end_s": 8.0
+      },
+      "examined_samples": 401,
+      "warnings": [],
+      "spec_sha256": "f14b3eef2d4e52e7bb57ca2b66139c19c6f032314c161de4e13073fb7d68ee78",
+      "observations_sha256": "69c892a3ba263e89d121979e7faa010657ed949a77e0ea1980fbfd906a127891"
+    },
+    "h1-down": {
+      "stage": "draft",
+      "approval_status": "unreviewed",
+      "verdict": "PASS",
+      "reason": "마감 시점 안에 조건을 시작해 필요한 유지 시간 동안 연속으로 충족했습니다.",
+      "trigger_t_s": 0.0,
+      "interval": {
+        "start_s": 0.0,
+        "end_s": 8.0
+      },
+      "examined_samples": 401,
+      "warnings": [],
+      "spec_sha256": "f14b3eef2d4e52e7bb57ca2b66139c19c6f032314c161de4e13073fb7d68ee78",
+      "observations_sha256": "c243419cd2448a20f4f3982f2272aa92351fb1af4902eee50f42af68bbd92a35"
+    },
+    "go2-up-slow": {
+      "stage": "draft",
+      "approval_status": "unreviewed",
+      "verdict": "PASS",
+      "reason": "마감 시점 안에 조건을 시작해 필요한 유지 시간 동안 연속으로 충족했습니다.",
+      "trigger_t_s": 0.0,
+      "interval": {
+        "start_s": 0.0,
+        "end_s": 12.48
+      },
+      "examined_samples": 625,
+      "warnings": [],
+      "spec_sha256": "0776b83893adb04e1dbec09edc6780108114b6d2ab7645dab2e38cbafb84d7d9",
+      "observations_sha256": "b6b4d4b7992023ec1af662cb6f26de28e8f717450144aa194ecacf4fbc65520c"
+    },
+    "go2-down-slow": {
+      "stage": "draft",
+      "approval_status": "unreviewed",
+      "verdict": "FAIL",
+      "reason": "전체 관측창이 덮였지만 마감 안에 시작해 유지 시간을 채운 충족 구간이 없습니다.",
+      "trigger_t_s": 0.0,
+      "interval": null,
+      "examined_samples": 625,
+      "warnings": [],
+      "spec_sha256": "0776b83893adb04e1dbec09edc6780108114b6d2ab7645dab2e38cbafb84d7d9",
+      "observations_sha256": "01495ca182764cbf2d24779baedea0c7f770a764cd5c0228fb75409d25d0ea7e"
+    }
+  },
+  "sources": {
+    "h1-up": {
+      "video": "docs/media/stairs_h1_s172_20261030_v1/biped-stairs-up/video/rl-video-step-0.mp4",
+      "video_sha256": "82107853548545c0977b8488acd45931689c1de737db29d931d1735505367f10",
+      "metadata": "docs/media/stairs_h1_s172_20261030_v1/biped-stairs-up/manifest.json",
+      "metadata_sha256": "78040636212a19853a71b2384d7a53d934bc5ee6280cc2fb8c725a837c08af3f",
+      "state_available": true,
+      "recorded_assessment": {
+        "outcome": "completed",
+        "root_dx_m": 2.976639986038208,
+        "root_dz_m": 0.5790612101554871,
+        "height_condition_pass": true,
+        "progress_condition_pass": true,
+        "termination_seen": false,
+        "trace_rows": 626,
+        "command_speed_mps": 0.25,
+        "min_up_axis_z": 0.9872842098020741,
+        "motion_accepted": true
+      },
+      "condition_result": {
+        "stage": "draft",
+        "approval_status": "unreviewed",
+        "verdict": "PASS",
+        "reason": "마감 시점 안에 조건을 시작해 필요한 유지 시간 동안 연속으로 충족했습니다.",
+        "trigger_t_s": 0.0,
+        "interval": {
+          "start_s": 0.0,
+          "end_s": 8.0
+        },
+        "examined_samples": 401,
+        "warnings": [],
+        "spec_sha256": "f14b3eef2d4e52e7bb57ca2b66139c19c6f032314c161de4e13073fb7d68ee78",
+        "observations_sha256": "69c892a3ba263e89d121979e7faa010657ed949a77e0ea1980fbfd906a127891"
+      },
+      "state_provenance": {
+        "kind": "recorded_h1_stairs_playback",
+        "source_path": "docs/media/stairs_h1_s172_20261030_v1/biped-stairs-up/manifest.json",
+        "source_sha256": "78040636212a19853a71b2384d7a53d934bc5ee6280cc2fb8c725a837c08af3f",
+        "source_trace": "docs/media/stairs_h1_s172_20261030_v1/biped-stairs-up/state-trace.jsonl",
+        "source_trace_sha256": "ef305c390f11842ed04dd0d8a835af5159e02c93a9a51763008591d2f6831e07",
+        "source_manifest_sha256": "eb113a2aee964aaaf972bbff9f2fd9090e14052c4642334b04e8ac4e78113193",
+        "exact_frames_sha256": "da80560fb45edcae16634fbcbfa865941e643f4c74db6b4cac5fe2c5510c9742",
+        "video_path": "docs/media/stairs_h1_s172_20261030_v1/biped-stairs-up/video/rl-video-step-0.mp4",
+        "frame_width": 1280,
+        "frame_height": 720,
+        "capture_approved": false,
+        "model_ready": false,
+        "playback_render_synced": true,
+        "visual_evidence_status": "render_synced_playback_not_model_input_approval",
+        "time_basis": "video_frame_index / encoder_fps",
+        "state_frame_offset": 1,
+        "sim_time_offset_s": 0.02,
+        "motion_frame": "world",
+        "height_frame": "world_z_not_ground_clearance",
+        "scope": "stored_stairs_condition_demo_only_not_recovery_or_generalization",
+        "new_model_api_calls": 0,
+        "new_training_jobs": 0
+      },
+      "presentation_edit": {
+        "source_clip_duration_s": 12.5,
+        "segment_duration_s": 15.0,
+        "freeze_last_frame_s": 2.5,
+        "speed_changed": false
+      }
+    },
+    "h1-down": {
+      "video": "docs/media/stairs_h1_s172_20261030_v1/biped-stairs-down/video/rl-video-step-0.mp4",
+      "video_sha256": "51e79c53a2011ed493773edf3728587faf11334601146cba57ffdb782010f573",
+      "metadata": "docs/media/stairs_h1_s172_20261030_v1/biped-stairs-down/manifest.json",
+      "metadata_sha256": "5ca9568a1eb08f1212f3c8af371e386934f5557fa1fc50eecfeb445a88fc7b51",
+      "state_available": true,
+      "recorded_assessment": {
+        "outcome": "completed",
+        "root_dx_m": 2.826895236968994,
+        "root_dz_m": -0.6734259128570557,
+        "height_condition_pass": true,
+        "progress_condition_pass": true,
+        "termination_seen": false,
+        "trace_rows": 626,
+        "command_speed_mps": 0.25,
+        "min_up_axis_z": 0.9886204967632537,
+        "motion_accepted": true
+      },
+      "condition_result": {
+        "stage": "draft",
+        "approval_status": "unreviewed",
+        "verdict": "PASS",
+        "reason": "마감 시점 안에 조건을 시작해 필요한 유지 시간 동안 연속으로 충족했습니다.",
+        "trigger_t_s": 0.0,
+        "interval": {
+          "start_s": 0.0,
+          "end_s": 8.0
+        },
+        "examined_samples": 401,
+        "warnings": [],
+        "spec_sha256": "f14b3eef2d4e52e7bb57ca2b66139c19c6f032314c161de4e13073fb7d68ee78",
+        "observations_sha256": "c243419cd2448a20f4f3982f2272aa92351fb1af4902eee50f42af68bbd92a35"
+      },
+      "state_provenance": {
+        "kind": "recorded_h1_stairs_playback",
+        "source_path": "docs/media/stairs_h1_s172_20261030_v1/biped-stairs-down/manifest.json",
+        "source_sha256": "5ca9568a1eb08f1212f3c8af371e386934f5557fa1fc50eecfeb445a88fc7b51",
+        "source_trace": "docs/media/stairs_h1_s172_20261030_v1/biped-stairs-down/state-trace.jsonl",
+        "source_trace_sha256": "79461bec8584b79d1bff15ff5c60f7c16b46141fc8fb6b29148d76ca6c011300",
+        "source_manifest_sha256": "eb113a2aee964aaaf972bbff9f2fd9090e14052c4642334b04e8ac4e78113193",
+        "exact_frames_sha256": "29b623979d50c69528653e930ea23bb45b45ca0960fedc5ebe6a991df37083b4",
+        "video_path": "docs/media/stairs_h1_s172_20261030_v1/biped-stairs-down/video/rl-video-step-0.mp4",
+        "frame_width": 1280,
+        "frame_height": 720,
+        "capture_approved": false,
+        "model_ready": false,
+        "playback_render_synced": true,
+        "visual_evidence_status": "render_synced_playback_not_model_input_approval",
+        "time_basis": "video_frame_index / encoder_fps",
+        "state_frame_offset": 1,
+        "sim_time_offset_s": 0.02,
+        "motion_frame": "world",
+        "height_frame": "world_z_not_ground_clearance",
+        "scope": "stored_stairs_condition_demo_only_not_recovery_or_generalization",
+        "new_model_api_calls": 0,
+        "new_training_jobs": 0
+      },
+      "presentation_edit": {
+        "source_clip_duration_s": 12.5,
+        "segment_duration_s": 15.0,
+        "freeze_last_frame_s": 2.5,
+        "speed_changed": false
+      }
+    },
+    "go2-up-slow": {
+      "video": "evals/results/go2_stairs_command_contrast_s200_20261101_v1/media/quadruped-stairs-up-step-0p05-cmd-0p25.mp4",
+      "video_sha256": "c4f3a930799e854209a3cea8d38a97ad197da60fa87eebb4925b0d484113f98d",
+      "metadata": "evals/results/go2_stairs_command_contrast_s200_20261101_v1/media.json",
+      "metadata_sha256": "5bc64ddea68c4c7d9b2bcd44b8a671ab640894a23877fb72fd370bb6a21c6161",
+      "state_available": true,
+      "recorded_assessment": {
+        "root_dx_m": 1.0760176181793213,
+        "root_dz_m": -0.05675143841654062,
+        "motion_accepted": false,
+        "progress_condition_pass": false,
+        "height_condition_pass": false,
+        "termination_seen": false,
+        "command_speed_mps": 0.25,
+        "min_up_axis_z": 0.8457120941132933
+      },
+      "condition_result": {
+        "stage": "draft",
+        "approval_status": "unreviewed",
+        "verdict": "PASS",
+        "reason": "마감 시점 안에 조건을 시작해 필요한 유지 시간 동안 연속으로 충족했습니다.",
+        "trigger_t_s": 0.0,
+        "interval": {
+          "start_s": 0.0,
+          "end_s": 12.48
+        },
+        "examined_samples": 625,
+        "warnings": [],
+        "spec_sha256": "0776b83893adb04e1dbec09edc6780108114b6d2ab7645dab2e38cbafb84d7d9",
+        "observations_sha256": "b6b4d4b7992023ec1af662cb6f26de28e8f717450144aa194ecacf4fbc65520c"
+      },
+      "state_provenance": {
+        "kind": "recorded_go2_stairs_state_sha_join",
+        "source_path": "evals/results/go2_stairs_command_contrast_s200_20261101_v1/cases.json",
+        "source_sha256": "635bdaa75847015600bba3a6c68046ed6449d0da3a879378dc8610b2545f87e8",
+        "source_media_sha256": "5bc64ddea68c4c7d9b2bcd44b8a671ab640894a23877fb72fd370bb6a21c6161",
+        "source_trace_sha256": "cdb155661c2671c7c7a8433c08b77c481ed60edaa72f0af96c1020003e7c12d4",
+        "video_path": "evals/results/go2_stairs_command_contrast_s200_20261101_v1/media/quadruped-stairs-up-step-0p05-cmd-0p25.mp4",
+        "raw_state_trace_available": true,
+        "capture_approved": false,
+        "model_ready": false,
+        "scope": "same_policy_command_contrast_only_not_retraining_or_recovery",
+        "new_model_api_calls": 0,
+        "new_training_jobs": 0,
+        "source_trace": "evals/results/stairs_motion_integrity_20261101_v1/sources/go2-up/state-trace.jsonl",
+        "binding_kind": "public_contrast_row_video_and_trace_sha256",
+        "frame_width": 1280,
+        "frame_height": 720,
+        "time_basis": "video_frame_index / encoder_fps",
+        "state_frame_offset": 1,
+        "sim_time_offset_s": 0.02,
+        "motion_frame": "world",
+        "height_frame": "world_z_not_ground_clearance"
+      },
+      "presentation_edit": {
+        "source_clip_duration_s": 12.5,
+        "segment_duration_s": 15.0,
+        "freeze_last_frame_s": 2.5,
+        "speed_changed": false
+      }
+    },
+    "go2-down-slow": {
+      "video": "evals/results/go2_stairs_command_contrast_s200_20261101_v1/media/quadruped-stairs-down-step-0p05-cmd-0p25.mp4",
+      "video_sha256": "e199c6cd71d62894c98a79315b588a74f5290236a706bf7c1368a5568e59a6f0",
+      "metadata": "evals/results/go2_stairs_command_contrast_s200_20261101_v1/media.json",
+      "metadata_sha256": "5bc64ddea68c4c7d9b2bcd44b8a671ab640894a23877fb72fd370bb6a21c6161",
+      "state_available": true,
+      "recorded_assessment": {
+        "root_dx_m": 2.4940500259399414,
+        "root_dz_m": -0.3014098107814789,
+        "motion_accepted": false,
+        "progress_condition_pass": true,
+        "height_condition_pass": true,
+        "termination_seen": false,
+        "command_speed_mps": 0.25,
+        "min_up_axis_z": -0.5833989197888134
+      },
+      "condition_result": {
+        "stage": "draft",
+        "approval_status": "unreviewed",
+        "verdict": "FAIL",
+        "reason": "전체 관측창이 덮였지만 마감 안에 시작해 유지 시간을 채운 충족 구간이 없습니다.",
+        "trigger_t_s": 0.0,
+        "interval": null,
+        "examined_samples": 625,
+        "warnings": [],
+        "spec_sha256": "0776b83893adb04e1dbec09edc6780108114b6d2ab7645dab2e38cbafb84d7d9",
+        "observations_sha256": "01495ca182764cbf2d24779baedea0c7f770a764cd5c0228fb75409d25d0ea7e"
+      },
+      "state_provenance": {
+        "kind": "recorded_go2_stairs_state_sha_join",
+        "source_path": "evals/results/go2_stairs_command_contrast_s200_20261101_v1/cases.json",
+        "source_sha256": "635bdaa75847015600bba3a6c68046ed6449d0da3a879378dc8610b2545f87e8",
+        "source_media_sha256": "5bc64ddea68c4c7d9b2bcd44b8a671ab640894a23877fb72fd370bb6a21c6161",
+        "source_trace_sha256": "31b6fffd1e499a3880fd186b91fcc955188097ab6aef42a6a6ed43a98bd29990",
+        "video_path": "evals/results/go2_stairs_command_contrast_s200_20261101_v1/media/quadruped-stairs-down-step-0p05-cmd-0p25.mp4",
+        "raw_state_trace_available": true,
+        "capture_approved": false,
+        "model_ready": false,
+        "scope": "same_policy_command_contrast_only_not_retraining_or_recovery",
+        "new_model_api_calls": 0,
+        "new_training_jobs": 0,
+        "source_trace": "evals/results/stairs_motion_integrity_20261101_v1/sources/go2-down/state-trace.jsonl",
+        "binding_kind": "public_contrast_row_video_and_trace_sha256",
+        "frame_width": 1280,
+        "frame_height": 720,
+        "time_basis": "video_frame_index / encoder_fps",
+        "state_frame_offset": 1,
+        "sim_time_offset_s": 0.02,
+        "motion_frame": "world",
+        "height_frame": "world_z_not_ground_clearance"
+      },
+      "presentation_edit": {
+        "source_clip_duration_s": 12.5,
+        "segment_duration_s": 15.0,
+        "freeze_last_frame_s": 2.5,
+        "speed_changed": false
+      }
+    },
+    "go2-up-fast": {
+      "video": "evals/results/go2_stairs_command_contrast_s200_20261101_v1/media/quadruped-stairs-up-step-0p05-cmd-0p75.mp4",
+      "video_sha256": "882bd379cfeb53c61e7fc7c8a4e7895c9ae8f2163d13c92ce9905354e2d2272d",
+      "metadata": "evals/results/go2_stairs_command_contrast_s200_20261101_v1/media.json",
+      "metadata_sha256": "5bc64ddea68c4c7d9b2bcd44b8a671ab640894a23877fb72fd370bb6a21c6161",
+      "state_available": false,
+      "recorded_assessment": {
+        "root_dx_m": 8.968191146850586,
+        "root_dz_m": 0.33833378553390503,
+        "motion_accepted": true,
+        "progress_condition_pass": true,
+        "height_condition_pass": true,
+        "termination_seen": false,
+        "command_speed_mps": 0.75,
+        "min_up_axis_z": 0.9457813352186196
+      },
+      "condition_result": null,
+      "state_provenance": {
+        "kind": "recorded_go2_command_contrast_summary",
+        "source_path": "evals/results/go2_stairs_command_contrast_s200_20261101_v1/cases.json",
+        "source_sha256": "635bdaa75847015600bba3a6c68046ed6449d0da3a879378dc8610b2545f87e8",
+        "source_media_sha256": "5bc64ddea68c4c7d9b2bcd44b8a671ab640894a23877fb72fd370bb6a21c6161",
+        "source_trace_sha256": "99bc01630f4915f9e6006f84b4bdb44c0684a2913bba604a2c1c05b36e1f12bb",
+        "video_path": "evals/results/go2_stairs_command_contrast_s200_20261101_v1/media/quadruped-stairs-up-step-0p05-cmd-0p75.mp4",
+        "raw_state_trace_available": false,
+        "capture_approved": false,
+        "model_ready": false,
+        "scope": "same_policy_command_contrast_only_not_retraining_or_recovery",
+        "new_model_api_calls": 0,
+        "new_training_jobs": 0
+      },
+      "presentation_edit": {
+        "source_clip_duration_s": 12.5,
+        "segment_duration_s": 15.0,
+        "freeze_last_frame_s": 2.5,
+        "speed_changed": false
+      }
+    },
+    "go2-down-fast": {
+      "video": "evals/results/go2_stairs_command_contrast_s200_20261101_v1/media/quadruped-stairs-down-step-0p05-cmd-0p75.mp4",
+      "video_sha256": "5dedd54494d252fab686d32da164fa818ea6990c13d3e12557b5dd69df073f4a",
+      "metadata": "evals/results/go2_stairs_command_contrast_s200_20261101_v1/media.json",
+      "metadata_sha256": "5bc64ddea68c4c7d9b2bcd44b8a671ab640894a23877fb72fd370bb6a21c6161",
+      "state_available": false,
+      "recorded_assessment": {
+        "root_dx_m": 8.867447853088379,
+        "root_dz_m": -0.36060619354248047,
+        "motion_accepted": true,
+        "progress_condition_pass": true,
+        "height_condition_pass": true,
+        "termination_seen": false,
+        "command_speed_mps": 0.75,
+        "min_up_axis_z": 0.9794291228393306
+      },
+      "condition_result": null,
+      "state_provenance": {
+        "kind": "recorded_go2_command_contrast_summary",
+        "source_path": "evals/results/go2_stairs_command_contrast_s200_20261101_v1/cases.json",
+        "source_sha256": "635bdaa75847015600bba3a6c68046ed6449d0da3a879378dc8610b2545f87e8",
+        "source_media_sha256": "5bc64ddea68c4c7d9b2bcd44b8a671ab640894a23877fb72fd370bb6a21c6161",
+        "source_trace_sha256": "d285d37a0fcd673b251184211c59ae207730dc4f99f8144b560ce386222d90a9",
+        "video_path": "evals/results/go2_stairs_command_contrast_s200_20261101_v1/media/quadruped-stairs-down-step-0p05-cmd-0p75.mp4",
+        "raw_state_trace_available": false,
+        "capture_approved": false,
+        "model_ready": false,
+        "scope": "same_policy_command_contrast_only_not_retraining_or_recovery",
+        "new_model_api_calls": 0,
+        "new_training_jobs": 0
+      },
+      "presentation_edit": {
+        "source_clip_duration_s": 12.5,
+        "segment_duration_s": 15.0,
+        "freeze_last_frame_s": 2.5,
+        "speed_changed": false
+      }
+    }
+  },
+  "narration_modes": [
+    "sapi_korean",
+    "sapi_korean",
+    "sapi_korean",
+    "sapi_korean",
+    "sapi_korean",
+    "sapi_korean",
+    "sapi_korean",
+    "sapi_korean",
+    "sapi_korean",
+    "sapi_korean",
+    "sapi_korean",
+    "sapi_korean"
+  ],
+  "claims": {
+    "browser_capture": false,
+    "meta_model_calls": 0,
+    "paid_api_calls": 0,
+    "gpu_jobs": 0,
+    "new_training": 0,
+    "new_recovery_claim": false,
+    "spark_status": "request_builder_and_saved_response_import_only",
+    "sam_status": "request_builder_and_saved_response_import_only",
+    "go2_state_status": "0p25_state_backed_0p75_summary_only_no_synthetic_time_series"
+  },
+  "verification_frames": [
+    {
+      "time_s": 5,
+      "file": "verification-frames/frame-005s.png",
+      "sha256": "15cc0b57ef25aae2bfc6af3da24599b575d33022e4941e3634c451ea20b91134"
+    },
+    {
+      "time_s": 36,
+      "file": "verification-frames/frame-036s.png",
+      "sha256": "41b0fa196491aef12903f254ad40e39643aee58c198ddccf31d4bf7a1a1a3145"
+    },
+    {
+      "time_s": 50,
+      "file": "verification-frames/frame-050s.png",
+      "sha256": "51f7f1113283082dd8814b2021959527255c7a9e8b4cf74fca212859372755a1"
+    },
+    {
+      "time_s": 95,
+      "file": "verification-frames/frame-095s.png",
+      "sha256": "cfd74ad217fe34289836bf58e7384e2ba400619551aab627e0fb8619243fa151"
+    },
+    {
+      "time_s": 126,
+      "file": "verification-frames/frame-126s.png",
+      "sha256": "bc14f90f287508a483c3ce3377a4d2f51bc9f0e0817958a10201b3c2fa11f7c3"
+    },
+    {
+      "time_s": 156,
+      "file": "verification-frames/frame-156s.png",
+      "sha256": "fd4a935345c1d297dd18448ccf9db44595887820cb8feed3ea01f9900c0f0399"
+    }
+  ]
+}

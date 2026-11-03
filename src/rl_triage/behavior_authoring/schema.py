@@ -23,7 +23,7 @@ _FORBIDDEN_METADATA_KEYS = {
 _METRIC_BOUNDS = {
     "horizontal_speed_mps": (0.0, 100.0),
     "command_speed_mps": (0.0, 100.0),
-    "base_height_m": (0.0, 100.0),
+    "base_height_m": (-100.0, 100.0),
     "up_axis_z": (-1.0, 1.0),
 }
 

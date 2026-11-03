@@ -1,0 +1,77 @@
+{
+  "schema": "meta-behavior-http-flow-verification-v1",
+  "checked_at": "2026-11-03T23:28:43.403600+09:00",
+  "url": "http://127.0.0.1:7705",
+  "mode": "real_loopback_http_not_browser_automation",
+  "examples": [
+    {
+      "id": "h1-up",
+      "state_available": true,
+      "samples": 625,
+      "verdict": "PASS",
+      "video_range_bytes_match": true,
+      "export_json_roundtrip": true,
+      "export_sha256": "4d05a3fb0829645d7830beffd7d5b0d6ba28c658fd4857a3eba2cc7f1f640dc2"
+    },
+    {
+      "id": "h1-down",
+      "state_available": true,
+      "samples": 625,
+      "verdict": "PASS",
+      "video_range_bytes_match": true,
+      "export_json_roundtrip": true,
+      "export_sha256": "b9038547b69b1ac63823475028cfe884d9992e7ede2e78c405d53f2afc885a2f"
+    },
+    {
+      "id": "go2-up-slow",
+      "state_available": true,
+      "samples": 625,
+      "verdict": "PASS",
+      "video_range_bytes_match": true,
+      "export_json_roundtrip": true,
+      "export_sha256": "b3f9a16353541f9f6f7723aa4b91af4d81e08b84a331072c93a1f85bea3d443c"
+    },
+    {
+      "id": "go2-down-slow",
+      "state_available": true,
+      "samples": 625,
+      "verdict": "FAIL",
+      "video_range_bytes_match": true,
+      "export_json_roundtrip": true,
+      "export_sha256": "f01f6bae556f0e7aec6136d0cd3f853c5f3389a6d5ae5b38cb62b849147e41db"
+    },
+    {
+      "id": "go2-up-fast",
+      "state_available": false,
+      "samples": 0,
+      "verdict": null,
+      "video_range_bytes_match": true,
+      "export_json_roundtrip": true,
+      "export_sha256": "605a3c47bd063201ed2cb6bc29ffe38f63823dbc9702e21d8c5efef60d9f7562"
+    },
+    {
+      "id": "go2-down-fast",
+      "state_available": false,
+      "samples": 0,
+      "verdict": null,
+      "video_range_bytes_match": true,
+      "export_json_roundtrip": true,
+      "export_sha256": "ff31df5ca61666b54501bf9272495b8387145ef55523814281461c55ee59d71c"
+    }
+  ],
+  "default_example": "h1-up",
+  "state_backed_examples": 4,
+  "source_sha256": {
+    "src/rl_triage/behavior_authoring/datasets.py": "64d3b38becdf6e463d3300dab5b28c1bdb53bb56632497b48a02cbbd7794e420",
+    "src/rl_triage/behavior_authoring/schema.py": "dbcfe2a57a5381252a43d26de905c4604eb24da6ae9cf8f650a2fb43f86efa20",
+    "src/rl_triage/behavior_authoring/evaluate.py": "553fd796ccfd1a367b9aaa537968be22cd40f04bc60156282ee29d88788242af",
+    "src/rl_triage/behavior_authoring/web.py": "f896d16c21cc986a330b2978bff53a546668522bd4836f896c1f317a4a05b42c",
+    "src/rl_triage/behavior_authoring/web/app.js": "3415cc381044ffb9836e8b60e809f4a2d2cba2e12e9a55656901cdbfbf0d6824",
+    "docs/demo/build_meta_behavior_demo.py": "d8b7bd0ace4cea14138ebf380cd19113de3a3d4a1a35e5646223475c999a61e1"
+  },
+  "browser_verified": false,
+  "browser_blocker": "Browser access host unavailable; Windows native pipe os error 2",
+  "model_api_calls": 0,
+  "gpu_jobs": 0,
+  "scope": "stored_development_condition_and_export_flow_only_not_model_quality"
+}

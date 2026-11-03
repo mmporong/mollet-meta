@@ -41,19 +41,28 @@
     "live_model_quality_verified": false
   },
   "local_playback": {
-    "dataset_revision": "stairs-20261103-v1",
+    "dataset_revision": "stairs-20261103-v2-state-sha-join",
     "default_example": "h1-up",
     "h1_state_backed_examples": ["h1-up", "h1-down"],
-    "go2_summary_only_examples": ["go2-up-slow", "go2-down-slow", "go2-up-fast", "go2-down-fast"],
+    "go2_state_backed_examples": ["go2-up-slow", "go2-down-slow"],
+    "go2_summary_only_examples": ["go2-up-fast", "go2-down-fast"],
     "h1_video_frame_to_state_row_offset": 1,
     "legacy_deferred_render": "CLI_regression_only_excluded_from_UI",
     "model_input_approval_granted": false
   },
+  "demo_video": {
+    "file": "submission/meta-behavior-20261103-v1/mollet-meta-behavior-demo-3min.mp4",
+    "duration_s": 180.0,
+    "format": "1280x720_h264_yuv420p_aac",
+    "scope": "stored_source_and_computed_evidence_edit_not_browser_capture",
+    "actual_meta_calls": 0,
+    "submitted": false
+  },
   "remaining_gates": [
     "유료 API 금지의 변경 없이 실제 모델 호출을 진행하지 않음",
-    "예제 원본의 영상 캡처 승인 보류를 모델 응답이나 조건 검토로 해제하지 않음",
+    "모델 응답이나 조건 검토로 영상 입력 승인·실험 실행 권한을 만들지 않음",
     "실제 브라우저 호스트가 없어 렌더링·화면 조작 검증은 미실행",
-    "최종 3분 영상은 동선 초안만 있으며 미촬영",
+    "3분 저장 원본 편집 영상은 제작됐으며 브라우저 실제 조작 촬영은 미실행",
     "새 기능은 아직 GitHub에 공개되지 않았음",
     "최신 Official Rules의 기존 자산 재사용 조건과 실제 제출 문항은 미확정"
   ],
