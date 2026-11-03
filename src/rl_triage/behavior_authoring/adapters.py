@@ -218,6 +218,7 @@ def _response_text_sse(raw: str, expected_model: str) -> str:
     deltas: dict[tuple[object, object, object], list[str]] = {}
     done: dict[tuple[object, object, object], str] = {}
     completed = False
+    final_response = None
     for event in _sse_events(raw):
         event_type = event.get("type")
         if not isinstance(event_type, str):
@@ -227,7 +228,7 @@ def _response_text_sse(raw: str, expected_model: str) -> str:
             if not isinstance(nested_response, dict):
                 raise AdapterError("SSE event의 response가 객체가 아닙니다")
             _check_model(nested_response.get("model"), expected_model)
-        if "refusal" in event_type or event_type in {"response.failed", "response.incomplete"}:
+        if "refusal" in event_type or event_type in {"response.failed", "response.incomplete", "error"}:
             raise AdapterError("실패·미완료·거절 SSE는 가져올 수 없습니다")
         if event_type == "response.output_text.delta":
             delta = event.get("delta")
@@ -258,9 +259,14 @@ def _response_text_sse(raw: str, expected_model: str) -> str:
             if nested_response is None or nested_response.get("status") != "completed":
                 raise AdapterError("completed event의 최종 응답 상태가 completed가 아닙니다")
             completed = True
+            final_response = nested_response
     if not completed:
         raise AdapterError("response.completed SSE event가 없습니다")
     lanes = set(deltas) | set(done)
+    if expected_model == SAM_MODEL and not lanes and final_response is not None:
+        # SAM의 탐지 대상 0개 응답은 delta 없이 완료된 빈 output_text를 반환할 수 있다.
+        if _response_text_nonstream(final_response, expected_model) == "":
+            return ""
     if len(lanes) != 1 or len(done) != 1:
         raise AdapterError("완료된 output_text 레인이 정확히 하나여야 합니다")
     key = next(iter(lanes))

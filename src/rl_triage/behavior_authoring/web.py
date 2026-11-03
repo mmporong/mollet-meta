@@ -1,9 +1,10 @@
-"""로컬 행동 조건 편집 화면. 외부 모델 호출과 임의 파일 경로를 제공하지 않는다."""
+"""로컬 행동 조건 편집 화면과 명시적으로 설정한 Meta 요청을 처리한다."""
 from __future__ import annotations
 
 import json
 import mimetypes
 import re
+import threading
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from urllib.parse import parse_qs, urlsplit
@@ -12,9 +13,11 @@ from .adapters import build_sam_request, build_spark_request, import_sam_respons
 from .datasets import example_paths, list_examples, load_example_view, stairs_contract
 from .evaluate import evaluate_contract
 from .schema import contract_digest, validate_contract, validate_observations
+from .live import LiveService
 
 ASSETS = Path(__file__).with_name('web')
 MAX_BODY = 12 * 1024 * 1024
+_SERVICE_LOCK = threading.Lock()
 
 
 def _json(raw: bytes) -> dict:
@@ -43,6 +46,12 @@ class Handler(BaseHTTPRequestHandler):
         data=json.dumps(value,ensure_ascii=False,allow_nan=False).encode('utf-8')
         self._headers(status,'application/json; charset=utf-8',len(data));self.wfile.write(data)
 
+    def _meta(self) -> LiveService:
+        with _SERVICE_LOCK:
+            if not hasattr(self.server, 'meta_service'):
+                self.server.meta_service = LiveService()
+            return self.server.meta_service
+
     def _local(self) -> bool:
         port=self.server.server_port
         hosts={f'127.0.0.1:{port}',f'localhost:{port}'}
@@ -57,8 +66,11 @@ class Handler(BaseHTTPRequestHandler):
         if not self._local():return
         url=urlsplit(self.path);route=url.path
         try:
+            if route=='/api/meta/status':
+                self._send({'status':self._meta().status()});return
             if route=='/api/examples':
-                self._send({'examples':list_examples(),'default_example':'h1-up','default_contract':stairs_contract(),'model_api_calls':0});return
+                self._send({'examples':list_examples(),'default_example':'h1-up','default_contract':stairs_contract(),
+                            'model_api_calls':self._meta().status()['live_requests_started']});return
             if route=='/api/example':
                 example=parse_qs(url.query).get('id',['h1-up'])[0]
                 self._send(load_example_view(example));return
@@ -98,6 +110,14 @@ class Handler(BaseHTTPRequestHandler):
             length=int(self.headers.get('Content-Length','0'))
             if not 0<length<=MAX_BODY:self._send({'error':'요청 크기를 확인하세요.'},413);return
             data=_json(self.rfile.read(length));route=urlsplit(self.path).path
+            if route=='/api/meta/configure':
+                self._send({'status':self._meta().configure(data)});return
+            if route=='/api/meta/quote':
+                self._send({'quote':self._meta().quote(data['model'],data['example_id'],data.get('instruction',''),data.get('observations'))});return
+            if route in {'/api/meta/run/spark','/api/meta/run/sam'}:
+                model=route.rsplit('/',1)[-1]
+                instruction=data['instruction'] if model=='spark' else data['prompt']
+                self._send(self._meta().run(model,data['example_id'],instruction,data.get('observations')));return
             if route=='/api/validate':self._send({'contract':validate_contract(data['contract'])});return
             if route=='/api/review':
                 spec=validate_contract(data['contract'])
@@ -118,11 +138,16 @@ class Handler(BaseHTTPRequestHandler):
             if route=='/api/import/sam':
                 self._send({'observations':import_sam_response(data['response'],data['observations'])});return
             self._send({'error':'없는 경로입니다.'},404)
-        except (ValueError,KeyError,TypeError,OverflowError) as exc:self._send({'error':str(exc)},400)
+        except (ValueError,KeyError,TypeError,OverflowError) as exc:
+            self._send({'error':str(exc)},400)
+        except (BrokenPipeError,ConnectionResetError):pass
+        except OSError:self._send({'error':'모델 요청의 로컬 기록을 읽거나 저장하지 못했습니다. 자동 재시도하지 마세요.'},500)
 
 
-def serve_local(port: int = 8784) -> None:
+def serve_local(port: int = 8784, *, meta_service: LiveService | None = None) -> None:
     server=ThreadingHTTPServer(('127.0.0.1',port),Handler)
+    if meta_service is not None:
+        server.meta_service = meta_service
     print(f'Mollet local: http://127.0.0.1:{server.server_port}',flush=True)
     try:server.serve_forever()
     except KeyboardInterrupt:pass

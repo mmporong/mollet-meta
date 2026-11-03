@@ -185,6 +185,21 @@ def test_import_spark_accepts_one_completed_sse_lane():
     assert len(result["source"]["response_sha256"]) == 64
 
 
+def test_sam_completed_zero_match_without_delta_is_valid():
+    raw='data: '+json.dumps({'type':'response.completed','response':completed('sam-3.1','')})+'\n\n'
+    result=import_sam_response(raw,observations())
+    assert all(not row['tracks'] for row in result['samples'])
+    with pytest.raises(AdapterError):
+        import_spark_response(raw,observations())
+
+
+def test_stream_error_cannot_be_hidden_by_later_completed_event():
+    raw='data: '+json.dumps({'type':'error','code':'server_error','message':'failed'})+'\n\n'
+    raw+=sse('muse-spark-1.3',[json.dumps(contract())])
+    with pytest.raises(AdapterError):
+        import_spark_response(raw,observations())
+
+
 @pytest.mark.parametrize("response", [
     "data: [DONE]\n\n",
     sse("muse-spark-1.3", [json.dumps(contract())], completed_event=False),

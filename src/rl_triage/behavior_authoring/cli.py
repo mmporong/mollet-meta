@@ -1,4 +1,4 @@
-"""네트워크·GPU 없이 저장 기록과 조건을 다루는 진입점."""
+"""저장 기록과 명시적으로 설정한 Meta 요청을 다루는 진입점."""
 from __future__ import annotations
 
 import argparse
@@ -6,7 +6,7 @@ import json
 from pathlib import Path
 
 from .adapters import build_sam_request, build_spark_request, import_sam_response, import_spark_response
-from .datasets import default_contract, load_example
+from .datasets import STAIRS_EXAMPLES, default_contract, load_example
 from .evaluate import evaluate_contract
 from .schema import contract_digest
 
@@ -22,10 +22,34 @@ def write_new(path: Path, value: dict) -> None:
         stream.write('\n')
 
 
+def _meta_options(parser: argparse.ArgumentParser, *, serve: bool = False) -> None:
+    prefix = '--meta-' if serve else '--'
+    parser.add_argument(prefix+'key-file', dest='meta_key_file', type=Path, help='저장소 밖의 기존 API 키 파일. 키를 명령행 값으로 받지 않음')
+    parser.add_argument(prefix+'credit-confirmed', dest='meta_credit_confirmed', action='store_true', help='Billing에서 크레딧·결제수단을 확인한 경우만 지정')
+    parser.add_argument(prefix+'remaining-credit-usd', dest='meta_remaining_credit_usd', default='0')
+    parser.add_argument(prefix+'budget-usd', dest='meta_budget_usd', default='1.00')
+
+
+def _meta_service(args: argparse.Namespace):
+    from .client import MetaClient
+    from .live import LiveService, read_key_file
+    key = read_key_file(args.meta_key_file) if args.meta_key_file else None
+    return LiveService(MetaClient(api_key=key, credit_confirmed=args.meta_credit_confirmed,
+                                 remaining_credit_usd=args.meta_remaining_credit_usd, budget_usd=args.meta_budget_usd))
+
+
 def main() -> int:
-    parser = argparse.ArgumentParser(description='Mollet 행동 조건 편집기: 로컬 기록과 저장 모델 응답만 사용')
+    parser = argparse.ArgumentParser(description='Mollet 행동 조건 편집기: 로컬 기록과 설정 후 Meta 모델 요청')
     sub = parser.add_subparsers(dest='command', required=True)
     serve = sub.add_parser('serve'); serve.add_argument('--port', type=int, default=8784)
+    _meta_options(serve, serve=True)
+    live = sub.add_parser('call', help='크레딧·키·예산 설정 후 Meta 요청 1회. 자동 재시도 없음')
+    live.add_argument('--model', choices=['spark','sam'], required=True)
+    live.add_argument('--example', choices=list(STAIRS_EXAMPLES), default='h1-up')
+    live.add_argument('--instruction', required=True, help='Spark 행동 지시 또는 SAM 객체 이름')
+    _meta_options(live)
+    status = sub.add_parser('meta-status', help='키 값을 노출하지 않고 로컬 호출 설정 확인')
+    _meta_options(status)
     demo = sub.add_parser('demo'); demo.add_argument('--out', type=Path, required=True)
     evaluate = sub.add_parser('evaluate')
     for name in ('spec', 'observations', 'out'): evaluate.add_argument('--'+name, type=Path, required=True)
@@ -45,7 +69,12 @@ def main() -> int:
     try:
         if args.command == 'serve':
             from .web import serve_local
-            serve_local(args.port)
+            serve_local(args.port, meta_service=_meta_service(args))
+        elif args.command == 'meta-status':
+            print(json.dumps(_meta_service(args).status(), ensure_ascii=False))
+        elif args.command == 'call':
+            value = _meta_service(args).run(args.model,args.example,args.instruction)
+            print(json.dumps({'receipt':value['receipt'],'status':value['status']},ensure_ascii=False))
         elif args.command == 'demo':
             if args.out.exists(): raise ValueError('새 결과 폴더를 지정하세요. 기존 결과는 덮어쓰지 않습니다.')
             args.out.mkdir(parents=True)

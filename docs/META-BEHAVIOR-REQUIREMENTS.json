@@ -1,7 +1,7 @@
 {
   "contract_version": "meta-track-v6-20261103-offline-behavior-authoring",
   "previous_version": "meta-track-v5-20261031-tools-first",
-  "mode": "authorized_local_implementation",
+  "mode": "authorized_credit_gated_meta_api_integration",
   "selected_direction": "사용자 행동 조건 저작·검토·저장 RL 기록 판정",
   "implementation_base": "94fe8740277c9ecc556096fa4d00df0ad0bb7749",
   "official_event_url": "https://dev.meta.ai/events/global-hackathon",
@@ -35,10 +35,25 @@
     "submitted": false
   },
   "actual_model_status": {
-    "spark": "request_builder_and_saved_response_import_only",
-    "sam": "request_builder_and_saved_response_import_only_bbox_center_no_mask_decode",
+    "spark": "https_client_and_ui_implemented_not_yet_provider_verified",
+    "sam": "https_client_and_ui_bbox_import_implemented_not_yet_provider_verified",
     "paid_api_calls": 0,
-    "live_model_quality_verified": false
+    "live_model_quality_verified": false,
+    "transport_validation": "injected_test_transport_only",
+    "app_budget_cap_usd": "1.00",
+    "key_storage": "environment_or_server_memory_only",
+    "automatic_retry": false
+  },
+  "credit_notice": {
+    "channel": "organizer_email_and_linked_claim_form",
+    "sent_at": "2026-10-26T11:25:57Z",
+    "claim_amount_usd": 150,
+    "form_url": "https://docs.google.com/forms/d/e/1FAIpQLScam78z7tHsNYibiFyJQVFzEgr0coyBTiY568SxxNbsPa3jiw/viewform",
+    "team_id_required": true,
+    "distribution_guidance": "within_2_business_days_after_claim",
+    "current_account_credit_applied": null,
+    "current_account_payment_method": null,
+    "existing_key_in_local_environment_observed": false
   },
   "local_playback": {
     "dataset_revision": "stairs-20261103-v2-state-sha-join",
@@ -59,7 +74,7 @@
     "submitted": false
   },
   "remaining_gates": [
-    "유료 API 금지의 변경 없이 실제 모델 호출을 진행하지 않음",
+    "지원 크레딧의 실제 적용·키·결제수단 확인 후 사용자 설정과 예산 안에서만 호출",
     "모델 응답이나 조건 검토로 영상 입력 승인·실험 실행 권한을 만들지 않음",
     "실제 브라우저 호스트가 없어 렌더링·화면 조작 검증은 미실행",
     "3분 저장 원본 편집 영상은 제작됐으며 브라우저 실제 조작 촬영은 미실행",
@@ -67,7 +82,7 @@
     "최신 Official Rules의 기존 자산 재사용 조건과 실제 제출 문항은 미확정"
   ],
   "constraints": {
-    "paid_api_calls": "forbidden_until_new_user_authorization",
+    "paid_api_calls": "no_unverified_or_personal_billing; explicit_granted_credit_confirmation_and_local_budget_required",
     "gpu_jobs": "forbidden",
     "push": "forbidden",
     "applications": "forbidden",

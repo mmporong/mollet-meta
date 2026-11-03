@@ -5,10 +5,10 @@
 RL 개발자가 저장 영상과 상태 기록을 보면서 원하는 행동 조건을 작성하고, 조건을 검토한 뒤 위반 구간을 찾는다. 기존 진단·교정·26조건 회복 평가는 바꾸지 않는다.
 
 - 기준: `94fe8740277c9ecc556096fa4d00df0ad0bb7749`에서 분기한 `feat/meta-behavior-authoring` worktree.
-- 구현: 제한된 조건 스키마, 시간 구간 판정, SAM/Spark 요청 생성 및 저장 응답 가져오기, 로컬 영상 편집 화면, 결과 내보내기.
+- 구현: 제한된 조건 스키마, 시간 구간 판정, SAM/Spark 요청 생성·저장 응답 가져오기·설정 후 HTTPS 호출, 로컬 영상 편집 화면, 결과 내보내기.
 - 완료: 실제 저장 RL 수치에서 예제 조건의 충족·위반을 계산하고, 결측·추적 단절·관측창 부족을 UNKNOWN으로 보존한다. 웹과 CLI의 같은 조건은 같은 결과를 낸다.
-- 제외: 모델 호출·새 GPU 작업·정책 수정·재학습·원본 main 편집·push·신청·제출.
-- Meta 상태: Spark의 자연어→조건 저작과 SAM의 객체 추적은 요청/응답 어댑터로 연결한다. 실제 API 호출을 하지 않은 상태를 UI와 결과에서 표시한다.
+- 제외: 미확인 과금 호출·새 GPU 작업·정책 수정·재학습·원본 main 편집·push·신청·제출.
+- Meta 상태: Spark의 자연어→조건 저작과 SAM의 객체 추적은 실제 HTTPS 송신 경로까지 구현했다. 키·Billing 확인·로컬 예산을 설정한 뒤 사용자가 요청한다. 현재 개발 검증은 모의 전송이며 실제 공급자 호출은 0회다.
 - 영상 상태: 기본 화면은 H1 이족 계단 상·하행과 Go2 사족 계단 상·하행의 명령 속도 비교, 총 6개 원본을 사용한다. H1 2개와 Go2 0.25 m/s 2개는 프레임별 상태를 연결한다. Go2 0.75 m/s 2개는 공개 요약만 표시한다. 모델 입력 승인은 부여하지 않는다.
 
 ## 첫 조건
@@ -48,7 +48,7 @@ python -m pytest -q -s tests/test_behavior_authoring_engine.py tests/test_behavi
 
 ## 외부 모델 경로
 
-`muse-spark-1.3` 요청은 Responses API의 `text.format` JSON schema를 사용한다. `sam-3.1` 요청은 영상과 객체 개념을 입력으로 구성한다. 네트워크 송신 기능은 포함하지 않는다. 저장 응답은 공급자의 인증된 원문이라고 주장하지 않으며, 가져온 파일의 해시와 사용자가 선택한 영상 결합을 기록한다.
+`muse-spark-1.3` 요청은 Responses API의 `text.format` JSON schema와 출력 토큰 상한을 사용한다. `sam-3.1` 요청은 선택한 원본 영상의 data URL과 객체 개념을 입력으로 구성한다. 실제 송신 주소는 `https://api.meta.ai/v1/responses`로 고정한다. 저장 파일 가져오기는 공급자 인증이 미확인인 경로로 유지하고, 실제 HTTPS 응답과 구분한다.
 
 SAM `<Nf>`는 프레임 번호이므로 원본 프레임→시각 표를 사용한다. bbox의 끝 좌표는 inclusive이므로 정규화할 때 +1을 반영한다. 압축 mask는 공식 codec 없이 임의 복호화하지 않는다. 이번 범위는 bbox 중심 영역 조건이다. mask 면적/IoU가 필요한 후속 기능은 공식 parser와 라이선스를 검토해야 한다.
 
@@ -98,4 +98,28 @@ Go2 0.25 m/s 두 기록의 상태 SHA 연결, 0.75 m/s 두 기록의 요약 전�
 
 [3분 데모 영상](../submission/meta-behavior-20261103-v1/mollet-meta-behavior-demo-3min.mp4), [한국어 자막](../submission/meta-behavior-20261103-v1/mollet-meta-behavior-demo-ko.srt), [장면 대본](../submission/meta-behavior-20261103-v1/SCRIPT-ko.md), [원본·판정·영상 검증 manifest](../submission/meta-behavior-20261103-v1/manifest.json)를 생성했다. 저장 계단 원본과 계산 결과를 편집한 시연이며 브라우저 촬영이 아니다. 길이는 180.000초, 1280×720 H.264 영상과 오프라인 한국어 음성이다. 영상의 15초 재생 장면은 12.5초 원본 뒤 마지막 프레임을 2.5초 유지한다. 전체 디코딩과 대표 프레임 6장을 확인했다.
 
-H1 영상 하나에 대한 Spark 조건 생성과 SAM 추적의 [요청 계획](../evals/results/meta_tools_prepared_20261103_v1/plan.json)을 준비했다. 실제 전송·provider 응답은 없다. [Meta 공식 가격 안내](https://dev.meta.ai/docs/pricing-rate-limits)는 종량제이며, 무료 크레딧과 기존 키를 확인하지 못한 상태에서 유료 금지를 해제하지 않는다. 모델 응답이나 조건 검토가 영상 입력 승인·실험 실행 권한을 만들지 않는다.
+H1 영상 하나에 대한 Spark 조건 생성과 SAM 추적의 [기존 요청 계획](../evals/results/meta_tools_prepared_20261103_v1/plan.json)은 미전송 기록으로 보존한다. [Meta 공식 가격 안내](https://dev.meta.ai/docs/pricing-rate-limits)는 종량제다. 모델 응답이나 조건 검토가 영상 입력 승인·실험 실행 권한을 만들지 않는다.
+
+## 실제 Meta API 사용 설정
+
+10월 26일 주최자 이메일과 그 메일이 연결한 [크레딧 신청 폼](https://docs.google.com/forms/d/e/1FAIpQLScam78z7tHsNYibiFyJQVFzEgr0coyBTiY568SxxNbsPa3jiw/viewform)에서 승인 참가자의 US$150 지원을 확인했다. 신청 폼은 Team ID를 요구하고 영업일 2일 안의 지급을 안내한다. 지원 안내와 현재 계정의 잔액·결제수단·기존 키 확인은 별개다. Billing의 [Spend Limit](https://dev.meta.ai/help/billing/spend-limit-alert)은 알림이며 과금 차단 기능으로 간주하지 않는다.
+
+1. 로컬 화면의 **Meta Model API 연결**에서 기존 키를 입력한다. `MODEL_API_KEY` 환경변수 또는 저장소 밖의 기존 키 파일도 지원한다. 입력한 키는 서버 메모리에만 두며 응답·로그·결과 파일에 저장하지 않는다. 서버를 재시작하면 화면에서 입력한 키와 크레딧 확인은 초기화된다.
+2. Meta 콘솔의 해당 Team Billing에서 지급 잔액과 결제수단을 확인하고, 앱에 확인한 잔액과 US$1 이하의 예산을 입력한다. 확인 체크는 자동 선택하지 않는다.
+3. **실제 Spark 요청**은 행동 조건 초안을 폼에 넣고 의미 확인을 초기화한다. **실제 SAM 요청**은 원본 영상에서 얻은 bbox를 상태 시각에 붙인다. 두 버튼은 키·크레딧·예산·상태 기록이 준비된 경우에만 켜진다.
+4. 요청·원문 응답·결합 결과·해시는 저장소 밖 `%LOCALAPPDATA%/Mollet/meta-model-api/runs/<run_id>/`에 보존한다. SQLite 예약 원장은 재시작과 동시 요청에도 유지되며 네트워크 실패의 예약은 자동 환급하지 않는다. 자동 재시도는 없다.
+
+앱은 [가격 설정](../src/rl_triage/behavior_authoring/meta-pricing.json)의 표준 단가와 보수 입력 한도로 예약액을 계산한다. 예약액은 실제 청구액 측정값이 아니다. Contributor 모델·임의 API 주소·별도 파일 업로드·다른 로컬 파일 전송은 지원하지 않는다. SAM의 0개 탐지 응답은 완료된 빈 결과로 처리하고, 오류·미완료 응답은 결과로 적용하지 않는다.
+
+기존 키 파일을 사용할 때는 다음과 같이 실행한다. 키 파일에는 비밀 키 한 개 또는 `MODEL_API_KEY=...` 한 줄을 두며 저장소에 넣지 않는다. 아래 명령은 설정 화면을 열고 실제 요청을 자동 실행하지 않는다.
+
+```powershell
+cd "$HOME/rl-triage-meta"
+$env:PYTHONPATH = "$PWD/src"
+$env:PYTHONUTF8 = "1"
+python -m rl_triage.behavior_authoring serve --port 7705 --meta-key-file "$HOME/.config/mollet/meta-key.txt"
+```
+
+`python -m rl_triage.behavior_authoring meta-status`는 키 값을 출력하지 않고 로컬 설정을 확인한다. `call --help`에는 CLI 단일 요청 옵션이 있다. 새 키 발급·카드 등록·크레딧 신청·실제 계정 잔액 조회는 이 앱에서 자동화하지 않는다. 기존 3분 편집 영상은 11월 3일 미호출 상태의 기록으로 보존하며, 새 API 설정 화면의 촬영본으로 표시하지 않는다.
+
+실제 전송 계층·서비스·웹 결합을 포함한 관련 테스트 80개가 통과했다. 검사에는 동시 요청·재시작의 예약 누적, HTTP 오류의 무재시도, 키 교체 중 비밀값 가림, SAM 완료·빈 탐지·스트림 오류 처리가 포함된다. 이 결과는 모의 전송 검증이며 실제 Meta 응답 품질을 뜻하지 않는다. 현재 로컬 설정은 키 없음·크레딧 미확인·실제 요청 0회다.
