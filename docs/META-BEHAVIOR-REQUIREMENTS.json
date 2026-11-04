@@ -29,10 +29,11 @@
   "submission_form": {
     "details_url": "https://cerebralvalley.ai/e/meta-ai-developer-hackathon/details",
     "details_observation": "Loading shell only",
-    "submit_url_attempt": "https://cerebralvalley.ai/e/meta-ai-developer-hackathon/submit",
-    "submit_observation": "web tool inaccessible",
+    "submit_url_attempt": "https://cerebralvalley.ai/e/meta-ai-developer-hackathon/hackathon/submit",
+    "submit_observation": "organizer_email_url_verified; public_fetch_returns_event_landing_without_fields",
     "field_count": null,
-    "submitted": false
+    "submitted": false,
+    "url_source": "organizer_email_20261104_1a1a44967e22f945"
   },
   "actual_model_status": {
     "spark": "authenticated_https_completed_and_contract_import_validated",

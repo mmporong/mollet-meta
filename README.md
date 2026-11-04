@@ -24,7 +24,7 @@ Latest same-Play comparison: [healthy → compound fault → after two registere
 
 Official pretrained stair playback: H1 [up](docs/media/stairs_h1_s172_20261030_v1/biped-stairs-up/video/rl-video-step-0.mp4) · [down](docs/media/stairs_h1_s172_20261030_v1/biped-stairs-down/video/rl-video-step-0.mp4), and Go2 [up/down with a command contrast](docs/GO2-STAIRS-COMMAND-CONTRAST.md). With the same Go2 policy and initial state, 0.75m/s passed both directions; the 0.25m/s uphill stall and downhill inversion are preserved. These are policy playback studies, separate from RL Triage recovery.
 
-Local behavior workbench: select the recorded H1 and Go2 stair clips, author time-based conditions, and export their evidence. Optional Muse Spark/SAM requests require an API key, confirmed credits, and a local request budget. [Run the workbench](docs/META-BEHAVIOR-AUTHORING.md).
+Local behavior workbench: select recorded H1 and Go2 stair clips, author time-based conditions, and export their evidence. Muse Spark 1.3 generates a validated behavior contract; SAM 3.1 supplies video object locations. Both authenticated API paths have a [recorded working example](evals/results/meta_live_provider_20261104_v1/verification.json). Live requests require an API key, confirmed credits, and a local request budget. [Run the workbench](docs/META-BEHAVIOR-AUTHORING.md).
 
 ## How it works
 

@@ -1,0 +1,33 @@
+# 최종 확인 항목
+
+이 폴더의 한·영 답변은 복사 가능한 답변 모음이다. 로그인된 공식 폼의 문항명·길이 제한과 대조한 최종 입력본은 아니다. 실제 제출은 하지 않았다.
+
+공식 제출 주소: https://cerebralvalley.ai/e/meta-ai-developer-hackathon/hackathon/submit
+
+마감: 2026-11-05 11:00 KST. 코드·영상 링크를 입력할 때에는 로그인하지 않은 별도 환경에서도 읽히는지 확인한다.
+
+| 요구·확인 항목 | 근거·파일 | 상태 |
+|---|---|---|
+| 실제 Meta 도구 사용 | ../../evals/results/meta_live_provider_20261104_v1/verification.json | Spark·SAM 완료 응답 확인 |
+| 코드 오픈소스 | 공개 기반 저장소, Apache-2.0 | Meta 기능의 원격 공개는 아직 미수행 |
+| 3분 데모 권장 | 주최 알림, 새 영상 manifest | 실제 응답 반영 최종본 생성·검증 중 |
+| 기존 작업 재사용·신규 기여 구분 | FORM-ANSWERS-ko.txt, FORM-ANSWERS-en.txt | 문안에 명시, 최신 공식 규정과 대조 필요 |
+| 공식 문항 전체 대응 | 위 제출 주소의 로그인된 폼 | 필수 문항과 길이 제한 미확정 |
+| 영상 공개 링크 | manifest.json video_url | 미설정 |
+| 최종 전송·완료 영수증 | 공식 완료 화면·접수 기록 | 미실행 |
+
+## 로컬 화면 확인
+
+현재 앱은 http://127.0.0.1:7705 에서 실행 중이다. 입력한 키가 서버 메모리에 있어 서버를 종료하거나 다시 실행하지 않는다. 검증에 추가 모델 호출은 필요하지 않다.
+
+저장 응답을 개별적으로 가져올 경우 H1 상행을 선택하고 아래 기존 provider 응답을 사용한다. 파일 가져오기는 외부에서 받은 파일의 인증을 새로 증명하지 않는다. 실제 호출의 인증·원본 SHA 근거는 별도 verification.json과 receipt에 보존돼 있다.
+
+- Spark 원문: 사용자 로컬 AppData/Local/Mollet/meta-model-api/runs/9c20912b-fa37-4f3c-a118-11bc13bda76a/response.json
+- SAM 원문: 사용자 로컬 AppData/Local/Mollet/meta-model-api/runs/ee92f2fd-f138-4198-838e-d52b5472b91c/response.sse
+- 통합 내보내기: ../../evals/results/meta_live_provider_20261104_v1/mollet-behavior-contract.json
+
+조건은 시작 0초, 수직축 정렬 0.8 이상, 충족 시작 마감 8초, 유지 0.5초다. 이전 예제의 '8초 연속 유지'와 구분한다. 실제 저장 응답의 판정은 0~0.5초 PASS다. 화면에서 의미 확인을 마친 뒤 조건을 검사하고 JSON을 다운로드한다.
+
+## 외부 반영
+
+현재 원격 push·영상 업로드·최종 제출의 실행은 미수행이다. 기존 전송 금지 범위는 유지한다. 공개할 코드·영상·문안이 확정된 뒤 해당 범위를 사용자 지시와 대조한다. 키, 카드 정보, 로그인 화면, 개인 연락처는 공개 묶음에 넣지 않는다.

@@ -1,0 +1,79 @@
+{
+  "schema": "meta-submission-package-v1",
+  "project_name": "Mollet",
+  "prepared_at": "2026-11-04T18:00:30.448725+09:00",
+  "deadline_kst": "2026-11-05T11:00:00+09:00",
+  "submission_url": "https://cerebralvalley.ai/e/meta-ai-developer-hackathon/hackathon/submit",
+  "submission_url_source": "organizer_email_20261104_message_1a1a44967e22f945",
+  "official_form_fields_verified": false,
+  "official_field_count": null,
+  "official_reuse_rules_verified": false,
+  "answer_scope": "paste_ready_answer_bank_not_verified_field_mapping",
+  "repository_url": "https://github.com/mmporong/rl-triage-agent",
+  "repository_visibility": "public",
+  "license": "Apache-2.0",
+  "meta_feature_published": false,
+  "video_url": null,
+  "final_video": null,
+  "files": {
+    "FORM-ANSWERS-ko.txt": {
+      "sha256": "ef2f014dfd40822b490240a0e1234d7abea17f8fc2a0073293076f48b16e3733",
+      "bytes": 2507
+    },
+    "FORM-ANSWERS-en.txt": {
+      "sha256": "b07e5a982bea2acba1b96ff4a72ad6cdd219cc1f07df40e1ac14d24f840c9548",
+      "bytes": 2707
+    },
+    "ONE-PAGE.md": {
+      "sha256": "fe777ad2dcd3cb366e02c7534cf17262a73302d23de004c8572d261aeb219180",
+      "bytes": 1415
+    },
+    "DECK-OUTLINE.md": {
+      "sha256": "10ced8ad8974d617f13b8cf031f169a8914d7715d452b51fab5d08fd49c00a01",
+      "bytes": 704
+    },
+    "QA.md": {
+      "sha256": "712c93dfbc5a1e04c54aea5f55e463a51d687dd353b6d3841fef2f794161423b",
+      "bytes": 1606
+    },
+    "PRE-SUBMIT.md": {
+      "sha256": "a4ba8f384c779311ca1a49d3930aa06efd0904c9a8e7c8d05046d42459ecc638",
+      "bytes": 2866
+    }
+  },
+  "claims": {
+    "meta_model_calls": 2,
+    "sam_observation_frames": 625,
+    "sam_frames_with_tracks": 624,
+    "tracking_accuracy_measured": false,
+    "h1_condition": {
+      "metric": "up_axis_z",
+      "op": "gte",
+      "threshold": 0.8,
+      "deadline_s": 8.0,
+      "hold_s": 0.5
+    },
+    "h1_interval": {
+      "start_s": 0.0,
+      "end_s": 0.5
+    },
+    "h1_verdict": "PASS",
+    "export_roundtrip_equal": true,
+    "new_training_jobs": 0,
+    "browser_flow_verified": false
+  },
+  "evidence": {
+    "file": "evals/results/meta_live_provider_20261104_v1/verification.json",
+    "sha256": "41b0194c59231f1f7179a2c5f4ec10601851d10795c1c26660ea81f151884eda"
+  },
+  "required_before_submission": [
+    "browser_flow_verification",
+    "final_video_validation_and_accessible_url",
+    "official_form_fields_and_reuse_rules",
+    "publish_verified_meta_source_with_authorization",
+    "final_consistency_and_submission_authorization"
+  ],
+  "ready_to_submit": false,
+  "submitted": false,
+  "push_performed": false
+}
