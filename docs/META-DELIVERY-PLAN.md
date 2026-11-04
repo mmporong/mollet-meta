@@ -1,5 +1,28 @@
 # Meta API 실제 동작과 원본 프로젝트 반영 계획
 
+## 발표 보강 실행 대기
+
+사용자의 후속 진행 지시에 따라 실제 Go2 계단 하행 `go2-down-slow`의 영상 가설 생성 → 원본 상태 검사 → 실제 Spark 재검토 → 한·영 180초 데모를 준비했다. 영상 SHA는 `e199c6cd71d62894c98a79315b588a74f5290236a706bf7c1368a5568e59a6f0`이다. 기존 수치 기준선도 7.2초부터 수직축 정렬 0.8 미만을 발견하므로, 전도 발견을 Muse만의 성과로 주장하지 않는다.
+
+현재 실제 실행은 기존 비밀키가 없어 대기한다. Windows Process/User/Machine 환경, 지정 키 파일, WSL Ubuntu의 지정 Meta/NVIDIA 설정 위치에서 재사용할 Meta 키를 찾지 못했다. Computer Use의 native pipe와 browser host도 연결되지 않았다. 비밀키를 추정하거나 이전 프로세스 메모리를 추출하지 않는다. `meta_actual_video_loop_20261104_v1/summary.json`은 미전송·자격증명 차단 기록이며 모델 성공 근거가 아니다.
+
+연결 화면 `http://127.0.0.1:7706/#connectionsHeading`의 API 키 입력 뒤 **기존 설정으로 키 연결** 버튼을 사용한다. 이 버튼은 이전 사용자 확인 크레딧·예산을 변경하지 않는다. 이전에 확인한 US$150 설정과 총 US$1 예약 한도는 복원했으며 현재 잔여 예약 예산은 US$0.377384다. 현재 Billing 잔액을 새로 조회한 값은 아니다. 키는 서버 메모리에만 두고, 현재 선택한 Go2 영상 SHA에만 추가 영상 입력을 허용한다. GPU·재학습·push·최종 제출은 수행하지 않는다.
+
+실행기는 실제 영상 추론과 재검토를 최대 2회 생성 요청으로 수행하고 각 회차의 media-aware 계수·예산 검사를 통과해야 전송한다. 예산 부족·응답 검증 실패 시 원문을 보존하고 자동 재시도하지 않는다. 실제 결과가 없는 경우 새 발표 영상 생성기는 렌더를 거부한다. 준비·검증은 `meta_actual_video_loop_prepare_20261104_v2`, Chrome 14개는 `meta_video_research_20261104_v7`, 1초짜리 합성 인코더 검사는 `meta_demo_media_smoke_20261104_v1`에 보존한다. 인코더 검사를 실제 모델 결과나 최종 3분 영상으로 세지 않는다.
+
+키 연결 후 재개 명령은 다음과 같다. 새 결과 폴더만 사용한다.
+
+```powershell
+cd "$HOME/rl-triage-meta"
+$env:PYTHONPATH = "$PWD/src"
+$env:META_PLAYWRIGHT_MODULE = Join-Path $HOME 'hackathon-specialist/tmp/meta-playwright-validation-20261104/node_modules/playwright'
+python tools/run_meta_presentation_case.py --out evals/results/meta_actual_video_loop_20261104_v2
+node tools/capture_meta_presentation.cjs --evidence-dir evals/results/meta_actual_video_loop_20261104_v2 --out submission/meta-loop-capture-20261104-v1
+python docs/demo/build_meta_loop_demo.py --evidence-dir evals/results/meta_actual_video_loop_20261104_v2 --capture-dir submission/meta-loop-capture-20261104-v1 --out submission/meta-loop-demo-20261104-v1
+```
+
+공개 [Official Rules](https://cerebralvalley.ai/e/meta-ai-developer-hackathon/waiver)에서 원본성·소유권·비침해와 OSS 라이선스 준수 조건을 확인했다. 기존 프로젝트 사용을 명시적으로 허용하거나 금지하는 문구는 찾지 못했다. 재사용 허용 확정으로 표시하지 않고 기반 triage와 대회 중 Meta 추가분을 구분한다. 공개 규정에서는 3분 상한을 확인하지 못했으며, 3분은 기존 주최 메일의 권장에 맞춘 제작 목표다. 로그인 제출 문항의 별도 제한은 아직 미확인이다.
+
 ## 현재 추가 구현 범위
 
 일반 Goal로 영상 기반 Spark 가설·조건 검사·재검토·등록 교정 소비 연결을 추가했다. 구현 소스는 `a1f96ad`이며 [새 Chrome 검사 13개](../evals/results/meta_video_research_20261104_v5/browser-verification.json)와 관련 CPU 248개가 통과했다. 실제 원본 MP4를 요청에 포함하고, 합성 provider 응답의 프레임·폐쇄형 스키마·반복 검사와 기존 회복 판정 소비를 확인했다. 합성 응답을 실제 Spark 영상 분석 결과로 기록하지 않았다.

@@ -1,0 +1,47 @@
+{
+  "schema": "meta-recorded-static-baseline-v1",
+  "example_id": "go2-down-slow",
+  "video_sha256": "e199c6cd71d62894c98a79315b588a74f5290236a706bf7c1368a5568e59a6f0",
+  "contract": {
+    "schema": "behavior-contract-v1",
+    "title": "계단 재생 전 구간 자세 유지",
+    "instruction": "영상의 12.48초 상태 구간에서 수직축 정렬이 0.8 이상 유지되는지 확인합니다.",
+    "trigger": {
+      "kind": "time",
+      "at_s": 0.0,
+      "region": null,
+      "object_id": null
+    },
+    "condition": {
+      "metric": "up_axis_z",
+      "op": "gte",
+      "threshold": 0.8,
+      "deadline_s": 0.0,
+      "hold_s": 12.48
+    },
+    "max_gap_s": 0.05,
+    "source": {
+      "kind": "manual_example_contract",
+      "model_called": false,
+      "scope": "development_demonstration"
+    }
+  },
+  "result": {
+    "stage": "draft",
+    "approval_status": "unreviewed",
+    "verdict": "FAIL",
+    "reason": "전체 관측창이 덮였지만 마감 안에 시작해 유지 시간을 채운 충족 구간이 없습니다.",
+    "trigger_t_s": 0.0,
+    "interval": null,
+    "examined_samples": 625,
+    "warnings": [],
+    "spec_sha256": "0776b83893adb04e1dbec09edc6780108114b6d2ab7645dab2e38cbafb84d7d9",
+    "observations_sha256": "01495ca182764cbf2d24779baedea0c7f770a764cd5c0228fb75409d25d0ea7e"
+  },
+  "min_up_axis_z": -0.5833989197888134,
+  "first_below_threshold_s": 7.2,
+  "model_called": false,
+  "new_training_executed": false,
+  "model_quality_benchmark": false,
+  "interpretation": "기존 수치 조건만으로 자세 위반을 찾을 수 있는지 확인하는 공개 개발 사례. Muse 필수성·정확도 비교가 아님."
+}

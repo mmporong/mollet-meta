@@ -1,0 +1,32 @@
+{
+  "schema": "meta-presentation-readiness-v1",
+  "runtime": {
+    "url": "http://127.0.0.1:7706/#connectionsHeading",
+    "pid": 39608,
+    "exec_session_id": 13934,
+    "code_commit": "efc575539ecb60bc7672e45189fa56348d4804d8",
+    "source_root": "C:\\Users\\LIMMM\\rl-triage-meta",
+    "key_configured": false,
+    "credit_confirmed": true,
+    "credit_source": "previous_user_confirmed_settings_reused_not_new_billing_query",
+    "budget_usd": "1.00",
+    "available_budget_usd": "0.377384",
+    "reserved_usd": "0.622616",
+    "video_calls_enabled": true,
+    "authorized_video_sha256": "e199c6cd71d62894c98a79315b588a74f5290236a706bf7c1368a5568e59a6f0",
+    "existing_generation_calls": 2,
+    "new_api_calls": 0,
+    "preflight_requests": 0,
+    "keep_reason": "기존 비밀키 입력 후 승인된 실제 영상 분석·재검토 실행을 이어가도록 유지",
+    "stop_command": "Stop-Process -Id 39608",
+    "main_history_merged": false,
+    "actual_video_and_reflection_executed": false
+  },
+  "actual_video_and_reflection_executed": false,
+  "status": "blocked_missing_existing_secret_key",
+  "cpu_tests": "52 passed in 6.69s",
+  "browser_checks_passed": 14,
+  "encoder_smoke": "1.0 s synthetic encoder test passed; not final demo",
+  "official_rules_source": "https://cerebralvalley.ai/e/meta-ai-developer-hackathon/waiver",
+  "next_evidence_tag": "meta_actual_video_loop_20261104_v2"
+}

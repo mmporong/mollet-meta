@@ -1101,6 +1101,8 @@
 
 ## Meta 실제 Chrome 조건 검사·다운로드 검증
 
+`meta_video_research_20261104_v6`는 키만 연결할 때 기존 크레딧·예산이 보존되는 항목을 포함해 Chrome 14개를 통과했으나, 임시 작업 폴더 정리에서 `WinError 32 reservations.sqlite3`로 종료됐다. SQLite Connection의 context manager가 트랜잭션 종료만 하고 연결 핸들을 닫지 않는 사용 방식이 원인이었다. 명시적 close를 보장하는 `_database` 문맥을 추가해 원장 조회·토큰 계수·요청 뒤 모든 연결의 닫힘을 검사했다. v6 기록은 실패로 보존하고 `meta_video_research_20261104_v7`에서 브라우저·서버·임시 폴더 정리까지 통과했다. 이때 실제 provider 요청은 0회다.
+
 새 영상 가설 루프의 `meta_video_research_20261104_v1`·`v2`는 8개 화면 검사를 통과한 뒤 평가 가져오기에서 멈췄다. v2의 제품 오류는 `행동 계약 해시 또는 버전이 다르다`였다. 브라우저의 JSON.parse→JSON.stringify가 Python 계약의 `20.0`을 `20`으로 바꾸는 것이 원인이었다. 평가 원문을 문자열로 서버에 전달해 숫자 표현과 기존 계약 해시를 보존했고, 다른 교정의 평가 거부와 재검토 context 연결 회귀를 추가했다. v3는 12개, [최종 v5](../evals/results/meta_video_research_20261104_v5/browser-verification.json)는 실제 H1 재생을 포함한 13개 Chrome 검사를 통과했다. 합성 provider 응답을 쓴 로컬 통합 검사이며 실제 영상 추론 품질·새 학습 성능 평가가 아니다. 관련 CPU 검사는 248개 통과했다. 실패 폴더는 덮어쓰지 않았다.
 
 개발 중 영상 계수 통계의 필드명 `counted_input_tokens`가 기존 비밀값 필드명 방어에 거부됐다. 방어 규칙을 완화하지 않고 `counted_input_units`로 바꿨다. 입력 SHA 허용, 토큰 계수 캐시·원장, 실제 전송 manifest, 세션 취소·회수도 검증했다. 백그라운드 Start-Process 명령은 도구 정책에서 거부돼 실행되지 않았고, 도구가 관리하는 일반 실행 세션으로 서버를 띄웠다. 기존 7705 서버 연결은 실패했으며 이전 PID도 없어 재시작하거나 키를 복제하지 않았다. 새 서버는 7706, PID 46836이며 키 없음·영상 호출 잠금 상태로 유지한다.

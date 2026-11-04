@@ -1,0 +1,70 @@
+{
+  "schema": "meta-video-research-browser-v1",
+  "scope": "synthetic_provider_envelope_and_actual_recorded_video_not_live_model_quality",
+  "checks": [
+    {
+      "name": "actual_recorded_h1_video_played",
+      "passed": true
+    },
+    {
+      "name": "additional_paid_video_call_is_locked",
+      "passed": true
+    },
+    {
+      "name": "manual_condition_checked_without_claiming_spark_inference",
+      "passed": true
+    },
+    {
+      "name": "actual_session_export_has_no_invented_model_call",
+      "passed": true
+    },
+    {
+      "name": "downloaded_request_contains_actual_video_and_structured_output",
+      "passed": true
+    },
+    {
+      "name": "synthetic_completed_envelope_imported_as_unverified",
+      "passed": true
+    },
+    {
+      "name": "evidence_frame_jump_available",
+      "passed": true
+    },
+    {
+      "name": "two_hypotheses_checked_once_then_stopped",
+      "passed": true
+    },
+    {
+      "name": "registered_reward_proposal_downloaded_without_execution_authority",
+      "passed": true
+    },
+    {
+      "name": "fixed_evaluation_consumed_without_new_performance_claim",
+      "passed": true
+    },
+    {
+      "name": "recovery_comparison_is_included_in_next_spark_reflection",
+      "passed": true
+    },
+    {
+      "name": "full_hypotheses_checks_and_recovery_history_exported",
+      "passed": true
+    },
+    {
+      "name": "condition_edit_invalidates_previous_research_session",
+      "passed": true
+    },
+    {
+      "name": "key_only_connection_preserves_previously_confirmed_credit_and_budget",
+      "passed": true
+    }
+  ],
+  "page_errors": [],
+  "new_model_calls": 0,
+  "gpu_jobs": 0,
+  "browser": "156.0.8078.80",
+  "prepared_request_sha256": "2a10396d987a9b45f959da104fddf4ca6a3795bd99f0eaa4904f2f3c61f6dbd8",
+  "video_sha256": "82107853548545c0977b8488acd45931689c1de737db29d931d1735505367f10",
+  "passed": true,
+  "browser_closed": true
+}

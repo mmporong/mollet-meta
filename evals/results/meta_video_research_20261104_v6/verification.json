@@ -1,0 +1,12 @@
+{
+  "scope": "CPU_integration_and_synthetic_provider_browser_validation_not_live_model_quality",
+  "source_commit": "329e58a4dfbea57957dddb4826a3633c066bc880",
+  "additional_meta_requests": 0,
+  "gpu_jobs": 0,
+  "training_executed": false,
+  "performance_improvement_measured": false,
+  "recorded_h1_checks": 2,
+  "test_server_closed": true,
+  "passed": false,
+  "error": "[WinError 32] 다른 프로세스가 파일을 사용 중이기 때문에 프로세스가 액세스 할 수 없습니다: 'C:\\\\Users\\\\LIMMM\\\\AppData\\\\Local\\\\Temp\\\\mollet-research-y8pngfec\\\\state\\\\reservations.sqlite3'"
+}

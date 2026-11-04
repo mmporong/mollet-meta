@@ -134,13 +134,42 @@
     "final_browser_harness_commit": "c47a77ed240216aa61da99b7a01180c973e7c2da"
   },
   "current_runtime": {
-    "url": "http://127.0.0.1:7706/#improvementHeading",
-    "pid": 46836,
+    "url": "http://127.0.0.1:7706/#connectionsHeading",
+    "pid": 39608,
+    "code_commit": "efc575539ecb60bc7672e45189fa56348d4804d8",
     "key_configured": false,
-    "credit_confirmed": false,
-    "video_calls_enabled": false,
+    "credit_confirmed": true,
+    "video_calls_enabled": true,
+    "authorized_video_sha256": "e199c6cd71d62894c98a79315b588a74f5290236a706bf7c1368a5568e59a6f0",
     "live_requests_started": 2,
-    "preflight_requests_started": 0,
-    "previous_server_available": false
+    "preflight_requests_started": 0
+  },
+  "presentation_actual_loop": {
+    "status": "blocked_missing_existing_secret_key",
+    "example_id": "go2-down-slow",
+    "source_video_sha256": "e199c6cd71d62894c98a79315b588a74f5290236a706bf7c1368a5568e59a6f0",
+    "static_baseline_verdict": "FAIL",
+    "first_below_0_8_s": 7.2,
+    "new_model_calls": 0,
+    "actual_video_inference_executed": false,
+    "actual_reflection_executed": false,
+    "new_180s_video_rendered": false,
+    "related_cpu_tests_passed": 52,
+    "browser_checks_passed": 14,
+    "browser_verification": "evals/results/meta_video_research_20261104_v7/browser-verification.json",
+    "blocked_run": "evals/results/meta_actual_video_loop_20261104_v1/summary.json",
+    "media_smoke": "evals/results/meta_demo_media_smoke_20261104_v1/verification.json"
+  },
+  "official_rules_review": {
+    "source_url": "https://cerebralvalley.ai/e/meta-ai-developer-hackathon/waiver",
+    "public_body_reviewed": true,
+    "requires_original_owned_non_infringing_work": true,
+    "oss_license_compliance_required": true,
+    "existing_project_reuse_explicit_allowance_found": false,
+    "existing_project_reuse_explicit_prohibition_found": false,
+    "reuse_eligibility": "conditional_not_confirmed",
+    "three_minute_rule_in_public_rules_found": false,
+    "three_minute_source": "organizer_email_recommendation",
+    "submission_fields_verified": false
   }
 }

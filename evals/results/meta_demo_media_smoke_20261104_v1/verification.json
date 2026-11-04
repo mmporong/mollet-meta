@@ -1,0 +1,11 @@
+{
+  "scope": "one_second_synthetic_encoder_test_not_presentation_or_model_evidence",
+  "model_calls": 0,
+  "gpu_jobs": 0,
+  "passed": true,
+  "duration_s": 1.0,
+  "width": 1280,
+  "height": 840,
+  "full_decode_exit": 0,
+  "sha256": "a5b65b28eb458e00653a3cf1a4c4ec4a4569f293b0f24a7fe2eb7dbb1f86883d"
+}

@@ -1,0 +1,66 @@
+{
+  "schema": "meta-actual-video-loop-presentation-v1",
+  "created_at": "2026-11-04T13:48:50.642512+00:00",
+  "source_commit": "329e58a4dfbea57957dddb4826a3633c066bc880",
+  "example_id": "go2-down-slow",
+  "instruction": "첨부된 Go2 계단 하행 영상과 동기화된 상태 기록에서 관찰되는 행동 문제를 분석하세요. 관측 가능한 서로 다른 가설을 최대 3개 제시하고, 각 가설에 근거 프레임과 상태 조건을 연결하세요. 자세 유지와 진행을 구분하고, 영상으로 확인할 수 없는 보상 코드 결함은 확정하지 마세요. 지표 단위와 관측 구간을 지키고 원본 범위 안에서 검사 가능한 조건을 만드세요. 검사 결과가 제공되면 처음 주장과 모순되는 부분을 수정하거나 유지 이유를 설명하세요. 검사 전에는 실제 검사 결과를 예측 사실로 쓰지 마세요.",
+  "actual_video_inference_executed": false,
+  "actual_reflection_executed": false,
+  "new_training_executed": false,
+  "performance_improvement_measured": false,
+  "model_quality_benchmark": false,
+  "scope": "single_seen_development_case",
+  "pushed": false,
+  "submitted": false,
+  "static_baseline_verdict": "FAIL",
+  "status_before": {
+    "preflight_requests_started": 0,
+    "total_external_requests_started": 2,
+    "key_configured": false,
+    "credit_confirmed": true,
+    "remaining_credit_usd": "150.00",
+    "budget_usd": "1.00",
+    "reserved_usd": "0.622616",
+    "available_budget_usd": "0.377384",
+    "enabled": false,
+    "blockers": [
+      "MODEL_API_KEY가 설정되지 않았습니다."
+    ],
+    "live_requests_started": 2,
+    "video_calls_enabled": true
+  },
+  "session_id": "92de60d7-6a6a-40e3-a30b-1cf6e72214c1",
+  "input_manifest": {
+    "schema": "meta-video-analysis-input-v1",
+    "example_id": "go2-down-slow",
+    "video_sha256": "e199c6cd71d62894c98a79315b588a74f5290236a706bf7c1368a5568e59a6f0",
+    "video_bytes": 1198428,
+    "sample_count": 625,
+    "source_trace_sha256": "31b6fffd1e499a3880fd186b91fcc955188097ab6aef42a6a6ed43a98bd29990",
+    "documentation": "https://dev.meta.ai/docs/video-understanding",
+    "input_kind": "video_and_synchronized_state",
+    "sent": false,
+    "capture_approved": false,
+    "new_training_executed": false
+  },
+  "prepared_request_sha256": "5b80da1ec52a98f2b305af6f25e81278272d666697c71169a48099a82e9d7c31",
+  "status": "blocked_missing_existing_key_or_credit_confirmation",
+  "status_after": {
+    "preflight_requests_started": 0,
+    "total_external_requests_started": 2,
+    "key_configured": false,
+    "credit_confirmed": true,
+    "remaining_credit_usd": "150.00",
+    "budget_usd": "1.00",
+    "reserved_usd": "0.622616",
+    "available_budget_usd": "0.377384",
+    "enabled": false,
+    "blockers": [
+      "MODEL_API_KEY가 설정되지 않았습니다."
+    ],
+    "live_requests_started": 2,
+    "video_calls_enabled": true
+  },
+  "new_generation_requests": 0,
+  "new_preflight_requests": 0
+}

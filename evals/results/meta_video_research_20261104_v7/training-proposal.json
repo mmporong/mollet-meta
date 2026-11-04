@@ -1,0 +1,53 @@
+{
+  "schema": "meta-training-proposal-v1",
+  "status": "HOLD",
+  "reason": "등록 코드 교정은 확인 probe 영수증 뒤 correction ledger가 제안해야 합니다.",
+  "case_id": "h1-up",
+  "mechanism": "reward",
+  "change_id": null,
+  "contract": {
+    "schema": "behavior-contract-v1",
+    "title": "계단 재생 중 자세 유지",
+    "instruction": "영상 시작부터 8초 동안 수직축 정렬이 0.8 이상 유지되는지 확인합니다.",
+    "trigger": {
+      "kind": "time",
+      "at_s": 0,
+      "region": null,
+      "object_id": null
+    },
+    "condition": {
+      "metric": "up_axis_z",
+      "op": "gte",
+      "threshold": 1,
+      "deadline_s": 8,
+      "hold_s": 0.5
+    },
+    "max_gap_s": 0.05,
+    "source": {
+      "kind": "meta_visual_hypothesis_proposal",
+      "provider_authentication": "unverified_analysis_input",
+      "model_called": false,
+      "execution_authorized": false
+    }
+  },
+  "meta_binding": {
+    "analysis_sha256": "f815fafd5a5983468822693ba8bc746bc807c90e6343b503aa2871654de5db1c",
+    "observations_sha256": "69c892a3ba263e89d121979e7faa010657ed949a77e0ea1980fbfd906a127891",
+    "video_sha256": "82107853548545c0977b8488acd45931689c1de737db29d931d1735505367f10",
+    "hypothesis_id": "reward",
+    "claim": "보상 좌표계 결함 가능성은 코드 검사 필요",
+    "evidence_frames": [
+      100
+    ],
+    "correction_id": "restore_body_frame_reward",
+    "recovery_mode": "restart",
+    "model_generated_execution_authority": false,
+    "approval_status": "pending_human_approval"
+  },
+  "consumer_ready": false,
+  "execution_authority": "none",
+  "approval_required": true,
+  "next_consumer": "rl_triage.behavior_authoring.triage_bridge.prepare_registered_correction",
+  "gpu_started": false,
+  "training_started": false
+}
