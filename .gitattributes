@@ -40,3 +40,8 @@ evals/results/five_type_sources_s2550_s2559_20261101_v1/** -text
 evals/results/meta_behavior_stairs_flow_20261103_v1/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
 evals/results/meta_tools_prepared_20261103_v1/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
 submission/meta-behavior-20261103-v1/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+# 실제 Meta 응답과 최종 제출 묶음의 바이트 해시를 checkout/archive에서도 보존한다.
+evals/results/meta_live_provider_20261104_v1/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+evals/results/meta_final_package_20261104_v1/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+submission/meta-behavior-20261104-live-v1/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+submission/meta-submit-20261104-v1/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
