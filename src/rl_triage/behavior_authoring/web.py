@@ -14,6 +14,7 @@ from .datasets import example_paths, list_examples, load_example_view, stairs_co
 from .evaluate import evaluate_contract
 from .schema import contract_digest, validate_contract, validate_observations
 from .live import LiveService
+from .research import ResearchService
 
 ASSETS = Path(__file__).with_name('web')
 MAX_BODY = 12 * 1024 * 1024
@@ -62,6 +63,13 @@ class Handler(BaseHTTPRequestHandler):
             self._send({'error':'다른 웹사이트에서 보낸 요청은 허용하지 않습니다.'},403);return False
         return True
 
+    def _research(self) -> ResearchService:
+        live = self._meta()
+        with _SERVICE_LOCK:
+            if not hasattr(self.server, 'research_service'):
+                self.server.research_service = ResearchService(live)
+            return self.server.research_service
+
     def do_GET(self) -> None:
         if not self._local():return
         url=urlsplit(self.path);route=url.path
@@ -92,7 +100,7 @@ class Handler(BaseHTTPRequestHandler):
                         if not chunk:break
                         self.wfile.write(chunk);remaining-=len(chunk)
                 return
-            files={'/':'index.html','/app.js':'app.js','/style.css':'style.css'}
+            files={'/':'index.html','/app.js':'app.js','/improvement.js':'improvement.js','/style.css':'style.css'}
             if route not in files:self._send({'error':'없는 경로입니다.'},404);return
             path=ASSETS/files[route];data=path.read_bytes()
             mime=mimetypes.guess_type(str(path))[0] or 'application/octet-stream'
@@ -110,6 +118,37 @@ class Handler(BaseHTTPRequestHandler):
             length=int(self.headers.get('Content-Length','0'))
             if not 0<length<=MAX_BODY:self._send({'error':'요청 크기를 확인하세요.'},413);return
             data=_json(self.rfile.read(length));route=urlsplit(self.path).path
+            if route.startswith('/api/improvement/'):
+                service = self._research()
+                action = route.rsplit('/', 1)[-1]
+                if action == 'prepare':
+                    value = service.prepare(data['example_id'], data['instruction'], data.get('observations'))
+                elif action == 'cancel':
+                    value = service.cancel(data['session_id'])
+                elif action == 'seed':
+                    value = service.seed(data['example_id'],data['instruction'],data['contract'],data.get('observations'))
+                elif action == 'import':
+                    value = service.accept(data['session_id'], data['response'])
+                elif action == 'analyze':
+                    value = service.analyze(data['session_id'])
+                elif action == 'round':
+                    value = service.step(data['session_id'])
+                elif action == 'reflect':
+                    value = service.reflect(data['session_id'])
+                elif action == 'export':
+                    value = service.snapshot(data['session_id'])
+                elif action == 'training':
+                    from .triage_bridge import prepare_training
+                    session = service.snapshot(data['session_id'])
+                    # HTTP 입력으로 임의 작업 경로나 실행 권한을 받지 않는다.
+                    _, bundle = self._meta()._input(session['example_id'], None)
+                    value = prepare_training(session['analysis'],bundle,data['hypothesis_id'],
+                                             change_id=data.get('change_id'),recovery_mode=data.get('recovery_mode','restart'))
+                elif action == 'recovery':
+                    value = service.recover(data['session_id'],data['hypothesis_id'],data['comparison'])
+                else:
+                    self._send({'error':'없는 분석 경로입니다.'},404);return
+                self._send(value);return
             if route=='/api/meta/configure':
                 self._send({'status':self._meta().configure(data)});return
             if route=='/api/meta/quote':

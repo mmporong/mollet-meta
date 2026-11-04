@@ -1,5 +1,19 @@
 # Mollet 행동 조건 편집기
 
+## 영상 추론·개선 루프 확장
+
+2026-11-04 추가 범위는 Spark에 원본 MP4와 동기화된 상태를 함께 넣는 영상 분석, 근거 프레임이 있는 가설 1~4개, 미검사 가설의 조건 검사, 결과를 포함한 다음 Spark 요청, 기존 교정·재학습 소비 경로 연결이다. 기존 text-only Spark·SAM의 실제 응답 2회와 새 영상 분석의 실행 여부를 구분한다. 새 영상 모델 호출·GPU 학습은 실행하지 않았다. 새 화면의 Chrome 검증은 진행 중이다.
+
+화면 아래의 **영상으로 가설을 세우고, 검사 결과로 다시 검토하기**에서 요청을 저장하고 완료된 provider 응답을 가져온다. 현재 조건으로 로컬 흐름을 확인할 수도 있으며 이 경우 Spark 분석으로 표시하지 않는다. 가설의 원본 프레임 존재 여부와 조건 스키마를 검증하고, 참/거짓 표본 분할의 이진 엔트로피가 큰 미검사 가설부터 하나씩 계산한다. 이 선택 점수는 새 실험의 기대 정보 이득 추정이나 인과 확인이 아니다. 동일 기록의 조건 검사는 최대 3회이며, 새 관측을 만든 것으로 세지 않는다.
+
+보상 코드 교정은 Meta 가설만으로 실행되지 않는다. `prepare-correction`은 기존 probe loop의 confirmed 상태·abnormal 영수증·등록 메커니즘을 기존 `evals/correct.py`로 재검증하고, 선택 교정과 일치할 때만 실제 correction ledger에 GPU 예산 0의 미승인 제안을 남긴다. `prepare-training`의 설정 되돌리기는 별도 경로다. 설정 chN을 되돌린 결과를 보상 함수 코드 교정으로 표시하지 않는다. `restore_reward_family_scope`는 현 교정 원장에 등록되지 않아 HOLD다.
+
+`compare-recovery`와 화면의 평가 가져오기는 기존 `behavior_oracle.recovery_outcome` 또는 `grounded_recovery.summarize_triplet`을 재사용한다. 다른 교정 ID나 변경된 고정 평가 조건은 거부한다. 가져온 결과는 미인증 저장 평가로 표시하고 다음 영상 재검토 요청에 포함한다. 이 연결 자체로 Meta의 회복 성능 향상이나 정책 재학습 성공을 주장하지 않는다.
+
+추가 영상 호출은 기본 잠금이다. 향후 호출이 허용된 경우에도 `--enable-video-calls`, 영상 SHA에 결합한 `--video-input-sha256`, 기존 키·확인 크레딧·잔여 예산을 모두 만족해야 한다. 승인 보류 원본의 `capture_approved`·`model_ready`는 변경하지 않는다. 공식 media-aware 입력 토큰 계수 후 출력 한도와 여유를 더해 비용을 예약한다. 계수 요청도 별도 원장·외부 호출 수에 기록하고 같은 요청은 캐시한다. 예약은 공급자의 청구 차단이 아니다.
+
+공식 입력 근거: [Video understanding](https://dev.meta.ai/docs/video-understanding), [Responses schemas](https://dev.meta.ai/docs/api-reference/responses/schemas), [Token counting](https://dev.meta.ai/docs/token-counting). API 요청 준비와 CPU transport 검사는 영상 분석의 실제 모델 품질 검증을 대신하지 않는다.
+
 ## 작업 계약
 
 RL 개발자가 저장 영상과 상태 기록을 보면서 원하는 행동 조건을 작성하고, 조건을 검토한 뒤 위반 구간을 찾는다. 기존 진단·교정·26조건 회복 평가는 바꾸지 않는다.

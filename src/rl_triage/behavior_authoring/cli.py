@@ -28,6 +28,8 @@ def _meta_options(parser: argparse.ArgumentParser, *, serve: bool = False) -> No
     parser.add_argument(prefix+'credit-confirmed', dest='meta_credit_confirmed', action='store_true', help='Billing에서 크레딧·결제수단을 확인한 경우만 지정')
     parser.add_argument(prefix+'remaining-credit-usd', dest='meta_remaining_credit_usd', default='0')
     parser.add_argument(prefix+'budget-usd', dest='meta_budget_usd', default='1.00')
+    parser.add_argument('--enable-video-calls', action='store_true', help='영상 분석과 토큰 계수의 외부 요청을 허용하는 서버/단일 호출 전용 옵션. 별도 승인 없이 사용하지 않음')
+    parser.add_argument('--video-input-sha256',help='추가 영상 입력 허용을 받은 원본 SHA-256. 원본 승인 필드는 변경하지 않음')
 
 
 def _meta_service(args: argparse.Namespace):
@@ -35,7 +37,8 @@ def _meta_service(args: argparse.Namespace):
     from .live import LiveService, read_key_file
     key = read_key_file(args.meta_key_file) if args.meta_key_file else None
     return LiveService(MetaClient(api_key=key, credit_confirmed=args.meta_credit_confirmed,
-                                 remaining_credit_usd=args.meta_remaining_credit_usd, budget_usd=args.meta_budget_usd))
+                                 remaining_credit_usd=args.meta_remaining_credit_usd, budget_usd=args.meta_budget_usd),
+                       video_calls_enabled=args.enable_video_calls,video_input_sha256=args.video_input_sha256)
 
 
 def main() -> int:
@@ -44,7 +47,7 @@ def main() -> int:
     serve = sub.add_parser('serve'); serve.add_argument('--port', type=int, default=8784)
     _meta_options(serve, serve=True)
     live = sub.add_parser('call', help='크레딧·키·예산 설정 후 Meta 요청 1회. 자동 재시도 없음')
-    live.add_argument('--model', choices=['spark','sam'], required=True)
+    live.add_argument('--model', choices=['spark','sam','vision'], required=True)
     live.add_argument('--example', choices=list(STAIRS_EXAMPLES), default='h1-up')
     live.add_argument('--instruction', required=True, help='Spark 행동 지시 또는 SAM 객체 이름')
     _meta_options(live)
@@ -65,6 +68,25 @@ def main() -> int:
     imported.add_argument('--response', type=Path, required=True)
     imported.add_argument('--observations', type=Path, required=True)
     imported.add_argument('--out', type=Path, required=True)
+    training = sub.add_parser('prepare-training', help='Meta 가설을 기존 교정 소비용 사전등록으로 연결. 승인·학습 실행 없음')
+    training.add_argument('--analysis',type=Path,required=True)
+    training.add_argument('--observations',type=Path,required=True)
+    training.add_argument('--hypothesis',required=True)
+    training.add_argument('--change-id')
+    training.add_argument('--workspace',type=Path)
+    training.add_argument('--recovery-mode',choices=['restart','resume'],default='restart')
+    training.add_argument('--out',type=Path,required=True)
+    recovery = sub.add_parser('compare-recovery',help='기존 고정 평가 판정기로 저장 평가 비교')
+    recovery.add_argument('--input',type=Path,required=True)
+    recovery.add_argument('--out',type=Path,required=True)
+    correction = sub.add_parser('prepare-correction',help='확인 probe와 Meta 교정이 일치할 때 기존 원장에 GPU 예산 0의 미승인 제안 작성')
+    correction.add_argument('--analysis',type=Path,required=True)
+    correction.add_argument('--observations',type=Path,required=True)
+    correction.add_argument('--hypothesis',required=True)
+    correction.add_argument('--case-id',required=True)
+    correction.add_argument('--loops',type=Path,required=True)
+    correction.add_argument('--source-report',type=Path,required=True)
+    correction.add_argument('--out',type=Path,required=True)
     args = parser.parse_args()
     try:
         if args.command == 'serve':
@@ -73,7 +95,9 @@ def main() -> int:
         elif args.command == 'meta-status':
             print(json.dumps(_meta_service(args).status(), ensure_ascii=False))
         elif args.command == 'call':
-            value = _meta_service(args).run(args.model,args.example,args.instruction)
+            service = _meta_service(args)
+            value = (service.analyze_video(args.example,args.instruction) if args.model=='vision'
+                     else service.run(args.model,args.example,args.instruction))
             print(json.dumps({'receipt':value['receipt'],'status':value['status']},ensure_ascii=False))
         elif args.command == 'demo':
             if args.out.exists(): raise ValueError('새 결과 폴더를 지정하세요. 기존 결과는 덮어쓰지 않습니다.')
@@ -89,6 +113,27 @@ def main() -> int:
                 results[example] = result['verdict']
             write_new(args.out/'summary.json', {'schema':'behavior-authoring-demo-v1', 'results':results, 'model_api_calls':0, 'gpu_jobs':0, 'source_kind':'recorded_development_state', 'visual_input_status':'deferred_archive_not_model_approved', 'generalization_claim':False})
             print(json.dumps({'out':str(args.out), 'results':results, 'model_api_calls':0}, ensure_ascii=False))
+        elif args.command == 'prepare-training':
+            from .triage_bridge import prepare_training
+            if args.out.exists():
+                raise ValueError('새 출력 파일을 지정하세요.')
+            result = prepare_training(read_json(args.analysis),read_json(args.observations),args.hypothesis,
+                                      change_id=args.change_id,workspace=args.workspace,recovery_mode=args.recovery_mode)
+            write_new(args.out,result)
+            print(json.dumps({'out':str(args.out),'status':result['status'],
+                              'consumer_ready':result['consumer_ready'],'training_started':False},ensure_ascii=False))
+        elif args.command == 'compare-recovery':
+            from .triage_bridge import compare_recovery
+            result=compare_recovery(read_json(args.input))
+            write_new(args.out,result)
+            print(json.dumps(result,ensure_ascii=False))
+        elif args.command == 'prepare-correction':
+            from .triage_bridge import prepare_registered_correction
+            if args.out.exists():raise ValueError('새 출력 파일을 지정하세요.')
+            result=prepare_registered_correction(read_json(args.analysis),read_json(args.observations),args.hypothesis,
+                                                 case_id=args.case_id,loops=args.loops,source_report=read_json(args.source_report))
+            write_new(args.out,result)
+            print(json.dumps({'out':str(args.out),'decision':result['decision'],'training_started':False},ensure_ascii=False))
         elif args.command == 'evaluate':
             result = evaluate_contract(read_json(args.spec), read_json(args.observations), read_json(args.approval) if args.approval else None)
             write_new(args.out, result); print(result['verdict'])

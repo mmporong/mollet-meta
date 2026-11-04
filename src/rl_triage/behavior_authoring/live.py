@@ -58,11 +58,61 @@ def estimate_reservation(request: dict, frame_count: int) -> str:
 
 
 class LiveService:
-    def __init__(self, client: MetaClient | None = None):
+    def __init__(self, client: MetaClient | None = None, *, video_calls_enabled: bool = False,
+                 video_input_sha256: str | None = None):
         self.client = client if client is not None else MetaClient()
+        self.video_calls_enabled = video_calls_enabled
+        self.video_input_sha256 = video_input_sha256
 
     def status(self) -> dict:
-        return self.client.status()
+        return {**self.client.status(), 'video_calls_enabled': self.video_calls_enabled}
+
+    def analyze_video(self, example_id: str, instruction: str, observations: dict | None = None,
+                      *, analysis: dict | None = None, history: list | None = None,
+                      external_evaluations: list | None = None) -> dict:
+        """허용된 서버에서만 영상 분석을 단일 전송한다. 후속 라운드는 자동 호출하지 않는다."""
+        from .vision import build_video_analysis_request, import_video_analysis
+        if not self.video_calls_enabled:
+            raise ValueError('추가 영상 모델 호출은 잠겨 있습니다. 현재 작업은 요청 준비·저장 응답 가져오기만 허용합니다.')
+        _, bundle = self._input(example_id, observations)
+        if not (bundle['provenance'].get('capture_approved') is True and bundle['provenance'].get('model_ready') is True):
+            if self.video_input_sha256 != bundle['video_sha256']:
+                raise ValueError('이 영상 SHA에 결합된 입력 허용이 없습니다. 토큰 계수와 영상 전송을 수행하지 않았습니다.')
+        request, manifest = build_video_analysis_request(instruction, bundle, example_id,
+                                                        analysis=analysis, history=history,
+                                                        external_evaluations=external_evaluations)
+        # 영상 토큰은 파일 바이트로 추정하지 않는다. 공식 media-aware 계수 뒤 출력
+        # 상한과 스키마/framing 여유를 더해 기존 예약 배수를 적용한다.
+        pricing = json.loads(PRICING_PATH.read_text(encoding='utf-8'))
+        rates = pricing['muse-spark-1.3']
+        policy = pricing['reservation_policy']
+        minimum = (Decimal(request['max_output_tokens']) * Decimal(rates['output_per_million_usd'])
+                   * Decimal(policy['multiplier']) / Decimal(1000000))
+        if Decimal(self.client.status()['available_budget_usd']) < minimum:
+            raise ValueError('출력 예약 최소 예산이 부족해 토큰 계수를 보내지 않았습니다.')
+        count = self.client.count_input_tokens(request)
+        cost = ((Decimal(count + policy['framing_reserve_tokens']) * Decimal(rates['input_per_million_usd'])
+                 + Decimal(request['max_output_tokens']) * Decimal(rates['output_per_million_usd']))
+                * Decimal(policy['multiplier']) / Decimal(1000000))
+        sent = self.client.send(request, estimated_cost_usd=cost.quantize(Decimal('0.000001'), rounding=ROUND_CEILING), context={
+            'example_id': example_id, 'video_sha256': manifest['video_sha256'],
+            'source_trace_sha256': manifest['source_trace_sha256'],
+            'input_kind': 'video_and_synchronized_state',
+            'counted_input_units': count,
+            'reservation_scope': 'counted_media_input_plus_output_bound_not_provider_billing_cap',
+        })
+        value = import_video_analysis(sent['response'], bundle)
+        receipt = sent['receipt']
+        manifest = {**manifest, 'sent': True, 'run_id': receipt['run_id'],
+                    'request_sha256': receipt['request_sha256'],
+                    'input_authorization': 'sha_bound_operator_opt_in' if self.video_input_sha256==bundle['video_sha256']
+                                           else 'source_capture_and_model_approval'}
+        target = Path(receipt['directory']) / 'video-analysis.json'
+        with target.open('x', encoding='utf-8', newline='\n') as stream:
+            json.dump(value, stream, ensure_ascii=False, allow_nan=False, indent=2)
+            stream.write('\n')
+        return {'analysis': value, 'receipt': receipt, 'input_manifest': manifest,
+                'status': self.status(), 'provider_authentication': 'authenticated_https_api'}
 
     def configure(self, values: dict) -> dict:
         allowed = {'api_key', 'credit_confirmed', 'remaining_credit_usd', 'budget_usd'}

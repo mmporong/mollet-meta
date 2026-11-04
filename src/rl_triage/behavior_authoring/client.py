@@ -19,6 +19,7 @@ from typing import Any, Callable
 
 
 META_ENDPOINT = "https://api.meta.ai/v1/responses"
+TOKEN_COUNT_ENDPOINT = META_ENDPOINT + '/input_tokens'
 ALLOWED_MODELS = frozenset({"muse-spark-1.3", "sam-3.1"})
 MAX_BUDGET_USD = Decimal("1.00")
 MAX_REQUEST_BYTES = 16 * 1024 * 1024
@@ -120,10 +121,12 @@ class MetaClient:
         budget_usd: Decimal | str = "1.00",
         state_dir: Path | None = None,
         transport: Transport | None = None,
+        token_transport: Transport | None = None,
     ) -> None:
         if not isinstance(credit_confirmed, bool):
             raise MetaAPIError("크레딧 확인 값은 bool이어야 합니다.")
         self._config_lock = threading.RLock()
+        self._preflight_lock = threading.Lock()
         self._api_key = _validate_key(api_key) if api_key is not None else None
         if api_key is None:
             env_key = os.environ.get("MODEL_API_KEY")
@@ -134,6 +137,7 @@ class MetaClient:
         selected_state_dir = Path(state_dir) if state_dir is not None else _default_state_dir()
         self.state_dir = selected_state_dir.expanduser().resolve()
         self._transport = transport or self._default_transport
+        self._token_transport = token_transport or (lambda raw, key: self._http_transport(raw, key, TOKEN_COUNT_ENDPOINT))
         self.state_dir.mkdir(parents=True, exist_ok=True)
         (self.state_dir / "runs").mkdir(exist_ok=True)
         self._ledger_path = self.state_dir / "reservations.sqlite3"
@@ -203,6 +207,9 @@ class MetaClient:
                 )
                 """
             )
+            connection.execute('''CREATE TABLE IF NOT EXISTS input_preflights (
+                request_sha256 TEXT PRIMARY KEY, created_at TEXT NOT NULL,
+                status TEXT NOT NULL, input_units INTEGER, attempts INTEGER NOT NULL)''')
 
     def _ledger_totals(self) -> tuple[int, int]:
         with self._connect() as connection:
@@ -219,6 +226,8 @@ class MetaClient:
     ) -> dict[str, Any]:
         api_key, credit_confirmed, remaining_credit, budget = snapshot
         reserved_micro, count = self._ledger_totals()
+        with self._connect() as connection:
+            preflights = int(connection.execute('SELECT COALESCE(SUM(attempts),0) FROM input_preflights').fetchone()[0])
         reserved = Decimal(reserved_micro) * _MICRO_USD
         available = max(Decimal("0"), budget - reserved)
         blockers: list[str] = []
@@ -237,6 +246,8 @@ class MetaClient:
             and available > 0
         )
         return {
+            'preflight_requests_started': preflights,
+            'total_external_requests_started': count + preflights,
             "key_configured": api_key is not None,
             "credit_confirmed": credit_confirmed,
             "remaining_credit_usd": _money_text(remaining_credit),
@@ -406,9 +417,47 @@ class MetaClient:
                 raise MetaAPIError(safe_message) from None
             raise MetaAPIError(safe_message) from None
 
+    def count_input_tokens(self, request: dict) -> int:
+        """공식 media-aware preflight. 생성 요청과 분리하며 자동 재시도하지 않는다."""
+        snapshot = self._configuration_snapshot()
+        self._check_enabled(snapshot)
+        if request.get('model') != 'muse-spark-1.3':
+            raise MetaAPIError('Spark 요청만 토큰을 확인할 수 있습니다.')
+        raw = _json_bytes({'model': request['model'], 'input': request['input']}, label='입력 토큰 요청')
+        if len(raw) > MAX_REQUEST_BYTES or (snapshot[0] and snapshot[0].encode('utf-8') in raw):
+            raise MetaAPIError('입력 토큰 요청 크기 또는 비밀값 포함 여부를 확인하세요.')
+        sha = _sha256(raw)
+        with self._preflight_lock:
+            with self._connect() as connection:
+                cached = connection.execute('SELECT status,input_units FROM input_preflights WHERE request_sha256=?',(sha,)).fetchone()
+                if cached and cached[0] == 'completed':
+                    return int(cached[1])
+                connection.execute('''INSERT INTO input_preflights VALUES (?,?,?,NULL,1)
+                    ON CONFLICT(request_sha256) DO UPDATE SET status='started',attempts=attempts+1''',
+                                   (sha,_utc_now(),'started'))
+            try:
+                body, content_type, _ = self._token_transport(raw, snapshot[0] or '')
+                if not isinstance(body, bytes) or len(body) > 65536 or content_type.split(';')[0] != 'application/json':
+                    raise ValueError('invalid token count response')
+                count = json.loads(body)['input_tokens']
+                if type(count) is not int or not 0 < count <= 2000000:
+                    raise ValueError('invalid input token count')
+            except Exception:
+                with self._connect() as connection:
+                    connection.execute("UPDATE input_preflights SET status='error' WHERE request_sha256=?",(sha,))
+                raise MetaAPIError('영상 입력 토큰을 확인하지 못했습니다. 생성 요청을 보내지 않았습니다.') from None
+            with self._connect() as connection:
+                connection.execute("UPDATE input_preflights SET status='completed',input_units=? WHERE request_sha256=?",(count,sha))
+            return count
+
     def _default_transport(self, request_bytes: bytes, api_key: str) -> tuple[bytes, str, str | None]:
+        return self._http_transport(request_bytes, api_key, META_ENDPOINT)
+
+    def _http_transport(self, request_bytes: bytes, api_key: str, endpoint: str) -> tuple[bytes, str, str | None]:
+        if endpoint not in {META_ENDPOINT, TOKEN_COUNT_ENDPOINT}:
+            raise MetaAPIError('허용되지 않은 Meta API 주소입니다.')
         request = urllib.request.Request(
-            META_ENDPOINT,
+            endpoint,
             data=request_bytes,
             method="POST",
             headers={

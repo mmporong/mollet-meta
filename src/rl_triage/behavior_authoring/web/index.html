@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="ko">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Mollet · 행동 조건 편집기</title><link rel="stylesheet" href="/style.css"><script src="/app.js" defer></script></head>
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Mollet · 행동 조건 편집기</title><link rel="stylesheet" href="/style.css"><script src="/app.js" defer></script><script src="/improvement.js" defer></script></head>
 <body>
 <header><a class="brand" href="/">Mollet<span>Behavior workbench</span></a><span id="apiMode" class="mode">로컬 작업 공간 · Meta 연결 확인 중</span></header>
 <main>
@@ -61,5 +61,30 @@
     </div>
     <p id="metaRunStatus" role="status" class="hint">실제 모델 요청 기록 없음</p><p id="importStatus" role="status" class="hint">가져온 응답 없음 · 공급자 인증과 영상 결합은 업로드 파일만으로 증명되지 않습니다.</p>
   </section>
-</main><footer>Mollet · 새로운 행동 조건의 로컬 저작·검토 · 학습 정책과 기존 회복 판정은 변경하지 않습니다.</footer>
+  <section class="connections improvement" aria-labelledby="improvementHeading">
+    <p class="eyebrow">VIDEO → HYPOTHESIS → CHECK → REFLECT</p>
+    <h2 id="improvementHeading">영상으로 가설을 세우고, 검사 결과로 다시 검토하기</h2>
+    <p>선택한 원본 MP4와 동기화된 상태를 Spark에 전달하는 요청을 만듭니다. 프레임 근거가 있는 가설을 가져오면, 아직 검사하지 않은 가설을 골라 원본 수치로 확인합니다.</p>
+    <div class="buttons">
+      <button id="visionPrepare" class="primary">영상 분석 요청 저장</button>
+      <button id="visionLive" class="secondary" disabled>실제 영상 분석 · 추가 호출 잠금</button>
+      <label class="file-button">영상 분석 응답 가져오기<input id="visionResponse" type="file" accept=".json,.txt,.sse"></label>
+      <button id="visionSeed" class="secondary">현재 조건으로 로컬 흐름 확인</button>
+    </div>
+    <p id="visionStatus" role="status" class="hint">새 Spark 영상 분석은 아직 실행하지 않았습니다. 현재 조건 검사는 모델 분석으로 표시하지 않습니다.</p>
+    <div id="hypothesisList" class="hypothesis-list"></div>
+    <div class="buttons">
+      <button id="visionStep" class="primary" disabled>다음 가설 검사</button>
+      <button id="visionReflect" class="secondary" disabled>결과를 포함한 재검토 요청 저장</button>
+      <button id="visionExport" class="secondary" disabled>분석·선택·검사 이력 저장</button>
+    </div>
+    <ol id="researchHistory" aria-label="가설 검사 이력"></ol>
+    <h3>보상 교정·재학습 연결</h3>
+    <p>선택한 가설의 교정을 기존 triage 사전등록과 승인 대기 경로로 연결합니다. 영상만으로 보상 코드 결함이 확정되지는 않습니다.</p>
+    <div class="two"><label>재학습할 가설<select id="trainingHypothesis"><option value="">가설을 먼저 가져오세요</option></select></label><label>기존 triage 변경 ID<input id="trainingChange" maxlength="200" placeholder="실제 case.json에 등록된 변경 ID"></label></div>
+    <div class="two"><label>회복 방식<select id="trainingMode"><option value="restart">처음부터 재학습</option><option value="resume">체크포인트에서 이어 학습</option></select></label><div class="buttons"><button id="trainingPrepare" class="secondary" disabled>교정·재학습 제안 저장</button><label class="file-button">실행 후 평가 가져오기<input id="recoveryResponse" type="file" accept=".json,application/json"></label></div></div>
+    <p id="recoveryStatus" role="status" class="hint">새 학습·교정 실행과 회복 효과 측정은 아직 없습니다. 결측 평가와 다른 개입의 결과는 회복 성공으로 세지 않습니다.</p>
+    <pre id="recoveryResult" class="recovery-result" hidden></pre>
+  </section>
+</main><footer>Mollet · 영상 근거·행동 조건·교정 제안을 연결하는 로컬 작업 공간</footer>
 </body></html>
