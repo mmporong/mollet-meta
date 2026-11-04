@@ -82,7 +82,7 @@ def test_loopback_origin_size_and_static_allowlist(server):
     assert request(server,'/api/example?id=../../LICENSE')[0]==400
     assert request(server,'/api/review',{},headers={'Content-Type':'text/plain'})[0]==415
     status,body,headers=request(server,'/')
-    assert status==200 and b'<html lang="ko">' in body
+    assert status==200 and b'<html lang="en">' in body
     assert "frame-ancestors 'none'" in headers['Content-Security-Policy']
 
 

@@ -96,7 +96,7 @@ def test_region_entry_rejects_unanchored_inside_but_allows_reacquired_outside_an
     )
     reacquired = evaluate_contract(region_contract, reentry_after_gap)
     assert reacquired["trigger_t_s"] == 3.0
-    assert any("새 anchor" in warning and "물리적 동일성" in warning for warning in reacquired["warnings"])
+    assert any("new anchor" in warning and "physical identity" in warning for warning in reacquired["warnings"])
 
     mixed = observations(
         [1, 1, 1],
@@ -116,7 +116,7 @@ def test_region_entry_includes_exact_boundary_and_uses_bbox_center_warning():
     result = evaluate_contract(spec, bundle)
     assert result["trigger_t_s"] == 0.5
     assert result["verdict"] == "PASS"
-    assert any("bbox 중심점" in warning and "SAM" in warning for warning in result["warnings"])
+    assert any("bounding-box center" in warning and "SAM" in warning for warning in result["warnings"])
 
 
 def test_rejected_capture_blocks_region_evidence_but_not_time_metrics():
@@ -136,7 +136,7 @@ def test_rejected_capture_blocks_region_evidence_but_not_time_metrics():
     assert rejected["verdict"] == "UNKNOWN"
     assert rejected["trigger_t_s"] is None
     assert rejected["interval"] is None
-    assert any("별개" in warning and "승격하지 않았습니다" in warning for warning in rejected["warnings"])
+    assert any("separate" in warning and "not promoted" in warning for warning in rejected["warnings"])
 
     time_bundle = observations([1, 1, 1])
     time_bundle["provenance"]["capture_approved"] = False
@@ -166,7 +166,7 @@ def test_time_trigger_before_first_sample_cannot_prove_failure_even_within_max_g
 
     assert result["verdict"] == "UNKNOWN"
     assert result["trigger_t_s"] == 0.0
-    assert any("전체 관측창" in warning for warning in result["warnings"])
+    assert any("complete observation window" in warning for warning in result["warnings"])
 
 
 @pytest.mark.parametrize("mutator", [
@@ -204,7 +204,7 @@ def test_approval_is_digest_bound_and_stage_is_truthful():
     })
     assert approved["stage"] == "automated_test"
     assert approved["approval_status"] == "approved"
-    assert any("GPU 실행 권한" in warning for warning in approved["warnings"])
+    assert any("GPU execution authority" in warning for warning in approved["warnings"])
     with pytest.raises(BehaviorSchemaError, match="digest"):
         evaluate_contract(spec, observations([0]), approval={
             "contract_sha256": "0" * 64, "actor": "reviewer", "scope": "local_semantic_review",

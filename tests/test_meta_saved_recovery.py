@@ -151,11 +151,11 @@ def test_saved_recovery_ui_is_explicit_and_does_not_replace_file_restore():
     html = (ROOT / "src/rl_triage/behavior_authoring/web/index.html").read_text(encoding="utf-8")
     app = (ROOT / "src/rl_triage/behavior_authoring/web/app.js").read_text(encoding="utf-8")
     assert 'id="savedMetaRestore"' in html
-    assert "저장된 실제 Meta 결과 이어보기" in html
+    assert "Restore saved Meta results" in html
     assert 'id="savedMetaRecoveryStatus"' in html
     assert 'id="restoreExport"' in html
-    assert "saved_meta_response_replay:'저장된 실제 응답'" in app
-    assert "현재 모델 호출 ${saved.replay.new_model_calls}회" in app
+    assert "saved_meta_response_replay:'Saved verified response'" in app
+    assert "current model calls ${saved.replay.new_model_calls}" in app
     assert "state.approval=null;$('reviewed').checked=false;showResult(saved.result)" in app
 
 
@@ -175,11 +175,11 @@ for(const kind of ['manual_form','manual_example_contract','restored_manual_cont
   const restored=restoreSource({kind,model_called:false,provider_authentication:'forged'});
   assert.deepStrictEqual(restored,{kind:'restored_manual_contract',provider_authentication:'not_applicable_user_authored',model_called:false});
 }
-assert.throws(()=>restoreSource({kind:'manual_form',model_called:true}),/모델 호출 결과/);
+assert.throws(()=>restoreSource({kind:'manual_form',model_called:true}),/model-call result/);
 assert.throws(()=>restoreSource({kind:'live_meta_spark_response',response_sha256:'bad'}),/SHA-256/);
 const imported=restoreSource({kind:'live_meta_spark_response',response_sha256:'a'.repeat(64),provider_authentication:'authenticated_https_api',model_called:true});
 assert.deepStrictEqual(imported,{kind:'imported_spark_response',response_sha256:'a'.repeat(64),provider_authentication:'unverified_saved_response',model_called:false});
 """
-    completed = subprocess.run([node, "-e", script, str(app_path)], cwd=ROOT, text=True,
+    completed = subprocess.run([node, "-e", script, str(app_path)], cwd=ROOT, text=True, encoding="utf-8",
                                capture_output=True, timeout=10)
     assert completed.returncode == 0, completed.stdout + completed.stderr

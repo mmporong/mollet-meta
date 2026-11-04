@@ -21,7 +21,7 @@ SAVED = ROOT / "evals/results/meta_live_provider_20261104_v1/mollet-behavior-con
 def test_restore_control_is_present():
     html = INDEX.read_text(encoding="utf-8")
     assert 'id="restoreExport"' in html
-    assert "저장한 조건·근거 불러오기" in html
+    assert "Import saved contract and evidence" in html
 
 
 def test_actual_export_fits_closed_schema_after_authority_is_downgraded():
@@ -106,7 +106,7 @@ async function fetch(path,options={}){
   if(path.startsWith('/api/example?id='))return response(structuredClone(canonical));
   if(path==='/api/validate')return response({contract:JSON.parse(options.body).contract});
   if(path==='/api/meta/run/spark'){
-    const contract=structuredClone(canonical.default_contract);contract.title='더 나중 실제 Spark 조건';contract.source={kind:'live_meta_spark_response',model_called:true};
+    const contract=structuredClone(canonical.default_contract);contract.title='Later live Spark condition';contract.source={kind:'live_meta_spark_response',model_called:true};
     return response({status:metaStatus,receipt:null,contract});
   }
   if(path==='/api/evaluate'){
@@ -114,16 +114,16 @@ async function fetch(path,options={}){
     assert.strictEqual(evaluatedBody.approval,null);
     assert.strictEqual(evaluatedBody.observations.provenance.capture_approved,false);
     assert.strictEqual(evaluatedBody.observations.provenance.model_ready,false);
-    return response({result:{stage:'draft',approval_status:'missing',verdict:'UNKNOWN',reason:'재계산',trigger_t_s:null,interval:null,examined_samples:625,warnings:[]}});
+    return response({result:{stage:'draft',approval_status:'missing',verdict:'UNKNOWN',reason:'Recalculated',trigger_t_s:null,interval:null,examined_samples:625,warnings:[]}});
   }
-  throw new Error('예상하지 않은 API 호출: '+path);
+  throw new Error('Unexpected API call: '+path);
 }
 const context={console,document,fetch,URL:{createObjectURL(){return 'blob:test';},revokeObjectURL(){}},Blob,setTimeout,clearTimeout,structuredClone};
 context.globalThis=context;
 vm.createContext(context);
-vm.runInContext(fs.readFileSync(appPath,'utf8')+'\nglobalThis.__state=state;globalThis.__restoreExport=restoreExport;globalThis.__runLive=runLive;',context,{filename:appPath});
+vm.runInContext(fs.readFileSync(appPath,'utf8')+'\nglobalThis.__state=state;globalThis.__spec=spec;globalThis.__restoreExport=restoreExport;globalThis.__runLive=runLive;',context,{filename:appPath});
 const tick=()=>new Promise(resolve=>setImmediate(resolve));
-async function waitFor(predicate){for(let i=0;i<100;i++){if(predicate())return;await tick();}throw new Error('초기 UI 로드를 기다리다 시간 초과');}
+async function waitFor(predicate){for(let i=0;i<100;i++){if(predicate())return;await tick();}throw new Error('Timed out waiting for the initial UI load');}
 const file=value=>({size:Buffer.byteLength(JSON.stringify(value)),text:async()=>JSON.stringify(value)});
 async function rejects(value,pattern){let caught=null;try{await context.__restoreExport(file(value));}catch(error){caught=error;}assert(caught,pattern);assert.match(caught.message,pattern);}
 (async()=>{
@@ -141,7 +141,10 @@ async function rejects(value,pattern){let caught=null;try{await context.__restor
   assert.strictEqual(elements.reviewed.checked,false);
   assert.strictEqual(context.__state.result.stage,'draft');
   assert.strictEqual(evaluatedBody.approval,null);
-  assert.match(elements.importStatus.textContent,/승인·기존 판정은 적용하지 않았/);
+  assert.strictEqual(elements.title.value,'Maintain H1 posture while ascending stairs');
+  assert.strictEqual(context.__spec().title,saved.contract.title);
+  assert.strictEqual(context.__spec().instruction,saved.contract.instruction);
+  assert.match(elements.importStatus.textContent,/approval, and the prior verdict were not imported/);
 
   const forgedApproval=structuredClone(saved);forgedApproval.approval={actor:'forged',scope:'administrator'};forgedApproval.result={stage:'reviewed',verdict:'PASS'};
   context.__state.approval={actor:'old'};elements.reviewed.checked=true;
@@ -149,19 +152,19 @@ async function rejects(value,pattern){let caught=null;try{await context.__restor
   assert.strictEqual(context.__state.approval,null);assert.strictEqual(elements.reviewed.checked,false);assert.strictEqual(context.__state.result.stage,'draft');
 
   const changedSha=structuredClone(saved);changedSha.clip.video_sha256='0'.repeat(64);
-  await rejects(changedSha,/영상 SHA-256/);
+  await rejects(changedSha,/video SHA-256/);
   const changedState=structuredClone(saved);changedState.observations.samples[0].values.base_height_m+=0.01;
-  await rejects(changedState,/원본 프레임·시각·상태값/);
-  await assert.rejects(()=>context.__restoreExport({size:10*1024*1024+1,text:async()=>''}),/10MB 이하/);
+  await rejects(changedState,/Source frame, time, or state values differ/);
+  await assert.rejects(()=>context.__restoreExport({size:10*1024*1024+1,text:async()=>''}),/no larger than 10 MB/);
 
   let releaseText;const delayed={size:100,text:()=>new Promise(resolve=>{releaseText=resolve;})};
-  const pending=context.__restoreExport(delayed);elements.title.value='사용자가 새로 편집한 조건';listeners.title.input();const editedResult=context.__state.result;
+  const pending=context.__restoreExport(delayed);elements.title.value='User-edited condition';listeners.title.input();const editedResult=context.__state.result;
   releaseText(JSON.stringify(saved));await pending;
-  assert.strictEqual(elements.title.value,'사용자가 새로 편집한 조건');assert.strictEqual(context.__state.result,editedResult);assert.strictEqual(editedResult,null);
+  assert.strictEqual(elements.title.value,'User-edited condition');assert.strictEqual(context.__state.result,editedResult);assert.strictEqual(editedResult,null);
 
   let releaseLiveRace;const liveRaceFile={size:100,text:()=>new Promise(resolve=>{releaseLiveRace=resolve;})};
   const staleRestore=context.__restoreExport(liveRaceFile);const live=context.__runLive('spark');await live;releaseLiveRace(JSON.stringify(saved));await staleRestore;
-  assert.strictEqual(elements.title.value,'더 나중 실제 Spark 조건');
+  assert.strictEqual(elements.title.value,'Later live Spark condition');
   assert(calls.every(path=>path.startsWith('/api/example')||path==='/api/examples'||path==='/api/meta/status'||path==='/api/validate'||path==='/api/evaluate'||path==='/api/meta/run/spark'));
 })().catch(error=>{console.error(error);process.exitCode=1;});
 """,
@@ -171,6 +174,7 @@ async function rejects(value,pattern){let caught=null;try{await context.__restor
         [node, str(harness_path), str(APP), str(INDEX), str(SAVED), str(canonical_path)],
         cwd=ROOT,
         text=True,
+        encoding="utf-8",
         capture_output=True,
         timeout=30,
     )
