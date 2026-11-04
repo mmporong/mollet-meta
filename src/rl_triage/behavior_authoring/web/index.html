@@ -4,7 +4,8 @@
 <body>
 <header><a class="brand" href="/">Mollet<span>Behavior workbench</span></a><span id="apiMode" class="mode">로컬 작업 공간 · Meta 연결 확인 중</span></header>
 <main>
-  <div class="intro"><div><p class="eyebrow">ROBOT LEARNING / BEHAVIOR CONTRACT</p><h1>보고 싶은 행동을, 검사할 수 있는 조건으로.</h1><p>저장된 RL 기록에서 조건을 작성하고, 충족한 시간과 판단할 수 없는 구간을 확인하세요.</p></div><div class="buttons"><label class="file-button">저장한 조건·근거 불러오기<input id="restoreExport" type="file" accept=".json,application/json"></label><button id="export" class="secondary">조건·근거 내보내기</button></div></div>
+  <div class="intro"><div><p class="eyebrow">ROBOT LEARNING / BEHAVIOR CONTRACT</p><h1>보고 싶은 행동을, 검사할 수 있는 조건으로.</h1><p>저장된 RL 기록에서 조건을 작성하고, 충족한 시간과 판단할 수 없는 구간을 확인하세요.</p></div><div class="buttons"><button id="savedMetaRestore" class="primary" disabled>저장된 실제 Meta 결과 이어보기</button><label class="file-button">저장한 조건·근거 불러오기<input id="restoreExport" type="file" accept=".json,application/json"></label><button id="export" class="secondary">조건·근거 내보내기</button></div></div>
+  <p id="savedMetaRecoveryStatus" class="hint" role="status" hidden></p>
   <p id="error" class="error" role="alert" hidden></p>
   <div class="workspace">
     <section class="viewer" aria-labelledby="videoHeading">

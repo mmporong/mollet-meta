@@ -15,6 +15,7 @@ from .evaluate import evaluate_contract
 from .schema import contract_digest, validate_contract, validate_observations
 from .live import LiveService
 from .research import ResearchService
+from .saved_run import load_saved_recovery
 
 ASSETS = Path(__file__).with_name('web')
 MAX_BODY = 12 * 1024 * 1024
@@ -76,9 +77,13 @@ class Handler(BaseHTTPRequestHandler):
         try:
             if route=='/api/meta/status':
                 self._send({'status':self._meta().status()});return
+            if route=='/api/recovery/saved':
+                if url.query: raise ValueError('저장 복구 경로에는 파일 경로나 URL 매개변수를 받지 않습니다.')
+                self._send(load_saved_recovery());return
             if route=='/api/examples':
                 self._send({'examples':list_examples(),'default_example':'h1-up','default_contract':stairs_contract(),
-                            'model_api_calls':self._meta().status()['live_requests_started']});return
+                            'model_api_calls':self._meta().status()['live_requests_started'],
+                            'saved_recovery_available':True});return
             if route=='/api/example':
                 example=parse_qs(url.query).get('id',['h1-up'])[0]
                 self._send(load_example_view(example));return
