@@ -151,8 +151,9 @@ async function rejects(value,pattern){let caught=null;try{await context.__restor
   await assert.rejects(()=>context.__restoreExport({size:10*1024*1024+1,text:async()=>''}),/10MB 이하/);
 
   let releaseText;const delayed={size:100,text:()=>new Promise(resolve=>{releaseText=resolve;})};
-  const before=context.__state.result;const pending=context.__restoreExport(delayed);context.__state.loadSequence++;releaseText(JSON.stringify(saved));await pending;
-  assert.strictEqual(context.__state.result,before);
+  const pending=context.__restoreExport(delayed);elements.title.value='사용자가 새로 편집한 조건';listeners.title.input();const editedResult=context.__state.result;
+  releaseText(JSON.stringify(saved));await pending;
+  assert.strictEqual(elements.title.value,'사용자가 새로 편집한 조건');assert.strictEqual(context.__state.result,editedResult);assert.strictEqual(editedResult,null);
   assert(calls.every(path=>path.startsWith('/api/example')||path==='/api/examples'||path==='/api/meta/status'||path==='/api/validate'||path==='/api/evaluate'));
 })().catch(error=>{console.error(error);process.exitCode=1;});
 """,
