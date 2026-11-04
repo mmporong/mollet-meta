@@ -47,3 +47,6 @@ submission/meta-behavior-20261104-live-v1/** -text whitespace=blank-at-eol,blank
 submission/meta-submit-20261104-v1/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
 evals/results/meta_browser_e2e_20261104_*/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
 evals/results/meta_video_research_20261104_*/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+evals/results/meta_recovery_browser_20261105_*/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+submission/meta-recovery-demo-20261105-*/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+submission/meta-submit-20261105-*/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol

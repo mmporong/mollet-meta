@@ -60,7 +60,8 @@
     "existing_key_in_local_environment_observed": false,
     "confirmation_source": "user_checked_billing_and_configured_local_ui",
     "configured_credit_usd": "150.00",
-    "key_configured_in_server_memory": true
+    "key_configured_in_server_memory": false,
+    "key_status_scope": "current_runtime_false_historical_authenticated_calls_preserved"
   },
   "local_playback": {
     "dataset_revision": "stairs-20261103-v2-state-sha-join",
@@ -93,10 +94,10 @@
     "verification": "submission/meta-behavior-20261104-live-v1/manifest.json"
   },
   "remaining_gates": [
-    "모델 응답이나 조건 검토로 영상 입력 승인·실험 실행 권한을 만들지 않음",
-    "3분 저장 원본 편집 영상은 제작됐으며 브라우저 실제 조작 촬영은 미실행",
-    "새 기능은 아직 GitHub에 공개되지 않았음",
-    "최신 Official Rules의 기존 자산 재사용 조건과 실제 제출 문항은 미확정"
+    "새 영상 가설·재검토의 실제 실행과 새 정책 학습·회복 성능 향상은 미측정",
+    "Meta 기능은 아직 GitHub에 공개되지 않았음",
+    "공개 영상 URL과 로그인한 공식 제출 문항은 미확정",
+    "최종 제출 금지 유지"
   ],
   "constraints": {
     "paid_api_calls": "no_unverified_or_personal_billing; explicit_granted_credit_confirmation_and_local_budget_required",
@@ -134,9 +135,9 @@
     "final_browser_harness_commit": "c47a77ed240216aa61da99b7a01180c973e7c2da"
   },
   "current_runtime": {
-    "url": "http://127.0.0.1:7706/#connectionsHeading",
-    "pid": 52916,
-    "code_commit": "0786e4d",
+    "url": "http://127.0.0.1:7706",
+    "pid": 47008,
+    "code_commit": "9286121",
     "key_configured": false,
     "credit_confirmed": true,
     "video_calls_enabled": true,
@@ -185,5 +186,26 @@
     "new_model_calls": 0,
     "credential_reentry_request_withdrawn": true,
     "independent_review": "APPROVE"
+  },
+  "saved_response_recovery": {
+    "implemented": true,
+    "browser_verification": "evals/results/meta_recovery_browser_20261105_v3/verification.json",
+    "browser_checks_passed": 10,
+    "related_cpu_tests_passed": 139,
+    "historical_model_calls": 2,
+    "new_model_calls": 0,
+    "verification_level": "local_provider_receipts_verified",
+    "original_condition_interval_s": [
+      0,
+      0.5
+    ],
+    "user_edited_hold_interval_s": [
+      0,
+      8
+    ],
+    "approval_restored": false,
+    "original_state_values_unchanged": true,
+    "capture_approved": false,
+    "model_ready": false
   }
 }

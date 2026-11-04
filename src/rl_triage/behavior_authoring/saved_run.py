@@ -186,11 +186,11 @@ def _canonical_payload(saved: dict, verification_level: str, receipts: list[dict
                 or not isinstance(source.get("tracks"), list)):
             raise ValueError(f"저장된 실제 Meta 결과의 {index}번 프레임·시각·상태값이 원본과 다릅니다.")
         samples.append({**original, "tracks": copy.deepcopy(source["tracks"])})
-    authentication = ("verified_local_provider_receipts" if verification_level == "local_provider_receipts_verified"
-                      else "repository_evidence_only_not_local_provider_receipt")
+    authentication = "not_performed_for_replay"
     provenance = copy.deepcopy(canonical["provenance"])
     provenance["saved_meta_replay"] = {
         "kind": "saved_actual_meta_response_replay", "provider_authentication": authentication,
+        "evidence_verification": verification_level,
         "historical_model_calls": 2, "new_model_calls": 0,
         "spark_run_id": KNOWN_RUNS["spark"]["run_id"], "sam_run_id": KNOWN_RUNS["sam"]["run_id"],
         "sam_response_sha256": KNOWN_RUNS["sam"]["response_sha256"],
@@ -200,6 +200,7 @@ def _canonical_payload(saved: dict, verification_level: str, receipts: list[dict
     contract = validate_contract({**contract_saved, "source": {
         "kind": "saved_meta_response_replay",
         "provider_authentication": authentication,
+        "evidence_verification": verification_level,
         "historical_run_id": KNOWN_RUNS["spark"]["run_id"],
         "response_sha256": KNOWN_RUNS["spark"]["response_sha256"],
         "model_called": False, "historical_model_calls": 2, "new_model_calls": 0,
@@ -215,6 +216,7 @@ def _canonical_payload(saved: dict, verification_level: str, receipts: list[dict
             "historical_model_calls": 2, "new_model_calls": 0,
             "verification_level": verification_level, "receipts": receipts,
             "provider_authentication": authentication,
+            "evidence_verification": verification_level,
             "notice": "저장된 실제 응답을 검증해 이어 봅니다. 현재 모델 호출은 수행하지 않았습니다.",
         },
     }

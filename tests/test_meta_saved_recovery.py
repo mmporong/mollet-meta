@@ -2,8 +2,9 @@
 from __future__ import annotations
 
 import http.client
+import copy
+import hashlib
 import json
-import os
 import shutil
 import subprocess
 import threading
@@ -13,6 +14,7 @@ from pathlib import Path
 import pytest
 
 from rl_triage.behavior_authoring.datasets import ROOT, load_example_view
+from rl_triage.behavior_authoring import saved_run
 from rl_triage.behavior_authoring.saved_run import EVIDENCE_DIR, KNOWN_RUNS, load_saved_recovery
 from rl_triage.behavior_authoring.web import Handler
 
@@ -26,12 +28,46 @@ def _request(port: int, path: str) -> tuple[int, dict]:
     return response.status, value
 
 
-def test_saved_actual_meta_recovery_verifies_local_provider_receipts_without_new_calls():
-    value = load_saved_recovery()
+@pytest.fixture
+def local_receipt_fixture(tmp_path: Path, monkeypatch):
+    """고정 검증 분기를 검사하는 합성 영수증이며 실제 공급자 실행 증거가 아니다."""
+    evidence = tmp_path / "evidence"
+    evidence.mkdir()
+    shutil.copyfile(EVIDENCE_DIR / "mollet-behavior-contract.json", evidence / "mollet-behavior-contract.json")
+    verification = json.loads((EVIDENCE_DIR / "verification.json").read_text(encoding="utf-8"))
+    known = copy.deepcopy(KNOWN_RUNS)
+    runs_root = tmp_path / "runs"
+    for name, expected in known.items():
+        folder = runs_root / expected["run_id"]
+        folder.mkdir(parents=True)
+        request = json.dumps({"model": expected["model"], "input": "unit-test-fixture"}).encode()
+        if name == "spark":
+            response = json.dumps({"id": expected["response_id"], "model": expected["model"], "status": "completed"}).encode()
+        else:
+            event = {"type": "response.completed", "status": "completed", "model": expected["model"],
+                     "id": "msg_" + expected["provider_request_id"]}
+            response = ("data: " + json.dumps(event, separators=(",", ":")) + "\n\ndata: [DONE]\n").encode()
+        expected["request_sha256"] = hashlib.sha256(request).hexdigest()
+        expected["response_sha256"] = hashlib.sha256(response).hexdigest()
+        receipt = verification["receipts"][name]
+        receipt.update(request_sha256=expected["request_sha256"], response_sha256=expected["response_sha256"])
+        (folder / "request.json").write_bytes(request)
+        (folder / expected["response_file"]).write_bytes(response)
+        (folder / "receipt.json").write_text(json.dumps(receipt), encoding="utf-8")
+    (evidence / "verification.json").write_text(json.dumps(verification), encoding="utf-8")
+    monkeypatch.setattr(saved_run, "KNOWN_RUNS", known)
+    return evidence, runs_root
+
+
+def test_local_receipt_verification_branch_without_new_calls(local_receipt_fixture):
+    evidence, runs_root = local_receipt_fixture
+    value = load_saved_recovery(evidence_dir=evidence, runs_root=runs_root)
     assert value["available"] is True
     assert value["replay"]["verification_level"] == "local_provider_receipts_verified"
     assert value["replay"]["historical_model_calls"] == 2
     assert value["replay"]["new_model_calls"] == 0
+    assert value["replay"]["provider_authentication"] == "not_performed_for_replay"
+    assert value["replay"]["evidence_verification"] == "local_provider_receipts_verified"
     assert len(value["replay"]["receipts"]) == 2
     assert {row["run_id"] for row in value["replay"]["receipts"]} == {
         item["run_id"] for item in KNOWN_RUNS.values()
@@ -65,24 +101,18 @@ def test_missing_local_receipts_downgrades_to_repository_evidence(tmp_path: Path
     value = load_saved_recovery(runs_root=tmp_path / "no-local-runs")
     assert value["available"] is True
     assert value["replay"]["verification_level"] == "repository_evidence_verified"
-    assert value["replay"]["provider_authentication"] == "repository_evidence_only_not_local_provider_receipt"
-    assert value["contract"]["source"]["provider_authentication"] == "repository_evidence_only_not_local_provider_receipt"
+    assert value["replay"]["provider_authentication"] == "not_performed_for_replay"
+    assert value["contract"]["source"]["provider_authentication"] == "not_performed_for_replay"
+    assert value["contract"]["source"]["evidence_verification"] == "repository_evidence_verified"
     assert value["replay"]["new_model_calls"] == 0
 
 
-def test_existing_but_changed_provider_response_fails_closed(tmp_path: Path):
-    source_root = Path(os.environ["LOCALAPPDATA"]) / "Mollet" / "meta-model-api" / "runs"
-    runs_root = tmp_path / "runs"
-    for expected in KNOWN_RUNS.values():
-        source = source_root / expected["run_id"]
-        target = runs_root / expected["run_id"]
-        target.mkdir(parents=True)
-        for name in ("receipt.json", "request.json", expected["response_file"]):
-            shutil.copyfile(source / name, target / name)
+def test_existing_but_changed_provider_response_fails_closed(local_receipt_fixture):
+    evidence, runs_root = local_receipt_fixture
     changed = runs_root / KNOWN_RUNS["spark"]["run_id"] / "response.json"
     changed.write_bytes(changed.read_bytes() + b"\n")
     with pytest.raises(ValueError, match="응답 원문의 SHA-256"):
-        load_saved_recovery(runs_root=runs_root)
+        load_saved_recovery(evidence_dir=evidence, runs_root=runs_root)
 
 
 def test_changed_canonical_export_fails_closed(tmp_path: Path):

@@ -1,10 +1,23 @@
 # Mollet 행동 조건 편집기
 
+## 저장된 실제 Meta 결과로 이어보기
+
+`http://127.0.0.1:7706`에서 **저장된 실제 Meta 결과 이어보기**를 누르면 과거 Spark·SAM 응답을 복원한다. 원본 영상·상태와 고정된 응답 해시를 대조하고, 이 컴퓨터에 남은 요청·응답 원문과 공급자 영수증도 검증한다. 과거 승인은 폐기하고 미검토 조건을 다시 계산한다. 복구에는 API 키가 필요하지 않으며 새 모델 호출은 0회다.
+
+실제 Chrome에서 H1 재생과 SAM 상자 표시, 조건 검토, JSON 다운로드, 유지 시간 8초로 수정, 수정 파일 재불러오기, 엄격한 조건 FAIL, Go2 수동 조건 FAIL을 확인했다. [검증 10개](../evals/results/meta_recovery_browser_20261105_v3/verification.json)가 통과했고 관련 CPU 테스트 139개도 통과했다. Spark 원래 조건은 임계값 0.8·시작 마감 8초·유지 0.5초이며 PASS 구간은 0.0~0.5초다. 사용자 수정 뒤의 8초 유지 PASS와 구분한다.
+
+Windows에서 터미널 종료 후에도 사용할 때는 다음 실행기를 쓴다. 이미 실행 중이면 재사용한다. 서버 PID·종료 명령은 `%LOCALAPPDATA%/Mollet/meta-model-api/workbench-runtime.json`에서 확인한다.
+
+```powershell
+cd "$HOME/rl-triage-meta"
+./tools/start_meta_workbench.ps1
+```
+
 ## 영상 추론·개선 루프 확장
 
 2026-11-04 추가 범위는 Spark에 원본 MP4와 동기화된 상태를 함께 넣는 영상 분석, 근거 프레임이 있는 가설 1~4개, 미검사 가설의 조건 검사, 결과를 포함한 다음 Spark 요청, 기존 교정·재학습 소비 경로 연결이다. 기존 text-only Spark·SAM의 실제 응답 2회와 새 영상 분석의 실행 여부를 구분한다. 새 영상 모델 호출·GPU 학습은 실행하지 않았다. [Chrome 13개 검증](../evals/results/meta_video_research_20261104_v5/browser-verification.json)은 실제 H1 원본과 합성 provider 응답을 사용한 UI 통합 검사이며 실제 영상 추론 품질 평가가 아니다. 관련 CPU 검사 248개가 통과했다.
 
-현재 새 화면은 `http://127.0.0.1:7706/#improvementHeading`에서 실행한다. Windows CLI는 키와 연결 설정을 `%LOCALAPPDATA%/Mollet/meta-model-api/credentials.dpapi`에 CurrentUser DPAPI로 암호화해 보관하고 재시작 시 복원한다. 설정만 보관된 경우와 실제 키가 보관된 경우를 별도 표시한다. 이전에 메모리에만 입력했던 실제 키 원문은 현재 복원하지 못했다. 이전 사용자 확인 크레딧·예산과 생성 요청 2회·예약 US$0.622616은 보존한다. 숨김 `pythonw` 서버 PID는 52916이며 연결과 작업 재개를 위해 유지한다. 종료 명령은 `Stop-Process -Id 52916`이다. 새 영상 API의 실제 결과와 새 재학습·회복 성능 측정은 남아 있다.
+현재 새 화면은 `http://127.0.0.1:7706/#improvementHeading`에서 실행한다. Windows CLI는 키와 연결 설정을 `%LOCALAPPDATA%/Mollet/meta-model-api/credentials.dpapi`에 CurrentUser DPAPI로 암호화해 보관하고 재시작 시 복원한다. 설정만 보관된 경우와 실제 키가 보관된 경우를 별도 표시한다. 이전에 메모리에만 입력했던 실제 키 원문은 현재 복원하지 못했다. 이전 사용자 확인 크레딧·예산과 생성 요청 2회·예약 US$0.622616은 보존한다. 숨김 `pythonw` 서버 PID는 47008이며 연결과 작업 재개를 위해 유지한다. 종료 명령은 `Stop-Process -Id 47008`이다. 새 영상 API의 실제 결과와 새 재학습·회복 성능 측정은 남아 있다.
 
 지속 실행은 `tools/start_meta_workbench.ps1`을 사용한다. 실행 명령이 끝난 뒤에도 서버 PID·HTTP 응답이 유지되는 것을 확인했다. 이미 실행 중인 서버는 재사용하며 기존 키가 있는 서버를 일괄 종료하지 않는다. 크레딧·예산을 코드 기본값으로 확인 처리하지 않고 암호화한 사용자 설정에서만 복원한다.
 
