@@ -103,6 +103,7 @@ def test_video_calls_default_lock_and_media_token_preflight(tmp_path):
     result=live.analyze_video('h1-up','분석')
     assert [kind for kind,_ in calls]==['count','generate']
     assert calls[0][1]['input']==calls[1][1]['input']
+    assert calls[0][1]['text']==calls[1][1]['text']
     assert result['provider_authentication']=='authenticated_https_api'
     assert result['input_manifest']['sent'] is True
     assert result['receipt']['context']['counted_input_units']==50000

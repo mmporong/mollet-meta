@@ -423,7 +423,10 @@ class MetaClient:
         self._check_enabled(snapshot)
         if request.get('model') != 'muse-spark-1.3':
             raise MetaAPIError('Spark 요청만 토큰을 확인할 수 있습니다.')
-        raw = _json_bytes({'model': request['model'], 'input': request['input']}, label='입력 토큰 요청')
+        body = {'model': request['model'], 'input': request['input']}
+        if 'text' in request:
+            body['text'] = request['text']
+        raw = _json_bytes(body, label='입력 토큰 요청')
         if len(raw) > MAX_REQUEST_BYTES or (snapshot[0] and snapshot[0].encode('utf-8') in raw):
             raise MetaAPIError('입력 토큰 요청 크기 또는 비밀값 포함 여부를 확인하세요.')
         sha = _sha256(raw)

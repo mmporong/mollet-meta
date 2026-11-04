@@ -16,6 +16,16 @@ MAX_HISTORY_ROUNDS = 3
 OFFICIAL_VIDEO_DOCUMENTATION = 'https://dev.meta.ai/docs/video-understanding'
 
 
+def provider_analysis_schema() -> dict:
+    """공식 strict subset에서 미확인인 제한은 로컬 검증에 유지한다."""
+    unsupported = {'minItems','maxItems','uniqueItems','exclusiveMinimum','pattern','minLength'}
+    def narrow(value):
+        if isinstance(value,dict):return {key:narrow(item) for key,item in value.items() if key not in unsupported}
+        if isinstance(value,list):return [narrow(item) for item in value]
+        return value
+    return narrow(analysis_schema())
+
+
 def build_video_analysis_request(instruction: str, bundle: dict, example_id: str,
                                  *, analysis: dict | None = None, history: list | None = None,
                                  external_evaluations: list | None = None) -> tuple[dict, dict]:
@@ -64,7 +74,7 @@ def build_video_analysis_request(instruction: str, bundle: dict, example_id: str
             {'type': 'input_video', 'video_url': 'data:video/mp4;base64,' + base64.b64encode(raw).decode('ascii')},
         ]}],
         'text': {'format': {'type': 'json_schema', 'name': 'grounded_video_hypotheses',
-                            'strict': True, 'schema': analysis_schema()}},
+                            'strict': True, 'schema': provider_analysis_schema()}},
         'max_output_tokens': 4096,
     }
     manifest = {'schema': 'meta-video-analysis-input-v1', 'example_id': example_id,
