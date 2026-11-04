@@ -1,0 +1,14 @@
+{
+  "checked_at": "2026-11-04T17:29:36.808083+09:00",
+  "plugin_version": "26.1029.61003",
+  "method": "Computer Use @oai/sky list_apps",
+  "kernel_reset": true,
+  "lightweight_attempts": 2,
+  "result": "native_pipe_unavailable",
+  "error": "failed to connect native pipe: file not found (os error 2)",
+  "browser_input_actions": 0,
+  "browser_playback_verified": false,
+  "browser_download_verified": false,
+  "additional_meta_calls": 0,
+  "backend_provider_verification": "verification.json"
+}
