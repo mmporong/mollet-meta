@@ -105,6 +105,10 @@ async function fetch(path,options={}){
   if(path==='/api/meta/status')return response({status:metaStatus});
   if(path.startsWith('/api/example?id='))return response(structuredClone(canonical));
   if(path==='/api/validate')return response({contract:JSON.parse(options.body).contract});
+  if(path==='/api/meta/run/spark'){
+    const contract=structuredClone(canonical.default_contract);contract.title='더 나중 실제 Spark 조건';contract.source={kind:'live_meta_spark_response',model_called:true};
+    return response({status:metaStatus,receipt:null,contract});
+  }
   if(path==='/api/evaluate'){
     evaluatedBody=JSON.parse(options.body);
     assert.strictEqual(evaluatedBody.approval,null);
@@ -117,7 +121,7 @@ async function fetch(path,options={}){
 const context={console,document,fetch,URL:{createObjectURL(){return 'blob:test';},revokeObjectURL(){}},Blob,setTimeout,clearTimeout,structuredClone};
 context.globalThis=context;
 vm.createContext(context);
-vm.runInContext(fs.readFileSync(appPath,'utf8')+'\nglobalThis.__state=state;globalThis.__restoreExport=restoreExport;',context,{filename:appPath});
+vm.runInContext(fs.readFileSync(appPath,'utf8')+'\nglobalThis.__state=state;globalThis.__restoreExport=restoreExport;globalThis.__runLive=runLive;',context,{filename:appPath});
 const tick=()=>new Promise(resolve=>setImmediate(resolve));
 async function waitFor(predicate){for(let i=0;i<100;i++){if(predicate())return;await tick();}throw new Error('초기 UI 로드를 기다리다 시간 초과');}
 const file=value=>({size:Buffer.byteLength(JSON.stringify(value)),text:async()=>JSON.stringify(value)});
@@ -154,7 +158,11 @@ async function rejects(value,pattern){let caught=null;try{await context.__restor
   const pending=context.__restoreExport(delayed);elements.title.value='사용자가 새로 편집한 조건';listeners.title.input();const editedResult=context.__state.result;
   releaseText(JSON.stringify(saved));await pending;
   assert.strictEqual(elements.title.value,'사용자가 새로 편집한 조건');assert.strictEqual(context.__state.result,editedResult);assert.strictEqual(editedResult,null);
-  assert(calls.every(path=>path.startsWith('/api/example')||path==='/api/examples'||path==='/api/meta/status'||path==='/api/validate'||path==='/api/evaluate'));
+
+  let releaseLiveRace;const liveRaceFile={size:100,text:()=>new Promise(resolve=>{releaseLiveRace=resolve;})};
+  const staleRestore=context.__restoreExport(liveRaceFile);const live=context.__runLive('spark');await live;releaseLiveRace(JSON.stringify(saved));await staleRestore;
+  assert.strictEqual(elements.title.value,'더 나중 실제 Spark 조건');
+  assert(calls.every(path=>path.startsWith('/api/example')||path==='/api/examples'||path==='/api/meta/status'||path==='/api/validate'||path==='/api/evaluate'||path==='/api/meta/run/spark'));
 })().catch(error=>{console.error(error);process.exitCode=1;});
 """,
         encoding="utf-8",
