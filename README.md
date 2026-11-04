@@ -4,9 +4,9 @@ Mollet is a behavior-condition workbench for recorded robot runs. It turns a pla
 
 This repository contains the Meta AI Developer Hackathon application built on the existing [RL Triage Agent](README-RL-TRIAGE.md). The hackathon work adds the browser workbench, Meta model adapters, saved-response replay, condition evaluation and export, and the three-minute demonstration. It does not claim that a new policy was trained or that recovery performance improved.
 
-[Watch the 180-second demo with English captions](https://cdn.jsdelivr.net/gh/mmporong/mollet-meta@44c460d5d82033116642e1a77ed38b738d6aea14/submission/meta-recovery-demo-20261105-v2/mollet-meta-recovery-demo-180s-en-captioned.mp4) · [한국어 영상](submission/meta-recovery-demo-20261105-v2/mollet-meta-recovery-demo-180s-ko.mp4) · [Evidence manifest](submission/meta-recovery-demo-20261105-v2/manifest.json) · [Submission notes](submission/meta-official-form-20261105-v1/README.md) · [Submission receipt](submission/meta-official-form-20261105-v1/execution/receipt.json) · [Apache-2.0 license](LICENSE)
+[Watch the 180-second English demo](https://cdn.jsdelivr.net/gh/mmporong/mollet-meta@main/submission/meta-english-demo-20261105-v1/mollet-meta-demo-180s-en.mp4) · [Evidence manifest](submission/meta-english-demo-20261105-v1/manifest.json) · [Submission notes](submission/meta-official-form-20261105-v1/README.md) · [Submission receipt](submission/meta-official-form-20261105-v1/execution/receipt.json) · [Apache-2.0 license](LICENSE)
 
-![Mollet behavior-condition workbench](evals/results/meta_recovery_browser_20261105_v5/06-full-workbench.png)
+![Mollet behavior-condition workbench](evals/results/meta_english_browser_20261105_v1/06-full-workbench.png)
 
 ## What the demo proves
 
@@ -48,11 +48,11 @@ $env:PYTHONPATH = "$PWD/src"
 python -m rl_triage.behavior_authoring serve --port 8784
 ```
 
-Open <http://127.0.0.1:8784> and choose **저장된 실제 Meta 결과 이어보기** at the top of the page. The workbench restores the original condition and SAM boxes without an API key or another provider request.
+Open <http://127.0.0.1:8784> and choose **Restore saved Meta results** at the top of the page. The workbench restores the original condition and SAM boxes without an API key or another provider request.
 
 The public clone does not include the private raw provider files kept outside the repository. In that case, the workbench reports `repository_evidence_verified`, a lower evidence level than verifying those local raw receipts. It is not new provider authentication.
 
-File import is a second path. Choose **저장한 조건·근거 불러오기** and select:
+File import is a second path. Choose **Import saved contract and evidence** and select:
 
 ```text
 evals/results/meta_live_provider_20261104_v1/mollet-behavior-contract.json
@@ -111,13 +111,7 @@ python -m pytest -q @($tests | Sort-Object -Unique)
 
 The checked-in evidence also records the browser replay, source hashes, media hashes, provider receipts and the fully decoded demo outputs:
 
-- [Browser verification](evals/results/meta_recovery_browser_20261105_v5/verification.json)
+- [English browser verification](evals/results/meta_english_browser_20261105_v1/verification.json)
 - [Live-provider verification](evals/results/meta_live_provider_20261104_v1/verification.json)
-- [Demo manifest](submission/meta-recovery-demo-20261105-v2/manifest.json)
+- [English demo manifest](submission/meta-english-demo-20261105-v1/manifest.json)
 - [Behavior authoring details](docs/META-BEHAVIOR-AUTHORING.md)
-
-## 한국어 요약
-
-Mollet은 로봇 영상과 상태 기록에서 행동 조건을 작성하고, 조건이 유지된 구간과 판정 근거를 함께 내보내는 작업 공간입니다. 이번 제출에는 저장된 실제 Spark·SAM 응답을 검증해 복원하는 흐름, H1 8초 자세 조건 재검사, Go2 12.48초 전 구간 실패 판정, JSON 내보내기와 재불러오기가 들어 있습니다.
-
-영상 추론과 reflection 반복, 정책 수정, 재학습, 회복 성능 향상 측정은 이번 제출에서 실행하지 않았습니다. 624/625 bbox는 SAM 응답이 제공된 프레임 수이며 정확도 수치가 아닙니다. 기존 RL 기반과 새 Meta 해커톤 기능의 범위는 위 항목에서 나눠 적었습니다.

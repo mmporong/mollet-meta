@@ -1,0 +1,486 @@
+{
+  "schema": "meta-english-recovery-demo-v1",
+  "scope": "english_ui_voice_and_captions_for_saved_historical_meta_recovery",
+  "language": {
+    "ui": "en",
+    "narration": "en-US",
+    "captions": "en"
+  },
+  "source_commit": "33545039a89de1fd20c9089ae8b7c23df5b736c2",
+  "renderer_commit": "33545039a89de1fd20c9089ae8b7c23df5b736c2",
+  "duration_s": 180.0,
+  "scenes": [
+    {
+      "name": "title",
+      "start_s": 0.0,
+      "end_s": 15.0
+    },
+    {
+      "name": "problem",
+      "start_s": 15.0,
+      "end_s": 30.0
+    },
+    {
+      "name": "browser-replay",
+      "start_s": 30.0,
+      "end_s": 45.0
+    },
+    {
+      "name": "sam-motion",
+      "start_s": 45.0,
+      "end_s": 60.0
+    },
+    {
+      "name": "provider-result",
+      "start_s": 60.0,
+      "end_s": 75.0
+    },
+    {
+      "name": "manual-eight",
+      "start_s": 75.0,
+      "end_s": 90.0
+    },
+    {
+      "name": "manual-roundtrip",
+      "start_s": 90.0,
+      "end_s": 105.0
+    },
+    {
+      "name": "go2-workspace",
+      "start_s": 105.0,
+      "end_s": 120.0
+    },
+    {
+      "name": "go2-motion",
+      "start_s": 120.0,
+      "end_s": 135.0
+    },
+    {
+      "name": "go2-result",
+      "start_s": 135.0,
+      "end_s": 150.0
+    },
+    {
+      "name": "boundary",
+      "start_s": 150.0,
+      "end_s": 165.0
+    },
+    {
+      "name": "end",
+      "start_s": 165.0,
+      "end_s": 180.0
+    }
+  ],
+  "output": {
+    "file": "mollet-meta-demo-180s-en.mp4",
+    "sha256": "9635e770cbc0f4d01a5c5d6f348cc32da86453d02e6c54753ae6830319630fca",
+    "bytes": 8161683,
+    "probe": {
+      "programs": [],
+      "stream_groups": [],
+      "streams": [
+        {
+          "index": 0,
+          "codec_name": "h264",
+          "codec_type": "video",
+          "width": 1280,
+          "height": 840,
+          "pix_fmt": "yuv420p",
+          "r_frame_rate": "30/1"
+        },
+        {
+          "index": 1,
+          "codec_name": "aac",
+          "codec_type": "audio",
+          "sample_rate": "48000",
+          "channels": 2,
+          "r_frame_rate": "0/0"
+        }
+      ],
+      "format": {
+        "duration": "180.000000",
+        "size": "8161683"
+      }
+    },
+    "full_decode_exit": 0
+  },
+  "voice": {
+    "required": "Microsoft Zira Desktop",
+    "language": "en-US",
+    "scenes": [
+      {
+        "voice": "Microsoft Zira Desktop - English (United States)",
+        "language": "en-US",
+        "raw_duration_s": 10.31737,
+        "speed": 1.0,
+        "duration_s": 15.0,
+        "rms": 1983.6536833762648,
+        "scene": "title"
+      },
+      {
+        "voice": "Microsoft Zira Desktop - English (United States)",
+        "language": "en-US",
+        "raw_duration_s": 11.607211,
+        "speed": 1.0,
+        "duration_s": 15.0,
+        "rms": 2001.3169963169807,
+        "scene": "problem"
+      },
+      {
+        "voice": "Microsoft Zira Desktop - English (United States)",
+        "language": "en-US",
+        "raw_duration_s": 10.232608,
+        "speed": 1.0,
+        "duration_s": 15.0,
+        "rms": 1915.6908194398468,
+        "scene": "browser-replay"
+      },
+      {
+        "voice": "Microsoft Zira Desktop - English (United States)",
+        "language": "en-US",
+        "raw_duration_s": 15.111746,
+        "speed": 1.0642074647887325,
+        "duration_s": 15.0,
+        "rms": 2292.540999849354,
+        "scene": "sam-motion"
+      },
+      {
+        "voice": "Microsoft Zira Desktop - English (United States)",
+        "language": "en-US",
+        "raw_duration_s": 15.031655,
+        "speed": 1.0585672535211268,
+        "duration_s": 15.0,
+        "rms": 2277.3198422832365,
+        "scene": "provider-result"
+      },
+      {
+        "voice": "Microsoft Zira Desktop - English (United States)",
+        "language": "en-US",
+        "raw_duration_s": 9.902766,
+        "speed": 1.0,
+        "duration_s": 15.0,
+        "rms": 1907.4982647298064,
+        "scene": "manual-eight"
+      },
+      {
+        "voice": "Microsoft Zira Desktop - English (United States)",
+        "language": "en-US",
+        "raw_duration_s": 9.622812,
+        "speed": 1.0,
+        "duration_s": 15.0,
+        "rms": 1905.0339556648619,
+        "scene": "manual-roundtrip"
+      },
+      {
+        "voice": "Microsoft Zira Desktop - English (United States)",
+        "language": "en-US",
+        "raw_duration_s": 11.637007,
+        "speed": 1.0,
+        "duration_s": 15.0,
+        "rms": 2159.3270838002595,
+        "scene": "go2-workspace"
+      },
+      {
+        "voice": "Microsoft Zira Desktop - English (United States)",
+        "language": "en-US",
+        "raw_duration_s": 9.867664,
+        "speed": 1.0,
+        "duration_s": 15.0,
+        "rms": 1856.2073223320629,
+        "scene": "go2-motion"
+      },
+      {
+        "voice": "Microsoft Zira Desktop - English (United States)",
+        "language": "en-US",
+        "raw_duration_s": 11.982132,
+        "speed": 1.0,
+        "duration_s": 15.0,
+        "rms": 2090.265811767263,
+        "scene": "go2-result"
+      },
+      {
+        "voice": "Microsoft Zira Desktop - English (United States)",
+        "language": "en-US",
+        "raw_duration_s": 12.73678,
+        "speed": 1.0,
+        "duration_s": 15.0,
+        "rms": 2310.141714621277,
+        "scene": "boundary"
+      },
+      {
+        "voice": "Microsoft Zira Desktop - English (United States)",
+        "language": "en-US",
+        "raw_duration_s": 12.65229,
+        "speed": 1.0,
+        "duration_s": 15.0,
+        "rms": 2038.0312005905491,
+        "scene": "end"
+      }
+    ],
+    "silent_fallback_allowed": false
+  },
+  "captions": {
+    "srt": {
+      "file": "mollet-meta-demo-en.srt",
+      "sha256": "4218ecd449a82d49630dd7888a2320b444e53ac29873c143199afe78e8ac8fa0",
+      "cues": 12
+    },
+    "ass": {
+      "file": "mollet-meta-demo-en.ass",
+      "sha256": "81817afc3844d07cd1d47f29f16083556622c26d69622f1343c9b56fd51f551f",
+      "cues": 12,
+      "play_res_x": 1280,
+      "play_res_y": 840,
+      "font_size": 24,
+      "bottom_panel_px": 120
+    }
+  },
+  "script": {
+    "file": "SCRIPT-en.md",
+    "sha256": "f53237708b90b09073a0fafbc73a12b291620dabd88a76c6acd71d33a6037771"
+  },
+  "capture": {
+    "schema": "meta-saved-recovery-capture-v1",
+    "verification_sha256": "02398945b7a0cae7e66e94ddf6c426186c55de8cd4612700db96c9a0a35d8848",
+    "ui_language": "en",
+    "browser_video_sha256": "65062bedb1ac3d3202329420a474c7b338f11344c0aec96f5c965cfd7c4b41bb",
+    "screenshots": [
+      {
+        "file": "01-restored-workspace.png",
+        "sha256": "89b729a835e4bd6617986f72c1287931623821877a1ce36d7bcfd29a8c982bf0"
+      },
+      {
+        "file": "02-provider-result.png",
+        "sha256": "f26ab023e70af46961b3358e6cf29c57a86e5053c6c77321f99801109afddffd"
+      },
+      {
+        "file": "03-eight-second-workspace.png",
+        "sha256": "b4b55e2c3ef255ac6d19232d43ace83c51e4f2271f428339d353a923d9ca9dcf"
+      },
+      {
+        "file": "04-go2-failure-workspace.png",
+        "sha256": "49231f04205369f562d284669f648596c8a67d233f00e4faa614a4dbfa57f4fb"
+      },
+      {
+        "file": "05-go2-failure-result.png",
+        "sha256": "d8d37053221803ef9d77ffab52e23fee474b8f18801d5f727e678db46bf0ad5f"
+      },
+      {
+        "file": "06-full-workbench.png",
+        "sha256": "97b647942bd37820097417a3b41b43ed7d86eab7a898d3b9a2a0b1e628f91081"
+      }
+    ]
+  },
+  "provider_evidence": {
+    "verification_level": "local_provider_receipts_verified",
+    "historical_actual_calls": {
+      "muse_spark_1_3": 1,
+      "sam_3_1": 1
+    },
+    "video_sha256": "82107853548545c0977b8488acd45931689c1de737db29d931d1735505367f10"
+  },
+  "claims": {
+    "new_model_calls": 0,
+    "new_video_inference_calls": 0,
+    "new_reflection_calls": 0,
+    "new_training_jobs": 0,
+    "gpu_jobs": 0,
+    "sam_response_coverage": {
+      "tracked_frames": 624,
+      "total_frames": 625,
+      "tracking_accuracy_measured": false
+    },
+    "performance_improvement_measured": false,
+    "go2_result_scope": "manual_recorded_state_check_not_new_model_diagnosis"
+  },
+  "results": {
+    "saved_provider_condition": {
+      "stage": "draft",
+      "approval_status": "unreviewed",
+      "verdict": "PASS",
+      "reason": "The condition started before the deadline and remained satisfied for the required hold time.",
+      "trigger_t_s": 0,
+      "interval": {
+        "start_s": 0,
+        "end_s": 0.5
+      },
+      "examined_samples": 426,
+      "warnings": [],
+      "spec_sha256": "44aa7518c23a398867c231a2f59cf7d768bd5dbd1af86bca8cdc58e6f0adc0bd",
+      "observations_sha256": "c8f43a63479ca66f7dc10c381d4252b203bf20b90aa88334f05e58b3c4e850e2",
+      "input_provenance": {
+        "kind": "recorded_h1_stairs_playback",
+        "source_path": "docs/media/stairs_h1_s172_20261030_v1/biped-stairs-up/manifest.json",
+        "source_sha256": "78040636212a19853a71b2384d7a53d934bc5ee6280cc2fb8c725a837c08af3f",
+        "source_trace": "docs/media/stairs_h1_s172_20261030_v1/biped-stairs-up/state-trace.jsonl",
+        "source_trace_sha256": "ef305c390f11842ed04dd0d8a835af5159e02c93a9a51763008591d2f6831e07",
+        "source_manifest_sha256": "eb113a2aee964aaaf972bbff9f2fd9090e14052c4642334b04e8ac4e78113193",
+        "exact_frames_sha256": "da80560fb45edcae16634fbcbfa865941e643f4c74db6b4cac5fe2c5510c9742",
+        "video_path": "docs/media/stairs_h1_s172_20261030_v1/biped-stairs-up/video/rl-video-step-0.mp4",
+        "frame_width": 1280,
+        "frame_height": 720,
+        "capture_approved": false,
+        "model_ready": false,
+        "playback_render_synced": true,
+        "visual_evidence_status": "render_synced_playback_not_model_input_approval",
+        "time_basis": "video_frame_index / encoder_fps",
+        "state_frame_offset": 1,
+        "sim_time_offset_s": 0.02,
+        "motion_frame": "world",
+        "height_frame": "world_z_not_ground_clearance",
+        "scope": "stored_stairs_condition_demo_only_not_recovery_or_generalization",
+        "new_model_api_calls": 0,
+        "new_training_jobs": 0,
+        "saved_meta_replay": {
+          "kind": "saved_actual_meta_response_replay",
+          "provider_authentication": "not_performed_for_replay",
+          "evidence_verification": "local_provider_receipts_verified",
+          "historical_model_calls": 2,
+          "new_model_calls": 0,
+          "spark_run_id": "9c20912b-fa37-4f3c-a118-11bc13bda76a",
+          "sam_run_id": "ee92f2fd-f138-4198-838e-d52b5472b91c",
+          "sam_response_sha256": "88f0b62f64badc3a57ac538c926bcc10c6d9cd118ad98207bc6ddf0caf12afb1"
+        }
+      },
+      "model_called": false
+    },
+    "manual_eight_second_condition": {
+      "stage": "reviewed",
+      "approval_status": "approved",
+      "verdict": "PASS",
+      "reason": "The condition started before the deadline and remained satisfied for the required hold time.",
+      "trigger_t_s": 0,
+      "interval": {
+        "start_s": 0,
+        "end_s": 8
+      },
+      "examined_samples": 625,
+      "warnings": [
+        "The approval record marks local semantic review or an automated test; it is not human authentication or GPU execution authority."
+      ],
+      "spec_sha256": "a2eaa095048f18120e5db0796358399bd12153e7b0c3b5c50e1eb970bdb329af",
+      "observations_sha256": "c8f43a63479ca66f7dc10c381d4252b203bf20b90aa88334f05e58b3c4e850e2",
+      "approval": {
+        "contract_sha256": "a2eaa095048f18120e5db0796358399bd12153e7b0c3b5c50e1eb970bdb329af",
+        "actor": "local_browser_review",
+        "scope": "local_semantic_review"
+      },
+      "input_provenance": {
+        "kind": "recorded_h1_stairs_playback",
+        "source_path": "docs/media/stairs_h1_s172_20261030_v1/biped-stairs-up/manifest.json",
+        "source_sha256": "78040636212a19853a71b2384d7a53d934bc5ee6280cc2fb8c725a837c08af3f",
+        "source_trace": "docs/media/stairs_h1_s172_20261030_v1/biped-stairs-up/state-trace.jsonl",
+        "source_trace_sha256": "ef305c390f11842ed04dd0d8a835af5159e02c93a9a51763008591d2f6831e07",
+        "source_manifest_sha256": "eb113a2aee964aaaf972bbff9f2fd9090e14052c4642334b04e8ac4e78113193",
+        "exact_frames_sha256": "da80560fb45edcae16634fbcbfa865941e643f4c74db6b4cac5fe2c5510c9742",
+        "video_path": "docs/media/stairs_h1_s172_20261030_v1/biped-stairs-up/video/rl-video-step-0.mp4",
+        "frame_width": 1280,
+        "frame_height": 720,
+        "capture_approved": false,
+        "model_ready": false,
+        "playback_render_synced": true,
+        "visual_evidence_status": "render_synced_playback_not_model_input_approval",
+        "time_basis": "video_frame_index / encoder_fps",
+        "state_frame_offset": 1,
+        "sim_time_offset_s": 0.02,
+        "motion_frame": "world",
+        "height_frame": "world_z_not_ground_clearance",
+        "scope": "stored_stairs_condition_demo_only_not_recovery_or_generalization",
+        "new_model_api_calls": 0,
+        "new_training_jobs": 0,
+        "saved_meta_replay": {
+          "kind": "saved_actual_meta_response_replay",
+          "provider_authentication": "not_performed_for_replay",
+          "evidence_verification": "local_provider_receipts_verified",
+          "historical_model_calls": 2,
+          "new_model_calls": 0,
+          "spark_run_id": "9c20912b-fa37-4f3c-a118-11bc13bda76a",
+          "sam_run_id": "ee92f2fd-f138-4198-838e-d52b5472b91c",
+          "sam_response_sha256": "88f0b62f64badc3a57ac538c926bcc10c6d9cd118ad98207bc6ddf0caf12afb1"
+        }
+      },
+      "model_called": false
+    },
+    "manual_go2_full_duration_condition": {
+      "stage": "reviewed",
+      "approval_status": "approved",
+      "verdict": "FAIL",
+      "reason": "The full observation window is covered, but no satisfying interval starts before the deadline and reaches the required hold time.",
+      "trigger_t_s": 0,
+      "interval": null,
+      "examined_samples": 625,
+      "warnings": [
+        "The approval record marks local semantic review or an automated test; it is not human authentication or GPU execution authority."
+      ],
+      "spec_sha256": "9a804ddee148dd8a2956596089b289d0444ec997efa69670f841dde3c77e00cb",
+      "observations_sha256": "01495ca182764cbf2d24779baedea0c7f770a764cd5c0228fb75409d25d0ea7e",
+      "approval": {
+        "contract_sha256": "9a804ddee148dd8a2956596089b289d0444ec997efa69670f841dde3c77e00cb",
+        "actor": "local_browser_review",
+        "scope": "local_semantic_review"
+      },
+      "input_provenance": {
+        "kind": "recorded_go2_stairs_state_sha_join",
+        "source_path": "evals/results/go2_stairs_command_contrast_s200_20261101_v1/cases.json",
+        "source_sha256": "635bdaa75847015600bba3a6c68046ed6449d0da3a879378dc8610b2545f87e8",
+        "source_media_sha256": "5bc64ddea68c4c7d9b2bcd44b8a671ab640894a23877fb72fd370bb6a21c6161",
+        "source_trace_sha256": "31b6fffd1e499a3880fd186b91fcc955188097ab6aef42a6a6ed43a98bd29990",
+        "video_path": "evals/results/go2_stairs_command_contrast_s200_20261101_v1/media/quadruped-stairs-down-step-0p05-cmd-0p25.mp4",
+        "raw_state_trace_available": true,
+        "capture_approved": false,
+        "model_ready": false,
+        "scope": "same_policy_command_contrast_only_not_retraining_or_recovery",
+        "new_model_api_calls": 0,
+        "new_training_jobs": 0,
+        "source_trace": "evals/results/stairs_motion_integrity_20261101_v1/sources/go2-down/state-trace.jsonl",
+        "binding_kind": "public_contrast_row_video_and_trace_sha256",
+        "frame_width": 1280,
+        "frame_height": 720,
+        "time_basis": "video_frame_index / encoder_fps",
+        "state_frame_offset": 1,
+        "sim_time_offset_s": 0.02,
+        "motion_frame": "world",
+        "height_frame": "world_z_not_ground_clearance"
+      },
+      "model_called": false
+    }
+  },
+  "sampleframes": [
+    {
+      "file": "sampleframes/sample-01-007.5s.png",
+      "at_s": 7.5,
+      "sha256": "504fe6082c8f099c294454acc654ba8f5ec1b73f4eee37a4eacba4b5de6f5d35"
+    },
+    {
+      "file": "sampleframes/sample-02-037.5s.png",
+      "at_s": 37.5,
+      "sha256": "842768ba6eb304e686fbd477fc9721f6cc3e40fc283cda9e46c7429de9630bd8"
+    },
+    {
+      "file": "sampleframes/sample-03-067.5s.png",
+      "at_s": 67.5,
+      "sha256": "5d4bcb44bf866d98f760f7860434f1b8b34ee561c9848bc32ca0d08d623a8e69"
+    },
+    {
+      "file": "sampleframes/sample-04-097.5s.png",
+      "at_s": 97.5,
+      "sha256": "6c75f7d30daaa48031ad75e19c48c609ffbb29fb977f36ce18a0e6ce3a9a9905"
+    },
+    {
+      "file": "sampleframes/sample-05-127.5s.png",
+      "at_s": 127.5,
+      "sha256": "56dbe62f7ce909a27cec538d8b7489986054f7e2d90c677e3777c898a4343bc3"
+    },
+    {
+      "file": "sampleframes/sample-06-172.5s.png",
+      "at_s": 172.5,
+      "sha256": "1cf00f3b9a12920bd234ea9f35fe222a43cb43efd069d565abc605213d9700e1"
+    }
+  ],
+  "english_text_smoke": {
+    "scene_text": true,
+    "subtitle_assets": true,
+    "capture_report": true,
+    "hangul_matches": 0
+  }
+}

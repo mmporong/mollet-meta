@@ -1,0 +1,367 @@
+{
+  "schema": "meta-saved-recovery-capture-v1",
+  "scope": "actual_historical_provider_results_replayed_in_current_browser",
+  "source_commit": "33545039a89de1fd20c9089ae8b7c23df5b736c2",
+  "url": "http://127.0.0.1:7707",
+  "checks": [
+    {
+      "name": "actual_historical_spark_sam_receipts_verified",
+      "passed": true
+    },
+    {
+      "name": "saved_provider_results_restore_without_api_key",
+      "passed": true
+    },
+    {
+      "name": "actual_h1_playback_and_restored_sam_bbox",
+      "passed": true,
+      "nontransparent_pixels": 2395
+    },
+    {
+      "name": "review_download_625_original_states_and_624_tracks",
+      "passed": true
+    },
+    {
+      "name": "user_condition_edit_resets_review_and_rechecks_full_eight_seconds",
+      "passed": true
+    },
+    {
+      "name": "manual_edited_export_roundtrip_preserves_values_and_resets_approval",
+      "passed": true
+    },
+    {
+      "name": "stricter_condition_returns_fail",
+      "passed": true
+    },
+    {
+      "name": "repeat_recovery_restores_original_provider_draft",
+      "passed": true
+    },
+    {
+      "name": "recorded_go2_time_condition_fail_is_manual_not_a_new_model_result",
+      "passed": true
+    },
+    {
+      "name": "english_interface_and_responsive_layout",
+      "passed": true,
+      "viewports": [
+        {
+          "width": 1440,
+          "visible_korean_characters": 0,
+          "horizontal_overflow": false
+        },
+        {
+          "width": 900,
+          "visible_korean_characters": 0,
+          "horizontal_overflow": false
+        },
+        {
+          "width": 390,
+          "visible_korean_characters": 0,
+          "horizontal_overflow": false
+        }
+      ]
+    },
+    {
+      "name": "recovery_and_exports_preserve_credentials_budget_and_provider_call_count",
+      "passed": true
+    }
+  ],
+  "page_errors": [],
+  "blocked_provider_requests": [],
+  "screenshots": [
+    {
+      "file": "01-restored-workspace.png",
+      "sha256": "89b729a835e4bd6617986f72c1287931623821877a1ce36d7bcfd29a8c982bf0"
+    },
+    {
+      "file": "02-provider-result.png",
+      "sha256": "f26ab023e70af46961b3358e6cf29c57a86e5053c6c77321f99801109afddffd"
+    },
+    {
+      "file": "03-eight-second-workspace.png",
+      "sha256": "b4b55e2c3ef255ac6d19232d43ace83c51e4f2271f428339d353a923d9ca9dcf"
+    },
+    {
+      "file": "04-go2-failure-workspace.png",
+      "sha256": "49231f04205369f562d284669f648596c8a67d233f00e4faa614a4dbfa57f4fb"
+    },
+    {
+      "file": "05-go2-failure-result.png",
+      "sha256": "d8d37053221803ef9d77ffab52e23fee474b8f18801d5f727e678db46bf0ad5f"
+    },
+    {
+      "file": "06-full-workbench.png",
+      "sha256": "97b647942bd37820097417a3b41b43ed7d86eab7a898d3b9a2a0b1e628f91081"
+    },
+    {
+      "file": "english-layout-1440.png",
+      "sha256": "e142f0df3162ef92df8c8fd788785f8c3e98ef62ae326fefafd79001a625ed90"
+    },
+    {
+      "file": "english-layout-900.png",
+      "sha256": "366deaaa903b0dae231ac991c64cb061e6ecde0fb6d3153fa77900def206384c"
+    },
+    {
+      "file": "english-layout-390.png",
+      "sha256": "e62b603956cc1bbb7f44834ee3786aa8092f618ea9b2d47affcad37ef1d8af81"
+    }
+  ],
+  "downloads": [
+    {
+      "file": "01-provider-contract.json",
+      "sha256": "3b0fd9dcd009f7ac0fde89ed62087c1a1bcd37c345d3300d242d1eff35f77e81",
+      "bytes": 322407
+    },
+    {
+      "file": "02-manual-eight-second-contract.json",
+      "sha256": "84dc6c2e3dd55c221d3d8b6af0971002bd6b6e6e42ad80a7d4f7e58a51941eba",
+      "bytes": 322551
+    },
+    {
+      "file": "03-manual-strict-condition.json",
+      "sha256": "0f0e867bab7a3a6ac0694892ec6754c6d6364381d222832592886ab9f391e499",
+      "bytes": 321774
+    },
+    {
+      "file": "04-go2-recorded-condition.json",
+      "sha256": "7cc6f6463f7a510ad3cf1e22e74c8b7f1b28093760995cec115e56bdc432c51d",
+      "bytes": 188910
+    }
+  ],
+  "new_model_calls": 0,
+  "gpu_jobs": 0,
+  "browser_closed": true,
+  "status_before": {
+    "credential_persistence_enabled": true,
+    "credential_saved": false,
+    "configuration_saved": true,
+    "preflight_requests_started": 0,
+    "total_external_requests_started": 2,
+    "key_configured": false,
+    "credit_confirmed": true,
+    "remaining_credit_usd": "150.00",
+    "budget_usd": "1.00",
+    "reserved_usd": "0.622616",
+    "available_budget_usd": "0.377384",
+    "enabled": false,
+    "blockers": [
+      "MODEL_API_KEY is not configured."
+    ],
+    "live_requests_started": 2,
+    "video_calls_enabled": false
+  },
+  "replay": {
+    "historical_model_calls": 2,
+    "new_model_calls": 0,
+    "verification_level": "local_provider_receipts_verified",
+    "receipts": [
+      {
+        "model": "muse-spark-1.3",
+        "run_id": "9c20912b-fa37-4f3c-a118-11bc13bda76a",
+        "provider_request_id": "1358757f-6636-4659-85a5-8e3c001e84d2",
+        "response_id": "resp_6aeaebc268240c6c192e444b",
+        "status": "completed_http",
+        "request_sha256": "363f1a845534f077a3ec9bfb5acdaa5dfda9a9cb88b4db0445ba84b60fa76012",
+        "response_sha256": "47a20cb67dee98c9bbb6db90488307decee8ead9855134ab0c4f4da04e55e0e5"
+      },
+      {
+        "model": "sam-3.1",
+        "run_id": "ee92f2fd-f138-4198-838e-d52b5472b91c",
+        "provider_request_id": "ce259a12-ef5d-40b9-aa9b-6291932674c8",
+        "response_id": null,
+        "status": "completed_http",
+        "request_sha256": "344aa7419708eade5bf2746f917e6778cd40200d8c382581e38b9dbfb1b03f8b",
+        "response_sha256": "88f0b62f64badc3a57ac538c926bcc10c6d9cd118ad98207bc6ddf0caf12afb1"
+      }
+    ],
+    "provider_authentication": "not_performed_for_replay",
+    "evidence_verification": "local_provider_receipts_verified",
+    "notice": "Replaying verified saved responses. No current model call was made."
+  },
+  "video_sha256": "82107853548545c0977b8488acd45931689c1de737db29d931d1735505367f10",
+  "original_condition": {
+    "metric": "up_axis_z",
+    "op": "gte",
+    "threshold": 0.8,
+    "deadline_s": 8,
+    "hold_s": 0.5
+  },
+  "browser": "156.0.8078.80",
+  "provider_result": {
+    "stage": "draft",
+    "approval_status": "unreviewed",
+    "verdict": "PASS",
+    "reason": "The condition started before the deadline and remained satisfied for the required hold time.",
+    "trigger_t_s": 0,
+    "interval": {
+      "start_s": 0,
+      "end_s": 0.5
+    },
+    "examined_samples": 426,
+    "warnings": [],
+    "spec_sha256": "44aa7518c23a398867c231a2f59cf7d768bd5dbd1af86bca8cdc58e6f0adc0bd",
+    "observations_sha256": "c8f43a63479ca66f7dc10c381d4252b203bf20b90aa88334f05e58b3c4e850e2",
+    "input_provenance": {
+      "kind": "recorded_h1_stairs_playback",
+      "source_path": "docs/media/stairs_h1_s172_20261030_v1/biped-stairs-up/manifest.json",
+      "source_sha256": "78040636212a19853a71b2384d7a53d934bc5ee6280cc2fb8c725a837c08af3f",
+      "source_trace": "docs/media/stairs_h1_s172_20261030_v1/biped-stairs-up/state-trace.jsonl",
+      "source_trace_sha256": "ef305c390f11842ed04dd0d8a835af5159e02c93a9a51763008591d2f6831e07",
+      "source_manifest_sha256": "eb113a2aee964aaaf972bbff9f2fd9090e14052c4642334b04e8ac4e78113193",
+      "exact_frames_sha256": "da80560fb45edcae16634fbcbfa865941e643f4c74db6b4cac5fe2c5510c9742",
+      "video_path": "docs/media/stairs_h1_s172_20261030_v1/biped-stairs-up/video/rl-video-step-0.mp4",
+      "frame_width": 1280,
+      "frame_height": 720,
+      "capture_approved": false,
+      "model_ready": false,
+      "playback_render_synced": true,
+      "visual_evidence_status": "render_synced_playback_not_model_input_approval",
+      "time_basis": "video_frame_index / encoder_fps",
+      "state_frame_offset": 1,
+      "sim_time_offset_s": 0.02,
+      "motion_frame": "world",
+      "height_frame": "world_z_not_ground_clearance",
+      "scope": "stored_stairs_condition_demo_only_not_recovery_or_generalization",
+      "new_model_api_calls": 0,
+      "new_training_jobs": 0,
+      "saved_meta_replay": {
+        "kind": "saved_actual_meta_response_replay",
+        "provider_authentication": "not_performed_for_replay",
+        "evidence_verification": "local_provider_receipts_verified",
+        "historical_model_calls": 2,
+        "new_model_calls": 0,
+        "spark_run_id": "9c20912b-fa37-4f3c-a118-11bc13bda76a",
+        "sam_run_id": "ee92f2fd-f138-4198-838e-d52b5472b91c",
+        "sam_response_sha256": "88f0b62f64badc3a57ac538c926bcc10c6d9cd118ad98207bc6ddf0caf12afb1"
+      }
+    },
+    "model_called": false
+  },
+  "manual_eight_second_result": {
+    "stage": "reviewed",
+    "approval_status": "approved",
+    "verdict": "PASS",
+    "reason": "The condition started before the deadline and remained satisfied for the required hold time.",
+    "trigger_t_s": 0,
+    "interval": {
+      "start_s": 0,
+      "end_s": 8
+    },
+    "examined_samples": 625,
+    "warnings": [
+      "The approval record marks local semantic review or an automated test; it is not human authentication or GPU execution authority."
+    ],
+    "spec_sha256": "a2eaa095048f18120e5db0796358399bd12153e7b0c3b5c50e1eb970bdb329af",
+    "observations_sha256": "c8f43a63479ca66f7dc10c381d4252b203bf20b90aa88334f05e58b3c4e850e2",
+    "approval": {
+      "contract_sha256": "a2eaa095048f18120e5db0796358399bd12153e7b0c3b5c50e1eb970bdb329af",
+      "actor": "local_browser_review",
+      "scope": "local_semantic_review"
+    },
+    "input_provenance": {
+      "kind": "recorded_h1_stairs_playback",
+      "source_path": "docs/media/stairs_h1_s172_20261030_v1/biped-stairs-up/manifest.json",
+      "source_sha256": "78040636212a19853a71b2384d7a53d934bc5ee6280cc2fb8c725a837c08af3f",
+      "source_trace": "docs/media/stairs_h1_s172_20261030_v1/biped-stairs-up/state-trace.jsonl",
+      "source_trace_sha256": "ef305c390f11842ed04dd0d8a835af5159e02c93a9a51763008591d2f6831e07",
+      "source_manifest_sha256": "eb113a2aee964aaaf972bbff9f2fd9090e14052c4642334b04e8ac4e78113193",
+      "exact_frames_sha256": "da80560fb45edcae16634fbcbfa865941e643f4c74db6b4cac5fe2c5510c9742",
+      "video_path": "docs/media/stairs_h1_s172_20261030_v1/biped-stairs-up/video/rl-video-step-0.mp4",
+      "frame_width": 1280,
+      "frame_height": 720,
+      "capture_approved": false,
+      "model_ready": false,
+      "playback_render_synced": true,
+      "visual_evidence_status": "render_synced_playback_not_model_input_approval",
+      "time_basis": "video_frame_index / encoder_fps",
+      "state_frame_offset": 1,
+      "sim_time_offset_s": 0.02,
+      "motion_frame": "world",
+      "height_frame": "world_z_not_ground_clearance",
+      "scope": "stored_stairs_condition_demo_only_not_recovery_or_generalization",
+      "new_model_api_calls": 0,
+      "new_training_jobs": 0,
+      "saved_meta_replay": {
+        "kind": "saved_actual_meta_response_replay",
+        "provider_authentication": "not_performed_for_replay",
+        "evidence_verification": "local_provider_receipts_verified",
+        "historical_model_calls": 2,
+        "new_model_calls": 0,
+        "spark_run_id": "9c20912b-fa37-4f3c-a118-11bc13bda76a",
+        "sam_run_id": "ee92f2fd-f138-4198-838e-d52b5472b91c",
+        "sam_response_sha256": "88f0b62f64badc3a57ac538c926bcc10c6d9cd118ad98207bc6ddf0caf12afb1"
+      }
+    },
+    "model_called": false
+  },
+  "go2_result": {
+    "stage": "reviewed",
+    "approval_status": "approved",
+    "verdict": "FAIL",
+    "reason": "The full observation window is covered, but no satisfying interval starts before the deadline and reaches the required hold time.",
+    "trigger_t_s": 0,
+    "interval": null,
+    "examined_samples": 625,
+    "warnings": [
+      "The approval record marks local semantic review or an automated test; it is not human authentication or GPU execution authority."
+    ],
+    "spec_sha256": "9a804ddee148dd8a2956596089b289d0444ec997efa69670f841dde3c77e00cb",
+    "observations_sha256": "01495ca182764cbf2d24779baedea0c7f770a764cd5c0228fb75409d25d0ea7e",
+    "approval": {
+      "contract_sha256": "9a804ddee148dd8a2956596089b289d0444ec997efa69670f841dde3c77e00cb",
+      "actor": "local_browser_review",
+      "scope": "local_semantic_review"
+    },
+    "input_provenance": {
+      "kind": "recorded_go2_stairs_state_sha_join",
+      "source_path": "evals/results/go2_stairs_command_contrast_s200_20261101_v1/cases.json",
+      "source_sha256": "635bdaa75847015600bba3a6c68046ed6449d0da3a879378dc8610b2545f87e8",
+      "source_media_sha256": "5bc64ddea68c4c7d9b2bcd44b8a671ab640894a23877fb72fd370bb6a21c6161",
+      "source_trace_sha256": "31b6fffd1e499a3880fd186b91fcc955188097ab6aef42a6a6ed43a98bd29990",
+      "video_path": "evals/results/go2_stairs_command_contrast_s200_20261101_v1/media/quadruped-stairs-down-step-0p05-cmd-0p25.mp4",
+      "raw_state_trace_available": true,
+      "capture_approved": false,
+      "model_ready": false,
+      "scope": "same_policy_command_contrast_only_not_retraining_or_recovery",
+      "new_model_api_calls": 0,
+      "new_training_jobs": 0,
+      "source_trace": "evals/results/stairs_motion_integrity_20261101_v1/sources/go2-down/state-trace.jsonl",
+      "binding_kind": "public_contrast_row_video_and_trace_sha256",
+      "frame_width": 1280,
+      "frame_height": 720,
+      "time_basis": "video_frame_index / encoder_fps",
+      "state_frame_offset": 1,
+      "sim_time_offset_s": 0.02,
+      "motion_frame": "world",
+      "height_frame": "world_z_not_ground_clearance"
+    },
+    "model_called": false
+  },
+  "ui_language": "en",
+  "visible_korean_text": [],
+  "english_ui_text_check_passed": true,
+  "status_after": {
+    "credential_persistence_enabled": true,
+    "credential_saved": false,
+    "configuration_saved": true,
+    "preflight_requests_started": 0,
+    "total_external_requests_started": 2,
+    "key_configured": false,
+    "credit_confirmed": true,
+    "remaining_credit_usd": "150.00",
+    "budget_usd": "1.00",
+    "reserved_usd": "0.622616",
+    "available_budget_usd": "0.377384",
+    "enabled": false,
+    "blockers": [
+      "MODEL_API_KEY is not configured."
+    ],
+    "live_requests_started": 2,
+    "video_calls_enabled": false
+  },
+  "passed": true,
+  "browser_video": "page@95d5897d9a48b462190ea7360ae5c417.webm",
+  "browser_video_sha256": "65062bedb1ac3d3202329420a474c7b338f11344c0aec96f5c965cfd7c4b41bb",
+  "browser_video_bytes": 2335180
+}

@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Mollet · Behavior Condition Workbench</title><link rel="stylesheet" href="/style.css"><script src="/app.js" defer></script><script src="/improvement.js" defer></script></head>
+<body>
+<header><a class="brand" href="/">Mollet<span>Behavior workbench</span></a><span id="apiMode" class="mode">Local workspace · Checking Meta connection</span></header>
+<div class="public-banner" role="status"><strong>Public evidence demo</strong> Saved Spark and SAM results only · no API key · no new model calls · no training</div>
+<main>
+  <div class="intro"><div><p class="eyebrow">ROBOT LEARNING / BEHAVIOR CONTRACT</p><h1>Turn a behavior you want to see into a condition you can test.</h1><p>Author a condition over a recorded RL run, then inspect when it holds and where the evidence is insufficient.</p></div><div class="buttons"><button id="savedMetaRestore" class="primary" disabled>Restore saved Meta results</button><label class="file-button">Import saved contract and evidence<input id="restoreExport" type="file" accept=".json,application/json"></label><button id="export" class="secondary">Export condition and evidence</button></div></div>
+  <p id="savedMetaRecoveryStatus" class="hint" role="status" hidden></p>
+  <p id="error" class="error" role="alert" hidden></p>
+  <div class="workspace">
+    <section class="viewer" aria-labelledby="videoHeading">
+      <div class="section-head"><h2 id="videoHeading">Recorded stair run</h2><label class="clip-label">Select run<select id="clip" aria-label="Biped and quadruped stair runs"></select></label></div>
+      <div class="video-wrap"><video id="video" controls preload="metadata" playsinline aria-label="Recorded Isaac Lab stair-run video"></video><canvas id="overlay" width="1280" height="720" aria-label="Selected region and imported object locations"></canvas></div>
+      <p id="caption" class="caption">Loading the recorded stair run.</p>
+      <dl id="assessment" class="assessment" aria-label="Recorded run summary">
+        <div><dt>Command speed</dt><dd id="commandSummary">—</dd></div><div><dt>Forward change</dt><dd id="dxSummary">—</dd></div><div><dt>Height change</dt><dd id="dzSummary">—</dd></div><div><dt>Minimum uprightness</dt><dd id="upSummary">—</dd></div><div><dt>Recorded verdict</dt><dd id="acceptanceSummary">—</dd></div>
+      </dl>
+      <div class="chart-head"><h3 id="chartHeading">Horizontal speed</h3><span><i class="legend actual"></i>Observed <i class="legend threshold"></i>Threshold</span></div>
+      <canvas id="chart" width="960" height="190" role="img" aria-label="Horizontal speed and condition threshold over time"></canvas>
+      <div class="chart-meta"><span id="recordInfo">Loading run…</span><span id="timeInfo">0.00 s</span></div>
+      <details><summary>Input provenance and decision scope</summary><p id="provenance"></p><p>These are archived development runs. A condition result does not replace the existing 26-condition recovery verdict or measure model performance. The Go2 0.25 m/s cases use source traces joined by state SHA. The two 0.75 m/s cases expose summaries only.</p></details>
+    </section>
+    <section class="editor" aria-labelledby="contractHeading">
+      <div class="section-head"><h2 id="contractHeading">Behavior condition</h2><span id="sourceTag">Manual authoring</span></div>
+      <form id="form">
+        <label>Condition name<input id="title" maxlength="200" required></label>
+        <label>Behavior to observe<textarea id="instruction" rows="3" maxlength="4000" required></textarea></label>
+        <label>Evaluation trigger<select id="trigger"><option value="time">Specified time</option><option value="region_entry">Object enters a selected region</option></select></label>
+        <div id="timeFields"><label>Start time <span>seconds</span><input id="at" type="number" min="0" step="0.02" required></label></div>
+        <fieldset id="regionFields" hidden><legend>Screen region · normalized coordinates</legend><label>Object ID<input id="objectId" value="1" maxlength="100"></label><div class="four"><label>Left<input id="x1" type="number" min="0" max="1" step="0.01" value="0.35"></label><label>Top<input id="y1" type="number" min="0" max="1" step="0.01" value="0.3"></label><label>Right<input id="x2" type="number" min="0" max="1" step="0.01" value="0.65"></label><label>Bottom<input id="y2" type="number" min="0" max="1" step="0.01" value="0.8"></label></div><p class="hint">Draw a region over the video or enter coordinates. The evaluator uses the center of each SAM bounding box. Region-based verdicts remain unavailable when the source video is not approved for visual evidence.</p></fieldset>
+        <label>Metric<select id="metric"><option value="horizontal_speed_mps">World-frame horizontal speed · m/s</option><option value="command_speed_mps">Commanded horizontal speed · m/s</option><option value="base_height_m">Base reference world z · m</option><option value="up_axis_z">Upright alignment · -1 to 1</option></select></label>
+        <div class="two"><label>Comparison<select id="op"><option value="gte">At least</option><option value="lte">At most</option></select></label><label>Threshold<input id="threshold" type="number" step="0.01" required></label></div>
+        <div class="two"><label>Start within <span>seconds</span><input id="deadline" type="number" min="0" step="0.1" required></label><label>Hold for <span>seconds</span><input id="hold" type="number" min="0.01" step="0.01" required></label></div>
+        <p id="plainCondition" class="condition-summary"></p>
+        <label class="check"><input id="reviewed" type="checkbox"><span>I reviewed the condition target, units, and timing.</span></label>
+        <button type="submit" class="primary" id="evaluate" disabled>Evaluate recorded run</button>
+      </form>
+      <p class="hint">Condition review is a local audit record. It does not authorize an experiment or GPU use.</p>
+    </section>
+  </div>
+  <section class="result" aria-labelledby="resultHeading"><div><p class="eyebrow">EVALUATION</p><h2 id="resultHeading">Run the condition to see a verdict.</h2><p id="resultReason">Mollet distinguishes satisfied, violated, and unknown outcomes and preserves the supporting time interval.</p></div><div class="result-actions"><span id="stage"></span><button id="jump" class="secondary" hidden>Jump to evidence</button></div><ul id="warnings"></ul></section>
+  <section class="connections" aria-labelledby="connectionsHeading">
+    <div><p class="eyebrow">META TOOLS</p><h2 id="connectionsHeading">Prepare requests and run them with a verified account.</h2><p>Request export and saved-response import remain available offline. Live requests unlock only when every connection requirement below is satisfied.</p></div>
+    <div class="meta-setup" aria-labelledby="metaSetupHeading">
+      <div class="meta-setup-head"><div><h3 id="metaSetupHeading">Meta Model API connection</h3><p>On Windows, the API key and connection settings are encrypted for the current user and restored on restart. The raw key is never written to responses, logs, or the repository. <a href="https://dev.meta.ai/" target="_blank" rel="noreferrer">Open Meta developer console</a></p></div><span id="keyConfigured" class="status-pill">Checking key</span></div>
+      <div class="meta-settings">
+        <label>API key<input id="metaApiKey" type="password" autocomplete="off" spellcheck="false" placeholder="Connect an existing API key"></label>
+        <label>Verified credit balance <span>US$</span><input id="metaCredit" type="number" min="0" step="0.01" placeholder="Example: 150.00" required></label>
+        <label>Budget for this app <span>US$1 maximum</span><input id="metaBudget" type="number" min="0.01" max="1" step="0.01" placeholder="Example: 1.00" required></label>
+      </div>
+      <label class="check meta-confirm"><input id="metaCreditConfirmed" type="checkbox"><span>I verified the credit balance and payment method in Billing.</span></label>
+      <div class="buttons"><button id="metaConfigure" class="primary">Apply connection settings</button><button id="metaKeyOnly" class="secondary">Connect key with saved settings</button></div>
+      <p class="hint">If the server already holds a verified balance and budget, enter only the key and use “Connect key with saved settings.” This preserves the saved balance and budget.</p>
+      <dl class="meta-budget" aria-label="Meta API usage budget">
+        <div><dt>Reserved</dt><dd id="metaReserved">US$0.00</dd></div><div><dt>App budget remaining</dt><dd id="metaAvailable">US$0.00</dd></div><div><dt>Live calls</dt><dd id="metaCalls">0</dd></div>
+      </dl>
+      <p id="metaConnectionStatus" role="status" class="hint">Checking connection status.</p><ul id="metaBlockers" class="meta-blockers"></ul>
+      <p class="hint">Reserved usage is a conservative ceiling, not the final charge. A Billing spend limit may be an alert rather than a payment block. This screen does not verify Billing, register a card, or issue a key.</p>
+    </div>
+    <div class="tool-columns">
+      <div><h3>Muse Spark 1.3</h3><p>Turn the behavior to observe into a constrained condition schema. Applying a live response resets semantic review.</p><div class="buttons"><button id="sparkLive" class="primary" disabled>Run live Spark request</button><button id="sparkRequest" class="secondary">Export Spark request</button><label class="file-button">Import Spark response<input id="sparkResponse" type="file" accept=".json,.txt,.sse"></label></div></div>
+      <div><h3>SAM 3.1</h3><p>Track a named object in the source video. Imported bounding boxes align to source-frame times; compressed masks are not decoded.</p><div class="two"><label>Object name<input id="target" value="robot" maxlength="200"></label><label>Provider video file_id<input id="videoRef" placeholder="Existing provider file_id" maxlength="500"></label></div><div class="buttons"><button id="samLive" class="primary" disabled>Run live SAM request</button><button id="samRequest" class="secondary">Export SAM request</button><label class="file-button">Import SAM response<input id="samResponse" type="file" accept=".json,.txt,.sse"></label></div></div>
+    </div>
+    <p id="metaRunStatus" role="status" class="hint">No live model request recorded</p><p id="importStatus" role="status" class="hint">No imported response · An uploaded file alone does not prove provider authentication or video binding.</p>
+  </section>
+  <section class="connections improvement" aria-labelledby="improvementHeading">
+    <p class="eyebrow">VIDEO → HYPOTHESIS → CHECK → REFLECT</p>
+    <h2 id="improvementHeading">Form video-grounded hypotheses, then reflect on measured results</h2>
+    <p>Prepare a Spark request with the selected source MP4 and synchronized state. After importing frame-cited hypotheses, evaluate previously untested conditions against the original measurements.</p>
+    <div class="buttons">
+      <button id="visionPrepare" class="primary">Save video-analysis request</button>
+      <button id="visionLive" class="secondary" disabled>Live video analysis · additional call locked</button>
+      <label class="file-button">Import video-analysis response<input id="visionResponse" type="file" accept=".json,.txt,.sse"></label>
+      <button id="visionSeed" class="secondary">Preview local flow with current condition</button>
+    </div>
+    <p id="visionStatus" role="status" class="hint">No new Spark video analysis has run. Evaluating the current condition is not presented as model analysis.</p>
+    <ul id="visionLimitations" class="hint"></ul>
+    <div id="hypothesisList" class="hypothesis-list"></div>
+    <div class="buttons">
+      <button id="visionStep" class="primary" disabled>Evaluate next hypothesis</button>
+      <button id="visionReflect" class="secondary" disabled>Save reflection request with results</button>
+      <button id="visionExport" class="secondary" disabled>Export analysis and evaluation history</button>
+    </div>
+    <ol id="researchHistory" aria-label="Hypothesis evaluation history"></ol>
+    <h3>Reward-correction and retraining bridge</h3>
+    <p>Connect a proposed correction for the selected hypothesis to the existing triage preregistration and pending-approval path. Video evidence alone does not confirm a reward-code defect.</p>
+    <div class="two"><label>Hypothesis to retrain<select id="trainingHypothesis"><option value="">Import hypotheses first</option></select></label><label>Existing triage change ID<input id="trainingChange" maxlength="200" placeholder="Change ID registered in case.json"></label></div>
+    <div class="two"><label>Recovery mode<select id="trainingMode"><option value="restart">Retrain from the start</option><option value="resume">Resume from checkpoint</option></select></label><div class="buttons"><button id="trainingPrepare" class="secondary" disabled>Save correction and retraining proposal</button><label class="file-button">Import post-run evaluation<input id="recoveryResponse" type="file" accept=".json,application/json"></label></div></div>
+    <p id="recoveryStatus" role="status" class="hint">No new training, applied correction, or recovery-effect measurement exists. Missing evaluations and results from a different intervention do not count as recovery.</p>
+    <pre id="recoveryResult" class="recovery-result" hidden></pre>
+  </section>
+</main><footer>Mollet · A local workspace connecting video evidence, behavior conditions, and correction proposals</footer>
+</body></html>
