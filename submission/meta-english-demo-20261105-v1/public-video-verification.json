@@ -1,0 +1,22 @@
+{
+  "schema": "meta-english-public-video-verification-v1",
+  "checked_at": "2026-11-04T23:50:39.791Z",
+  "url": "https://cdn.jsdelivr.net/gh/mmporong/mollet-meta@1b71e2fb2e30b3bad1f84b5e9d9e1eadf9c924f9/submission/meta-english-demo-20261105-v1/mollet-meta-demo-180s-en.mp4",
+  "anonymous_browser": true,
+  "http_status": 200,
+  "content_type": "video/mp4",
+  "range_status": 206,
+  "bytes": 8161683,
+  "sha256": "9635e770cbc0f4d01a5c5d6f348cc32da86453d02e6c54753ae6830319630fca",
+  "duration_s": 180,
+  "width": 1280,
+  "height": 840,
+  "current_time": 0.212388,
+  "error": null,
+  "language": {
+    "ui": "en",
+    "voice": "en-US",
+    "captions": "en"
+  },
+  "passed": true
+}
