@@ -8,7 +8,7 @@ RL 개발자가 저장 영상과 상태 기록을 보면서 원하는 행동 조
 - 구현: 제한된 조건 스키마, 시간 구간 판정, SAM/Spark 요청 생성·저장 응답 가져오기·설정 후 HTTPS 호출, 로컬 영상 편집 화면, 결과 내보내기.
 - 완료: 실제 저장 RL 수치에서 예제 조건의 충족·위반을 계산하고, 결측·추적 단절·관측창 부족을 UNKNOWN으로 보존한다. 웹과 CLI의 같은 조건은 같은 결과를 낸다.
 - 제외: 미확인 과금 호출·새 GPU 작업·정책 수정·재학습·원본 main 편집·push·신청·제출.
-- Meta 상태: 실제 HTTPS 호출에서 Spark 조건 생성과 SAM 객체 위치 가져오기를 각각 한 번 확인했다. H1 자세 조건은 0~0.5초 PASS이며 저장 JSON의 재판정도 일치한다. [실제 실행 근거](../evals/results/meta_live_provider_20261104_v1/verification.json)를 보존했다. 화면 조작 검증은 별도 상태다.
+- Meta 상태: 실제 HTTPS 호출에서 Spark 조건 생성과 SAM 객체 위치 가져오기를 각각 한 번 확인했다. H1 자세 조건은 0~0.5초 PASS이며 저장 JSON의 재판정도 일치한다. [실제 실행 근거](../evals/results/meta_live_provider_20261104_v1/verification.json)와 [Chrome 브라우저 17개 검증](../evals/results/meta_browser_e2e_20261104_v4/verification.json)을 보존했다. 후자는 6개 영상 재생·실제 결과 복원·SAM bbox·검사·다운로드·재불러오기를 포함한다.
 - 영상 상태: 기본 화면은 H1 이족 계단 상·하행과 Go2 사족 계단 상·하행의 명령 속도 비교, 총 6개 원본을 사용한다. H1 2개와 Go2 0.25 m/s 2개는 프레임별 상태를 연결한다. Go2 0.75 m/s 2개는 공개 요약만 표시한다. 모델 입력 승인은 부여하지 않는다.
 
 ## 첫 조건
@@ -38,6 +38,16 @@ python -m rl_triage.behavior_authoring serve --port 8784
 브라우저에서 `http://127.0.0.1:8784`를 연다. 서버는 loopback에만 바인딩하며 종료는 실행 터미널의 Ctrl+C다.
 
 기존 실제 응답을 추가 호출 없이 확인하려면 상단의 `저장한 조건·근거 불러오기`에서 `evals/results/meta_live_provider_20261104_v1/mollet-behavior-contract.json`을 선택한다. 원본 H1 영상과 상태 값이 일치하는지 대조한 뒤 조건과 SAM bbox를 복구하고 미검토 판정을 새로 계산한다. 파일에 저장된 승인이나 공급자 인증은 가져오지 않는다. 조건 의미를 확인한 뒤 체크하고 검사하면 새 로컬 검토 기록을 남길 수 있다. 현재 원본 미리보기 서버는 `http://127.0.0.1:7705`에서 같은 기능을 제공한다.
+
+브라우저 회귀는 `tools/validate_meta_browser.cjs`로 실행한다. Playwright 1.64.1과 설치된 Chrome을 사용하며 기본 경로의 기존 결과를 덮어쓰지 않는다. 재실행할 때 새 결과 경로를 지정한다. 요청 차단 장치가 실제 Meta 실행 경로를 막고, 전후 호출 횟수와 예산 예약이 같은지도 확인한다.
+
+```powershell
+cd "$HOME/rl-triage-agent"
+$pwRoot = Join-Path $HOME 'hackathon-specialist/tmp/meta-playwright-validation-20261104'
+npm install --prefix $pwRoot --no-audit --no-fund playwright@1.64.1
+$env:META_PLAYWRIGHT_MODULE = Join-Path $pwRoot 'node_modules/playwright'
+node tools/validate_meta_browser.cjs evals/results/meta_browser_e2e_new_run
+```
 
 CLI만 확인할 경우 새 결과 폴더를 지정한다. 예제의 자동 의미 확인은 사람의 검토가 아닌 `automated_test`로 남는다.
 

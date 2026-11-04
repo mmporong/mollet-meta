@@ -93,9 +93,7 @@
     "verification": "submission/meta-behavior-20261104-live-v1/manifest.json"
   },
   "remaining_gates": [
-    "실제 모델 응답의 브라우저 화면 적용·재생·다운로드를 검증해야 함. API·로컬 JSON 판정/저장 재검증은 완료",
     "모델 응답이나 조건 검토로 영상 입력 승인·실험 실행 권한을 만들지 않음",
-    "실제 브라우저 호스트가 없어 렌더링·화면 조작 검증은 미실행",
     "3분 저장 원본 편집 영상은 제작됐으며 브라우저 실제 조작 촬영은 미실행",
     "새 기능은 아직 GitHub에 공개되지 않았음",
     "최신 Official Rules의 기존 자산 재사용 조건과 실제 제출 문항은 미확정"
@@ -106,5 +104,12 @@
     "push": "forbidden",
     "applications": "forbidden",
     "submissions": "forbidden"
+  },
+  "browser_verification": {
+    "file": "evals/results/meta_browser_e2e_20261104_v4/verification.json",
+    "sha256": "6b963e87bfd805b5f1124d7af7ef014f0c32673d9840261e02d06565068b88e7",
+    "browser": "156.0.8078.48",
+    "checks_passed": 17,
+    "headless": true
   }
 }

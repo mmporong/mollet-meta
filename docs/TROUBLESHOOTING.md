@@ -1097,3 +1097,8 @@
 ## Meta 최종 소스 ZIP의 바이트 해시 보존
 
 실행 `meta_source_archive_20261104_v1`에서 Git archive의 제출 manifest와 작업 트리 원문의 SHA가 달랐다. 두 파일의 줄바꿈을 정규화한 텍스트는 같아 Git text 변환이 원인임을 확인했다. 최종 Meta 응답·제출 경로에 `-text`를 적용하고 해당 파일만 다시 인덱싱한 뒤 ZIP을 재생성했다. ZIP CRC, 원본 소스 바이트, 문안·영상·대본·자막·provider export의 내장 해시가 일치했다. 기존 실패 ZIP과 실제 provider 원문은 보존했다. [검증 기록](../evals/results/meta_source_archive_20261104_v1/verification.json)을 참조한다.
+
+
+## Meta 실제 Chrome 조건 검사·다운로드 검증
+
+실행 `meta_browser_e2e_20261104_v2`에서 영상 6개 재생과 실제 응답 복원·SAM bbox는 통과했지만 조건 검사 버튼이 제출되지 않았다. Chrome의 native form validity에서 유지 시간 0.5가 min=0.01, step=0.1에 어긋남을 확인했다. step을 0.01로 고치고 실제 DOM validity 회귀를 추가했다. v1은 검증기 모듈 버전 경로 오류, v3은 허용 범위 밖 threshold=1.1을 FAIL 조건으로 사용한 검증기 오류였다. 해당 실패도 보존했다. v4는 Chrome 156·Playwright 1.64.1에서 17항목을 통과했다. 실제 JSON 다운로드 후 SHA·625개 상태·624개 추적·0~0.5초 PASS·승인 초기화·재불러오기를 확인했다. 추가 모델 호출 0회, page/API 오류 0건이며 테스트 브라우저는 종료했다. [실행 근거](../evals/results/meta_browser_e2e_20261104_v4/verification.json)를 참조한다.

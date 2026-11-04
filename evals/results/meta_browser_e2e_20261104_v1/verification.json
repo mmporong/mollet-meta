@@ -1,0 +1,23 @@
+{
+  "checked_at": "2026-11-04T09:34:03.375Z",
+  "url": "http://127.0.0.1:7705",
+  "checks": [],
+  "page_errors": [],
+  "http_errors": [],
+  "forbidden_requests": [],
+  "screenshots": [],
+  "browser_closed": false,
+  "status_before": {
+    "key_configured": true,
+    "credit_confirmed": true,
+    "remaining_credit_usd": "150.00",
+    "budget_usd": "1.00",
+    "reserved_usd": "0.622616",
+    "available_budget_usd": "0.377384",
+    "enabled": true,
+    "blockers": [],
+    "live_requests_started": 2
+  },
+  "passed": false,
+  "error": "Error: Cannot find module 'C:\\Users\\LIMMM\\hackathon-specialist\\tmp\\meta-playwright-validation-20261104\\node_modules\\package.json'\nRequire stack:\n- C:\\Users\\LIMMM\\rl-triage-meta\\tools\\validate_meta_browser.cjs\n    at Module._resolveFilename (node:internal/modules/cjs/loader:1421:15)\n    at defaultResolveImpl (node:internal/modules/cjs/loader:1059:19)\n    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1064:22)\n    at Module._load (node:internal/modules/cjs/loader:1227:37)\n    at TracingChannel.traceSync (node:diagnostics_channel:328:14)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:245:24)\n    at Module.require (node:internal/modules/cjs/loader:1504:12)\n    at require (node:internal/modules/helpers:152:16)\n    at main (C:\\Users\\LIMMM\\rl-triage-meta\\tools\\validate_meta_browser.cjs:22:33)\n    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)"
+}

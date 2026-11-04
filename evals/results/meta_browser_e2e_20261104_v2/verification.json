@@ -1,0 +1,102 @@
+{
+  "checked_at": "2026-11-04T09:34:16.592Z",
+  "url": "http://127.0.0.1:7705",
+  "checks": [
+    {
+      "name": "six_recordings_available",
+      "passed": true
+    },
+    {
+      "name": "select_and_play_h1-up",
+      "passed": true,
+      "current_time": 0.4624,
+      "duration": 12.5,
+      "width": 1280,
+      "height": 720,
+      "paused": false
+    },
+    {
+      "name": "select_and_play_h1-down",
+      "passed": true,
+      "current_time": 0.4563,
+      "duration": 12.5,
+      "width": 1280,
+      "height": 720,
+      "paused": false
+    },
+    {
+      "name": "select_and_play_go2-up-slow",
+      "passed": true,
+      "current_time": 0.462,
+      "duration": 12.5,
+      "width": 1280,
+      "height": 720,
+      "paused": false
+    },
+    {
+      "name": "select_and_play_go2-down-slow",
+      "passed": true,
+      "current_time": 0.4653,
+      "duration": 12.5,
+      "width": 1280,
+      "height": 720,
+      "paused": false
+    },
+    {
+      "name": "select_and_play_go2-up-fast",
+      "passed": true,
+      "current_time": 0.4635,
+      "duration": 12.5,
+      "width": 1280,
+      "height": 720,
+      "paused": false
+    },
+    {
+      "name": "select_and_play_go2-down-fast",
+      "passed": true,
+      "current_time": 0.4583,
+      "duration": 12.5,
+      "width": 1280,
+      "height": 720,
+      "paused": false
+    },
+    {
+      "name": "summary_only_examples_disable_time_evaluation",
+      "passed": true
+    },
+    {
+      "name": "actual_saved_spark_sam_export_restored_with_review_reset",
+      "passed": true
+    },
+    {
+      "name": "sam_bbox_drawn_in_actual_canvas",
+      "passed": true,
+      "nontransparent_pixels": 2547
+    }
+  ],
+  "page_errors": [],
+  "http_errors": [],
+  "forbidden_requests": [],
+  "screenshots": [
+    {
+      "file": "01-restored-sam.png",
+      "sha256": "359038f670f3922a44b68fed387bd0a8429911be81f7e62cae230730869c1442"
+    }
+  ],
+  "browser_closed": true,
+  "status_before": {
+    "key_configured": true,
+    "credit_confirmed": true,
+    "remaining_credit_usd": "150.00",
+    "budget_usd": "1.00",
+    "reserved_usd": "0.622616",
+    "available_budget_usd": "0.377384",
+    "enabled": true,
+    "blockers": [],
+    "live_requests_started": 2
+  },
+  "playwright_version": "1.64.1",
+  "browser": "156.0.8078.48",
+  "passed": false,
+  "error": "page.waitForFunction: Timeout 12000ms exceeded.\n    at main (C:\\Users\\LIMMM\\rl-triage-meta\\tools\\validate_meta_browser.cjs:87:16)"
+}

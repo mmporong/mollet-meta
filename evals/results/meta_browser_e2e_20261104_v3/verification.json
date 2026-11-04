@@ -1,0 +1,134 @@
+{
+  "checked_at": "2026-11-04T09:35:40.204Z",
+  "url": "http://127.0.0.1:7705",
+  "checks": [
+    {
+      "name": "six_recordings_available",
+      "passed": true
+    },
+    {
+      "name": "select_and_play_h1-up",
+      "passed": true,
+      "current_time": 0.4588,
+      "duration": 12.5,
+      "width": 1280,
+      "height": 720,
+      "paused": false
+    },
+    {
+      "name": "select_and_play_h1-down",
+      "passed": true,
+      "current_time": 0.4582,
+      "duration": 12.5,
+      "width": 1280,
+      "height": 720,
+      "paused": false
+    },
+    {
+      "name": "select_and_play_go2-up-slow",
+      "passed": true,
+      "current_time": 0.4602,
+      "duration": 12.5,
+      "width": 1280,
+      "height": 720,
+      "paused": false
+    },
+    {
+      "name": "select_and_play_go2-down-slow",
+      "passed": true,
+      "current_time": 0.4612,
+      "duration": 12.5,
+      "width": 1280,
+      "height": 720,
+      "paused": false
+    },
+    {
+      "name": "select_and_play_go2-up-fast",
+      "passed": true,
+      "current_time": 0.4559,
+      "duration": 12.5,
+      "width": 1280,
+      "height": 720,
+      "paused": false
+    },
+    {
+      "name": "select_and_play_go2-down-fast",
+      "passed": true,
+      "current_time": 0.4617,
+      "duration": 12.5,
+      "width": 1280,
+      "height": 720,
+      "paused": false
+    },
+    {
+      "name": "summary_only_examples_disable_time_evaluation",
+      "passed": true
+    },
+    {
+      "name": "restored_half_second_hold_passes_native_html_constraint_validation",
+      "passed": true
+    },
+    {
+      "name": "actual_saved_spark_sam_export_restored_with_review_reset",
+      "passed": true
+    },
+    {
+      "name": "sam_bbox_drawn_in_actual_canvas",
+      "passed": true,
+      "nontransparent_pixels": 2547
+    },
+    {
+      "name": "review_and_evaluate_pass",
+      "passed": true
+    },
+    {
+      "name": "real_browser_download_and_saved_json_content",
+      "passed": true
+    }
+  ],
+  "page_errors": [],
+  "http_errors": [
+    {
+      "url": "http://127.0.0.1:7705/api/validate",
+      "status": 400
+    }
+  ],
+  "forbidden_requests": [],
+  "screenshots": [
+    {
+      "file": "01-restored-sam.png",
+      "sha256": "1748a5c8e5e75f8dd6e38844dd0493008ad99e1d028cc6f25eade9986b83ffb5"
+    },
+    {
+      "file": "02-reviewed-pass.png",
+      "sha256": "68fbd0685360b6be82bc960ff23e0d2fe8b5fb7d822253b4adce63a40192c40d"
+    }
+  ],
+  "browser_closed": true,
+  "status_before": {
+    "key_configured": true,
+    "credit_confirmed": true,
+    "remaining_credit_usd": "150.00",
+    "budget_usd": "1.00",
+    "reserved_usd": "0.622616",
+    "available_budget_usd": "0.377384",
+    "enabled": true,
+    "blockers": [],
+    "live_requests_started": 2
+  },
+  "playwright_version": "1.64.1",
+  "browser": "156.0.8078.48",
+  "download": {
+    "file": "browser-downloaded-contract.json",
+    "sha256": "b5ae1118966564db89f85352cc5b6c112afe48f0eb958c20578180cebfde9b59",
+    "bytes": 321960,
+    "verdict": "PASS"
+  },
+  "passed": false,
+  "error": "page.waitForFunction: Timeout 12000ms exceeded.\n    at main (C:\\Users\\LIMMM\\rl-triage-meta\\tools\\validate_meta_browser.cjs:119:16)",
+  "failure_ui": {
+    "error": "condition.threshold은 1.0 이하여야 합니다",
+    "stage": "",
+    "invalid": []
+  }
+}

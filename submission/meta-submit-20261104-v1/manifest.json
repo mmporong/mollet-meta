@@ -48,8 +48,8 @@
       "bytes": 1606
     },
     "PRE-SUBMIT.md": {
-      "sha256": "5b66d5c3e19c66d6564bc06e9446e2affa3fca2d3e7ddb48226745da2d504016",
-      "bytes": 3292
+      "sha256": "fc6ef755dd6becd0347680510b606d54202f2e0eb82f56101980625025bd8878",
+      "bytes": 3473
     }
   },
   "claims": {
@@ -71,14 +71,13 @@
     "h1_verdict": "PASS",
     "export_roundtrip_equal": true,
     "new_training_jobs": 0,
-    "browser_flow_verified": false
+    "browser_flow_verified": true
   },
   "evidence": {
     "file": "evals/results/meta_live_provider_20261104_v1/verification.json",
     "sha256": "41b0194c59231f1f7179a2c5f4ec10601851d10795c1c26660ea81f151884eda"
   },
   "required_before_submission": [
-    "browser_flow_verification",
     "accessible_video_url",
     "official_form_fields_and_reuse_rules",
     "publish_verified_meta_source_with_authorization",
@@ -101,5 +100,12 @@
     "manifest_sha256": "ca5e721d95aae9bbfb891b27bffe436c6a52a6b9564ff44d7cb8900a4c1706ba",
     "captions_burned_in": true,
     "narration_language": "ko"
+  },
+  "browser_verification": {
+    "file": "evals/results/meta_browser_e2e_20261104_v4/verification.json",
+    "sha256": "6b963e87bfd805b5f1124d7af7ef014f0c32673d9840261e02d06565068b88e7",
+    "browser": "156.0.8078.48",
+    "checks_passed": 17,
+    "headless": true
   }
 }

@@ -9,6 +9,7 @@
 | 요구·확인 항목 | 근거·파일 | 상태 |
 |---|---|---|
 | 실제 Meta 도구 사용 | ../../evals/results/meta_live_provider_20261104_v1/verification.json | Spark·SAM 완료 응답 확인 |
+| 실제 브라우저 사용 흐름 | ../../evals/results/meta_browser_e2e_20261104_v4/verification.json | 실제 Chrome 17항목 통과·JSON 다운로드/재불러오기 확인 |
 | 코드 오픈소스 | 공개 기반 저장소, Apache-2.0 | Meta 기능의 원격 공개는 아직 미수행 |
 | 3분 데모 권장 | 주최 알림, 새 영상 manifest | 실제 응답 반영 180초·전체 디코드·11개 표본 프레임 확인 |
 | 기존 작업 재사용·신규 기여 구분 | FORM-ANSWERS-ko.txt, FORM-ANSWERS-en.txt | 문안에 명시, 최신 공식 규정과 대조 필요 |
