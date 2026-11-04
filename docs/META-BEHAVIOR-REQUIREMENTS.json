@@ -42,7 +42,7 @@
     "live_model_quality_verified": false,
     "transport_validation": "actual_https_provider_requests_completed",
     "app_budget_cap_usd": "1.00",
-    "key_storage": "environment_or_server_memory_only",
+    "key_storage": "windows_current_user_dpapi_outside_repository; environment_or_explicit_key_file_override",
     "automatic_retry": false,
     "provider_completion_verified": true,
     "tracking_accuracy_measured": false,
@@ -135,14 +135,19 @@
   },
   "current_runtime": {
     "url": "http://127.0.0.1:7706/#connectionsHeading",
-    "pid": 39608,
-    "code_commit": "efc575539ecb60bc7672e45189fa56348d4804d8",
+    "pid": 52916,
+    "code_commit": "0786e4d",
     "key_configured": false,
     "credit_confirmed": true,
     "video_calls_enabled": true,
     "authorized_video_sha256": "e199c6cd71d62894c98a79315b588a74f5290236a706bf7c1368a5568e59a6f0",
     "live_requests_started": 2,
-    "preflight_requests_started": 0
+    "preflight_requests_started": 0,
+    "credential_persistence_enabled": true,
+    "configuration_saved": true,
+    "credential_saved": false,
+    "actual_previous_key_recovered": false,
+    "windowless_process": true
   },
   "presentation_actual_loop": {
     "status": "blocked_missing_existing_secret_key",
@@ -171,5 +176,14 @@
     "three_minute_rule_in_public_rules_found": false,
     "three_minute_source": "organizer_email_recommendation",
     "submission_fields_verified": false
+  },
+  "credential_reuse_fix": {
+    "verification": "evals/results/meta_credential_reuse_20261104_v1/verification.json",
+    "targeted_tests_passed": 64,
+    "fixture_restart_restore_verified": true,
+    "actual_previous_key_recovered": false,
+    "new_model_calls": 0,
+    "credential_reentry_request_withdrawn": true,
+    "independent_review": "APPROVE"
   }
 }

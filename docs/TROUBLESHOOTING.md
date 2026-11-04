@@ -1101,6 +1101,8 @@
 
 ## Meta 실제 Chrome 조건 검사·다운로드 검증
 
+기존 API 키를 다시 요구한 원인은 메모리 전용 저장과 재시작 복원 경로 부재였다. Windows CurrentUser DPAPI 저장과 원자 교체를 추가하고, 명시하지 않은 CLI 기본값이 기존 사용자 설정을 덮어쓰지 않도록 바꿨다. 테스트 키는 별도 프로세스 재실행에서 복원됐으며, 실제 이전 키 복구와 구분한다. 이전 실제 키 원문은 현재 복원하지 못했다. `tools/start_meta_workbench.ps1`은 숨김 `pythonw` 서버를 띄우며 실행 셸 종료 뒤 별도 명령에서 PID·HTTP 응답 유지를 확인했다. 검토 중 발견한 하드코딩 크레딧 fallback은 제거했다. 설정만 DPAPI에 저장하고 실제 키는 없는 상태가 가능하며 `configuration_saved`와 `credential_saved`를 별도로 표시한다. 예산 원장은 초기화하지 않았다.
+
 `meta_video_research_20261104_v6`는 키만 연결할 때 기존 크레딧·예산이 보존되는 항목을 포함해 Chrome 14개를 통과했으나, 임시 작업 폴더 정리에서 `WinError 32 reservations.sqlite3`로 종료됐다. SQLite Connection의 context manager가 트랜잭션 종료만 하고 연결 핸들을 닫지 않는 사용 방식이 원인이었다. 명시적 close를 보장하는 `_database` 문맥을 추가해 원장 조회·토큰 계수·요청 뒤 모든 연결의 닫힘을 검사했다. v6 기록은 실패로 보존하고 `meta_video_research_20261104_v7`에서 브라우저·서버·임시 폴더 정리까지 통과했다. 이때 실제 provider 요청은 0회다.
 
 새 영상 가설 루프의 `meta_video_research_20261104_v1`·`v2`는 8개 화면 검사를 통과한 뒤 평가 가져오기에서 멈췄다. v2의 제품 오류는 `행동 계약 해시 또는 버전이 다르다`였다. 브라우저의 JSON.parse→JSON.stringify가 Python 계약의 `20.0`을 `20`으로 바꾸는 것이 원인이었다. 평가 원문을 문자열로 서버에 전달해 숫자 표현과 기존 계약 해시를 보존했고, 다른 교정의 평가 거부와 재검토 context 연결 회귀를 추가했다. v3는 12개, [최종 v5](../evals/results/meta_video_research_20261104_v5/browser-verification.json)는 실제 H1 재생을 포함한 13개 Chrome 검사를 통과했다. 합성 provider 응답을 쓴 로컬 통합 검사이며 실제 영상 추론 품질·새 학습 성능 평가가 아니다. 관련 CPU 검사는 248개 통과했다. 실패 폴더는 덮어쓰지 않았다.
