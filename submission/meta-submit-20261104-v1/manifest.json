@@ -14,7 +14,18 @@
   "license": "Apache-2.0",
   "meta_feature_published": false,
   "video_url": null,
-  "final_video": null,
+  "final_video": {
+    "file": "submission/meta-behavior-20261104-live-v1/mollet-meta-behavior-demo-3min.mp4",
+    "sha256": "630d8c96c39af98f3a58c6ab2b348da9b03090f488089efebe392adede559ca1",
+    "duration_s": 180.0,
+    "manifest": "submission/meta-behavior-20261104-live-v1/manifest.json",
+    "manifest_sha256": "9ce3557b62edeb51fcd619f26480b899474f515d627d420de8e00bf60b0fdefa",
+    "scope": "stored_source_and_computed_evidence_edit_not_browser_capture",
+    "browser_capture": false,
+    "new_api_calls": 0,
+    "existing_provider_responses": 2,
+    "full_decode_exit": 0
+  },
   "files": {
     "FORM-ANSWERS-ko.txt": {
       "sha256": "ef2f014dfd40822b490240a0e1234d7abea17f8fc2a0073293076f48b16e3733",
@@ -37,8 +48,8 @@
       "bytes": 1606
     },
     "PRE-SUBMIT.md": {
-      "sha256": "a4ba8f384c779311ca1a49d3930aa06efd0904c9a8e7c8d05046d42459ecc638",
-      "bytes": 2866
+      "sha256": "5b66d5c3e19c66d6564bc06e9446e2affa3fca2d3e7ddb48226745da2d504016",
+      "bytes": 3292
     }
   },
   "claims": {
@@ -68,12 +79,18 @@
   },
   "required_before_submission": [
     "browser_flow_verification",
-    "final_video_validation_and_accessible_url",
+    "accessible_video_url",
     "official_form_fields_and_reuse_rules",
     "publish_verified_meta_source_with_authorization",
     "final_consistency_and_submission_authorization"
   ],
   "ready_to_submit": false,
   "submitted": false,
-  "push_performed": false
+  "push_performed": false,
+  "demo_script": {
+    "file": "submission/meta-behavior-20261104-live-v1/SCRIPT-ko.md",
+    "sha256": "3cc6e7bf867036924e71d2a169bc80cac8d199053a0229ea5eadacea9bc1a2fe"
+  },
+  "restore_ui_cpu_verified": true,
+  "related_original_tests_passed": 83
 }

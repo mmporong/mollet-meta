@@ -1,0 +1,59 @@
+{
+  "schema": "meta-final-package-local-verification-v1",
+  "verified_at": "2026-11-04T18:12:10.003235+09:00",
+  "code_commit": "fc43e8805192e71a79cb6b929ec7957597c08186",
+  "tests": {
+    "cwd": "rl-triage-agent",
+    "command": "python -m pytest -q tests/test_behavior_authoring_engine.py tests/test_behavior_authoring_adapters.py tests/test_behavior_authoring_app.py tests/test_behavior_authoring_client.py tests/test_behavior_authoring_live.py tests/test_behavior_authoring_restore.py",
+    "passed": 83,
+    "duration_s": 4.22,
+    "node_syntax": "passed",
+    "git_diff_check": "passed"
+  },
+  "http_served_assets_sha256": {
+    "/": "0a9bd3584b50bcb6c056fb0c3fdca5cd8feb0ee91d1e0ae460e0ff50c9a39416",
+    "/app.js": "58848d60c8e9ebd58bc68381fa22796f6b1b579f8d2d2cb7113b25f5ece24ae0"
+  },
+  "review": {
+    "initial_findings": 1,
+    "severity": "medium",
+    "finding": "async restore overwrites newer edits",
+    "fix_commits": [
+      "ced8fd7",
+      "fc43e88"
+    ],
+    "regressions": "deferred file input and later live request preserve newer operation",
+    "repeat_full_review": false
+  },
+  "final_video": {
+    "file": "submission/meta-behavior-20261104-live-v1/mollet-meta-behavior-demo-3min.mp4",
+    "sha256": "630d8c96c39af98f3a58c6ab2b348da9b03090f488089efebe392adede559ca1",
+    "duration_s": 180.0,
+    "manifest": "submission/meta-behavior-20261104-live-v1/manifest.json",
+    "manifest_sha256": "9ce3557b62edeb51fcd619f26480b899474f515d627d420de8e00bf60b0fdefa",
+    "scope": "stored_source_and_computed_evidence_edit_not_browser_capture",
+    "browser_capture": false,
+    "new_api_calls": 0,
+    "existing_provider_responses": 2,
+    "full_decode_exit": 0
+  },
+  "submission_manifest_sha256": "44e63aa9a6024e6f90fe9483f87a37fef868e4618286d4a3f737ac5ddd90015b",
+  "docs_sha256": {
+    "FORM-ANSWERS-ko.txt": "ef2f014dfd40822b490240a0e1234d7abea17f8fc2a0073293076f48b16e3733",
+    "FORM-ANSWERS-en.txt": "b07e5a982bea2acba1b96ff4a72ad6cdd219cc1f07df40e1ac14d24f840c9548",
+    "ONE-PAGE.md": "fe777ad2dcd3cb366e02c7534cf17262a73302d23de004c8572d261aeb219180",
+    "DECK-OUTLINE.md": "10ced8ad8974d617f13b8cf031f169a8914d7715d452b51fab5d08fd49c00a01",
+    "QA.md": "712c93dfbc5a1e04c54aea5f55e463a51d687dd353b6d3841fef2f794161423b",
+    "PRE-SUBMIT.md": "5b66d5c3e19c66d6564bc06e9446e2affa3fca2d3e7ddb48226745da2d504016"
+  },
+  "browser_flow_verified": false,
+  "official_fields_verified": false,
+  "existing_meta_calls": 2,
+  "new_meta_calls": 0,
+  "reserved_usd": "0.622616",
+  "key_configured": true,
+  "server_restarted": false,
+  "gpu_jobs": 0,
+  "push": false,
+  "submitted": false
+}

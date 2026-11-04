@@ -37,6 +37,8 @@ python -m rl_triage.behavior_authoring serve --port 8784
 
 브라우저에서 `http://127.0.0.1:8784`를 연다. 서버는 loopback에만 바인딩하며 종료는 실행 터미널의 Ctrl+C다.
 
+기존 실제 응답을 추가 호출 없이 확인하려면 상단의 `저장한 조건·근거 불러오기`에서 `evals/results/meta_live_provider_20261104_v1/mollet-behavior-contract.json`을 선택한다. 원본 H1 영상과 상태 값이 일치하는지 대조한 뒤 조건과 SAM bbox를 복구하고 미검토 판정을 새로 계산한다. 파일에 저장된 승인이나 공급자 인증은 가져오지 않는다. 조건 의미를 확인한 뒤 체크하고 검사하면 새 로컬 검토 기록을 남길 수 있다. 현재 원본 미리보기 서버는 `http://127.0.0.1:7705`에서 같은 기능을 제공한다.
+
 CLI만 확인할 경우 새 결과 폴더를 지정한다. 예제의 자동 의미 확인은 사람의 검토가 아닌 `automated_test`로 남는다.
 
 ```powershell

@@ -72,3 +72,9 @@ API 구현과 모의 전송 검증 커밋은 `70b173a17dc3c506c273ccbbc79546dbbe
 ## 최종 납품
 
 현재 상태는 이 문서와 기존 요구사항 문서에서 이어간다. 실행별 근거는 새 `evals/results/meta_original_integration_20261104_v1/` 폴더에 기록하고 덮어쓰지 않는다. 실제 모델 기록은 키를 포함하지 않는 기존 사용자 로컬 run 폴더를 사용한다. 결과 보고에는 P1~P4 상태와 미해결 계정·브라우저 조건, 원본 파일 반영과 `main` 이력 반영의 차이를 표시한다.
+
+## 실제 응답을 반영한 제출 준비
+
+추가 모델 호출 없이 `submission/meta-behavior-20261104-live-v1/`에 180초 영상을 생성했다. 실제 Spark 조건·완료 응답 SHA·사용량과 H1 위의 프레임별 SAM bbox를 사용한다. 저장 응답과 원본을 편집한 시연이며 브라우저 촬영으로 표시하지 않는다. H.264/yuv420p·AAC, 전체 디코드 성공, 한국어 내레이션 12개 구간과 표본 프레임 11개를 확인했다. 영상·대본·자막·원본/응답 SHA는 해당 manifest에서 연결한다.
+
+`submission/meta-submit-20261104-v1/`에는 한·영 답변 모음, 원페이지, 발표 흐름, 예상 질문과 제출 전 확인표를 작성했다. 실제 실행 수치와 재사용 범위를 대조했다. 공식 제출 주소는 주최 메일에서 확인한 `https://cerebralvalley.ai/e/meta-ai-developer-hackathon/hackathon/submit`이다. 로그인된 문항·최신 기존 자산 재사용 규정, 외부에서 읽히는 영상 URL, Meta 코드의 원격 공개, 최종 제출은 남아 있어 ready_to_submit은 false로 유지한다.

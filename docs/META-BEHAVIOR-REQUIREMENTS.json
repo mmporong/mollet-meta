@@ -82,12 +82,15 @@
     "model_input_approval_granted": false
   },
   "demo_video": {
-    "file": "submission/meta-behavior-20261103-v1/mollet-meta-behavior-demo-3min.mp4",
+    "file": "submission/meta-behavior-20261104-live-v1/mollet-meta-behavior-demo-3min.mp4",
     "duration_s": 180.0,
     "format": "1280x720_h264_yuv420p_aac",
     "scope": "stored_source_and_computed_evidence_edit_not_browser_capture",
-    "actual_meta_calls": 0,
-    "submitted": false
+    "actual_meta_calls": 2,
+    "submitted": false,
+    "render_additional_meta_calls": 0,
+    "sha256": "630d8c96c39af98f3a58c6ab2b348da9b03090f488089efebe392adede559ca1",
+    "verification": "submission/meta-behavior-20261104-live-v1/manifest.json"
   },
   "remaining_gates": [
     "실제 모델 응답의 브라우저 화면 적용·재생·다운로드를 검증해야 함. API·로컬 JSON 판정/저장 재검증은 완료",
