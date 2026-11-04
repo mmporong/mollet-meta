@@ -1,0 +1,32 @@
+{
+  "verified_at": "2026-11-04T18:15:26.525482+09:00",
+  "source_commit": "07d8f580b5c895933134afdf2227653402d161c7",
+  "source_archive": "mollet-meta-source-07d8f580.zip",
+  "source_archive_sha256": "2e2367451d9514d5e23e532eb43a526ff4bf2a392c2267af718b09e77cb5d6f0",
+  "archive_integrity": "passed",
+  "all_embedded_hashes_match": true,
+  "failure_observed": {
+    "archive": "mollet-meta-source-61b07035.zip",
+    "failed_member": "submission/meta-submit-20261104-v1/manifest.json",
+    "normalized_text_equal": true,
+    "archived_sha256": "90adbd7921fe6d0b159e5aa0c5af1f4b9e5845ce5d98c2d416fa9feb16951cfa",
+    "worktree_sha256": "44e63aa9a6024e6f90fe9483f87a37fef868e4618286d4a3f737ac5ddd90015b"
+  },
+  "cause": "Git text normalization converted Windows CRLF JSON bytes while the manifest referenced original bytes",
+  "fix_commits": [
+    "66486a3",
+    "07d8f58"
+  ],
+  "verification": "zip CRC scan, selected source members byte comparison, all package document/video/script/subtitle hashes, provider export SHA",
+  "browser_check": {
+    "apps": 0,
+    "browsers": 0,
+    "native_pipe": "os error 2",
+    "browser_access_host": "unavailable",
+    "actual_browser_flow_verified": false
+  },
+  "meta_calls": 2,
+  "additional_meta_calls": 0,
+  "submitted": false,
+  "pushed": false
+}
