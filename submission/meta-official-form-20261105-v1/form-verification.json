@@ -1,6 +1,6 @@
 {
   "schema": "meta-official-form-readback-v1",
-  "checked_at": "2026-11-04T22:35:44.945Z",
+  "checked_at": "2026-11-04T22:57:25.572Z",
   "official_url": "https://cerebralvalley.ai/e/meta-ai-developer-hackathon/hackathon/submit",
   "authenticated": true,
   "form_question_count": 21,
@@ -8,9 +8,9 @@
   "required_fields_populated": 10,
   "technical_text_fields_match_draft": true,
   "technical_character_counts": {
-    "project_description": 1629,
-    "meta_products": 1683,
-    "why_meta": 1477
+    "project_description": 2926,
+    "meta_products": 2875,
+    "why_meta": 2844
   },
   "required_survey_responses_user_confirmed": true,
   "private_survey_values_included": false,
@@ -32,5 +32,7 @@
   "previous_validation": {
     "related_cpu_tests_passed": 142,
     "chrome_workflow_checks_passed": 10
-  }
+  },
+  "content_revision": "expanded_implementation_and_simulation_scope",
+  "coverage_file": "coverage.md"
 }

@@ -12,11 +12,12 @@ This package follows the authenticated Meta Global AI Developer Hackathon submis
 | --- | --- |
 | [answers.json](answers.json) | The three technical answers and their character counts |
 | [ANSWERS-ko.md](ANSWERS-ko.md) | Korean factual review of the technical answers |
+| [coverage.md](coverage.md) | Important requirements mapped to each answer and evidence level |
 | [form-fields.json](form-fields.json) | Observed question labels, options and visible limits |
 | [form-verification.json](form-verification.json) | Redacted readback of the prepared form |
 | [video-verification.json](video-verification.json) | Anonymous browser playback, media headers and SHA-256 |
 
-The technical answers contain 1,629, 1,683 and 1,477 characters respectively, each below the observed 3,000-character limit. They distinguish the two completed historical Meta calls from saved-response replay and from unexecuted video-analysis, reflection and training extensions.
+The technical answers contain 2,926, 2,875 and 2,844 characters respectively, each below the observed 3,000-character limit. They distinguish the two completed historical Meta calls from saved-response replay and from unexecuted video-analysis, reflection and training extensions.
 
 The team and project classification fields were prepared from the project context. The user supplied the two required survey answers, which were entered in the form; those personal answers are omitted from this public package. Optional survey fields and the marketing-consent checkbox were left unselected.
 
