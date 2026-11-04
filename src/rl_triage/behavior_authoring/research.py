@@ -131,8 +131,14 @@ class ResearchService:
                 external_evaluations=session['external_evaluations'])
             return {'session_id': session_id, 'request': request, 'input_manifest': manifest, 'sent': False}
 
-    def recover(self, session_id: str, hypothesis_id: str, comparison: dict) -> dict:
+    def recover(self, session_id: str, hypothesis_id: str, comparison: str | dict) -> dict:
         from .triage_bridge import compare_recovery
+        # JS JSON.parse→stringify는 20.0을 20으로 바꿔 기존 Python 계약 해시를
+        # 깨뜨릴 수 있다. 평가 원문을 문자열로 받아 저장된 숫자 표현을 보존한다.
+        if isinstance(comparison,str):
+            comparison = json.loads(comparison,parse_constant=lambda _: (_ for _ in ()).throw(ValueError('유한한 JSON만 허용합니다.')))
+        if not isinstance(comparison,dict):
+            raise ValueError('회복 평가 JSON 객체가 필요합니다.')
         with self.lock:
             session = self._session(session_id)
             hypotheses = (session['analysis'] or {}).get('hypotheses', [])

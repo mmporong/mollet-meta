@@ -5,6 +5,7 @@ import http.client
 import json
 from pathlib import Path
 import threading
+import runpy
 from http.server import ThreadingHTTPServer
 
 import pytest
@@ -173,3 +174,20 @@ def test_live_session_manifest_and_all_external_requests_are_reported(tmp_path):
     assert value['provider_authentication']=='authenticated_https_api'
     assert value['new_external_api_requests']==2 and value['new_preflight_requests']==1
     assert [kind for kind,_ in calls]==['count','generate']
+
+
+def test_recovery_source_text_preserves_fixed_eval_hash_and_enters_reflection(tmp_path):
+    from rl_triage import behavior_oracle as oracle
+    helpers=runpy.run_path(str(Path(__file__).with_name('test_meta_triage_bridge.py')))
+    reference=helpers['_report']()
+    contract=oracle.register_contract(reference,[],{'min_survival_fraction':.9,'max_fall_rate':.05,
+                                                   'max_lin_vel_rmse_mps':.5,'max_yaw_rate_rmse_radps':.5})
+    comparison=helpers['_comparison'](helpers['_report']('before',lin=.8),helpers['_report']('after'),reference,contract)
+    live,calls=service(tmp_path);research=ResearchService(live)
+    sid=research.prepare('h1-up','영상 분석')['session_id'];research.accept(sid,envelope(hypothesis_analysis()));research.step(sid)
+    result=research.recover(sid,'reward',json.dumps(comparison))
+    assert result['recovery_comparison']['result']['outcome']=='recovered'
+    prompt=research.reflect(sid)['request']['input'][0]['content'][0]['text']
+    assert 'recovered' in prompt and 'unverified_saved_evaluation' in prompt
+    with pytest.raises(ValueError,match='교정이 다릅니다'):research.recover(sid,'posture',json.dumps(comparison))
+    assert not calls
