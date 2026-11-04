@@ -36,7 +36,7 @@ The receipts, hashes, browser checks and exported contracts are preserved in [th
 5. Evaluate the full observation window as PASS, FAIL or UNKNOWN.
 6. Export the condition, verdict and provenance as JSON, then reopen it for a round-trip check.
 
-The evaluator preserves uncertainty. Missing samples, a broken tracking interval, an incomplete observation window or unavailable raw state data returns UNKNOWN instead of guessing.
+The evaluator preserves uncertainty. Missing samples, a broken tracking interval, an incomplete observation window or unavailable raw state data return UNKNOWN instead of guessing.
 
 ## Run locally
 
@@ -48,7 +48,11 @@ $env:PYTHONPATH = "$PWD/src"
 python -m rl_triage.behavior_authoring serve --port 8784
 ```
 
-Open <http://127.0.0.1:8784>. Choose **저장한 조건·근거 불러오기** and select:
+Open <http://127.0.0.1:8784> and choose **저장된 실제 Meta 결과 이어보기** at the top of the page. The workbench restores the original condition and SAM boxes without an API key or another provider request.
+
+The public clone does not include the private raw provider files kept outside the repository. In that case, the workbench reports `repository_evidence_verified`, a lower evidence level than verifying those local raw receipts. It is not new provider authentication.
+
+File import is a second path. Choose **저장한 조건·근거 불러오기** and select:
 
 ```text
 evals/results/meta_live_provider_20261104_v1/mollet-behavior-contract.json
