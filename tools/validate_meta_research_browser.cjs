@@ -55,6 +55,11 @@ async function main(){
     assert.equal(exported.history.length,2);assert.equal(exported.external_evaluations.length,1);
     assert.equal(exported.external_evaluations[0].comparison.performance_improvement_measured,false);
     await fs.writeFile(path.join(out,'research-session.json'),JSON.stringify(exported,null,2));check('full_hypotheses_checks_and_recovery_history_exported');
+    await page.locator('#video').scrollIntoViewIfNeeded();
+    await page.locator('#video').evaluate(v=>{v.currentTime=7;return v.play();});
+    await page.waitForFunction(()=>document.querySelector('#video').currentTime>7.15);
+    await page.locator('#video').evaluate(v=>v.pause());
+    await page.evaluate(()=>new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve))));
     await page.screenshot({path:path.join(out,'research-workbench.png'),fullPage:true});
     await page.locator('#threshold').fill('0.9');assert(await page.locator('#visionExport').isDisabled());
     assert.equal(await page.locator('.hypothesis-card').count(),0);check('condition_edit_invalidates_previous_research_session');
