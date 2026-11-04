@@ -84,7 +84,7 @@ async function main(){
     await page.waitForFunction(()=>document.querySelector('#hold').value==='8'&&document.querySelector('#stage').textContent==='미검토 초안');
     assert.equal(await page.locator('#reviewed').isChecked(),false);check('manual_edited_export_roundtrip_preserves_values_and_resets_approval');
     await screenshot('03-eight-second-workspace','.workspace');
-    await page.locator('#threshold').fill('1');await evaluate('조건 위반');
+    await page.locator('#threshold').fill('1');await page.locator('#deadline').fill('0');await evaluate('조건 위반');
     const fail=await download('03-manual-strict-condition.json',()=>page.locator('#export').click());
     assert.equal(fail.result.verdict,'FAIL');check('stricter_condition_returns_fail');
     await restore();check('repeat_recovery_restores_original_provider_draft');
