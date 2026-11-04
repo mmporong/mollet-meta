@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import sqlite3
 import threading
 import urllib.error
 from pathlib import Path
@@ -16,6 +17,20 @@ from rl_triage.behavior_authoring.client import (
 
 def _request(model: str = "muse-spark-1.3") -> dict[str, object]:
     return {"model": model, "input": [{"role": "user", "content": "stairs"}]}
+
+
+def test_database_handles_close_after_status_preflight_and_send(tmp_path,monkeypatch):
+    client=_enabled_client(tmp_path,lambda *_:(b'{}','application/json',None),
+                           token_transport=lambda *_:(b'{"input_tokens":100}','application/json',None))
+    opened=[];original=client._connect
+    def tracked():
+        connection=original();opened.append(connection);return connection
+    monkeypatch.setattr(client,'_connect',tracked)
+    client.status();client.count_input_tokens(_request());client.send(_request(),estimated_cost_usd='.1',context={})
+    assert opened
+    for connection in opened:
+        with pytest.raises(sqlite3.ProgrammingError,match='closed'):
+            connection.execute('SELECT 1')
 
 
 def _enabled_client(tmp_path: Path, transport, **overrides) -> MetaClient:

@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from contextlib import contextmanager
 import hashlib
 import json
 import math
@@ -193,8 +194,17 @@ class MetaClient:
         connection.execute("PRAGMA busy_timeout = 10000")
         return connection
 
+    @contextmanager
+    def _database(self):
+        connection = self._connect()
+        try:
+            with connection:
+                yield connection
+        finally:
+            connection.close()
+
     def _initialize_ledger(self) -> None:
-        with self._connect() as connection:
+        with self._database() as connection:
             connection.execute(
                 """
                 CREATE TABLE IF NOT EXISTS reservations (
@@ -212,7 +222,7 @@ class MetaClient:
                 status TEXT NOT NULL, input_units INTEGER, attempts INTEGER NOT NULL)''')
 
     def _ledger_totals(self) -> tuple[int, int]:
-        with self._connect() as connection:
+        with self._database() as connection:
             row = connection.execute(
                 "SELECT COALESCE(SUM(reserved_micro_usd), 0), COUNT(*) FROM reservations"
             ).fetchone()
@@ -226,7 +236,7 @@ class MetaClient:
     ) -> dict[str, Any]:
         api_key, credit_confirmed, remaining_credit, budget = snapshot
         reserved_micro, count = self._ledger_totals()
-        with self._connect() as connection:
+        with self._database() as connection:
             preflights = int(connection.execute('SELECT COALESCE(SUM(attempts),0) FROM input_preflights').fetchone()[0])
         reserved = Decimal(reserved_micro) * _MICRO_USD
         available = max(Decimal("0"), budget - reserved)
@@ -301,7 +311,7 @@ class MetaClient:
         return reserved, created_at
 
     def _mark_status(self, run_id: str, status: str) -> None:
-        with self._connect() as connection:
+        with self._database() as connection:
             connection.execute(
                 "UPDATE reservations SET status = ? WHERE run_id = ?", (status, run_id)
             )
@@ -431,7 +441,7 @@ class MetaClient:
             raise MetaAPIError('입력 토큰 요청 크기 또는 비밀값 포함 여부를 확인하세요.')
         sha = _sha256(raw)
         with self._preflight_lock:
-            with self._connect() as connection:
+            with self._database() as connection:
                 cached = connection.execute('SELECT status,input_units FROM input_preflights WHERE request_sha256=?',(sha,)).fetchone()
                 if cached and cached[0] == 'completed':
                     return int(cached[1])
@@ -446,10 +456,10 @@ class MetaClient:
                 if type(count) is not int or not 0 < count <= 2000000:
                     raise ValueError('invalid input token count')
             except Exception:
-                with self._connect() as connection:
+                with self._database() as connection:
                     connection.execute("UPDATE input_preflights SET status='error' WHERE request_sha256=?",(sha,))
                 raise MetaAPIError('영상 입력 토큰을 확인하지 못했습니다. 생성 요청을 보내지 않았습니다.') from None
-            with self._connect() as connection:
+            with self._database() as connection:
                 connection.execute("UPDATE input_preflights SET status='completed',input_units=? WHERE request_sha256=?",(count,sha))
             return count
 
