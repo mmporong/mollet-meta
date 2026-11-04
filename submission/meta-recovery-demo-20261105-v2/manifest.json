@@ -1,0 +1,448 @@
+{
+  "schema": "meta-saved-recovery-demo-v1",
+  "scope": "current_chrome_capture_of_saved_historical_actual_meta_recovery",
+  "source_commit": "604be2ed7cc52e475c027e218137399f3a83e45b",
+  "renderer_commit": "854065ae5dc702ff611721437bdecd81184298b2",
+  "duration_s": 180.0,
+  "scenes": [
+    {
+      "name": "title",
+      "start_s": 0.0,
+      "end_s": 15.0
+    },
+    {
+      "name": "problem",
+      "start_s": 15.0,
+      "end_s": 30.0
+    },
+    {
+      "name": "browser-replay",
+      "start_s": 30.0,
+      "end_s": 45.0
+    },
+    {
+      "name": "sam-motion",
+      "start_s": 45.0,
+      "end_s": 60.0
+    },
+    {
+      "name": "provider-result",
+      "start_s": 60.0,
+      "end_s": 75.0
+    },
+    {
+      "name": "manual-eight",
+      "start_s": 75.0,
+      "end_s": 90.0
+    },
+    {
+      "name": "manual-roundtrip",
+      "start_s": 90.0,
+      "end_s": 105.0
+    },
+    {
+      "name": "go2-workspace",
+      "start_s": 105.0,
+      "end_s": 120.0
+    },
+    {
+      "name": "go2-motion",
+      "start_s": 120.0,
+      "end_s": 135.0
+    },
+    {
+      "name": "go2-result",
+      "start_s": 135.0,
+      "end_s": 150.0
+    },
+    {
+      "name": "boundary",
+      "start_s": 150.0,
+      "end_s": 165.0
+    },
+    {
+      "name": "end",
+      "start_s": 165.0,
+      "end_s": 180.0
+    }
+  ],
+  "output": {
+    "file": "mollet-meta-recovery-demo-180s-ko.mp4",
+    "sha256": "94177579127d018a6ebd9a184feac19260458ae71005efea5f0ef129ce79efcb",
+    "probe": {
+      "programs": [],
+      "stream_groups": [],
+      "streams": [
+        {
+          "index": 0,
+          "codec_name": "h264",
+          "codec_type": "video",
+          "width": 1280,
+          "height": 720,
+          "pix_fmt": "yuv420p",
+          "r_frame_rate": "30/1"
+        },
+        {
+          "index": 1,
+          "codec_name": "aac",
+          "codec_type": "audio",
+          "sample_rate": "48000",
+          "channels": 2,
+          "r_frame_rate": "0/0"
+        }
+      ],
+      "format": {
+        "duration": "180.000000",
+        "size": "7097736"
+      }
+    },
+    "full_decode_exit": 0
+  },
+  "english_captioned_output": {
+    "file": "mollet-meta-recovery-demo-180s-en-captioned.mp4",
+    "sha256": "aaf51142b442f4957a7580214033a86677bdf1cf32a0b02fea7bcbb875d32f57",
+    "probe": {
+      "programs": [],
+      "stream_groups": [],
+      "streams": [
+        {
+          "index": 0,
+          "codec_name": "h264",
+          "codec_type": "video",
+          "width": 1280,
+          "height": 840,
+          "pix_fmt": "yuv420p",
+          "r_frame_rate": "30/1"
+        },
+        {
+          "index": 1,
+          "codec_name": "aac",
+          "codec_type": "audio",
+          "sample_rate": "48000",
+          "channels": 2,
+          "r_frame_rate": "0/0"
+        }
+      ],
+      "format": {
+        "duration": "180.000000",
+        "size": "7318149"
+      }
+    },
+    "full_decode_exit": 0
+  },
+  "capture": {
+    "verification_file": "verification.json",
+    "verification_sha256": "19eff6acab1d5862356d0daa2d3e1a144b140a5f4db97dbfc08876263670d558",
+    "browser_video_sha256": "c8594166552019eed96c9e06ab878603d5d2ca60de023925ca960f63e34115f0",
+    "browser_video_bytes": 3233702,
+    "screenshots": [
+      {
+        "file": "01-restored-workspace.png",
+        "sha256": "d0b115f01dcdc5a8ae4143d5f7fa874cda68bb65350b0152c50f7e994a732672"
+      },
+      {
+        "file": "02-provider-result.png",
+        "sha256": "e29994a4badf0ebfb5c86edbd8e9b307975661c4f0ae2857eeb6e63a3b41a773"
+      },
+      {
+        "file": "03-eight-second-workspace.png",
+        "sha256": "3c9c75d8979436b4cebd11a54df38f2eb7ebc436d3283d02c9e2b0ca32e365ee"
+      },
+      {
+        "file": "04-go2-failure-workspace.png",
+        "sha256": "486848590067e88154ffabb2f7d5fed04a279fbba7d3f2d601d6ed71e047e6f4"
+      },
+      {
+        "file": "05-go2-failure-result.png",
+        "sha256": "c66d25edea025b1231222745322d5dfa69b49b19c36c2a348186d04feeda5330"
+      },
+      {
+        "file": "06-full-workbench.png",
+        "sha256": "47b5d99875f0947d84ba8e95e843a838c95e9d9d2fa0fc00e44f06adb423b6ba"
+      }
+    ],
+    "downloads": [
+      {
+        "file": "01-provider-contract.json",
+        "sha256": "111831e03ce7858e85aff4cc64d7adb1114bae6b5601a2d80769591a3b2d8343"
+      },
+      {
+        "file": "02-manual-eight-second-contract.json",
+        "sha256": "4becf5f8e9c28088baac66ccfd0e11f5a8a67e4f517a1a4614435a85aa2729e6"
+      },
+      {
+        "file": "03-manual-strict-condition.json",
+        "sha256": "fe33de8e811a93afc28d2c54d4b5e9ba9e26732c4f914de765643de555b68293"
+      },
+      {
+        "file": "04-go2-recorded-condition.json",
+        "sha256": "9845378963d28e40f98bb5050041bcf4316a689e1aa7208dada632953d913f9c"
+      }
+    ]
+  },
+  "provider_evidence": {
+    "verification_level": "local_provider_receipts_verified",
+    "historical_actual_calls": {
+      "muse_spark_1_3": 1,
+      "sam_3_1": 1
+    },
+    "receipts": [
+      {
+        "model": "muse-spark-1.3",
+        "run_id": "9c20912b-fa37-4f3c-a118-11bc13bda76a",
+        "provider_request_id": "1358757f-6636-4659-85a5-8e3c001e84d2",
+        "response_id": "resp_6aeaebc268240c6c192e444b",
+        "status": "completed_http",
+        "request_sha256": "363f1a845534f077a3ec9bfb5acdaa5dfda9a9cb88b4db0445ba84b60fa76012",
+        "response_sha256": "47a20cb67dee98c9bbb6db90488307decee8ead9855134ab0c4f4da04e55e0e5"
+      },
+      {
+        "model": "sam-3.1",
+        "run_id": "ee92f2fd-f138-4198-838e-d52b5472b91c",
+        "provider_request_id": "ce259a12-ef5d-40b9-aa9b-6291932674c8",
+        "response_id": null,
+        "status": "completed_http",
+        "request_sha256": "344aa7419708eade5bf2746f917e6778cd40200d8c382581e38b9dbfb1b03f8b",
+        "response_sha256": "88f0b62f64badc3a57ac538c926bcc10c6d9cd118ad98207bc6ddf0caf12afb1"
+      }
+    ],
+    "video_sha256": "82107853548545c0977b8488acd45931689c1de737db29d931d1735505367f10"
+  },
+  "claims": {
+    "new_model_calls_during_capture": 0,
+    "new_model_calls_during_render": 0,
+    "new_video_inference_calls": 0,
+    "new_reflection_calls": 0,
+    "new_training_jobs": 0,
+    "gpu_jobs": 0,
+    "sam_response_coverage": {
+      "tracked_frames": 624,
+      "total_frames": 625,
+      "tracking_accuracy_measured": false
+    },
+    "performance_improvement_measured": false,
+    "go2_result_scope": "manual_recorded_state_check_not_new_model_diagnosis"
+  },
+  "results": {
+    "saved_provider_condition": {
+      "stage": "draft",
+      "approval_status": "unreviewed",
+      "verdict": "PASS",
+      "reason": "마감 시점 안에 조건을 시작해 필요한 유지 시간 동안 연속으로 충족했습니다.",
+      "trigger_t_s": 0,
+      "interval": {
+        "start_s": 0,
+        "end_s": 0.5
+      },
+      "examined_samples": 426,
+      "warnings": [],
+      "spec_sha256": "44aa7518c23a398867c231a2f59cf7d768bd5dbd1af86bca8cdc58e6f0adc0bd",
+      "observations_sha256": "c8f43a63479ca66f7dc10c381d4252b203bf20b90aa88334f05e58b3c4e850e2",
+      "input_provenance": {
+        "kind": "recorded_h1_stairs_playback",
+        "source_path": "docs/media/stairs_h1_s172_20261030_v1/biped-stairs-up/manifest.json",
+        "source_sha256": "78040636212a19853a71b2384d7a53d934bc5ee6280cc2fb8c725a837c08af3f",
+        "source_trace": "docs/media/stairs_h1_s172_20261030_v1/biped-stairs-up/state-trace.jsonl",
+        "source_trace_sha256": "ef305c390f11842ed04dd0d8a835af5159e02c93a9a51763008591d2f6831e07",
+        "source_manifest_sha256": "eb113a2aee964aaaf972bbff9f2fd9090e14052c4642334b04e8ac4e78113193",
+        "exact_frames_sha256": "da80560fb45edcae16634fbcbfa865941e643f4c74db6b4cac5fe2c5510c9742",
+        "video_path": "docs/media/stairs_h1_s172_20261030_v1/biped-stairs-up/video/rl-video-step-0.mp4",
+        "frame_width": 1280,
+        "frame_height": 720,
+        "capture_approved": false,
+        "model_ready": false,
+        "playback_render_synced": true,
+        "visual_evidence_status": "render_synced_playback_not_model_input_approval",
+        "time_basis": "video_frame_index / encoder_fps",
+        "state_frame_offset": 1,
+        "sim_time_offset_s": 0.02,
+        "motion_frame": "world",
+        "height_frame": "world_z_not_ground_clearance",
+        "scope": "stored_stairs_condition_demo_only_not_recovery_or_generalization",
+        "new_model_api_calls": 0,
+        "new_training_jobs": 0,
+        "saved_meta_replay": {
+          "kind": "saved_actual_meta_response_replay",
+          "provider_authentication": "not_performed_for_replay",
+          "evidence_verification": "local_provider_receipts_verified",
+          "historical_model_calls": 2,
+          "new_model_calls": 0,
+          "spark_run_id": "9c20912b-fa37-4f3c-a118-11bc13bda76a",
+          "sam_run_id": "ee92f2fd-f138-4198-838e-d52b5472b91c",
+          "sam_response_sha256": "88f0b62f64badc3a57ac538c926bcc10c6d9cd118ad98207bc6ddf0caf12afb1"
+        }
+      },
+      "model_called": false
+    },
+    "manual_eight_second_condition": {
+      "stage": "reviewed",
+      "approval_status": "approved",
+      "verdict": "PASS",
+      "reason": "마감 시점 안에 조건을 시작해 필요한 유지 시간 동안 연속으로 충족했습니다.",
+      "trigger_t_s": 0,
+      "interval": {
+        "start_s": 0,
+        "end_s": 8
+      },
+      "examined_samples": 625,
+      "warnings": [
+        "승인 기록은 로컬 의미 검토 또는 자동 테스트 표식이며, 사람 인증이나 GPU 실행 권한이 아닙니다."
+      ],
+      "spec_sha256": "0b6853f0831891dc7a476c7940207dfe12dd96217bfb8afdf51f374f1f1d647a",
+      "observations_sha256": "c8f43a63479ca66f7dc10c381d4252b203bf20b90aa88334f05e58b3c4e850e2",
+      "approval": {
+        "contract_sha256": "0b6853f0831891dc7a476c7940207dfe12dd96217bfb8afdf51f374f1f1d647a",
+        "actor": "local_browser_review",
+        "scope": "local_semantic_review"
+      },
+      "input_provenance": {
+        "kind": "recorded_h1_stairs_playback",
+        "source_path": "docs/media/stairs_h1_s172_20261030_v1/biped-stairs-up/manifest.json",
+        "source_sha256": "78040636212a19853a71b2384d7a53d934bc5ee6280cc2fb8c725a837c08af3f",
+        "source_trace": "docs/media/stairs_h1_s172_20261030_v1/biped-stairs-up/state-trace.jsonl",
+        "source_trace_sha256": "ef305c390f11842ed04dd0d8a835af5159e02c93a9a51763008591d2f6831e07",
+        "source_manifest_sha256": "eb113a2aee964aaaf972bbff9f2fd9090e14052c4642334b04e8ac4e78113193",
+        "exact_frames_sha256": "da80560fb45edcae16634fbcbfa865941e643f4c74db6b4cac5fe2c5510c9742",
+        "video_path": "docs/media/stairs_h1_s172_20261030_v1/biped-stairs-up/video/rl-video-step-0.mp4",
+        "frame_width": 1280,
+        "frame_height": 720,
+        "capture_approved": false,
+        "model_ready": false,
+        "playback_render_synced": true,
+        "visual_evidence_status": "render_synced_playback_not_model_input_approval",
+        "time_basis": "video_frame_index / encoder_fps",
+        "state_frame_offset": 1,
+        "sim_time_offset_s": 0.02,
+        "motion_frame": "world",
+        "height_frame": "world_z_not_ground_clearance",
+        "scope": "stored_stairs_condition_demo_only_not_recovery_or_generalization",
+        "new_model_api_calls": 0,
+        "new_training_jobs": 0,
+        "saved_meta_replay": {
+          "kind": "saved_actual_meta_response_replay",
+          "provider_authentication": "not_performed_for_replay",
+          "evidence_verification": "local_provider_receipts_verified",
+          "historical_model_calls": 2,
+          "new_model_calls": 0,
+          "spark_run_id": "9c20912b-fa37-4f3c-a118-11bc13bda76a",
+          "sam_run_id": "ee92f2fd-f138-4198-838e-d52b5472b91c",
+          "sam_response_sha256": "88f0b62f64badc3a57ac538c926bcc10c6d9cd118ad98207bc6ddf0caf12afb1"
+        }
+      },
+      "model_called": false
+    },
+    "manual_go2_full_duration_condition": {
+      "stage": "reviewed",
+      "approval_status": "approved",
+      "verdict": "FAIL",
+      "reason": "전체 관측창이 덮였지만 마감 안에 시작해 유지 시간을 채운 충족 구간이 없습니다.",
+      "trigger_t_s": 0,
+      "interval": null,
+      "examined_samples": 625,
+      "warnings": [
+        "승인 기록은 로컬 의미 검토 또는 자동 테스트 표식이며, 사람 인증이나 GPU 실행 권한이 아닙니다."
+      ],
+      "spec_sha256": "bf3e19e9c6e8cb9d180a6cf266665a907cce749d62a595f2d52a1905f1df0b8e",
+      "observations_sha256": "01495ca182764cbf2d24779baedea0c7f770a764cd5c0228fb75409d25d0ea7e",
+      "approval": {
+        "contract_sha256": "bf3e19e9c6e8cb9d180a6cf266665a907cce749d62a595f2d52a1905f1df0b8e",
+        "actor": "local_browser_review",
+        "scope": "local_semantic_review"
+      },
+      "input_provenance": {
+        "kind": "recorded_go2_stairs_state_sha_join",
+        "source_path": "evals/results/go2_stairs_command_contrast_s200_20261101_v1/cases.json",
+        "source_sha256": "635bdaa75847015600bba3a6c68046ed6449d0da3a879378dc8610b2545f87e8",
+        "source_media_sha256": "5bc64ddea68c4c7d9b2bcd44b8a671ab640894a23877fb72fd370bb6a21c6161",
+        "source_trace_sha256": "31b6fffd1e499a3880fd186b91fcc955188097ab6aef42a6a6ed43a98bd29990",
+        "video_path": "evals/results/go2_stairs_command_contrast_s200_20261101_v1/media/quadruped-stairs-down-step-0p05-cmd-0p25.mp4",
+        "raw_state_trace_available": true,
+        "capture_approved": false,
+        "model_ready": false,
+        "scope": "same_policy_command_contrast_only_not_retraining_or_recovery",
+        "new_model_api_calls": 0,
+        "new_training_jobs": 0,
+        "source_trace": "evals/results/stairs_motion_integrity_20261101_v1/sources/go2-down/state-trace.jsonl",
+        "binding_kind": "public_contrast_row_video_and_trace_sha256",
+        "frame_width": 1280,
+        "frame_height": 720,
+        "time_basis": "video_frame_index / encoder_fps",
+        "state_frame_offset": 1,
+        "sim_time_offset_s": 0.02,
+        "motion_frame": "world",
+        "height_frame": "world_z_not_ground_clearance"
+      },
+      "model_called": false
+    }
+  },
+  "subtitles": {
+    "ko": {
+      "file": "mollet-meta-recovery-demo-ko.srt",
+      "sha256": "d8f122c2e5bae305a3c74ef68211c0eb2d52ffd8d45d93e88bcd120dcb4ebc08",
+      "cues": 12
+    },
+    "en": {
+      "file": "mollet-meta-recovery-demo-en.srt",
+      "sha256": "4218ecd449a82d49630dd7888a2320b444e53ac29873c143199afe78e8ac8fa0",
+      "cues": 12
+    },
+    "en_ass": {
+      "file": "mollet-meta-recovery-demo-en.ass",
+      "sha256": "81817afc3844d07cd1d47f29f16083556622c26d69622f1343c9b56fd51f551f",
+      "cues": 12,
+      "play_res_x": 1280,
+      "play_res_y": 840,
+      "font_size": 24
+    }
+  },
+  "script": {
+    "file": "SCRIPT-ko.md",
+    "sha256": "4ce0431535e7e4eb9c1630d78a8c589e5a193c1f46725d2a5c6596731055a937"
+  },
+  "narration_modes": [
+    "sapi_korean",
+    "sapi_korean",
+    "sapi_korean",
+    "sapi_korean",
+    "sapi_korean",
+    "sapi_korean",
+    "sapi_korean",
+    "sapi_korean",
+    "sapi_korean",
+    "sapi_korean",
+    "sapi_korean",
+    "sapi_korean"
+  ],
+  "sampleframes": [
+    {
+      "file": "sampleframes/sample-01-007.5s.png",
+      "at_s": 7.5,
+      "sha256": "6d2b1395eee48971344f225b724599e0b08c59eee56b68c00b91f8a13b78cd0c"
+    },
+    {
+      "file": "sampleframes/sample-02-037.5s.png",
+      "at_s": 37.5,
+      "sha256": "d8c94a989a3d5b65d258db2cc21abba3290497943dd643a6be83a52c04548076"
+    },
+    {
+      "file": "sampleframes/sample-03-067.5s.png",
+      "at_s": 67.5,
+      "sha256": "46d94659baf6ffe64c5732967dff94a15efccce0f630909a43707d20e0543997"
+    },
+    {
+      "file": "sampleframes/sample-04-097.5s.png",
+      "at_s": 97.5,
+      "sha256": "02354dab392c57ec895ae5c4a7040c387d9c1e6a3d17d60fe6099e5b314fc523"
+    },
+    {
+      "file": "sampleframes/sample-05-127.5s.png",
+      "at_s": 127.5,
+      "sha256": "a9cac0b7b873a2772e94b0e38017f90ac09aafa5ae725d6d348c3772f5bb5bb2"
+    },
+    {
+      "file": "sampleframes/sample-06-172.5s.png",
+      "at_s": 172.5,
+      "sha256": "9cd781708fde3b559d61564ebcb5217b597704d998e9555dfcd694bd22a78d5d"
+    }
+  ]
+}

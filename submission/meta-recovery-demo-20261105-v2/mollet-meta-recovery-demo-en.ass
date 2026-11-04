@@ -1,0 +1,24 @@
+[Script Info]
+ScriptType: v4.00+
+PlayResX: 1280
+PlayResY: 840
+WrapStyle: 2
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Default,Arial,24,&H003A2A17,&H003A2A17,&H00FFFFFF,&H00FFFFFF,0,0,0,0,100,100,0,0,1,0,0,2,50,50,15,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 0,0:00:00.00,0:00:15.00,Default,,0,0,0,,A reward for climbing stairs does not explain when posture failed. Mollet turns the\Nbehavior we want to inspect into a condition with time and numeric thresholds.
+Dialogue: 0,0:00:15.00,0:00:30.00,Default,,0,0,0,,Object locations are aligned to video frames, while posture conditions are computed from\Nsynchronized robot state. Model output and local verdicts keep separate provenance.
+Dialogue: 0,0:00:30.00,0:00:45.00,Default,,0,0,0,,The restore button works without an API key. It restores the H1 source, Spark condition,\Nand SAM boxes while discarding the old approval and verdict.
+Dialogue: 0,0:00:45.00,0:01:00.00,Default,,0,0,0,,The historical record contains one Spark call and one SAM call. Saved SAM boxes are\Naligned to the H1 timeline; 624 of 625 is response coverage, not tracking accuracy.
+Dialogue: 0,0:01:00.00,0:01:15.00,Default,,0,0,0,,The restored condition requires up-axis alignment of at least 0.8, an 8-second deadline,\Nand a 0.5-second hold. Recalculation on the current source yields 0.0 to 0.5 seconds.
+Dialogue: 0,0:01:15.00,0:01:30.00,Default,,0,0,0,,Changing the hold time to 8 seconds resets review state. After review, the H1 ascent also\Npasses the full 8-second posture condition.
+Dialogue: 0,0:01:30.00,0:01:45.00,Default,,0,0,0,,The 8-second condition is exported and loaded again. A user-authored condition gains no\Nmodel authority, and approval returns to unreviewed.
+Dialogue: 0,0:01:45.00,0:02:00.00,Default,,0,0,0,,A manual full-duration 12.48-second posture condition is applied to the Go2 stair descent.\NIt reads recorded state and is not presented as a new model diagnosis.
+Dialogue: 0,0:02:00.00,0:02:15.00,Default,,0,0,0,,Synchronized state shows up-axis alignment falling below the threshold. The verdict comes\Nfrom robot state, not a new Spark or SAM inference.
+Dialogue: 0,0:02:15.00,0:02:30.00,Default,,0,0,0,,The requirement to remain at or above 0.8 for 12.48 seconds fails. This is a manual\Ncomparison on saved data, not policy recovery or measured improvement.
+Dialogue: 0,0:02:30.00,0:02:45.00,Default,,0,0,0,,This demo verifies saved-response recovery and local reevaluation in the current browser.\NNew video inference, reflection, and training are all zero, and performance improvement is\Nunmeasured.
+Dialogue: 0,0:02:45.00,0:03:00.00,Default,,0,0,0,,Video hash, provider-response hashes, condition, state values, and object boxes remain in\None lineage. Mollet reopens saved evidence so the next check can continue.

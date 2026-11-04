@@ -1,6 +1,6 @@
 {
-  "contract_version": "meta-track-v6-20261103-offline-behavior-authoring",
-  "previous_version": "meta-track-v5-20261031-tools-first",
+  "contract_version": "meta-track-v7-20261105-verified-saved-recovery",
+  "previous_version": "meta-track-v6-20261103-offline-behavior-authoring",
   "mode": "authorized_credit_gated_meta_api_integration",
   "selected_direction": "사용자 행동 조건 저작·검토·저장 RL 기록 판정",
   "implementation_base": "94fe8740277c9ecc556096fa4d00df0ad0bb7749",
@@ -83,15 +83,20 @@
     "model_input_approval_granted": false
   },
   "demo_video": {
-    "file": "submission/meta-behavior-20261104-live-v1/mollet-meta-behavior-demo-3min.mp4",
+    "file": "submission/meta-recovery-demo-20261105-v2/mollet-meta-recovery-demo-180s-en-captioned.mp4",
+    "korean_file": "submission/meta-recovery-demo-20261105-v2/mollet-meta-recovery-demo-180s-ko.mp4",
     "duration_s": 180.0,
-    "format": "1280x720_h264_yuv420p_aac",
-    "scope": "stored_source_and_computed_evidence_edit_not_browser_capture",
+    "format": "1280x840_h264_yuv420p_aac_english_captions_korean_voice",
+    "scope": "current_chrome_capture_of_saved_historical_actual_meta_recovery",
     "actual_meta_calls": 2,
-    "submitted": false,
     "render_additional_meta_calls": 0,
-    "sha256": "630d8c96c39af98f3a58c6ab2b348da9b03090f488089efebe392adede559ca1",
-    "verification": "submission/meta-behavior-20261104-live-v1/manifest.json"
+    "sha256": "aaf51142b442f4957a7580214033a86677bdf1cf32a0b02fea7bcbb875d32f57",
+    "korean_sha256": "94177579127d018a6ebd9a184feac19260458ae71005efea5f0ef129ce79efcb",
+    "verification": "submission/meta-recovery-demo-20261105-v2/manifest.json",
+    "verification_sha256": "51f6113970e8c38f815cdec91bedb078b0fbc0b42d99ef37442ea8e9ef2590a2",
+    "full_decode_exit": 0,
+    "narration_segments": 12,
+    "submitted": false
   },
   "remaining_gates": [
     "새 영상 가설·재검토의 실제 실행과 새 정책 학습·회복 성능 향상은 미측정",
@@ -107,11 +112,12 @@
     "submissions": "forbidden"
   },
   "browser_verification": {
-    "file": "evals/results/meta_browser_e2e_20261104_v4/verification.json",
-    "sha256": "6b963e87bfd805b5f1124d7af7ef014f0c32673d9840261e02d06565068b88e7",
-    "browser": "156.0.8078.48",
-    "checks_passed": 17,
-    "headless": true
+    "file": "evals/results/meta_recovery_browser_20261105_v5/verification.json",
+    "sha256": "19eff6acab1d5862356d0daa2d3e1a144b140a5f4db97dbfc08876263670d558",
+    "browser": "156.0.8078.80",
+    "checks_passed": 10,
+    "headless": true,
+    "source_commit": "604be2ed7cc52e475c027e218137399f3a83e45b"
   },
   "video_improvement_extension": {
     "code_commit": "a1f96ad20e80adc64442cb95d5116891f855b259",
@@ -136,8 +142,8 @@
   },
   "current_runtime": {
     "url": "http://127.0.0.1:7706",
-    "pid": 47008,
-    "code_commit": "9286121",
+    "pid": 3764,
+    "code_commit": "2b6b71f",
     "key_configured": false,
     "credit_confirmed": true,
     "video_calls_enabled": true,
@@ -164,7 +170,8 @@
     "browser_checks_passed": 14,
     "browser_verification": "evals/results/meta_video_research_20261104_v7/browser-verification.json",
     "blocked_run": "evals/results/meta_actual_video_loop_20261104_v1/summary.json",
-    "media_smoke": "evals/results/meta_demo_media_smoke_20261104_v1/verification.json"
+    "media_smoke": "evals/results/meta_demo_media_smoke_20261104_v1/verification.json",
+    "separate_saved_recovery_demo_rendered": true
   },
   "official_rules_review": {
     "source_url": "https://cerebralvalley.ai/e/meta-ai-developer-hackathon/waiver",
@@ -189,9 +196,9 @@
   },
   "saved_response_recovery": {
     "implemented": true,
-    "browser_verification": "evals/results/meta_recovery_browser_20261105_v3/verification.json",
+    "browser_verification": "evals/results/meta_recovery_browser_20261105_v5/verification.json",
     "browser_checks_passed": 10,
-    "related_cpu_tests_passed": 139,
+    "related_cpu_tests_passed": 142,
     "historical_model_calls": 2,
     "new_model_calls": 0,
     "verification_level": "local_provider_receipts_verified",
@@ -206,6 +213,16 @@
     "approval_restored": false,
     "original_state_values_unchanged": true,
     "capture_approved": false,
-    "model_ready": false
+    "model_ready": false,
+    "source_commit": "604be2ed7cc52e475c027e218137399f3a83e45b",
+    "review": "APPROVE_no_unresolved_high_medium",
+    "provider_authentication": "not_performed_for_replay"
+  },
+  "historical_browser_verification": {
+    "file": "evals/results/meta_browser_e2e_20261104_v4/verification.json",
+    "sha256": "6b963e87bfd805b5f1124d7af7ef014f0c32673d9840261e02d06565068b88e7",
+    "browser": "156.0.8078.48",
+    "checks_passed": 17,
+    "headless": true
   }
 }

@@ -1,0 +1,216 @@
+{
+  "schema": "meta-submission-package-v2",
+  "project_name": "Mollet",
+  "prepared_at": "2026-11-05T00:56:30.8807327+09:00",
+  "deadline_kst": "2026-11-05T11:00:00+09:00",
+  "submission_url": "https://cerebralvalley.ai/e/meta-ai-developer-hackathon/hackathon/submit",
+  "official_rules_url": "https://cerebralvalley.ai/e/meta-ai-developer-hackathon/waiver",
+  "answer_scope": "verified_answer_bank_not_official_form_field_mapping",
+  "official_form_fields_verified": false,
+  "official_field_count": null,
+  "submission_form_observation": {
+    "result": "redirected_to_login",
+    "redirect_url": "https://cerebralvalley.ai/auth/login",
+    "visible_options": [
+      "google_login",
+      "email_login"
+    ],
+    "authenticated_user_profile_connected": false,
+    "fields_verified": false
+  },
+  "source_commit": "854065ae5dc702ff611721437bdecd81184298b2",
+  "source_commit_status": "final_local_render_commit_verified",
+  "intermediate_commits": {
+    "saved_recovery_browser_source": "604be2ed7cc52e475c027e218137399f3a83e45b",
+    "final_renderer_source": "854065ae5dc702ff611721437bdecd81184298b2"
+  },
+  "repository": {
+    "url": "https://github.com/mmporong/rl-triage-agent",
+    "visibility": "public",
+    "license": "Apache-2.0",
+    "meta_feature_published": false,
+    "published_meta_feature_commit": null
+  },
+  "rules_review": {
+    "original_owned_non_infringing_work_required": true,
+    "oss_license_compliance_required": true,
+    "existing_project_reuse_explicit_allowance_found": false,
+    "existing_project_reuse_explicit_prohibition_found": false,
+    "reuse_eligibility": "conditional_not_confirmed",
+    "three_minute_public_rule_found": false,
+    "three_minute_source": "organizer_email_recommendation"
+  },
+  "actual_meta_evidence": {
+    "file": "evals/results/meta_live_provider_20261104_v1/verification.json",
+    "sha256": "41b0194c59231f1f7179a2c5f4ec10601851d10795c1c26660ea81f151884eda",
+    "provider_completed_calls": 2,
+    "spark_calls": 1,
+    "sam_calls": 1,
+    "spark_model": "muse-spark-1.3",
+    "sam_model": "sam-3.1",
+    "original_state_values_unchanged": true,
+    "export_roundtrip_equal": true
+  },
+  "claims": {
+    "h1_condition": {
+      "metric": "up_axis_z",
+      "op": "gte",
+      "threshold": 0.8,
+      "start_s": 0.0,
+      "deadline_s": 8.0,
+      "hold_s": 0.5,
+      "meaning": "begin satisfying the threshold within 8 seconds and hold it for 0.5 seconds"
+    },
+    "h1_verdict": "PASS",
+    "h1_interval": {
+      "start_s": 0.0,
+      "end_s": 0.5
+    },
+    "sam_observation_count": 625,
+    "sam_observations_with_locations": 624,
+    "sam_metric_scope": "response_coverage_not_tracking_accuracy",
+    "tracking_accuracy_measured": false
+  },
+  "extension_status": {
+    "video_grounded_hypothesis_code_implemented": true,
+    "spark_reflection_code_implemented": true,
+    "correction_proposal_code_implemented": true,
+    "actual_new_video_inference_calls": 0,
+    "actual_new_spark_reflection_calls": 0,
+    "new_gpu_jobs": 0,
+    "new_training_jobs": 0,
+    "correction_applied": false,
+    "performance_improvement_measured": false,
+    "submission_claim_scope": "code_paths_only_not_actual_model_or_training_results"
+  },
+  "saved_result_recovery": {
+    "status": "verified_in_chrome",
+    "uses_saved_historical_provider_responses": true,
+    "validates_original_video_and_state_values": true,
+    "requires_key_for_replay": false,
+    "replay_provider_authentication_performed": false,
+    "historical_provider_receipts_verified": true,
+    "new_model_calls": 0,
+    "browser_evidence": {
+      "file": "evals/results/meta_recovery_browser_20261105_v5/verification.json",
+      "sha256": "19eff6acab1d5862356d0daa2d3e1a144b140a5f4db97dbfc08876263670d558",
+      "source_commit": "604be2ed7cc52e475c027e218137399f3a83e45b",
+      "passed": true,
+      "browser": "156.0.8078.80",
+      "checks_passed": 10,
+      "checks_total": 10,
+      "page_errors": 0,
+      "blocked_provider_requests": 0,
+      "h1_playback_verified": true,
+      "sam_overlay_nontransparent_pixels": 2411,
+      "original_state_count": 625,
+      "restored_track_count": 624,
+      "original_provider_condition": {
+        "verdict": "PASS",
+        "start_s": 0.0,
+        "end_s": 0.5
+      },
+      "manual_eight_second_condition": {
+        "verdict": "PASS",
+        "start_s": 0.0,
+        "end_s": 8.0,
+        "model_called": false
+      },
+      "manual_strict_condition_verdict": "FAIL",
+      "manual_go2_hold_s": 12.48,
+      "manual_go2_verdict": "FAIL",
+      "manual_go2_model_called": false,
+      "edited_export_roundtrip_values_preserved": true,
+      "edited_export_roundtrip_approval_reset": true,
+      "external_request_count_before": 2,
+      "external_request_count_after": 2,
+      "reserved_budget_changed": false,
+      "related_cpu_tests_passed": 142
+    }
+  },
+  "final_video": {
+    "directory": "submission/meta-recovery-demo-20261105-v2",
+    "file": "submission/meta-recovery-demo-20261105-v2/mollet-meta-recovery-demo-180s-en-captioned.mp4",
+    "sha256": "aaf51142b442f4957a7580214033a86677bdf1cf32a0b02fea7bcbb875d32f57",
+    "duration_s": 180.0,
+    "width": 1280,
+    "height": 840,
+    "video_codec": "h264",
+    "audio_codec": "aac",
+    "full_decode_exit": 0,
+    "english_caption_region_height_px": 120,
+    "english_caption_body_overlap_observed": false,
+    "manifest": "submission/meta-recovery-demo-20261105-v2/manifest.json",
+    "manifest_sha256": "51f6113970e8c38f815cdec91bedb078b0fbc0b42d99ef37442ea8e9ef2590a2",
+    "korean_alternative": {
+      "file": "submission/meta-recovery-demo-20261105-v2/mollet-meta-recovery-demo-180s-ko.mp4",
+      "sha256": "94177579127d018a6ebd9a184feac19260458ae71005efea5f0ef129ce79efcb",
+      "duration_s": 180.0,
+      "width": 1280,
+      "height": 720,
+      "video_codec": "h264",
+      "audio_codec": "aac",
+      "full_decode_exit": 0
+    },
+    "scenes_with_sapi_korean_narration": 12,
+    "scenes_total": 12,
+    "video_url": null,
+    "status": "local_files_verified_public_url_pending",
+    "supersedes_directory": "submission/meta-recovery-demo-20261105-v1",
+    "supersession_reason": "v1_english_caption_layout_issue"
+  },
+  "review": {
+    "code_reviewer_verdict": "APPROVE",
+    "open_high_findings": 0,
+    "open_medium_findings": 0
+  },
+  "runtime": {
+    "url": "http://127.0.0.1:7706",
+    "pid": 3764,
+    "retained_for_submission_preparation": true
+  },
+  "source_archive": {
+    "status": "create_outside_repository_after_final_package_verification",
+    "path": null,
+    "sha256": null
+  },
+  "files": {
+    "FORM-ANSWERS-ko.txt": {
+      "sha256": "fe12bcfc56608b8b41c56a7837caa9958cc541bec69d3108458ab31797d9d5a3",
+      "bytes": 5077
+    },
+    "FORM-ANSWERS-en.txt": {
+      "sha256": "ac947d1ba63af722a2df61fdbeb435052084dc22e6ee54ee4b94c795a0718a70",
+      "bytes": 4700
+    },
+    "ONE-PAGE.md": {
+      "sha256": "40da7cb861d0648da3ba0f0f8f2273c7deb8eb7b6375dd5e0b792279f8c63efe",
+      "bytes": 3697
+    },
+    "QA.md": {
+      "sha256": "8d184c08a9f85ef4bc0496352d91f6798e41f186bc103d7840a2b81e3118d4de",
+      "bytes": 5248
+    },
+    "PRE-SUBMIT.md": {
+      "sha256": "0b03c5117e16830c5b66c63f3534a5b984b7d0a0ed8720bb0dbf61992d98de4d",
+      "bytes": 9263
+    }
+  },
+  "source_documents": {
+    "docs/META-BEHAVIOR-REQUIREMENTS.json": "d916ddd7e6cb18415bbdf5982df1948538e0a969a5b5df7827c62cbec0a73d86",
+    "docs/META-DELIVERY-PLAN.md": "b742d31d9b4b232b8e68e5ce07b60c49c0848738ba3dca1a0d21438430946ebc"
+  },
+  "required_before_submission": [
+    "accessible_video_url_verified_logged_out",
+    "official_form_fields_required_flags_and_limits_mapped",
+    "verified_meta_feature_source_published_to_public_repository",
+    "existing_asset_reuse_condition_checked_in_authenticated_form_and_latest_rules",
+    "submission_authorization"
+  ],
+  "local_submission_assets_verified": true,
+  "external_submission_prerequisites_complete": false,
+  "user_approved": false,
+  "ready_to_submit": false,
+  "submitted": false,
+  "push_performed": false
+}

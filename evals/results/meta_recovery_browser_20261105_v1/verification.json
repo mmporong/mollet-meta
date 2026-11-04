@@ -1,0 +1,77 @@
+{
+  "schema": "meta-saved-recovery-capture-v1",
+  "scope": "actual_historical_provider_results_replayed_in_current_browser",
+  "source_commit": "9286121323ca1246a5cbb5e5192d0b83fd64c45f",
+  "url": "http://127.0.0.1:7706",
+  "checks": [
+    {
+      "name": "actual_historical_spark_sam_receipts_verified",
+      "passed": true
+    }
+  ],
+  "page_errors": [],
+  "blocked_provider_requests": [],
+  "screenshots": [],
+  "downloads": [],
+  "new_model_calls": 0,
+  "gpu_jobs": 0,
+  "browser_closed": true,
+  "status_before": {
+    "credential_persistence_enabled": true,
+    "credential_saved": false,
+    "configuration_saved": true,
+    "preflight_requests_started": 0,
+    "total_external_requests_started": 2,
+    "key_configured": false,
+    "credit_confirmed": true,
+    "remaining_credit_usd": "150.00",
+    "budget_usd": "1.00",
+    "reserved_usd": "0.622616",
+    "available_budget_usd": "0.377384",
+    "enabled": false,
+    "blockers": [
+      "MODEL_API_KEY가 설정되지 않았습니다."
+    ],
+    "live_requests_started": 2,
+    "video_calls_enabled": true
+  },
+  "replay": {
+    "historical_model_calls": 2,
+    "new_model_calls": 0,
+    "verification_level": "local_provider_receipts_verified",
+    "receipts": [
+      {
+        "model": "muse-spark-1.3",
+        "run_id": "9c20912b-fa37-4f3c-a118-11bc13bda76a",
+        "provider_request_id": "1358757f-6636-4659-85a5-8e3c001e84d2",
+        "response_id": "resp_6aeaebc268240c6c192e444b",
+        "status": "completed_http",
+        "request_sha256": "363f1a845534f077a3ec9bfb5acdaa5dfda9a9cb88b4db0445ba84b60fa76012",
+        "response_sha256": "47a20cb67dee98c9bbb6db90488307decee8ead9855134ab0c4f4da04e55e0e5"
+      },
+      {
+        "model": "sam-3.1",
+        "run_id": "ee92f2fd-f138-4198-838e-d52b5472b91c",
+        "provider_request_id": "ce259a12-ef5d-40b9-aa9b-6291932674c8",
+        "response_id": null,
+        "status": "completed_http",
+        "request_sha256": "344aa7419708eade5bf2746f917e6778cd40200d8c382581e38b9dbfb1b03f8b",
+        "response_sha256": "88f0b62f64badc3a57ac538c926bcc10c6d9cd118ad98207bc6ddf0caf12afb1"
+      }
+    ],
+    "provider_authentication": "verified_local_provider_receipts",
+    "notice": "저장된 실제 응답을 검증해 이어 봅니다. 현재 모델 호출은 수행하지 않았습니다."
+  },
+  "video_sha256": "82107853548545c0977b8488acd45931689c1de737db29d931d1735505367f10",
+  "original_condition": {
+    "metric": "up_axis_z",
+    "op": "gte",
+    "threshold": 0.8,
+    "deadline_s": 8,
+    "hold_s": 0.5
+  },
+  "browser": "156.0.8078.80",
+  "passed": false,
+  "error": "Error: browserContext.newPage: Executable doesn't exist at C:\\Users\\LIMMM\\AppData\\Local\\ms-playwright\\ffmpeg-1013\\ffmpeg-win64.exe\n╔═════════════════════════════════════════════════════════════════╗\n║ Video rendering requires ffmpeg binary.                         ║\n║ Downloading it will not affect any of the system-wide settings. ║\n║ Please run the following command:                               ║\n║                                                                 ║\n║     npx playwright install ffmpeg                               ║\n║                                                                 ║\n║ <3 Playwright Team                                              ║\n╚═════════════════════════════════════════════════════════════════╝",
+  "browser_video": null
+}

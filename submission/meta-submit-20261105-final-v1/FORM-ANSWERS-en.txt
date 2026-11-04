@@ -1,0 +1,46 @@
+[Usage note]
+This is a verified answer bank, not a mapping to the official form or its character limits. Match each answer to the authenticated submission form before pasting only the requested value.
+
+Project name
+Mollet
+
+One-line description
+Mollet turns a robot behavior request into a testable condition and shows the interval that satisfies it across video locations and synchronized state records.
+
+Problem and intended users
+Robotics developers move between reward curves and experiment video to determine whether a robot behaved as intended. A reward score does not show when a posture requirement was met or lost, while video alone is difficult to test repeatedly against numeric conditions. Mollet captures the intended behavior as a condition and reproduces the decision on the original video and timestamped state record.
+
+How it works
+Muse Spark 1.3 converts a natural-language behavior request and state context into a restricted JSON condition. SAM 3.1 returns robot locations in the corresponding video. A local deterministic evaluator applies the start deadline and hold duration to original state values aligned with video time. The condition, video hash, observations, review record and result are exported as one evidence bundle.
+
+Use of Meta tools
+We made one Meta Model API request to Muse Spark 1.3 and one to SAM 3.1. Spark generated a condition requiring the H1 robot's up-axis alignment to reach at least 0.8 within eight seconds and remain there for 0.5 seconds. SAM returned robot locations for 624 of 625 observations. That count is response coverage, not tracking accuracy.
+
+Verified result
+The H1 condition passed from 0.0 to 0.5 seconds. Loading the exported JSON and evaluating it again produced the same result without changing the original state values.
+
+Browser verification
+In Chrome, we restored the saved Spark and SAM results without an API key and played the H1 recording. The workbench reconnected 625 state observations and 624 locations and rendered the SAM location overlay. A user-edited eight-second hold condition passed from 0.0 to 8.0 seconds, while a stricter condition failed. A manually authored 12.48-second Go2 condition also failed. Reloading the edited export preserved its values and reset its approval state. The model-call count remained at two and the reserved budget did not change.
+
+Final local demo
+The verified submission candidate is the 180-second English-captioned video at submission/meta-recovery-demo-20261105-v2/mollet-meta-recovery-demo-180s-en-captioned.mp4, SHA-256 aaf51142b442f4957a7580214033a86677bdf1cf32a0b02fea7bcbb875d32f57. The Korean version, mollet-meta-recovery-demo-180s-ko.mp4, also passed full decoding and has SHA-256 94177579127d018a6ebd9a184feac19260458ae71005efea5f0ef129ce79efcb.
+
+What we built for the hackathon
+We added a Meta behavior-authoring and review workflow to Mollet's existing RL diagnosis foundation. The hackathon contribution covers Spark condition generation, SAM video locations, temporal evaluation, condition editing and evidence export. Code paths also support video-grounded hypotheses, reflection and correction proposals, but no new inference, policy retraining or measured performance improvement from those paths is included in the submission evidence.
+
+What is different
+Model output is not treated as the success verdict. Meta models provide a reviewable condition and video grounding, while PASS, FAIL or UNKNOWN is computed from original state values and fixed evaluation rules. Missing evidence remains UNKNOWN rather than being converted into a pass.
+
+Technical approach
+Mollet uses a Python localhost server, a JavaScript workbench, the Meta Responses API, a restricted JSON schema and a deterministic temporal evaluator. Responses saved from the historical authenticated runs can be replayed after their provider receipts, video hash and state values are checked, without a key or a new model request. Replay does not perform provider authentication and is not recorded as new inference.
+
+Existing work and new contribution
+The existing assets are Mollet's RL failure diagnosis and recovery evaluation foundation plus recorded stair videos and state traces. The hackathon contribution is the Meta behavior-authoring, video-location, temporal evaluation and evidence-export workflow. Existing policy-training or recovery results are not counted as new Meta results.
+
+Open-source repository
+https://github.com/mmporong/rl-triage-agent
+The base repository is public, but the Meta feature source is still local. Use this as the submission repository only after publishing the verified feature commit and checking it while logged out.
+
+Demo video URL
+[Add after public upload]
+
