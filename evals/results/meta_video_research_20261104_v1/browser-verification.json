@@ -1,0 +1,47 @@
+{
+  "schema": "meta-video-research-browser-v1",
+  "scope": "synthetic_provider_envelope_and_actual_recorded_video_not_live_model_quality",
+  "checks": [
+    {
+      "name": "additional_paid_video_call_is_locked",
+      "passed": true
+    },
+    {
+      "name": "manual_condition_checked_without_claiming_spark_inference",
+      "passed": true
+    },
+    {
+      "name": "actual_session_export_has_no_invented_model_call",
+      "passed": true
+    },
+    {
+      "name": "downloaded_request_contains_actual_video_and_structured_output",
+      "passed": true
+    },
+    {
+      "name": "synthetic_completed_envelope_imported_as_unverified",
+      "passed": true
+    },
+    {
+      "name": "evidence_frame_jump_available",
+      "passed": true
+    },
+    {
+      "name": "two_hypotheses_checked_once_then_stopped",
+      "passed": true
+    },
+    {
+      "name": "registered_reward_proposal_downloaded_without_execution_authority",
+      "passed": true
+    }
+  ],
+  "page_errors": [],
+  "new_model_calls": 0,
+  "gpu_jobs": 0,
+  "browser": "156.0.8078.80",
+  "prepared_request_sha256": "29ba45373d53bdd389c156efda3910ce3130c7b4479d858e0361338644e1173a",
+  "video_sha256": "82107853548545c0977b8488acd45931689c1de737db29d931d1735505367f10",
+  "passed": false,
+  "error": "TimeoutError: page.waitForFunction: Timeout 15000ms exceeded.",
+  "browser_closed": true
+}

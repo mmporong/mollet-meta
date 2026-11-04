@@ -1,0 +1,254 @@
+{
+  "schema": "meta-research-session-v1",
+  "session_id": "c91e7d77-d55d-47aa-b8e5-9b799049e3e7",
+  "example_id": "h1-up",
+  "input_manifest": {
+    "schema": "meta-video-analysis-input-v1",
+    "example_id": "h1-up",
+    "video_sha256": "82107853548545c0977b8488acd45931689c1de737db29d931d1735505367f10",
+    "video_bytes": 1332566,
+    "sample_count": 625,
+    "source_trace_sha256": "ef305c390f11842ed04dd0d8a835af5159e02c93a9a51763008591d2f6831e07",
+    "documentation": "https://dev.meta.ai/docs/video-understanding",
+    "input_kind": "video_and_synchronized_state",
+    "sent": false,
+    "capture_approved": false,
+    "new_training_executed": false
+  },
+  "analysis": {
+    "schema": "meta-improvement-analysis-v1",
+    "summary": "영상 근거와 상태 수치 대조",
+    "hypotheses": [
+      {
+        "id": "posture",
+        "claim": "자세가 유지되는지 검사",
+        "evidence_frames": [
+          0,
+          350
+        ],
+        "contract": {
+          "schema": "behavior-contract-v1",
+          "title": "계단 재생 중 자세 유지",
+          "instruction": "영상 시작부터 8초 동안 수직축 정렬이 0.8 이상 유지되는지 확인합니다.",
+          "trigger": {
+            "kind": "time",
+            "at_s": 0,
+            "region": null,
+            "object_id": null
+          },
+          "condition": {
+            "metric": "up_axis_z",
+            "op": "gte",
+            "threshold": 0.8,
+            "deadline_s": 8,
+            "hold_s": 0.5
+          },
+          "max_gap_s": 0.05,
+          "source": {
+            "kind": "meta_visual_hypothesis_proposal",
+            "provider_authentication": "unverified_analysis_input",
+            "model_called": false,
+            "execution_authorized": false
+          }
+        },
+        "correction_id": "none",
+        "rationale": "원인 확정 전 자세 조건을 검사합니다."
+      },
+      {
+        "id": "reward",
+        "claim": "보상 좌표계 결함 가능성은 코드 검사 필요",
+        "evidence_frames": [
+          100
+        ],
+        "contract": {
+          "schema": "behavior-contract-v1",
+          "title": "계단 재생 중 자세 유지",
+          "instruction": "영상 시작부터 8초 동안 수직축 정렬이 0.8 이상 유지되는지 확인합니다.",
+          "trigger": {
+            "kind": "time",
+            "at_s": 0,
+            "region": null,
+            "object_id": null
+          },
+          "condition": {
+            "metric": "up_axis_z",
+            "op": "gte",
+            "threshold": 1,
+            "deadline_s": 8,
+            "hold_s": 0.5
+          },
+          "max_gap_s": 0.05,
+          "source": {
+            "kind": "meta_visual_hypothesis_proposal",
+            "provider_authentication": "unverified_analysis_input",
+            "model_called": false,
+            "execution_authorized": false
+          }
+        },
+        "correction_id": "restore_body_frame_reward",
+        "rationale": "영상만으로 코드 결함을 확정하지 않습니다."
+      }
+    ],
+    "limitations": [
+      "저장된 개발 기록이며 새 인과 실험이 아닙니다."
+    ]
+  },
+  "history": [
+    {
+      "round": 1,
+      "analysis_sha256": "f815fafd5a5983468822693ba8bc746bc807c90e6343b503aa2871654de5db1c",
+      "observations_sha256": "69c892a3ba263e89d121979e7faa010657ed949a77e0ea1980fbfd906a127891",
+      "selected_hypothesis_id": "posture",
+      "result": {
+        "stage": "draft",
+        "approval_status": "unreviewed",
+        "verdict": "PASS",
+        "reason": "마감 시점 안에 조건을 시작해 필요한 유지 시간 동안 연속으로 충족했습니다.",
+        "trigger_t_s": 0,
+        "interval": {
+          "start_s": 0,
+          "end_s": 0.5
+        },
+        "examined_samples": 426,
+        "warnings": [],
+        "spec_sha256": "dee2d828269b4e09f43cb1c61ae961348155b1b8e62aca496a52d333894f3c2c",
+        "observations_sha256": "69c892a3ba263e89d121979e7faa010657ed949a77e0ea1980fbfd906a127891",
+        "evidence_scope": "local_recorded_check_not_causal_experiment"
+      },
+      "information_gain_bits": 0
+    },
+    {
+      "round": 2,
+      "analysis_sha256": "f815fafd5a5983468822693ba8bc746bc807c90e6343b503aa2871654de5db1c",
+      "observations_sha256": "69c892a3ba263e89d121979e7faa010657ed949a77e0ea1980fbfd906a127891",
+      "selected_hypothesis_id": "reward",
+      "result": {
+        "stage": "draft",
+        "approval_status": "unreviewed",
+        "verdict": "FAIL",
+        "reason": "전체 관측창이 덮였지만 마감 안에 시작해 유지 시간을 채운 충족 구간이 없습니다.",
+        "trigger_t_s": 0,
+        "interval": null,
+        "examined_samples": 426,
+        "warnings": [],
+        "spec_sha256": "a67f12e96f39b716810b7d71e978db321a2fbb28bd36538c061fa8492a6b5e0e",
+        "observations_sha256": "69c892a3ba263e89d121979e7faa010657ed949a77e0ea1980fbfd906a127891",
+        "evidence_scope": "local_recorded_check_not_causal_experiment"
+      },
+      "information_gain_bits": 0
+    }
+  ],
+  "cycles": [],
+  "analysis_origin": "unverified_imported_spark_video_response",
+  "provider_authentication": "unverified_saved_response",
+  "receipts": [],
+  "external_evaluations": [
+    {
+      "hypothesis_id": "reward",
+      "comparison": {
+        "schema": "meta-recovery-comparison-result-v1",
+        "evaluation": "behavior_oracle",
+        "intervention": {
+          "correction_id": "restore_body_frame_reward",
+          "recovery_mode": "restart",
+          "mechanism": "reward"
+        },
+        "result": {
+          "outcome": "recovered",
+          "before": {
+            "label": "unhealthy",
+            "failed": [
+              "relative.err_xy_ratio",
+              "absolute.lin_vel_rmse_mps"
+            ],
+            "relative": {
+              "label": "unhealthy",
+              "failed": [
+                "err_xy_ratio"
+              ],
+              "short_horizon": false,
+              "checks": {
+                "survival_ratio": true,
+                "fall_frac": true,
+                "err_xy_ratio": false,
+                "err_yaw_ratio": true
+              }
+            },
+            "absolute_checks": {
+              "survival_fraction": true,
+              "fall_rate": true,
+              "lin_vel_rmse_mps": false,
+              "yaw_rate_rmse_radps": true
+            },
+            "compared": {
+              "survival_ratio": 1,
+              "fall_frac": 0,
+              "err_xy_ratio": 5.333333333333334,
+              "err_yaw_ratio": 1,
+              "horizon_ratio": 1
+            },
+            "metrics": {
+              "fall_rate": 0,
+              "mean_survival_s": 20,
+              "lin_vel_rmse_mps": 0.8,
+              "yaw_rate_rmse_radps": 0.3
+            },
+            "metrics_verified": false,
+            "checkpoint_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "action_scale": 0.25
+          },
+          "after": {
+            "label": "healthy",
+            "failed": [],
+            "relative": {
+              "label": "healthy",
+              "failed": [],
+              "short_horizon": false,
+              "checks": {
+                "survival_ratio": true,
+                "fall_frac": true,
+                "err_xy_ratio": true,
+                "err_yaw_ratio": true
+              }
+            },
+            "absolute_checks": {
+              "survival_fraction": true,
+              "fall_rate": true,
+              "lin_vel_rmse_mps": true,
+              "yaw_rate_rmse_radps": true
+            },
+            "compared": {
+              "survival_ratio": 1,
+              "fall_frac": 0,
+              "err_xy_ratio": 1,
+              "err_yaw_ratio": 1,
+              "horizon_ratio": 1
+            },
+            "metrics": {
+              "fall_rate": 0,
+              "mean_survival_s": 20,
+              "lin_vel_rmse_mps": 0.15,
+              "yaw_rate_rmse_radps": 0.3
+            },
+            "metrics_verified": false,
+            "checkpoint_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "action_scale": 0.25
+          },
+          "intervened": true,
+          "causal_confirmation": false
+        },
+        "causal_confirmation": false,
+        "performance_improvement_measured": false,
+        "meta_model_judged_outcome": false
+      },
+      "input_sha256": "6ea93731962ca9b8f9ffc5970cf7f4b3c6ef1b22eff0963e4b90f262d1ef6aee",
+      "provider_authentication": "unverified_saved_evaluation"
+    }
+  ],
+  "provider_imports": 1,
+  "new_model_calls": 0,
+  "new_preflight_requests": 0,
+  "new_external_api_requests": 0,
+  "training_executed": false,
+  "recovery_improvement_measured": false
+}

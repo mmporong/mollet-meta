@@ -1,0 +1,32 @@
+{
+  "schema": "meta-video-improvement-integration-summary-v1",
+  "code_commit": "a1f96ad20e80adc64442cb95d5116891f855b259",
+  "cpu_test_result": "248 passed in 10.09s",
+  "test_result_source": "observed_exec_command_result_fd560e",
+  "browser_checks_passed": 13,
+  "runtime": {
+    "url": "http://127.0.0.1:7706/#improvementHeading",
+    "pid": 46836,
+    "key_configured": false,
+    "credit_confirmed": false,
+    "video_calls_enabled": false,
+    "live_requests_started": 2,
+    "preflight_requests_started": 0,
+    "previous_server_available": false
+  },
+  "new_paid_calls": 0,
+  "new_gpu_jobs": 0,
+  "actual_video_model_quality_verified": false,
+  "new_training_or_recovery_improvement_measured": false,
+  "correction_consumer": "evals.correct.propose -> CorrectionLedger pending (budget_gpu_s=0)",
+  "unapproved_execution_blocked_test": "tests/test_meta_triage_bridge.py::test_confirmed_probe_connects_to_actual_correction_ledger_but_cannot_run_unapproved",
+  "security_review_findings_resolved_by_regressions": [
+    "video_input_sha_gate",
+    "sent_manifest_and_session_state",
+    "preflight_ledger_cache_and_minimum_budget",
+    "prepared_session_reclaim_and_cancel"
+  ],
+  "independent_second_approval_claimed": false,
+  "final_browser_harness_commit": "c47a77ed240216aa61da99b7a01180c973e7c2da",
+  "browser_verification": "evals/results/meta_video_research_20261104_v5/browser-verification.json"
+}

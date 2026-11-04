@@ -1,5 +1,13 @@
 # Meta API 실제 동작과 원본 프로젝트 반영 계획
 
+## 현재 추가 구현 범위
+
+일반 Goal로 영상 기반 Spark 가설·조건 검사·재검토·등록 교정 소비 연결을 추가했다. 구현 소스는 `a1f96ad`이며 [새 Chrome 검사 13개](../evals/results/meta_video_research_20261104_v5/browser-verification.json)와 관련 CPU 248개가 통과했다. 실제 원본 MP4를 요청에 포함하고, 합성 provider 응답의 프레임·폐쇄형 스키마·반복 검사와 기존 회복 판정 소비를 확인했다. 합성 응답을 실제 Spark 영상 분석 결과로 기록하지 않았다.
+
+확인 probe가 있는 교정은 기존 `correct.propose`와 `CorrectionLedger`에 GPU 예산 0의 pending 요청으로 연결한다. 영상 가설이 확인 probe나 실행 승인을 대체하지 않는다. 기존 triage 설정 chN 되돌리기와 보상 함수 코드 교정은 다른 소비 경로다. 실제 재학습·교정 적용·회복 성능 향상 측정, 추가 유료 요청, push·제출은 수행하지 않았다.
+
+새 실행 화면은 `http://127.0.0.1:7706/#improvementHeading`이다. 기존 7705 서버가 현재 응답하지 않아 메모리 키 연결은 재사용하지 못했다. 새 서버의 키·크레딧 확인은 없고 영상 호출은 잠금이다. 실행 정보는 저장소 밖 `hackathon-specialist/tmp/meta-research-preview-20261104.json`에 기록한다. 원본 main과 다른 세션의 작업 파일은 변경하지 않았으며 추가 구현은 Meta 기능 worktree에 커밋했다. 아래 P1~P4는 이전 실제 실행의 보존 기록이다.
+
 작성일: 2026-11-04. 메인 담당: co_meta.
 
 ## 완료 계약

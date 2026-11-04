@@ -111,5 +111,36 @@
     "browser": "156.0.8078.48",
     "checks_passed": 17,
     "headless": true
+  },
+  "video_improvement_extension": {
+    "code_commit": "a1f96ad20e80adc64442cb95d5116891f855b259",
+    "implemented": [
+      "video_and_state_spark_request",
+      "frame_grounded_hypothesis_import",
+      "bounded_recorded_condition_checks",
+      "reflection_with_recovery_comparison",
+      "confirmed_probe_to_registered_correction_pending_proposal",
+      "fixed_evaluation_recovery_comparison"
+    ],
+    "actual_new_video_inference_executed": false,
+    "new_training_executed": false,
+    "performance_improvement_measured": false,
+    "cpu_tests_passed": 248,
+    "browser_checks_passed": 13,
+    "browser_verification": "evals/results/meta_video_research_20261104_v5/browser-verification.json",
+    "browser_response_scope": "synthetic_provider_envelope_not_actual_video_model_response",
+    "additional_api_calls": 0,
+    "gpu_jobs": 0,
+    "final_browser_harness_commit": "c47a77ed240216aa61da99b7a01180c973e7c2da"
+  },
+  "current_runtime": {
+    "url": "http://127.0.0.1:7706/#improvementHeading",
+    "pid": 46836,
+    "key_configured": false,
+    "credit_confirmed": false,
+    "video_calls_enabled": false,
+    "live_requests_started": 2,
+    "preflight_requests_started": 0,
+    "previous_server_available": false
   }
 }

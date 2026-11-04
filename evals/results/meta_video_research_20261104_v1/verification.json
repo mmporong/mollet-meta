@@ -1,0 +1,12 @@
+{
+  "scope": "CPU_integration_and_synthetic_provider_browser_validation_not_live_model_quality",
+  "source_commit": "7a5c4faf1a2378d2cbbcb08c2efdf72ff4cc5538",
+  "additional_meta_requests": 0,
+  "gpu_jobs": 0,
+  "training_executed": false,
+  "performance_improvement_measured": false,
+  "recorded_h1_checks": 2,
+  "test_server_closed": true,
+  "passed": false,
+  "error": "TimeoutError: page.waitForFunction: Timeout 15000ms exceeded.\n"
+}

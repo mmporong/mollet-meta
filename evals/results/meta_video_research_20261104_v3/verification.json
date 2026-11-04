@@ -1,0 +1,11 @@
+{
+  "scope": "CPU_integration_and_synthetic_provider_browser_validation_not_live_model_quality",
+  "source_commit": "f30d47e3bf06844d0f6d0374bf0bb5ca5d85bb7f",
+  "additional_meta_requests": 0,
+  "gpu_jobs": 0,
+  "training_executed": false,
+  "performance_improvement_measured": false,
+  "recorded_h1_checks": 2,
+  "test_server_closed": true,
+  "passed": true
+}

@@ -1,0 +1,96 @@
+{
+  "schema": "meta-recovery-comparison-result-v1",
+  "evaluation": "behavior_oracle",
+  "intervention": {
+    "correction_id": "restore_body_frame_reward",
+    "recovery_mode": "restart",
+    "mechanism": "reward"
+  },
+  "result": {
+    "outcome": "recovered",
+    "before": {
+      "label": "unhealthy",
+      "failed": [
+        "relative.err_xy_ratio",
+        "absolute.lin_vel_rmse_mps"
+      ],
+      "relative": {
+        "label": "unhealthy",
+        "failed": [
+          "err_xy_ratio"
+        ],
+        "short_horizon": false,
+        "checks": {
+          "survival_ratio": true,
+          "fall_frac": true,
+          "err_xy_ratio": false,
+          "err_yaw_ratio": true
+        }
+      },
+      "absolute_checks": {
+        "survival_fraction": true,
+        "fall_rate": true,
+        "lin_vel_rmse_mps": false,
+        "yaw_rate_rmse_radps": true
+      },
+      "compared": {
+        "survival_ratio": 1.0,
+        "fall_frac": 0.0,
+        "err_xy_ratio": 5.333333333333334,
+        "err_yaw_ratio": 1.0,
+        "horizon_ratio": 1.0
+      },
+      "metrics": {
+        "fall_rate": 0.0,
+        "mean_survival_s": 20.0,
+        "lin_vel_rmse_mps": 0.8,
+        "yaw_rate_rmse_radps": 0.3
+      },
+      "metrics_verified": false,
+      "checkpoint_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "action_scale": 0.25
+    },
+    "after": {
+      "label": "healthy",
+      "failed": [],
+      "relative": {
+        "label": "healthy",
+        "failed": [],
+        "short_horizon": false,
+        "checks": {
+          "survival_ratio": true,
+          "fall_frac": true,
+          "err_xy_ratio": true,
+          "err_yaw_ratio": true
+        }
+      },
+      "absolute_checks": {
+        "survival_fraction": true,
+        "fall_rate": true,
+        "lin_vel_rmse_mps": true,
+        "yaw_rate_rmse_radps": true
+      },
+      "compared": {
+        "survival_ratio": 1.0,
+        "fall_frac": 0.0,
+        "err_xy_ratio": 1.0,
+        "err_yaw_ratio": 1.0,
+        "horizon_ratio": 1.0
+      },
+      "metrics": {
+        "fall_rate": 0.0,
+        "mean_survival_s": 20.0,
+        "lin_vel_rmse_mps": 0.15,
+        "yaw_rate_rmse_radps": 0.3
+      },
+      "metrics_verified": false,
+      "checkpoint_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "action_scale": 0.25
+    },
+    "intervened": true,
+    "causal_confirmation": false
+  },
+  "causal_confirmation": false,
+  "performance_improvement_measured": false,
+  "meta_model_judged_outcome": false
+}
