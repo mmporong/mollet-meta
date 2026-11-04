@@ -1,0 +1,69 @@
+{
+  "schema": "meta-final-submission-receipt-v1",
+  "opportunity_id": "meta-global-ai-developer-hackathon-2026",
+  "event_name": "Meta Global AI Developer Hackathon 2026",
+  "project_name": "Mollet",
+  "submission_record_id": "20261105-mollet-final",
+  "stage": "final_project_submission",
+  "status": "submitted",
+  "official_submission_id": "9dee8a3e-e5fc-4d63-8406-686f4919bc1e",
+  "result_url": "https://cerebralvalley.ai/e/meta-ai-developer-hackathon/hackathon/9dee8a3e-e5fc-4d63-8406-686f4919bc1e/edit?backUrl=%2Fe%2Fmeta-ai-developer-hackathon",
+  "result_url_requires_account": true,
+  "submitted_at": null,
+  "submitted_at_note": "The UI did not expose an authoritative server submission timestamp; client attempt and verification times are recorded separately.",
+  "client_submit_attempt_started_at": "2026-11-04T23:13:29.973Z",
+  "accepted_observed_at": "2026-11-04T23:13:33.588Z",
+  "verified_at": "2026-11-04T23:14:38.263Z",
+  "display_timezone": "Asia/Seoul",
+  "verification": {
+    "submit_request": {
+      "method": "POST",
+      "endpoint": "https://api.cerebralvalley.ai/v1/event/meta-ai-developer-hackathon/hackathon/submit",
+      "status": 200
+    },
+    "confirmation_labels": [
+      "Project Submitted",
+      "View Submission"
+    ],
+    "server_saved_edit_page_button": "Update Project",
+    "server_saved_text_fields_match": 6,
+    "required_fields_filled_before_submit": 10,
+    "invalid_fields_before_submit": 0,
+    "technical_character_counts": [
+      2926,
+      2875,
+      2844
+    ],
+    "automatic_retries": 0,
+    "additional_submit_clicks_during_verification": 0
+  },
+  "submitted_resources": [
+    {
+      "kind": "public_github_repository",
+      "url": "https://github.com/mmporong/mollet-meta",
+      "main_commit_at_submission": "67600bf9b20c2a757d26546627affb460991846d"
+    },
+    {
+      "kind": "demo_video",
+      "url": "https://cdn.jsdelivr.net/gh/mmporong/mollet-meta@44c460d5d82033116642e1a77ed38b738d6aea14/submission/meta-recovery-demo-20261105-v2/mollet-meta-recovery-demo-180s-en-captioned.mp4",
+      "duration_s": 180,
+      "sha256": "aaf51142b442f4957a7580214033a86677bdf1cf32a0b02fea7bcbb875d32f57",
+      "bytes": 7318149
+    }
+  ],
+  "uploaded_attachments": [],
+  "delivery_note": "The official form accepted repository and video URLs; the local source ZIP was not uploaded as an attachment.",
+  "private_evidence_digests": {
+    "final-submission-attempt.private.json": "8854c1f801504203ae57646dc7824d4d07255f91fbc76f901efbd173b7685f7c",
+    "final-submission-before.private.json": "4cc67770c757ecbda5a5c9ea250457ebb8878c49c1a3778108656963ae95dd4d",
+    "final-submission-after.private.json": "b89b306a46863610d36e8fa7a398cfa7ed049f78a9f0f8a76296cfe8d1d38f86",
+    "final-submission-after.private.png": "2276cad2240e0d5ee7f7741ce7b56d709028547d52c11dd54651021ec1654cb8",
+    "server-saved-submission.private.json": "dd9fb637aa6a648c0fdbe25cb1e3a0a3608fee8aad10ba5e81af9a21e3b2c004",
+    "server-saved-submission.private.png": "30cfa2239a7eb79d530460d2da28d13885167616d037b6f266a31bf5551a4593"
+  },
+  "private_evidence_published": false,
+  "personal_survey_values_included": false,
+  "new_model_calls": 0,
+  "new_gpu_jobs": 0,
+  "new_training_jobs": 0
+}

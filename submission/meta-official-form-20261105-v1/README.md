@@ -1,6 +1,6 @@
-# Mollet submission preparation
+# Mollet submission
 
-This package follows the authenticated Meta Global AI Developer Hackathon submission form: 21 questions, including 10 required questions. The form was inspected in Playwright and prepared for user review. The final Submit button has not been clicked by the assistant.
+This package follows the authenticated Meta Global AI Developer Hackathon submission form: 21 questions, including 10 required questions. The project was submitted through the official form. The server accepted the submission with HTTP 200, the event page displayed "Project Submitted" and "View Submission", and the saved submission was reopened to verify all six text fields. See the [submission receipt](execution/receipt.json) and [current status](submission-status.json).
 
 - Public source: <https://github.com/mmporong/mollet-meta>
 - Public 180-second demo: <https://cdn.jsdelivr.net/gh/mmporong/mollet-meta@44c460d5d82033116642e1a77ed38b738d6aea14/submission/meta-recovery-demo-20261105-v2/mollet-meta-recovery-demo-180s-en-captioned.mp4>
@@ -19,9 +19,9 @@ This package follows the authenticated Meta Global AI Developer Hackathon submis
 
 The technical answers contain 2,926, 2,875 and 2,844 characters respectively, each below the observed 3,000-character limit. They distinguish the two completed historical Meta calls from saved-response replay and from unexecuted video-analysis, reflection and training extensions.
 
-The team and project classification fields were prepared from the project context. The user supplied the two required survey answers, which were entered in the form; those personal answers are omitted from this public package. Optional survey fields and the marketing-consent checkbox were left unselected.
+The team and project classification fields were prepared from the project context. The user supplied the two required survey answers, which were entered in the form; those personal answers are omitted from this public package. The lower survey fields and marketing-consent checkbox were completed before submission. Individual survey answers remain private.
 
-The browser's input values were read back and compared with the prepared draft. All 10 required fields were populated, no `aria-invalid` fields were observed, and the Submit button was enabled. These checks establish readiness for user review; they are not a server acceptance receipt.
+The browser's input values were read back and compared with the prepared draft. All 10 required fields were populated, no `aria-invalid` fields were observed, and the Submit button was enabled. This file preserves the preparation checks; the separate execution receipt records server acceptance and saved-field verification.
 
 ## Evidence scope
 

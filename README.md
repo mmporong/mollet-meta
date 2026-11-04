@@ -4,7 +4,7 @@ Mollet is a behavior-condition workbench for recorded robot runs. It turns a pla
 
 This repository contains the Meta AI Developer Hackathon application built on the existing [RL Triage Agent](README-RL-TRIAGE.md). The hackathon work adds the browser workbench, Meta model adapters, saved-response replay, condition evaluation and export, and the three-minute demonstration. It does not claim that a new policy was trained or that recovery performance improved.
 
-[Watch the 180-second demo with English captions](https://cdn.jsdelivr.net/gh/mmporong/mollet-meta@44c460d5d82033116642e1a77ed38b738d6aea14/submission/meta-recovery-demo-20261105-v2/mollet-meta-recovery-demo-180s-en-captioned.mp4) · [한국어 영상](submission/meta-recovery-demo-20261105-v2/mollet-meta-recovery-demo-180s-ko.mp4) · [Evidence manifest](submission/meta-recovery-demo-20261105-v2/manifest.json) · [Submission notes](submission/meta-official-form-20261105-v1/README.md) · [Apache-2.0 license](LICENSE)
+[Watch the 180-second demo with English captions](https://cdn.jsdelivr.net/gh/mmporong/mollet-meta@44c460d5d82033116642e1a77ed38b738d6aea14/submission/meta-recovery-demo-20261105-v2/mollet-meta-recovery-demo-180s-en-captioned.mp4) · [한국어 영상](submission/meta-recovery-demo-20261105-v2/mollet-meta-recovery-demo-180s-ko.mp4) · [Evidence manifest](submission/meta-recovery-demo-20261105-v2/manifest.json) · [Submission notes](submission/meta-official-form-20261105-v1/README.md) · [Submission receipt](submission/meta-official-form-20261105-v1/execution/receipt.json) · [Apache-2.0 license](LICENSE)
 
 ![Mollet behavior-condition workbench](evals/results/meta_recovery_browser_20261105_v5/06-full-workbench.png)
 
