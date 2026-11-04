@@ -45,3 +45,10 @@ def test_response_archive_requires_actual_matching_provider_bytes(tmp_path):
     (source/'response.json').write_text('{}',encoding='utf-8')
     receipt={'directory':str(source),'content_type':'application/json','response_sha256':'f'*64}
     with pytest.raises(ValueError,match='SHA'):runner.archive_response(tmp_path,'first',{'receipt':receipt})
+
+
+def test_static_baseline_preserves_known_posture_failure_without_model_claim():
+    baseline=module().baseline_recorded_case()
+    assert baseline['result']['verdict']=='FAIL'
+    assert baseline['min_up_axis_z']<0 and baseline['first_below_threshold_s'] is not None
+    assert baseline['model_called'] is False and baseline['model_quality_benchmark'] is False

@@ -8,8 +8,14 @@ import json
 from pathlib import Path
 import shutil
 import subprocess
+import sys
 import urllib.error
 import urllib.request
+
+ROOT=Path(__file__).resolve().parents[1]
+sys.path.insert(0,str(ROOT/'src'))
+from rl_triage.behavior_authoring.datasets import load_example_view
+from rl_triage.behavior_authoring.evaluate import evaluate_contract
 
 
 INSTRUCTION = (
@@ -68,6 +74,22 @@ def checks(port: int, session_id: str, count: int) -> dict:
     return result
 
 
+def baseline_recorded_case() -> dict:
+    """모델 호출 전, 이미 구현된 기본 수치 조건이 아는 범위를 보존한다."""
+    view=load_example_view('go2-down-slow')
+    bundle=view['observations'];contract=view['default_contract']
+    result=evaluate_contract(contract,bundle)
+    posture=[row for row in bundle['samples'] if row['values']['up_axis_z'] is not None]
+    threshold=contract['condition']['threshold']
+    violations=[row for row in posture if row['values']['up_axis_z']<threshold]
+    return {'schema':'meta-recorded-static-baseline-v1','example_id':'go2-down-slow',
+            'video_sha256':bundle['video_sha256'],'contract':contract,'result':result,
+            'min_up_axis_z':min(row['values']['up_axis_z'] for row in posture),
+            'first_below_threshold_s':violations[0]['t_s'] if violations else None,
+            'model_called':False,'new_training_executed':False,'model_quality_benchmark':False,
+            'interpretation':'기존 수치 조건만으로 자세 위반을 찾을 수 있는지 확인하는 공개 개발 사례. Muse 필수성·정확도 비교가 아님.'}
+
+
 def main() -> None:
     parser=argparse.ArgumentParser();parser.add_argument('--out',type=Path,required=True)
     parser.add_argument('--port',type=int,default=7706);parser.add_argument('--prepare-only',action='store_true')
@@ -80,6 +102,8 @@ def main() -> None:
              'actual_reflection_executed':False,'new_training_executed':False,'performance_improvement_measured':False,
              'model_quality_benchmark':False,'scope':'single_seen_development_case','pushed':False,'submitted':False}
     try:
+        baseline=baseline_recorded_case();write(out/'baseline-before-model.json',baseline)
+        summary['static_baseline_verdict']=baseline['result']['verdict']
         before=request(args.port,'/api/meta/status')['status'];summary['status_before']=before
         prepared=request(args.port,'/api/improvement/prepare',{'example_id':'go2-down-slow','instruction':INSTRUCTION})
         sid=prepared['session_id'];summary['session_id']=sid
