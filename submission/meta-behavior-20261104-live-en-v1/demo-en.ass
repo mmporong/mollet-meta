@@ -1,0 +1,22 @@
+[Script Info]
+ScriptType: v4.00+
+PlayResX: 1280
+PlayResY: 840
+WrapStyle: 2
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: English,Arial,24,&H003A2A17,&H003A2A17,&H00FFFFFF,&H00FFFFFF,0,0,0,0,100,100,0,0,1,0,0,2,40,40,18,1
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 0,0:00:00.00,0:00:15.00,English,,0,0,0,,Mollet connects robot videos and state records to measurable behavior conditions. This three-\Nminute demonstration reuses two saved Meta responses and the original H1 stair recording.
+Dialogue: 0,0:00:15.00,0:00:30.00,English,,0,0,0,,Both Muse Spark 1.3 and SAM 3.1 responses completed through authenticated HTTPS API requests.\NNo new model requests were made while producing this video.
+Dialogue: 0,0:00:30.00,0:00:45.00,English,,0,0,0,,Spark generated this contract: start at zero seconds; upright alignment at least 0.8; begin\Nsatisfying the condition within eight seconds; hold it for half a second. Response hashes and\Nusage are preserved.
+Dialogue: 0,0:00:45.00,0:01:00.00,English,,0,0,0,,SAM processed 625 H1 video frames and returned object boxes for 624 observation frames. Boxes\Nare displayed on the original recording at the frame indices in the saved response. This is\Ncoverage, not an accuracy score.
+Dialogue: 0,0:01:00.00,0:01:15.00,English,,0,0,0,,The blue box is the per-frame robot location from SAM. The header shows time and upright\Nalignment; the footer shows the condition and the number of tracks in this frame.
+Dialogue: 0,0:01:15.00,0:01:30.00,English,,0,0,0,,The evaluator found a continuous satisfying interval from 0.0 to 0.5 seconds and returned\NPASS. Video tracking and recorded state retain their separate sources.
+Dialogue: 0,0:01:30.00,0:01:45.00,English,,0,0,0,,The exported JSON contains the contract, 625 state observations, SAM boxes, the reviewed\Nresult and review scope. Reloading the JSON reproduces the same result.
+Dialogue: 0,0:01:45.00,0:02:00.00,English,,0,0,0,,The chart compares recorded upright alignment with the 0.8 threshold. The interval that proves\Nthis condition is the first half-second.
+Dialogue: 0,0:02:00.00,0:02:15.00,English,,0,0,0,,Go2 recordings provide a supporting comparison. State-backed recordings are distinguished from\Nsummary-only recordings. Missing time series are not invented.
+Dialogue: 0,0:02:15.00,0:02:30.00,English,,0,0,0,,Request and response hashes from both Meta calls and the original video hash are preserved.\NRendering used no additional API requests, GPU jobs or training runs.
+Dialogue: 0,0:02:30.00,0:02:45.00,English,,0,0,0,,The workflow is natural-language condition generation, video object tracking, state-based\Nevaluation, and evidence export. Each step is linked to the same source video hash.
+Dialogue: 0,0:02:45.00,0:03:00.00,English,,0,0,0,,This is an edited demonstration of saved Meta responses and original robot recordings. It is\Nnot a browser capture or a new training result. Hashes and evaluation intervals support\Nreproduction.

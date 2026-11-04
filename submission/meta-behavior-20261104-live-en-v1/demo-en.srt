@@ -1,0 +1,47 @@
+1
+00:00:00,000 --> 00:00:15,000
+Mollet connects robot videos and state records to measurable behavior conditions. This three-minute demonstration reuses two saved Meta responses and the original H1 stair recording.
+
+2
+00:00:15,000 --> 00:00:30,000
+Both Muse Spark 1.3 and SAM 3.1 responses completed through authenticated HTTPS API requests. No new model requests were made while producing this video.
+
+3
+00:00:30,000 --> 00:00:45,000
+Spark generated this contract: start at zero seconds; upright alignment at least 0.8; begin satisfying the condition within eight seconds; hold it for half a second. Response hashes and usage are preserved.
+
+4
+00:00:45,000 --> 00:01:00,000
+SAM processed 625 H1 video frames and returned object boxes for 624 observation frames. Boxes are displayed on the original recording at the frame indices in the saved response. This is coverage, not an accuracy score.
+
+5
+00:01:00,000 --> 00:01:15,000
+The blue box is the per-frame robot location from SAM. The header shows time and upright alignment; the footer shows the condition and the number of tracks in this frame.
+
+6
+00:01:15,000 --> 00:01:30,000
+The evaluator found a continuous satisfying interval from 0.0 to 0.5 seconds and returned PASS. Video tracking and recorded state retain their separate sources.
+
+7
+00:01:30,000 --> 00:01:45,000
+The exported JSON contains the contract, 625 state observations, SAM boxes, the reviewed result and review scope. Reloading the JSON reproduces the same result.
+
+8
+00:01:45,000 --> 00:02:00,000
+The chart compares recorded upright alignment with the 0.8 threshold. The interval that proves this condition is the first half-second.
+
+9
+00:02:00,000 --> 00:02:15,000
+Go2 recordings provide a supporting comparison. State-backed recordings are distinguished from summary-only recordings. Missing time series are not invented.
+
+10
+00:02:15,000 --> 00:02:30,000
+Request and response hashes from both Meta calls and the original video hash are preserved. Rendering used no additional API requests, GPU jobs or training runs.
+
+11
+00:02:30,000 --> 00:02:45,000
+The workflow is natural-language condition generation, video object tracking, state-based evaluation, and evidence export. Each step is linked to the same source video hash.
+
+12
+00:02:45,000 --> 00:03:00,000
+This is an edited demonstration of saved Meta responses and original robot recordings. It is not a browser capture or a new training result. Hashes and evaluation intervals support reproduction.

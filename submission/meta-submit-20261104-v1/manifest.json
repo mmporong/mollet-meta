@@ -92,5 +92,14 @@
     "sha256": "3cc6e7bf867036924e71d2a169bc80cac8d199053a0229ea5eadacea9bc1a2fe"
   },
   "restore_ui_cpu_verified": true,
-  "related_original_tests_passed": 83
+  "related_original_tests_passed": 83,
+  "english_video": {
+    "file": "submission/meta-behavior-20261104-live-en-v1/mollet-meta-demo-3min-en.mp4",
+    "sha256": "422406b0759b4feff41bd8264cf59f3ca9c995ca13302fb88d090abbbc1587cd",
+    "duration_s": 180.0,
+    "manifest": "submission/meta-behavior-20261104-live-en-v1/manifest.json",
+    "manifest_sha256": "ca5e721d95aae9bbfb891b27bffe436c6a52a6b9564ff44d7cb8900a4c1706ba",
+    "captions_burned_in": true,
+    "narration_language": "ko"
+  }
 }

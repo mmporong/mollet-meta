@@ -1,0 +1,66 @@
+{
+  "schema": "meta-english-caption-video-v1",
+  "verified_at": "2026-11-04T18:18:56.898319+09:00",
+  "source_video": "submission/meta-behavior-20261104-live-v1/mollet-meta-behavior-demo-3min.mp4",
+  "source_sha256": "630d8c96c39af98f3a58c6ab2b348da9b03090f488089efebe392adede559ca1",
+  "output": {
+    "file": "mollet-meta-demo-3min-en.mp4",
+    "sha256": "422406b0759b4feff41bd8264cf59f3ca9c995ca13302fb88d090abbbc1587cd",
+    "probe": {
+      "programs": [],
+      "stream_groups": [],
+      "streams": [
+        {
+          "codec_name": "h264",
+          "codec_type": "video",
+          "width": 1280,
+          "height": 840
+        },
+        {
+          "codec_name": "aac",
+          "codec_type": "audio",
+          "sample_rate": "48000"
+        }
+      ],
+      "format": {
+        "duration": "180.000000",
+        "size": "5116369"
+      }
+    }
+  },
+  "caption_count": 12,
+  "timecodes_match_ko": true,
+  "captions_burned_in": true,
+  "narration_language": "ko",
+  "subtitle_language": "en",
+  "presentation_edit": "original full frame retained in top 1280x720; white 120px subtitle band appended below; CPU re-encode",
+  "files": {
+    "demo-en.ass": {
+      "sha256": "1507fe3fce6da90d7c8dd71bfb77919f999d3943a9daa5dc32b304da55d2a2c9",
+      "bytes": 3219
+    },
+    "demo-en.srt": {
+      "sha256": "9ce35a4336f5420aa7d496e2f62af18e435832463d8badd26639675a3cc4f681",
+      "bytes": 2479
+    },
+    "frame-067s.png": {
+      "sha256": "ce1fd1c8c2079ab371bef98b295c8dd804993ee2fb47072a21200f072f10fc77",
+      "bytes": 415197
+    },
+    "mollet-meta-demo-3min-en.mp4": {
+      "sha256": "422406b0759b4feff41bd8264cf59f3ca9c995ca13302fb88d090abbbc1587cd",
+      "bytes": 5116369
+    }
+  },
+  "full_decode_exit": 0,
+  "visual_check": {
+    "frame": "frame-067s.png",
+    "source_content_not_cropped": true,
+    "robot_box_visible": true,
+    "english_readable": true
+  },
+  "new_api_calls": 0,
+  "gpu_jobs": 0,
+  "browser_capture": false,
+  "submitted": false
+}
