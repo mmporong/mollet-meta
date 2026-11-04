@@ -1,0 +1,15 @@
+{
+  "stage": "draft",
+  "approval_status": "unreviewed",
+  "verdict": "PASS",
+  "reason": "마감 시점 안에 조건을 시작해 필요한 유지 시간 동안 연속으로 충족했습니다.",
+  "trigger_t_s": 0.0,
+  "interval": {
+    "start_s": 0.0,
+    "end_s": 8.0
+  },
+  "examined_samples": 401,
+  "warnings": [],
+  "spec_sha256": "f14b3eef2d4e52e7bb57ca2b66139c19c6f032314c161de4e13073fb7d68ee78",
+  "observations_sha256": "69c892a3ba263e89d121979e7faa010657ed949a77e0ea1980fbfd906a127891"
+}

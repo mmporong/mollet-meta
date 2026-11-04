@@ -1,0 +1,24 @@
+{
+  "schema": "behavior-contract-v1",
+  "title": "계단 재생 중 자세 유지",
+  "instruction": "영상 시작부터 8초 동안 수직축 정렬이 0.8 이상 유지되는지 확인합니다.",
+  "trigger": {
+    "kind": "time",
+    "at_s": 0.0,
+    "region": null,
+    "object_id": null
+  },
+  "condition": {
+    "metric": "up_axis_z",
+    "op": "gte",
+    "threshold": 0.8,
+    "deadline_s": 0.0,
+    "hold_s": 8.0
+  },
+  "max_gap_s": 0.05,
+  "source": {
+    "kind": "manual_example_contract",
+    "model_called": false,
+    "scope": "development_demonstration"
+  }
+}

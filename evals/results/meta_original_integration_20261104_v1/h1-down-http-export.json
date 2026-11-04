@@ -1,0 +1,7015 @@
+{
+  "clip": {
+    "id": "h1-down",
+    "name": "이족 H1 · 계단 하행",
+    "video_sha256": "51e79c53a2011ed493773edf3728587faf11334601146cba57ffdb782010f573",
+    "recorded_assessment": {
+      "outcome": "completed",
+      "root_dx_m": 2.826895236968994,
+      "root_dz_m": -0.6734259128570557,
+      "height_condition_pass": true,
+      "progress_condition_pass": true,
+      "termination_seen": false,
+      "trace_rows": 626,
+      "command_speed_mps": 0.25,
+      "min_up_axis_z": 0.9886204967632537,
+      "motion_accepted": true
+    },
+    "provenance": {
+      "kind": "recorded_h1_stairs_playback",
+      "source_path": "docs/media/stairs_h1_s172_20261030_v1/biped-stairs-down/manifest.json",
+      "source_sha256": "5ca9568a1eb08f1212f3c8af371e386934f5557fa1fc50eecfeb445a88fc7b51",
+      "source_trace": "docs/media/stairs_h1_s172_20261030_v1/biped-stairs-down/state-trace.jsonl",
+      "source_trace_sha256": "79461bec8584b79d1bff15ff5c60f7c16b46141fc8fb6b29148d76ca6c011300",
+      "source_manifest_sha256": "eb113a2aee964aaaf972bbff9f2fd9090e14052c4642334b04e8ac4e78113193",
+      "exact_frames_sha256": "29b623979d50c69528653e930ea23bb45b45ca0960fedc5ebe6a991df37083b4",
+      "video_path": "docs/media/stairs_h1_s172_20261030_v1/biped-stairs-down/video/rl-video-step-0.mp4",
+      "frame_width": 1280,
+      "frame_height": 720,
+      "capture_approved": false,
+      "model_ready": false,
+      "playback_render_synced": true,
+      "visual_evidence_status": "render_synced_playback_not_model_input_approval",
+      "time_basis": "video_frame_index / encoder_fps",
+      "state_frame_offset": 1,
+      "sim_time_offset_s": 0.02,
+      "motion_frame": "world",
+      "height_frame": "world_z_not_ground_clearance",
+      "scope": "stored_stairs_condition_demo_only_not_recovery_or_generalization",
+      "new_model_api_calls": 0,
+      "new_training_jobs": 0
+    }
+  },
+  "contract": {
+    "schema": "behavior-contract-v1",
+    "title": "계단 재생 중 자세 유지",
+    "instruction": "영상 시작부터 8초 동안 수직축 정렬이 0.8 이상 유지되는지 확인합니다.",
+    "trigger": {
+      "kind": "time",
+      "at_s": 0.0,
+      "region": null,
+      "object_id": null
+    },
+    "condition": {
+      "metric": "up_axis_z",
+      "op": "gte",
+      "threshold": 0.8,
+      "deadline_s": 0.0,
+      "hold_s": 8.0
+    },
+    "max_gap_s": 0.05,
+    "source": {
+      "kind": "manual_example_contract",
+      "model_called": false,
+      "scope": "development_demonstration"
+    }
+  },
+  "observations": {
+    "schema": "behavior-observations-v1",
+    "clip_id": "h1-down",
+    "video_sha256": "51e79c53a2011ed493773edf3728587faf11334601146cba57ffdb782010f573",
+    "provenance": {
+      "kind": "recorded_h1_stairs_playback",
+      "source_path": "docs/media/stairs_h1_s172_20261030_v1/biped-stairs-down/manifest.json",
+      "source_sha256": "5ca9568a1eb08f1212f3c8af371e386934f5557fa1fc50eecfeb445a88fc7b51",
+      "source_trace": "docs/media/stairs_h1_s172_20261030_v1/biped-stairs-down/state-trace.jsonl",
+      "source_trace_sha256": "79461bec8584b79d1bff15ff5c60f7c16b46141fc8fb6b29148d76ca6c011300",
+      "source_manifest_sha256": "eb113a2aee964aaaf972bbff9f2fd9090e14052c4642334b04e8ac4e78113193",
+      "exact_frames_sha256": "29b623979d50c69528653e930ea23bb45b45ca0960fedc5ebe6a991df37083b4",
+      "video_path": "docs/media/stairs_h1_s172_20261030_v1/biped-stairs-down/video/rl-video-step-0.mp4",
+      "frame_width": 1280.0,
+      "frame_height": 720.0,
+      "capture_approved": false,
+      "model_ready": false,
+      "playback_render_synced": true,
+      "visual_evidence_status": "render_synced_playback_not_model_input_approval",
+      "time_basis": "video_frame_index / encoder_fps",
+      "state_frame_offset": 1.0,
+      "sim_time_offset_s": 0.02,
+      "motion_frame": "world",
+      "height_frame": "world_z_not_ground_clearance",
+      "scope": "stored_stairs_condition_demo_only_not_recovery_or_generalization",
+      "new_model_api_calls": 0.0,
+      "new_training_jobs": 0.0
+    },
+    "samples": [
+      {
+        "frame": 0,
+        "t_s": 0.0,
+        "values": {
+          "horizontal_speed_mps": 0.023562571222471566,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7479248046875,
+          "up_axis_z": 0.9999975825840001
+        },
+        "tracks": []
+      },
+      {
+        "frame": 1,
+        "t_s": 0.02,
+        "values": {
+          "horizontal_speed_mps": 0.023244070022215044,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7420761585235596,
+          "up_axis_z": 0.9999780225301867
+        },
+        "tracks": []
+      },
+      {
+        "frame": 2,
+        "t_s": 0.04,
+        "values": {
+          "horizontal_speed_mps": 0.022707750879018627,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7320847511291504,
+          "up_axis_z": 0.9999403086209032
+        },
+        "tracks": []
+      },
+      {
+        "frame": 3,
+        "t_s": 0.06,
+        "values": {
+          "horizontal_speed_mps": 0.017567075755662773,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7191073894500732,
+          "up_axis_z": 0.9998950559278309
+        },
+        "tracks": []
+      },
+      {
+        "frame": 4,
+        "t_s": 0.08,
+        "values": {
+          "horizontal_speed_mps": 0.029953754604578622,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7083405256271362,
+          "up_axis_z": 0.9998639903295312
+        },
+        "tracks": []
+      },
+      {
+        "frame": 5,
+        "t_s": 0.1,
+        "values": {
+          "horizontal_speed_mps": 0.072153512571048,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7031402587890625,
+          "up_axis_z": 0.9998798297065913
+        },
+        "tracks": []
+      },
+      {
+        "frame": 6,
+        "t_s": 0.12,
+        "values": {
+          "horizontal_speed_mps": 0.0859300460334357,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7025971412658691,
+          "up_axis_z": 0.9999064379024419
+        },
+        "tracks": []
+      },
+      {
+        "frame": 7,
+        "t_s": 0.14,
+        "values": {
+          "horizontal_speed_mps": 0.12373425255200515,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7066223621368408,
+          "up_axis_z": 0.9999636128637209
+        },
+        "tracks": []
+      },
+      {
+        "frame": 8,
+        "t_s": 0.16,
+        "values": {
+          "horizontal_speed_mps": 0.12324305509236308,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7118747234344482,
+          "up_axis_z": 0.9999951391751243
+        },
+        "tracks": []
+      },
+      {
+        "frame": 9,
+        "t_s": 0.18,
+        "values": {
+          "horizontal_speed_mps": 0.11649469409426152,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.715533971786499,
+          "up_axis_z": 0.9999867853430499
+        },
+        "tracks": []
+      },
+      {
+        "frame": 10,
+        "t_s": 0.2,
+        "values": {
+          "horizontal_speed_mps": 0.11418787018179692,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.717913031578064,
+          "up_axis_z": 0.999973461841904
+        },
+        "tracks": []
+      },
+      {
+        "frame": 11,
+        "t_s": 0.22,
+        "values": {
+          "horizontal_speed_mps": 0.12412285952437915,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7201875448226929,
+          "up_axis_z": 0.9999688100179166
+        },
+        "tracks": []
+      },
+      {
+        "frame": 12,
+        "t_s": 0.24,
+        "values": {
+          "horizontal_speed_mps": 0.1315023305157177,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7226479053497314,
+          "up_axis_z": 0.9999708793930961
+        },
+        "tracks": []
+      },
+      {
+        "frame": 13,
+        "t_s": 0.26,
+        "values": {
+          "horizontal_speed_mps": 0.13311393804074645,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7245789766311646,
+          "up_axis_z": 0.9999565159515975
+        },
+        "tracks": []
+      },
+      {
+        "frame": 14,
+        "t_s": 0.28,
+        "values": {
+          "horizontal_speed_mps": 0.1560456728618039,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7264026403427124,
+          "up_axis_z": 0.9999483850512891
+        },
+        "tracks": []
+      },
+      {
+        "frame": 15,
+        "t_s": 0.3,
+        "values": {
+          "horizontal_speed_mps": 0.16196047231056065,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7286536693572998,
+          "up_axis_z": 0.9999661275441828
+        },
+        "tracks": []
+      },
+      {
+        "frame": 16,
+        "t_s": 0.32,
+        "values": {
+          "horizontal_speed_mps": 0.1719488905094088,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7312020063400269,
+          "up_axis_z": 0.9999864557138346
+        },
+        "tracks": []
+      },
+      {
+        "frame": 17,
+        "t_s": 0.34,
+        "values": {
+          "horizontal_speed_mps": 0.17045379480031783,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7331048250198364,
+          "up_axis_z": 0.9999876521384837
+        },
+        "tracks": []
+      },
+      {
+        "frame": 18,
+        "t_s": 0.36,
+        "values": {
+          "horizontal_speed_mps": 0.16794543844933743,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7340803146362305,
+          "up_axis_z": 0.9999806764458115
+        },
+        "tracks": []
+      },
+      {
+        "frame": 19,
+        "t_s": 0.38,
+        "values": {
+          "horizontal_speed_mps": 0.16811863898514806,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7350378036499023,
+          "up_axis_z": 0.9999766562623412
+        },
+        "tracks": []
+      },
+      {
+        "frame": 20,
+        "t_s": 0.4,
+        "values": {
+          "horizontal_speed_mps": 0.17825506595864155,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.736227035522461,
+          "up_axis_z": 0.9999684587559894
+        },
+        "tracks": []
+      },
+      {
+        "frame": 21,
+        "t_s": 0.42,
+        "values": {
+          "horizontal_speed_mps": 0.18325540307786473,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7373896837234497,
+          "up_axis_z": 0.9999555985741041
+        },
+        "tracks": []
+      },
+      {
+        "frame": 22,
+        "t_s": 0.44,
+        "values": {
+          "horizontal_speed_mps": 0.1852626271112092,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.738345742225647,
+          "up_axis_z": 0.9999397731025793
+        },
+        "tracks": []
+      },
+      {
+        "frame": 23,
+        "t_s": 0.46,
+        "values": {
+          "horizontal_speed_mps": 0.1854093182797159,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7390518188476562,
+          "up_axis_z": 0.9999187151872182
+        },
+        "tracks": []
+      },
+      {
+        "frame": 24,
+        "t_s": 0.48,
+        "values": {
+          "horizontal_speed_mps": 0.18499901893925907,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.739534854888916,
+          "up_axis_z": 0.999890601019832
+        },
+        "tracks": []
+      },
+      {
+        "frame": 25,
+        "t_s": 0.5,
+        "values": {
+          "horizontal_speed_mps": 0.1843694145404075,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7398216724395752,
+          "up_axis_z": 0.9998538810018924
+        },
+        "tracks": []
+      },
+      {
+        "frame": 26,
+        "t_s": 0.52,
+        "values": {
+          "horizontal_speed_mps": 0.1832446342394418,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.739928960800171,
+          "up_axis_z": 0.9998065053104264
+        },
+        "tracks": []
+      },
+      {
+        "frame": 27,
+        "t_s": 0.54,
+        "values": {
+          "horizontal_speed_mps": 0.18182983067769168,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7398759126663208,
+          "up_axis_z": 0.9997463104861928
+        },
+        "tracks": []
+      },
+      {
+        "frame": 28,
+        "t_s": 0.56,
+        "values": {
+          "horizontal_speed_mps": 0.18009016046310045,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.739694356918335,
+          "up_axis_z": 0.9996718833228149
+        },
+        "tracks": []
+      },
+      {
+        "frame": 29,
+        "t_s": 0.58,
+        "values": {
+          "horizontal_speed_mps": 0.17895139808608293,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7394123077392578,
+          "up_axis_z": 0.9995828248148029
+        },
+        "tracks": []
+      },
+      {
+        "frame": 30,
+        "t_s": 0.6,
+        "values": {
+          "horizontal_speed_mps": 0.17790867812980213,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.739064335823059,
+          "up_axis_z": 0.9994799541047185
+        },
+        "tracks": []
+      },
+      {
+        "frame": 31,
+        "t_s": 0.62,
+        "values": {
+          "horizontal_speed_mps": 0.17695494730317116,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7386833429336548,
+          "up_axis_z": 0.9993645548393976
+        },
+        "tracks": []
+      },
+      {
+        "frame": 32,
+        "t_s": 0.64,
+        "values": {
+          "horizontal_speed_mps": 0.17598517087469423,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7382917404174805,
+          "up_axis_z": 0.9992383326866883
+        },
+        "tracks": []
+      },
+      {
+        "frame": 33,
+        "t_s": 0.66,
+        "values": {
+          "horizontal_speed_mps": 0.17484071027073264,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7379066944122314,
+          "up_axis_z": 0.9991031468402293
+        },
+        "tracks": []
+      },
+      {
+        "frame": 34,
+        "t_s": 0.68,
+        "values": {
+          "horizontal_speed_mps": 0.1734174598459309,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.737534523010254,
+          "up_axis_z": 0.998960353633475
+        },
+        "tracks": []
+      },
+      {
+        "frame": 35,
+        "t_s": 0.7,
+        "values": {
+          "horizontal_speed_mps": 0.1716596123877998,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7371774911880493,
+          "up_axis_z": 0.998811321475851
+        },
+        "tracks": []
+      },
+      {
+        "frame": 36,
+        "t_s": 0.72,
+        "values": {
+          "horizontal_speed_mps": 0.1696270059549073,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7368322610855103,
+          "up_axis_z": 0.9986571873667129
+        },
+        "tracks": []
+      },
+      {
+        "frame": 37,
+        "t_s": 0.74,
+        "values": {
+          "horizontal_speed_mps": 0.16772451518072473,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7364957332611084,
+          "up_axis_z": 0.9984993267982485
+        },
+        "tracks": []
+      },
+      {
+        "frame": 38,
+        "t_s": 0.76,
+        "values": {
+          "horizontal_speed_mps": 0.16626763452800822,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7361668348312378,
+          "up_axis_z": 0.998337822285861
+        },
+        "tracks": []
+      },
+      {
+        "frame": 39,
+        "t_s": 0.78,
+        "values": {
+          "horizontal_speed_mps": 0.1645040874352672,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7358590364456177,
+          "up_axis_z": 0.998173754063446
+        },
+        "tracks": []
+      },
+      {
+        "frame": 40,
+        "t_s": 0.8,
+        "values": {
+          "horizontal_speed_mps": 0.16289804038238018,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7356085777282715,
+          "up_axis_z": 0.9980130996592351
+        },
+        "tracks": []
+      },
+      {
+        "frame": 41,
+        "t_s": 0.82,
+        "values": {
+          "horizontal_speed_mps": 0.16074713036385266,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7354271411895752,
+          "up_axis_z": 0.9978570761979142
+        },
+        "tracks": []
+      },
+      {
+        "frame": 42,
+        "t_s": 0.84,
+        "values": {
+          "horizontal_speed_mps": 0.15767228299500025,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.735264539718628,
+          "up_axis_z": 0.997694689618494
+        },
+        "tracks": []
+      },
+      {
+        "frame": 43,
+        "t_s": 0.86,
+        "values": {
+          "horizontal_speed_mps": 0.15469829881446218,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7350691556930542,
+          "up_axis_z": 0.997520836968331
+        },
+        "tracks": []
+      },
+      {
+        "frame": 44,
+        "t_s": 0.88,
+        "values": {
+          "horizontal_speed_mps": 0.15155466618903246,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7348222732543945,
+          "up_axis_z": 0.9973396845509512
+        },
+        "tracks": []
+      },
+      {
+        "frame": 45,
+        "t_s": 0.9,
+        "values": {
+          "horizontal_speed_mps": 0.14846312428114886,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7345207929611206,
+          "up_axis_z": 0.9971547340580639
+        },
+        "tracks": []
+      },
+      {
+        "frame": 46,
+        "t_s": 0.92,
+        "values": {
+          "horizontal_speed_mps": 0.1455207649735524,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.734169363975525,
+          "up_axis_z": 0.9969694231961131
+        },
+        "tracks": []
+      },
+      {
+        "frame": 47,
+        "t_s": 0.94,
+        "values": {
+          "horizontal_speed_mps": 0.14280322554669916,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7337770462036133,
+          "up_axis_z": 0.9967863151291908
+        },
+        "tracks": []
+      },
+      {
+        "frame": 48,
+        "t_s": 0.96,
+        "values": {
+          "horizontal_speed_mps": 0.1404409235157722,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7333557605743408,
+          "up_axis_z": 0.9966072175149541
+        },
+        "tracks": []
+      },
+      {
+        "frame": 49,
+        "t_s": 0.98,
+        "values": {
+          "horizontal_speed_mps": 0.13850212240175094,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.732921838760376,
+          "up_axis_z": 0.9964332350634078
+        },
+        "tracks": []
+      },
+      {
+        "frame": 50,
+        "t_s": 1.0,
+        "values": {
+          "horizontal_speed_mps": 0.13711262458047968,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.732499361038208,
+          "up_axis_z": 0.9962653910886631
+        },
+        "tracks": []
+      },
+      {
+        "frame": 51,
+        "t_s": 1.02,
+        "values": {
+          "horizontal_speed_mps": 0.13628435110317938,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7321149110794067,
+          "up_axis_z": 0.9961044529674979
+        },
+        "tracks": []
+      },
+      {
+        "frame": 52,
+        "t_s": 1.04,
+        "values": {
+          "horizontal_speed_mps": 0.1359317737967222,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7317966222763062,
+          "up_axis_z": 0.9959505163613374
+        },
+        "tracks": []
+      },
+      {
+        "frame": 53,
+        "t_s": 1.06,
+        "values": {
+          "horizontal_speed_mps": 0.1358245360051593,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7315623760223389,
+          "up_axis_z": 0.9958026681196356
+        },
+        "tracks": []
+      },
+      {
+        "frame": 54,
+        "t_s": 1.08,
+        "values": {
+          "horizontal_speed_mps": 0.13564171146738352,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7314069271087646,
+          "up_axis_z": 0.995658551642853
+        },
+        "tracks": []
+      },
+      {
+        "frame": 55,
+        "t_s": 1.1,
+        "values": {
+          "horizontal_speed_mps": 0.1350953400458527,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7313027381896973,
+          "up_axis_z": 0.9955146112646801
+        },
+        "tracks": []
+      },
+      {
+        "frame": 56,
+        "t_s": 1.12,
+        "values": {
+          "horizontal_speed_mps": 0.13405423270639708,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.731200098991394,
+          "up_axis_z": 0.9953668078615151
+        },
+        "tracks": []
+      },
+      {
+        "frame": 57,
+        "t_s": 1.14,
+        "values": {
+          "horizontal_speed_mps": 0.13265345016669297,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7310441732406616,
+          "up_axis_z": 0.9952126687158116
+        },
+        "tracks": []
+      },
+      {
+        "frame": 58,
+        "t_s": 1.16,
+        "values": {
+          "horizontal_speed_mps": 0.13119790634934902,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.730797529220581,
+          "up_axis_z": 0.9950528796629404
+        },
+        "tracks": []
+      },
+      {
+        "frame": 59,
+        "t_s": 1.18,
+        "values": {
+          "horizontal_speed_mps": 0.13016581945889175,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7304534912109375,
+          "up_axis_z": 0.9948916646857117
+        },
+        "tracks": []
+      },
+      {
+        "frame": 60,
+        "t_s": 1.2,
+        "values": {
+          "horizontal_speed_mps": 0.12966962533938511,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7300385236740112,
+          "up_axis_z": 0.9947355470259618
+        },
+        "tracks": []
+      },
+      {
+        "frame": 61,
+        "t_s": 1.22,
+        "values": {
+          "horizontal_speed_mps": 0.12975050618161568,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7296028137207031,
+          "up_axis_z": 0.9945909774454444
+        },
+        "tracks": []
+      },
+      {
+        "frame": 62,
+        "t_s": 1.24,
+        "values": {
+          "horizontal_speed_mps": 0.13026683333901826,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7291980981826782,
+          "up_axis_z": 0.9944620476679155
+        },
+        "tracks": []
+      },
+      {
+        "frame": 63,
+        "t_s": 1.26,
+        "values": {
+          "horizontal_speed_mps": 0.1309897326784612,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7288624048233032,
+          "up_axis_z": 0.9943491094667493
+        },
+        "tracks": []
+      },
+      {
+        "frame": 64,
+        "t_s": 1.28,
+        "values": {
+          "horizontal_speed_mps": 0.13172438148581736,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7286009788513184,
+          "up_axis_z": 0.9942487327356799
+        },
+        "tracks": []
+      },
+      {
+        "frame": 65,
+        "t_s": 1.3,
+        "values": {
+          "horizontal_speed_mps": 0.13248821151764797,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7283918857574463,
+          "up_axis_z": 0.9941552407973653
+        },
+        "tracks": []
+      },
+      {
+        "frame": 66,
+        "t_s": 1.32,
+        "values": {
+          "horizontal_speed_mps": 0.13447012028928915,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.728196620941162,
+          "up_axis_z": 0.9940622248231896
+        },
+        "tracks": []
+      },
+      {
+        "frame": 67,
+        "t_s": 1.34,
+        "values": {
+          "horizontal_speed_mps": 0.13522394822103642,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7279889583587646,
+          "up_axis_z": 0.9939620510930383
+        },
+        "tracks": []
+      },
+      {
+        "frame": 68,
+        "t_s": 1.36,
+        "values": {
+          "horizontal_speed_mps": 0.13666380144461682,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7277557849884033,
+          "up_axis_z": 0.9938521183932559
+        },
+        "tracks": []
+      },
+      {
+        "frame": 69,
+        "t_s": 1.38,
+        "values": {
+          "horizontal_speed_mps": 0.13797038282066812,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7274733781814575,
+          "up_axis_z": 0.9937278877227909
+        },
+        "tracks": []
+      },
+      {
+        "frame": 70,
+        "t_s": 1.4,
+        "values": {
+          "horizontal_speed_mps": 0.13874591577099213,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7270901203155518,
+          "up_axis_z": 0.9935710407432412
+        },
+        "tracks": []
+      },
+      {
+        "frame": 71,
+        "t_s": 1.42,
+        "values": {
+          "horizontal_speed_mps": 0.13952923085054086,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7266931533813477,
+          "up_axis_z": 0.9933843346054786
+        },
+        "tracks": []
+      },
+      {
+        "frame": 72,
+        "t_s": 1.44,
+        "values": {
+          "horizontal_speed_mps": 0.14002554578178908,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7263432741165161,
+          "up_axis_z": 0.9931817163242164
+        },
+        "tracks": []
+      },
+      {
+        "frame": 73,
+        "t_s": 1.46,
+        "values": {
+          "horizontal_speed_mps": 0.14319956594417443,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7260774374008179,
+          "up_axis_z": 0.9929908713951789
+        },
+        "tracks": []
+      },
+      {
+        "frame": 74,
+        "t_s": 1.48,
+        "values": {
+          "horizontal_speed_mps": 0.14769107209162854,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7259656190872192,
+          "up_axis_z": 0.9928433147906367
+        },
+        "tracks": []
+      },
+      {
+        "frame": 75,
+        "t_s": 1.5,
+        "values": {
+          "horizontal_speed_mps": 0.15353204221683595,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7260938882827759,
+          "up_axis_z": 0.9927568221303689
+        },
+        "tracks": []
+      },
+      {
+        "frame": 76,
+        "t_s": 1.52,
+        "values": {
+          "horizontal_speed_mps": 0.15977193661178743,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7265636920928955,
+          "up_axis_z": 0.9927386680613778
+        },
+        "tracks": []
+      },
+      {
+        "frame": 77,
+        "t_s": 1.54,
+        "values": {
+          "horizontal_speed_mps": 0.1643380235286356,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7274450063705444,
+          "up_axis_z": 0.9927658965628584
+        },
+        "tracks": []
+      },
+      {
+        "frame": 78,
+        "t_s": 1.56,
+        "values": {
+          "horizontal_speed_mps": 0.16471229527311174,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7286649942398071,
+          "up_axis_z": 0.9928010396944813
+        },
+        "tracks": []
+      },
+      {
+        "frame": 79,
+        "t_s": 1.58,
+        "values": {
+          "horizontal_speed_mps": 0.16635460430093235,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7298121452331543,
+          "up_axis_z": 0.9928215119918309
+        },
+        "tracks": []
+      },
+      {
+        "frame": 80,
+        "t_s": 1.6,
+        "values": {
+          "horizontal_speed_mps": 0.1720270640815039,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7303495407104492,
+          "up_axis_z": 0.9928122783978628
+        },
+        "tracks": []
+      },
+      {
+        "frame": 81,
+        "t_s": 1.62,
+        "values": {
+          "horizontal_speed_mps": 0.18220139132756677,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7301214933395386,
+          "up_axis_z": 0.9927482076471709
+        },
+        "tracks": []
+      },
+      {
+        "frame": 82,
+        "t_s": 1.64,
+        "values": {
+          "horizontal_speed_mps": 0.19722240435033436,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.729417085647583,
+          "up_axis_z": 0.9926270791140591
+        },
+        "tracks": []
+      },
+      {
+        "frame": 83,
+        "t_s": 1.66,
+        "values": {
+          "horizontal_speed_mps": 0.21454031442508598,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7286969423294067,
+          "up_axis_z": 0.9924179606637398
+        },
+        "tracks": []
+      },
+      {
+        "frame": 84,
+        "t_s": 1.68,
+        "values": {
+          "horizontal_speed_mps": 0.21558071385477032,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.728479266166687,
+          "up_axis_z": 0.9919480851758022
+        },
+        "tracks": []
+      },
+      {
+        "frame": 85,
+        "t_s": 1.7,
+        "values": {
+          "horizontal_speed_mps": 0.18817689654463454,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7282758951187134,
+          "up_axis_z": 0.9910010856737207
+        },
+        "tracks": []
+      },
+      {
+        "frame": 86,
+        "t_s": 1.72,
+        "values": {
+          "horizontal_speed_mps": 0.16593501438139321,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7268868684768677,
+          "up_axis_z": 0.9897011709098995
+        },
+        "tracks": []
+      },
+      {
+        "frame": 87,
+        "t_s": 1.74,
+        "values": {
+          "horizontal_speed_mps": 0.2374176946172209,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.72531259059906,
+          "up_axis_z": 0.9887377998544831
+        },
+        "tracks": []
+      },
+      {
+        "frame": 88,
+        "t_s": 1.76,
+        "values": {
+          "horizontal_speed_mps": 0.23714738837489077,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7254480123519897,
+          "up_axis_z": 0.9886204967632537
+        },
+        "tracks": []
+      },
+      {
+        "frame": 89,
+        "t_s": 1.78,
+        "values": {
+          "horizontal_speed_mps": 0.25272926874088586,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7254345417022705,
+          "up_axis_z": 0.9887951348955629
+        },
+        "tracks": []
+      },
+      {
+        "frame": 90,
+        "t_s": 1.8,
+        "values": {
+          "horizontal_speed_mps": 0.28505232191510677,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7252166271209717,
+          "up_axis_z": 0.98939457254576
+        },
+        "tracks": []
+      },
+      {
+        "frame": 91,
+        "t_s": 1.82,
+        "values": {
+          "horizontal_speed_mps": 0.3254379138921066,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7242251634597778,
+          "up_axis_z": 0.9904852750625338
+        },
+        "tracks": []
+      },
+      {
+        "frame": 92,
+        "t_s": 1.84,
+        "values": {
+          "horizontal_speed_mps": 0.29828642569853714,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7240837812423706,
+          "up_axis_z": 0.991891600308087
+        },
+        "tracks": []
+      },
+      {
+        "frame": 93,
+        "t_s": 1.86,
+        "values": {
+          "horizontal_speed_mps": 0.2888481316254035,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7254377603530884,
+          "up_axis_z": 0.9930913646261037
+        },
+        "tracks": []
+      },
+      {
+        "frame": 94,
+        "t_s": 1.88,
+        "values": {
+          "horizontal_speed_mps": 0.27621625701243785,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.727489709854126,
+          "up_axis_z": 0.9941249208729388
+        },
+        "tracks": []
+      },
+      {
+        "frame": 95,
+        "t_s": 1.9,
+        "values": {
+          "horizontal_speed_mps": 0.27337124854507716,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7305487394332886,
+          "up_axis_z": 0.9949723432807401
+        },
+        "tracks": []
+      },
+      {
+        "frame": 96,
+        "t_s": 1.92,
+        "values": {
+          "horizontal_speed_mps": 0.2765625260153127,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7335906028747559,
+          "up_axis_z": 0.9956412678658509
+        },
+        "tracks": []
+      },
+      {
+        "frame": 97,
+        "t_s": 1.94,
+        "values": {
+          "horizontal_speed_mps": 0.2699141476879155,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7339298725128174,
+          "up_axis_z": 0.9960864965108824
+        },
+        "tracks": []
+      },
+      {
+        "frame": 98,
+        "t_s": 1.96,
+        "values": {
+          "horizontal_speed_mps": 0.27875912436425526,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7302072048187256,
+          "up_axis_z": 0.9964507163631671
+        },
+        "tracks": []
+      },
+      {
+        "frame": 99,
+        "t_s": 1.98,
+        "values": {
+          "horizontal_speed_mps": 0.2811470841425825,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7253353595733643,
+          "up_axis_z": 0.9969141918935562
+        },
+        "tracks": []
+      },
+      {
+        "frame": 100,
+        "t_s": 2.0,
+        "values": {
+          "horizontal_speed_mps": 0.23484427202830538,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7210545539855957,
+          "up_axis_z": 0.9971896517083357
+        },
+        "tracks": []
+      },
+      {
+        "frame": 101,
+        "t_s": 2.02,
+        "values": {
+          "horizontal_speed_mps": 0.233821418873374,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7203577756881714,
+          "up_axis_z": 0.9973481435608674
+        },
+        "tracks": []
+      },
+      {
+        "frame": 102,
+        "t_s": 2.04,
+        "values": {
+          "horizontal_speed_mps": 0.25458607822116713,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7211679220199585,
+          "up_axis_z": 0.9975676484204714
+        },
+        "tracks": []
+      },
+      {
+        "frame": 103,
+        "t_s": 2.06,
+        "values": {
+          "horizontal_speed_mps": 0.2597077302944712,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7225221395492554,
+          "up_axis_z": 0.9978173829295887
+        },
+        "tracks": []
+      },
+      {
+        "frame": 104,
+        "t_s": 2.08,
+        "values": {
+          "horizontal_speed_mps": 0.24862541689410383,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7246190309524536,
+          "up_axis_z": 0.9980178034767305
+        },
+        "tracks": []
+      },
+      {
+        "frame": 105,
+        "t_s": 2.1,
+        "values": {
+          "horizontal_speed_mps": 0.2626007518428379,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7275925874710083,
+          "up_axis_z": 0.9982083218947382
+        },
+        "tracks": []
+      },
+      {
+        "frame": 106,
+        "t_s": 2.12,
+        "values": {
+          "horizontal_speed_mps": 0.2609793304353699,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7304219007492065,
+          "up_axis_z": 0.998370819572719
+        },
+        "tracks": []
+      },
+      {
+        "frame": 107,
+        "t_s": 2.14,
+        "values": {
+          "horizontal_speed_mps": 0.24495797167438071,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.732642412185669,
+          "up_axis_z": 0.9984728512617603
+        },
+        "tracks": []
+      },
+      {
+        "frame": 108,
+        "t_s": 2.16,
+        "values": {
+          "horizontal_speed_mps": 0.24204892043035603,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.734439492225647,
+          "up_axis_z": 0.9985521310494136
+        },
+        "tracks": []
+      },
+      {
+        "frame": 109,
+        "t_s": 2.18,
+        "values": {
+          "horizontal_speed_mps": 0.24292707080739792,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7360713481903076,
+          "up_axis_z": 0.9986274767351062
+        },
+        "tracks": []
+      },
+      {
+        "frame": 110,
+        "t_s": 2.2,
+        "values": {
+          "horizontal_speed_mps": 0.24464520420031136,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.737612247467041,
+          "up_axis_z": 0.9986896941714927
+        },
+        "tracks": []
+      },
+      {
+        "frame": 111,
+        "t_s": 2.22,
+        "values": {
+          "horizontal_speed_mps": 0.2436378992092999,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7389887571334839,
+          "up_axis_z": 0.9987405555573706
+        },
+        "tracks": []
+      },
+      {
+        "frame": 112,
+        "t_s": 2.24,
+        "values": {
+          "horizontal_speed_mps": 0.2395604397371153,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7400866746902466,
+          "up_axis_z": 0.9987806931206948
+        },
+        "tracks": []
+      },
+      {
+        "frame": 113,
+        "t_s": 2.26,
+        "values": {
+          "horizontal_speed_mps": 0.2339640752123653,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7408607006072998,
+          "up_axis_z": 0.9988110269922975
+        },
+        "tracks": []
+      },
+      {
+        "frame": 114,
+        "t_s": 2.28,
+        "values": {
+          "horizontal_speed_mps": 0.22835813259742072,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.741326093673706,
+          "up_axis_z": 0.9988321451550481
+        },
+        "tracks": []
+      },
+      {
+        "frame": 115,
+        "t_s": 2.3,
+        "values": {
+          "horizontal_speed_mps": 0.2233075991649369,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.741528868675232,
+          "up_axis_z": 0.9988433387422893
+        },
+        "tracks": []
+      },
+      {
+        "frame": 116,
+        "t_s": 2.32,
+        "values": {
+          "horizontal_speed_mps": 0.21825777855126843,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7415159940719604,
+          "up_axis_z": 0.998842086509254
+        },
+        "tracks": []
+      },
+      {
+        "frame": 117,
+        "t_s": 2.34,
+        "values": {
+          "horizontal_speed_mps": 0.21381043534337466,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7413334846496582,
+          "up_axis_z": 0.9988280587503712
+        },
+        "tracks": []
+      },
+      {
+        "frame": 118,
+        "t_s": 2.36,
+        "values": {
+          "horizontal_speed_mps": 0.2092465051409665,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7410309314727783,
+          "up_axis_z": 0.9988020628313922
+        },
+        "tracks": []
+      },
+      {
+        "frame": 119,
+        "t_s": 2.38,
+        "values": {
+          "horizontal_speed_mps": 0.2054159710616127,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7406443357467651,
+          "up_axis_z": 0.9987648444543044
+        },
+        "tracks": []
+      },
+      {
+        "frame": 120,
+        "t_s": 2.4,
+        "values": {
+          "horizontal_speed_mps": 0.20147615813374484,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.740212082862854,
+          "up_axis_z": 0.9987173535619941
+        },
+        "tracks": []
+      },
+      {
+        "frame": 121,
+        "t_s": 2.42,
+        "values": {
+          "horizontal_speed_mps": 0.19788075910361846,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7397606372833252,
+          "up_axis_z": 0.9986603617780739
+        },
+        "tracks": []
+      },
+      {
+        "frame": 122,
+        "t_s": 2.44,
+        "values": {
+          "horizontal_speed_mps": 0.19446461797184353,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7393052577972412,
+          "up_axis_z": 0.9985950914017437
+        },
+        "tracks": []
+      },
+      {
+        "frame": 123,
+        "t_s": 2.46,
+        "values": {
+          "horizontal_speed_mps": 0.19123208703585867,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7388594150543213,
+          "up_axis_z": 0.9985225148780594
+        },
+        "tracks": []
+      },
+      {
+        "frame": 124,
+        "t_s": 2.48,
+        "values": {
+          "horizontal_speed_mps": 0.18802793844666604,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7384287118911743,
+          "up_axis_z": 0.9984433096020212
+        },
+        "tracks": []
+      },
+      {
+        "frame": 125,
+        "t_s": 2.5,
+        "values": {
+          "horizontal_speed_mps": 0.18474615578573644,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.738012433052063,
+          "up_axis_z": 0.9983581741790162
+        },
+        "tracks": []
+      },
+      {
+        "frame": 126,
+        "t_s": 2.52,
+        "values": {
+          "horizontal_speed_mps": 0.18145097501665672,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7376055717468262,
+          "up_axis_z": 0.9982677102141417
+        },
+        "tracks": []
+      },
+      {
+        "frame": 127,
+        "t_s": 2.54,
+        "values": {
+          "horizontal_speed_mps": 0.1783542227995537,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.737202525138855,
+          "up_axis_z": 0.9981737833487543
+        },
+        "tracks": []
+      },
+      {
+        "frame": 128,
+        "t_s": 2.56,
+        "values": {
+          "horizontal_speed_mps": 0.17488988326971508,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.736803650856018,
+          "up_axis_z": 0.9980753944426745
+        },
+        "tracks": []
+      },
+      {
+        "frame": 129,
+        "t_s": 2.58,
+        "values": {
+          "horizontal_speed_mps": 0.17163430609737004,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7364113330841064,
+          "up_axis_z": 0.9979713095638632
+        },
+        "tracks": []
+      },
+      {
+        "frame": 130,
+        "t_s": 2.6,
+        "values": {
+          "horizontal_speed_mps": 0.16859961126921064,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7360179424285889,
+          "up_axis_z": 0.997863543807449
+        },
+        "tracks": []
+      },
+      {
+        "frame": 131,
+        "t_s": 2.62,
+        "values": {
+          "horizontal_speed_mps": 0.16529397919464672,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7356256246566772,
+          "up_axis_z": 0.9977520305135031
+        },
+        "tracks": []
+      },
+      {
+        "frame": 132,
+        "t_s": 2.64,
+        "values": {
+          "horizontal_speed_mps": 0.16311963019377038,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7352380752563477,
+          "up_axis_z": 0.9976368507277491
+        },
+        "tracks": []
+      },
+      {
+        "frame": 133,
+        "t_s": 2.66,
+        "values": {
+          "horizontal_speed_mps": 0.1621380531108051,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7348730564117432,
+          "up_axis_z": 0.9975191786350975
+        },
+        "tracks": []
+      },
+      {
+        "frame": 134,
+        "t_s": 2.68,
+        "values": {
+          "horizontal_speed_mps": 0.1605866124717076,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7345830202102661,
+          "up_axis_z": 0.997403160591882
+        },
+        "tracks": []
+      },
+      {
+        "frame": 135,
+        "t_s": 2.7,
+        "values": {
+          "horizontal_speed_mps": 0.15804094633049298,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7343535423278809,
+          "up_axis_z": 0.9972827477087188
+        },
+        "tracks": []
+      },
+      {
+        "frame": 136,
+        "t_s": 2.72,
+        "values": {
+          "horizontal_speed_mps": 0.1555530743333,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7341221570968628,
+          "up_axis_z": 0.9971504785888224
+        },
+        "tracks": []
+      },
+      {
+        "frame": 137,
+        "t_s": 2.74,
+        "values": {
+          "horizontal_speed_mps": 0.1528712593909528,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.733855128288269,
+          "up_axis_z": 0.9970073697102941
+        },
+        "tracks": []
+      },
+      {
+        "frame": 138,
+        "t_s": 2.76,
+        "values": {
+          "horizontal_speed_mps": 0.14986107459656453,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7335307598114014,
+          "up_axis_z": 0.9968566730424141
+        },
+        "tracks": []
+      },
+      {
+        "frame": 139,
+        "t_s": 2.78,
+        "values": {
+          "horizontal_speed_mps": 0.14682706681745325,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7331410646438599,
+          "up_axis_z": 0.9967016207383501
+        },
+        "tracks": []
+      },
+      {
+        "frame": 140,
+        "t_s": 2.8,
+        "values": {
+          "horizontal_speed_mps": 0.14482548220486602,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7327011823654175,
+          "up_axis_z": 0.9965471802479353
+        },
+        "tracks": []
+      },
+      {
+        "frame": 141,
+        "t_s": 2.82,
+        "values": {
+          "horizontal_speed_mps": 0.1434786818312742,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7322641611099243,
+          "up_axis_z": 0.9964004411175571
+        },
+        "tracks": []
+      },
+      {
+        "frame": 142,
+        "t_s": 2.84,
+        "values": {
+          "horizontal_speed_mps": 0.14226878683244795,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7318851947784424,
+          "up_axis_z": 0.9962617685579599
+        },
+        "tracks": []
+      },
+      {
+        "frame": 143,
+        "t_s": 2.86,
+        "values": {
+          "horizontal_speed_mps": 0.14147073990904155,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7315871715545654,
+          "up_axis_z": 0.996125816789522
+        },
+        "tracks": []
+      },
+      {
+        "frame": 144,
+        "t_s": 2.88,
+        "values": {
+          "horizontal_speed_mps": 0.14113591129359182,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7313635349273682,
+          "up_axis_z": 0.9959886121449748
+        },
+        "tracks": []
+      },
+      {
+        "frame": 145,
+        "t_s": 2.9,
+        "values": {
+          "horizontal_speed_mps": 0.14053864822212667,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7312127351760864,
+          "up_axis_z": 0.9958491092570629
+        },
+        "tracks": []
+      },
+      {
+        "frame": 146,
+        "t_s": 2.92,
+        "values": {
+          "horizontal_speed_mps": 0.1396519344198901,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7311272621154785,
+          "up_axis_z": 0.9957068505142455
+        },
+        "tracks": []
+      },
+      {
+        "frame": 147,
+        "t_s": 2.94,
+        "values": {
+          "horizontal_speed_mps": 0.13847718952594262,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.731081247329712,
+          "up_axis_z": 0.9955604827736001
+        },
+        "tracks": []
+      },
+      {
+        "frame": 148,
+        "t_s": 2.96,
+        "values": {
+          "horizontal_speed_mps": 0.137560666539656,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.731044054031372,
+          "up_axis_z": 0.9954093593412221
+        },
+        "tracks": []
+      },
+      {
+        "frame": 149,
+        "t_s": 2.98,
+        "values": {
+          "horizontal_speed_mps": 0.13714423668227863,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7309844493865967,
+          "up_axis_z": 0.9952526806311337
+        },
+        "tracks": []
+      },
+      {
+        "frame": 150,
+        "t_s": 3.0,
+        "values": {
+          "horizontal_speed_mps": 0.13751369268464692,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.73090660572052,
+          "up_axis_z": 0.995091630232573
+        },
+        "tracks": []
+      },
+      {
+        "frame": 151,
+        "t_s": 3.02,
+        "values": {
+          "horizontal_speed_mps": 0.13645263994738027,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7308720350265503,
+          "up_axis_z": 0.9949354251211847
+        },
+        "tracks": []
+      },
+      {
+        "frame": 152,
+        "t_s": 3.04,
+        "values": {
+          "horizontal_speed_mps": 0.13136999053796397,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7306492328643799,
+          "up_axis_z": 0.9947598964240688
+        },
+        "tracks": []
+      },
+      {
+        "frame": 153,
+        "t_s": 3.06,
+        "values": {
+          "horizontal_speed_mps": 0.12810790239827152,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7301788330078125,
+          "up_axis_z": 0.9945649790458162
+        },
+        "tracks": []
+      },
+      {
+        "frame": 154,
+        "t_s": 3.08,
+        "values": {
+          "horizontal_speed_mps": 0.1279789496902032,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7295502424240112,
+          "up_axis_z": 0.994367960014138
+        },
+        "tracks": []
+      },
+      {
+        "frame": 155,
+        "t_s": 3.1,
+        "values": {
+          "horizontal_speed_mps": 0.13058462813078722,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7290048599243164,
+          "up_axis_z": 0.9941946257142247
+        },
+        "tracks": []
+      },
+      {
+        "frame": 156,
+        "t_s": 3.12,
+        "values": {
+          "horizontal_speed_mps": 0.1296807520362088,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7285078763961792,
+          "up_axis_z": 0.9940317230300215
+        },
+        "tracks": []
+      },
+      {
+        "frame": 157,
+        "t_s": 3.14,
+        "values": {
+          "horizontal_speed_mps": 0.12983159853821796,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7279304265975952,
+          "up_axis_z": 0.9938585531852309
+        },
+        "tracks": []
+      },
+      {
+        "frame": 158,
+        "t_s": 3.16,
+        "values": {
+          "horizontal_speed_mps": 0.1318687852948434,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7273192405700684,
+          "up_axis_z": 0.9936831340071113
+        },
+        "tracks": []
+      },
+      {
+        "frame": 159,
+        "t_s": 3.18,
+        "values": {
+          "horizontal_speed_mps": 0.13896718854616286,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.726838231086731,
+          "up_axis_z": 0.9935218840851002
+        },
+        "tracks": []
+      },
+      {
+        "frame": 160,
+        "t_s": 3.2,
+        "values": {
+          "horizontal_speed_mps": 0.14707939087909516,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7267894744873047,
+          "up_axis_z": 0.9934027435311675
+        },
+        "tracks": []
+      },
+      {
+        "frame": 161,
+        "t_s": 3.22,
+        "values": {
+          "horizontal_speed_mps": 0.14972369166091168,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.727036714553833,
+          "up_axis_z": 0.9932863665182672
+        },
+        "tracks": []
+      },
+      {
+        "frame": 162,
+        "t_s": 3.24,
+        "values": {
+          "horizontal_speed_mps": 0.15217096464397706,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7273736000061035,
+          "up_axis_z": 0.993137236064636
+        },
+        "tracks": []
+      },
+      {
+        "frame": 163,
+        "t_s": 3.26,
+        "values": {
+          "horizontal_speed_mps": 0.15442656939130814,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7277759313583374,
+          "up_axis_z": 0.9929639255336874
+        },
+        "tracks": []
+      },
+      {
+        "frame": 164,
+        "t_s": 3.28,
+        "values": {
+          "horizontal_speed_mps": 0.15588065390342343,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7282135486602783,
+          "up_axis_z": 0.9927745561871844
+        },
+        "tracks": []
+      },
+      {
+        "frame": 165,
+        "t_s": 3.3,
+        "values": {
+          "horizontal_speed_mps": 0.16075412841716233,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.728687047958374,
+          "up_axis_z": 0.9925946138098075
+        },
+        "tracks": []
+      },
+      {
+        "frame": 166,
+        "t_s": 3.32,
+        "values": {
+          "horizontal_speed_mps": 0.16556201812926194,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.729270577430725,
+          "up_axis_z": 0.9924568914767927
+        },
+        "tracks": []
+      },
+      {
+        "frame": 167,
+        "t_s": 3.34,
+        "values": {
+          "horizontal_speed_mps": 0.17241335241358233,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7300677299499512,
+          "up_axis_z": 0.992380545505203
+        },
+        "tracks": []
+      },
+      {
+        "frame": 168,
+        "t_s": 3.36,
+        "values": {
+          "horizontal_speed_mps": 0.1778514348675074,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7311878204345703,
+          "up_axis_z": 0.992366271961516
+        },
+        "tracks": []
+      },
+      {
+        "frame": 169,
+        "t_s": 3.38,
+        "values": {
+          "horizontal_speed_mps": 0.1793958941800629,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7326196432113647,
+          "up_axis_z": 0.9923735178126032
+        },
+        "tracks": []
+      },
+      {
+        "frame": 170,
+        "t_s": 3.4,
+        "values": {
+          "horizontal_speed_mps": 0.18062026278679613,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7340021133422852,
+          "up_axis_z": 0.9923823098293948
+        },
+        "tracks": []
+      },
+      {
+        "frame": 171,
+        "t_s": 3.42,
+        "values": {
+          "horizontal_speed_mps": 0.18437945414674906,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7347395420074463,
+          "up_axis_z": 0.9923795420996541
+        },
+        "tracks": []
+      },
+      {
+        "frame": 172,
+        "t_s": 3.44,
+        "values": {
+          "horizontal_speed_mps": 0.1938612227910325,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7346248626708984,
+          "up_axis_z": 0.9923586740032226
+        },
+        "tracks": []
+      },
+      {
+        "frame": 173,
+        "t_s": 3.46,
+        "values": {
+          "horizontal_speed_mps": 0.21125440262414671,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.733938455581665,
+          "up_axis_z": 0.99235329925529
+        },
+        "tracks": []
+      },
+      {
+        "frame": 174,
+        "t_s": 3.48,
+        "values": {
+          "horizontal_speed_mps": 0.23107654445187287,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.733092188835144,
+          "up_axis_z": 0.9923576564020465
+        },
+        "tracks": []
+      },
+      {
+        "frame": 175,
+        "t_s": 3.5,
+        "values": {
+          "horizontal_speed_mps": 0.24396936437495825,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.732447624206543,
+          "up_axis_z": 0.9922295138690348
+        },
+        "tracks": []
+      },
+      {
+        "frame": 176,
+        "t_s": 3.52,
+        "values": {
+          "horizontal_speed_mps": 0.20959850849454895,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7317414283752441,
+          "up_axis_z": 0.9916436515581125
+        },
+        "tracks": []
+      },
+      {
+        "frame": 177,
+        "t_s": 3.54,
+        "values": {
+          "horizontal_speed_mps": 0.22127874776250062,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7298409938812256,
+          "up_axis_z": 0.99063607623485
+        },
+        "tracks": []
+      },
+      {
+        "frame": 178,
+        "t_s": 3.56,
+        "values": {
+          "horizontal_speed_mps": 0.23995906400020484,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7313830852508545,
+          "up_axis_z": 0.9905019753366299
+        },
+        "tracks": []
+      },
+      {
+        "frame": 179,
+        "t_s": 3.58,
+        "values": {
+          "horizontal_speed_mps": 0.23891608343920762,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7319000959396362,
+          "up_axis_z": 0.9904524745956692
+        },
+        "tracks": []
+      },
+      {
+        "frame": 180,
+        "t_s": 3.6,
+        "values": {
+          "horizontal_speed_mps": 0.2465529172638426,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.731885552406311,
+          "up_axis_z": 0.9905675933786524
+        },
+        "tracks": []
+      },
+      {
+        "frame": 181,
+        "t_s": 3.62,
+        "values": {
+          "horizontal_speed_mps": 0.2682532424789455,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7313519716262817,
+          "up_axis_z": 0.9909580831273039
+        },
+        "tracks": []
+      },
+      {
+        "frame": 182,
+        "t_s": 3.64,
+        "values": {
+          "horizontal_speed_mps": 0.2956373205265431,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7297978401184082,
+          "up_axis_z": 0.9917406268435859
+        },
+        "tracks": []
+      },
+      {
+        "frame": 183,
+        "t_s": 3.66,
+        "values": {
+          "horizontal_speed_mps": 0.3202718216433349,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7274943590164185,
+          "up_axis_z": 0.9929443642735164
+        },
+        "tracks": []
+      },
+      {
+        "frame": 184,
+        "t_s": 3.68,
+        "values": {
+          "horizontal_speed_mps": 0.26655014108882374,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7256512641906738,
+          "up_axis_z": 0.9940485285689793
+        },
+        "tracks": []
+      },
+      {
+        "frame": 185,
+        "t_s": 3.7,
+        "values": {
+          "horizontal_speed_mps": 0.2558107533052464,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7264059782028198,
+          "up_axis_z": 0.9949005925970771
+        },
+        "tracks": []
+      },
+      {
+        "frame": 186,
+        "t_s": 3.72,
+        "values": {
+          "horizontal_speed_mps": 0.254858276123253,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7292476892471313,
+          "up_axis_z": 0.9956717174768162
+        },
+        "tracks": []
+      },
+      {
+        "frame": 187,
+        "t_s": 3.74,
+        "values": {
+          "horizontal_speed_mps": 0.25864236655976214,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7323243618011475,
+          "up_axis_z": 0.9963178272573036
+        },
+        "tracks": []
+      },
+      {
+        "frame": 188,
+        "t_s": 3.76,
+        "values": {
+          "horizontal_speed_mps": 0.2547278592971855,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7324223518371582,
+          "up_axis_z": 0.9967712391700179
+        },
+        "tracks": []
+      },
+      {
+        "frame": 189,
+        "t_s": 3.78,
+        "values": {
+          "horizontal_speed_mps": 0.27721823782680866,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7292126417160034,
+          "up_axis_z": 0.9971979793857378
+        },
+        "tracks": []
+      },
+      {
+        "frame": 190,
+        "t_s": 3.8,
+        "values": {
+          "horizontal_speed_mps": 0.2583354106846632,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7252418994903564,
+          "up_axis_z": 0.9975028501530889
+        },
+        "tracks": []
+      },
+      {
+        "frame": 191,
+        "t_s": 3.82,
+        "values": {
+          "horizontal_speed_mps": 0.23648090489062912,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7235558032989502,
+          "up_axis_z": 0.9976196451414058
+        },
+        "tracks": []
+      },
+      {
+        "frame": 192,
+        "t_s": 3.84,
+        "values": {
+          "horizontal_speed_mps": 0.25139259211406645,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7241230010986328,
+          "up_axis_z": 0.9977166030621564
+        },
+        "tracks": []
+      },
+      {
+        "frame": 193,
+        "t_s": 3.86,
+        "values": {
+          "horizontal_speed_mps": 0.266715305068905,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7252532243728638,
+          "up_axis_z": 0.9978862137204875
+        },
+        "tracks": []
+      },
+      {
+        "frame": 194,
+        "t_s": 3.88,
+        "values": {
+          "horizontal_speed_mps": 0.25420314590370313,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.726683259010315,
+          "up_axis_z": 0.9980755773751674
+        },
+        "tracks": []
+      },
+      {
+        "frame": 195,
+        "t_s": 3.9,
+        "values": {
+          "horizontal_speed_mps": 0.2607068369600498,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7290725708007812,
+          "up_axis_z": 0.9982815665492981
+        },
+        "tracks": []
+      },
+      {
+        "frame": 196,
+        "t_s": 3.92,
+        "values": {
+          "horizontal_speed_mps": 0.26549139936365407,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.731512188911438,
+          "up_axis_z": 0.9984688300088437
+        },
+        "tracks": []
+      },
+      {
+        "frame": 197,
+        "t_s": 3.94,
+        "values": {
+          "horizontal_speed_mps": 0.2525450940002752,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7333314418792725,
+          "up_axis_z": 0.9985793664455721
+        },
+        "tracks": []
+      },
+      {
+        "frame": 198,
+        "t_s": 3.96,
+        "values": {
+          "horizontal_speed_mps": 0.2479845953012816,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7349324226379395,
+          "up_axis_z": 0.9986566935596409
+        },
+        "tracks": []
+      },
+      {
+        "frame": 199,
+        "t_s": 3.98,
+        "values": {
+          "horizontal_speed_mps": 0.2455316718170619,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7363585233688354,
+          "up_axis_z": 0.9987274127291357
+        },
+        "tracks": []
+      },
+      {
+        "frame": 200,
+        "t_s": 4.0,
+        "values": {
+          "horizontal_speed_mps": 0.24507488882613013,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7374802827835083,
+          "up_axis_z": 0.9987793552665827
+        },
+        "tracks": []
+      },
+      {
+        "frame": 201,
+        "t_s": 4.02,
+        "values": {
+          "horizontal_speed_mps": 0.2442021257305108,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.738563895225525,
+          "up_axis_z": 0.9988198910370517
+        },
+        "tracks": []
+      },
+      {
+        "frame": 202,
+        "t_s": 4.04,
+        "values": {
+          "horizontal_speed_mps": 0.24189171256325642,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7395069599151611,
+          "up_axis_z": 0.9988567264449205
+        },
+        "tracks": []
+      },
+      {
+        "frame": 203,
+        "t_s": 4.06,
+        "values": {
+          "horizontal_speed_mps": 0.23768387498910445,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7402193546295166,
+          "up_axis_z": 0.9988873179730847
+        },
+        "tracks": []
+      },
+      {
+        "frame": 204,
+        "t_s": 4.08,
+        "values": {
+          "horizontal_speed_mps": 0.23290003164888706,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7406718730926514,
+          "up_axis_z": 0.9989120554082345
+        },
+        "tracks": []
+      },
+      {
+        "frame": 205,
+        "t_s": 4.1,
+        "values": {
+          "horizontal_speed_mps": 0.2283657299830423,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7409027814865112,
+          "up_axis_z": 0.9989319061851805
+        },
+        "tracks": []
+      },
+      {
+        "frame": 206,
+        "t_s": 4.12,
+        "values": {
+          "horizontal_speed_mps": 0.22324447614682308,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7409589290618896,
+          "up_axis_z": 0.9989415914481047
+        },
+        "tracks": []
+      },
+      {
+        "frame": 207,
+        "t_s": 4.14,
+        "values": {
+          "horizontal_speed_mps": 0.2180118863806487,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7408661842346191,
+          "up_axis_z": 0.9989374541297867
+        },
+        "tracks": []
+      },
+      {
+        "frame": 208,
+        "t_s": 4.16,
+        "values": {
+          "horizontal_speed_mps": 0.2131604305271732,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7406527996063232,
+          "up_axis_z": 0.9989215454750331
+        },
+        "tracks": []
+      },
+      {
+        "frame": 209,
+        "t_s": 4.18,
+        "values": {
+          "horizontal_speed_mps": 0.20856371662393086,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7403573989868164,
+          "up_axis_z": 0.9988957664977665
+        },
+        "tracks": []
+      },
+      {
+        "frame": 210,
+        "t_s": 4.2,
+        "values": {
+          "horizontal_speed_mps": 0.20404049146717787,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.740006923675537,
+          "up_axis_z": 0.998861106849671
+        },
+        "tracks": []
+      },
+      {
+        "frame": 211,
+        "t_s": 4.22,
+        "values": {
+          "horizontal_speed_mps": 0.1997074859814927,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.739617109298706,
+          "up_axis_z": 0.9988176551280912
+        },
+        "tracks": []
+      },
+      {
+        "frame": 212,
+        "t_s": 4.24,
+        "values": {
+          "horizontal_speed_mps": 0.19547553858637648,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7392019033432007,
+          "up_axis_z": 0.998765600308741
+        },
+        "tracks": []
+      },
+      {
+        "frame": 213,
+        "t_s": 4.26,
+        "values": {
+          "horizontal_speed_mps": 0.19136890133712986,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7387784719467163,
+          "up_axis_z": 0.9987074511520022
+        },
+        "tracks": []
+      },
+      {
+        "frame": 214,
+        "t_s": 4.28,
+        "values": {
+          "horizontal_speed_mps": 0.18737746297790517,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.73835289478302,
+          "up_axis_z": 0.99864503013145
+        },
+        "tracks": []
+      },
+      {
+        "frame": 215,
+        "t_s": 4.3,
+        "values": {
+          "horizontal_speed_mps": 0.18309383299342913,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7379341125488281,
+          "up_axis_z": 0.9985781964141546
+        },
+        "tracks": []
+      },
+      {
+        "frame": 216,
+        "t_s": 4.32,
+        "values": {
+          "horizontal_speed_mps": 0.1780936755743431,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.737526774406433,
+          "up_axis_z": 0.9985057515013679
+        },
+        "tracks": []
+      },
+      {
+        "frame": 217,
+        "t_s": 4.34,
+        "values": {
+          "horizontal_speed_mps": 0.17309526669083586,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7371305227279663,
+          "up_axis_z": 0.9984267877743517
+        },
+        "tracks": []
+      },
+      {
+        "frame": 218,
+        "t_s": 4.36,
+        "values": {
+          "horizontal_speed_mps": 0.1688819304825269,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7367432117462158,
+          "up_axis_z": 0.998342869094365
+        },
+        "tracks": []
+      },
+      {
+        "frame": 219,
+        "t_s": 4.38,
+        "values": {
+          "horizontal_speed_mps": 0.16488364246936024,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7363590002059937,
+          "up_axis_z": 0.9982557104822067
+        },
+        "tracks": []
+      },
+      {
+        "frame": 220,
+        "t_s": 4.4,
+        "values": {
+          "horizontal_speed_mps": 0.1602847960815685,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7359766960144043,
+          "up_axis_z": 0.9981629734404552
+        },
+        "tracks": []
+      },
+      {
+        "frame": 221,
+        "t_s": 4.42,
+        "values": {
+          "horizontal_speed_mps": 0.15616712548307135,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7355916500091553,
+          "up_axis_z": 0.9980641294544631
+        },
+        "tracks": []
+      },
+      {
+        "frame": 222,
+        "t_s": 4.44,
+        "values": {
+          "horizontal_speed_mps": 0.15250952079975993,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.735203742980957,
+          "up_axis_z": 0.9979617222941437
+        },
+        "tracks": []
+      },
+      {
+        "frame": 223,
+        "t_s": 4.46,
+        "values": {
+          "horizontal_speed_mps": 0.14911341512499185,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7348110675811768,
+          "up_axis_z": 0.9978567477412558
+        },
+        "tracks": []
+      },
+      {
+        "frame": 224,
+        "t_s": 4.48,
+        "values": {
+          "horizontal_speed_mps": 0.1459170711670309,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7344136238098145,
+          "up_axis_z": 0.9977496643443114
+        },
+        "tracks": []
+      },
+      {
+        "frame": 225,
+        "t_s": 4.5,
+        "values": {
+          "horizontal_speed_mps": 0.142847656674165,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7340115308761597,
+          "up_axis_z": 0.9976411227802788
+        },
+        "tracks": []
+      },
+      {
+        "frame": 226,
+        "t_s": 4.52,
+        "values": {
+          "horizontal_speed_mps": 0.14008669157885187,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7336064577102661,
+          "up_axis_z": 0.9975316928471654
+        },
+        "tracks": []
+      },
+      {
+        "frame": 227,
+        "t_s": 4.54,
+        "values": {
+          "horizontal_speed_mps": 0.1374093214602945,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.733200192451477,
+          "up_axis_z": 0.9974212856674255
+        },
+        "tracks": []
+      },
+      {
+        "frame": 228,
+        "t_s": 4.56,
+        "values": {
+          "horizontal_speed_mps": 0.1348412944627271,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7327901124954224,
+          "up_axis_z": 0.9973094503708796
+        },
+        "tracks": []
+      },
+      {
+        "frame": 229,
+        "t_s": 4.58,
+        "values": {
+          "horizontal_speed_mps": 0.13229374903106786,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7323799133300781,
+          "up_axis_z": 0.9971955422133342
+        },
+        "tracks": []
+      },
+      {
+        "frame": 230,
+        "t_s": 4.6,
+        "values": {
+          "horizontal_speed_mps": 0.12965376255844233,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7319709062576294,
+          "up_axis_z": 0.9970781631274849
+        },
+        "tracks": []
+      },
+      {
+        "frame": 231,
+        "t_s": 4.62,
+        "values": {
+          "horizontal_speed_mps": 0.12774563617243856,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7315576076507568,
+          "up_axis_z": 0.9969584075726892
+        },
+        "tracks": []
+      },
+      {
+        "frame": 232,
+        "t_s": 4.64,
+        "values": {
+          "horizontal_speed_mps": 0.1259058455307792,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7311352491378784,
+          "up_axis_z": 0.9968375254333703
+        },
+        "tracks": []
+      },
+      {
+        "frame": 233,
+        "t_s": 4.66,
+        "values": {
+          "horizontal_speed_mps": 0.12408020569850686,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7307029962539673,
+          "up_axis_z": 0.9967151956442315
+        },
+        "tracks": []
+      },
+      {
+        "frame": 234,
+        "t_s": 4.68,
+        "values": {
+          "horizontal_speed_mps": 0.12237997647521195,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7302606105804443,
+          "up_axis_z": 0.9965918465293184
+        },
+        "tracks": []
+      },
+      {
+        "frame": 235,
+        "t_s": 4.7,
+        "values": {
+          "horizontal_speed_mps": 0.12106231625364303,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7298191785812378,
+          "up_axis_z": 0.9964666271836443
+        },
+        "tracks": []
+      },
+      {
+        "frame": 236,
+        "t_s": 4.72,
+        "values": {
+          "horizontal_speed_mps": 0.12044869655667267,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7293832302093506,
+          "up_axis_z": 0.9963383460017814
+        },
+        "tracks": []
+      },
+      {
+        "frame": 237,
+        "t_s": 4.74,
+        "values": {
+          "horizontal_speed_mps": 0.12003587211893428,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7289478778839111,
+          "up_axis_z": 0.9962068584533172
+        },
+        "tracks": []
+      },
+      {
+        "frame": 238,
+        "t_s": 4.76,
+        "values": {
+          "horizontal_speed_mps": 0.11994629679814775,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7285172939300537,
+          "up_axis_z": 0.9960723631579819
+        },
+        "tracks": []
+      },
+      {
+        "frame": 239,
+        "t_s": 4.78,
+        "values": {
+          "horizontal_speed_mps": 0.12023662112990816,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7280993461608887,
+          "up_axis_z": 0.9959355176500904
+        },
+        "tracks": []
+      },
+      {
+        "frame": 240,
+        "t_s": 4.8,
+        "values": {
+          "horizontal_speed_mps": 0.12122640146924864,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7277415990829468,
+          "up_axis_z": 0.9958010185719011
+        },
+        "tracks": []
+      },
+      {
+        "frame": 241,
+        "t_s": 4.82,
+        "values": {
+          "horizontal_speed_mps": 0.12230666043300119,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.727526307106018,
+          "up_axis_z": 0.9956765882540951
+        },
+        "tracks": []
+      },
+      {
+        "frame": 242,
+        "t_s": 4.84,
+        "values": {
+          "horizontal_speed_mps": 0.11983178249576901,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7273659706115723,
+          "up_axis_z": 0.9955515511779939
+        },
+        "tracks": []
+      },
+      {
+        "frame": 243,
+        "t_s": 4.86,
+        "values": {
+          "horizontal_speed_mps": 0.1162800093589318,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7269989252090454,
+          "up_axis_z": 0.9953953493937331
+        },
+        "tracks": []
+      },
+      {
+        "frame": 244,
+        "t_s": 4.88,
+        "values": {
+          "horizontal_speed_mps": 0.11497759866623497,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7264357805252075,
+          "up_axis_z": 0.995217064867857
+        },
+        "tracks": []
+      },
+      {
+        "frame": 245,
+        "t_s": 4.9,
+        "values": {
+          "horizontal_speed_mps": 0.11514115989700711,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.725735068321228,
+          "up_axis_z": 0.9950251907880587
+        },
+        "tracks": []
+      },
+      {
+        "frame": 246,
+        "t_s": 4.92,
+        "values": {
+          "horizontal_speed_mps": 0.12257495287824705,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7251770496368408,
+          "up_axis_z": 0.9948492696938058
+        },
+        "tracks": []
+      },
+      {
+        "frame": 247,
+        "t_s": 4.94,
+        "values": {
+          "horizontal_speed_mps": 0.13006865582374558,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7250676155090332,
+          "up_axis_z": 0.9947185782972519
+        },
+        "tracks": []
+      },
+      {
+        "frame": 248,
+        "t_s": 4.96,
+        "values": {
+          "horizontal_speed_mps": 0.13681025145438225,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.725414752960205,
+          "up_axis_z": 0.9946143448998711
+        },
+        "tracks": []
+      },
+      {
+        "frame": 249,
+        "t_s": 4.98,
+        "values": {
+          "horizontal_speed_mps": 0.14240566952077113,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.726194977760315,
+          "up_axis_z": 0.9945228398495324
+        },
+        "tracks": []
+      },
+      {
+        "frame": 250,
+        "t_s": 5.0,
+        "values": {
+          "horizontal_speed_mps": 0.13952301653572255,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7271058559417725,
+          "up_axis_z": 0.9944019078511938
+        },
+        "tracks": []
+      },
+      {
+        "frame": 251,
+        "t_s": 5.02,
+        "values": {
+          "horizontal_speed_mps": 0.139550510368243,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7279287576675415,
+          "up_axis_z": 0.9942430026347049
+        },
+        "tracks": []
+      },
+      {
+        "frame": 252,
+        "t_s": 5.04,
+        "values": {
+          "horizontal_speed_mps": 0.14067242320212472,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7286922931671143,
+          "up_axis_z": 0.9940806693630508
+        },
+        "tracks": []
+      },
+      {
+        "frame": 253,
+        "t_s": 5.06,
+        "values": {
+          "horizontal_speed_mps": 0.14451513069270308,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7294501066207886,
+          "up_axis_z": 0.9939441903323109
+        },
+        "tracks": []
+      },
+      {
+        "frame": 254,
+        "t_s": 5.08,
+        "values": {
+          "horizontal_speed_mps": 0.14744951210094717,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7302581071853638,
+          "up_axis_z": 0.9938486367318028
+        },
+        "tracks": []
+      },
+      {
+        "frame": 255,
+        "t_s": 5.1,
+        "values": {
+          "horizontal_speed_mps": 0.1485220382781036,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7310690879821777,
+          "up_axis_z": 0.9937848292121132
+        },
+        "tracks": []
+      },
+      {
+        "frame": 256,
+        "t_s": 5.12,
+        "values": {
+          "horizontal_speed_mps": 0.1479764730313813,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.731618881225586,
+          "up_axis_z": 0.9937380329604105
+        },
+        "tracks": []
+      },
+      {
+        "frame": 257,
+        "t_s": 5.14,
+        "values": {
+          "horizontal_speed_mps": 0.1492266945317092,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7315477132797241,
+          "up_axis_z": 0.9936878034591773
+        },
+        "tracks": []
+      },
+      {
+        "frame": 258,
+        "t_s": 5.16,
+        "values": {
+          "horizontal_speed_mps": 0.15153123378054453,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.730738639831543,
+          "up_axis_z": 0.9936027309941428
+        },
+        "tracks": []
+      },
+      {
+        "frame": 259,
+        "t_s": 5.18,
+        "values": {
+          "horizontal_speed_mps": 0.15924925096853948,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.729416012763977,
+          "up_axis_z": 0.993455629643974
+        },
+        "tracks": []
+      },
+      {
+        "frame": 260,
+        "t_s": 5.2,
+        "values": {
+          "horizontal_speed_mps": 0.17196036990953076,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7279493808746338,
+          "up_axis_z": 0.9932317514596419
+        },
+        "tracks": []
+      },
+      {
+        "frame": 261,
+        "t_s": 5.22,
+        "values": {
+          "horizontal_speed_mps": 0.18280644023564224,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7268011569976807,
+          "up_axis_z": 0.9928826813422544
+        },
+        "tracks": []
+      },
+      {
+        "frame": 262,
+        "t_s": 5.24,
+        "values": {
+          "horizontal_speed_mps": 0.1808293549411876,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7262502908706665,
+          "up_axis_z": 0.9923172531900781
+        },
+        "tracks": []
+      },
+      {
+        "frame": 263,
+        "t_s": 5.26,
+        "values": {
+          "horizontal_speed_mps": 0.16430434795000634,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7256792783737183,
+          "up_axis_z": 0.9914514178571812
+        },
+        "tracks": []
+      },
+      {
+        "frame": 264,
+        "t_s": 5.28,
+        "values": {
+          "horizontal_speed_mps": 0.15256681958903223,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.724076747894287,
+          "up_axis_z": 0.990366193246029
+        },
+        "tracks": []
+      },
+      {
+        "frame": 265,
+        "t_s": 5.3,
+        "values": {
+          "horizontal_speed_mps": 0.16590366615214838,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7215608358383179,
+          "up_axis_z": 0.9894217090258692
+        },
+        "tracks": []
+      },
+      {
+        "frame": 266,
+        "t_s": 5.32,
+        "values": {
+          "horizontal_speed_mps": 0.2402753053732253,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7206482887268066,
+          "up_axis_z": 0.9893277897974048
+        },
+        "tracks": []
+      },
+      {
+        "frame": 267,
+        "t_s": 5.34,
+        "values": {
+          "horizontal_speed_mps": 0.2490188854606339,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7206411361694336,
+          "up_axis_z": 0.9896847074454026
+        },
+        "tracks": []
+      },
+      {
+        "frame": 268,
+        "t_s": 5.36,
+        "values": {
+          "horizontal_speed_mps": 0.28147068758178856,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7203850746154785,
+          "up_axis_z": 0.9903327735889605
+        },
+        "tracks": []
+      },
+      {
+        "frame": 269,
+        "t_s": 5.38,
+        "values": {
+          "horizontal_speed_mps": 0.3192626904737694,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7193925380706787,
+          "up_axis_z": 0.9914229140267642
+        },
+        "tracks": []
+      },
+      {
+        "frame": 270,
+        "t_s": 5.4,
+        "values": {
+          "horizontal_speed_mps": 0.26684528978045413,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7191572189331055,
+          "up_axis_z": 0.9924562498229049
+        },
+        "tracks": []
+      },
+      {
+        "frame": 271,
+        "t_s": 5.42,
+        "values": {
+          "horizontal_speed_mps": 0.26290179793244006,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7198362350463867,
+          "up_axis_z": 0.9933477334090463
+        },
+        "tracks": []
+      },
+      {
+        "frame": 272,
+        "t_s": 5.44,
+        "values": {
+          "horizontal_speed_mps": 0.25683497448745685,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7217706441879272,
+          "up_axis_z": 0.994206972821622
+        },
+        "tracks": []
+      },
+      {
+        "frame": 273,
+        "t_s": 5.46,
+        "values": {
+          "horizontal_speed_mps": 0.26030492164285274,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7247201204299927,
+          "up_axis_z": 0.9949681474527536
+        },
+        "tracks": []
+      },
+      {
+        "frame": 274,
+        "t_s": 5.48,
+        "values": {
+          "horizontal_speed_mps": 0.261269060694563,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7264549732208252,
+          "up_axis_z": 0.9955432202895033
+        },
+        "tracks": []
+      },
+      {
+        "frame": 275,
+        "t_s": 5.5,
+        "values": {
+          "horizontal_speed_mps": 0.26545956515514796,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.724442958831787,
+          "up_axis_z": 0.995971823138335
+        },
+        "tracks": []
+      },
+      {
+        "frame": 276,
+        "t_s": 5.52,
+        "values": {
+          "horizontal_speed_mps": 0.2872657162309041,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7195231914520264,
+          "up_axis_z": 0.9965140237404096
+        },
+        "tracks": []
+      },
+      {
+        "frame": 277,
+        "t_s": 5.54,
+        "values": {
+          "horizontal_speed_mps": 0.23643202723915577,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7138493061065674,
+          "up_axis_z": 0.9968718002987276
+        },
+        "tracks": []
+      },
+      {
+        "frame": 278,
+        "t_s": 5.56,
+        "values": {
+          "horizontal_speed_mps": 0.22666143639824007,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7108532190322876,
+          "up_axis_z": 0.9969906811087452
+        },
+        "tracks": []
+      },
+      {
+        "frame": 279,
+        "t_s": 5.58,
+        "values": {
+          "horizontal_speed_mps": 0.23978817706300432,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.709672212600708,
+          "up_axis_z": 0.9971072564705153
+        },
+        "tracks": []
+      },
+      {
+        "frame": 280,
+        "t_s": 5.6,
+        "values": {
+          "horizontal_speed_mps": 0.23884894649053348,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7099884748458862,
+          "up_axis_z": 0.9972643728533063
+        },
+        "tracks": []
+      },
+      {
+        "frame": 281,
+        "t_s": 5.62,
+        "values": {
+          "horizontal_speed_mps": 0.2404790915600922,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7114592790603638,
+          "up_axis_z": 0.9974602488176709
+        },
+        "tracks": []
+      },
+      {
+        "frame": 282,
+        "t_s": 5.64,
+        "values": {
+          "horizontal_speed_mps": 0.24313601146459007,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7138681411743164,
+          "up_axis_z": 0.997696618879454
+        },
+        "tracks": []
+      },
+      {
+        "frame": 283,
+        "t_s": 5.66,
+        "values": {
+          "horizontal_speed_mps": 0.24137110306630802,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7166208028793335,
+          "up_axis_z": 0.9978936519362904
+        },
+        "tracks": []
+      },
+      {
+        "frame": 284,
+        "t_s": 5.68,
+        "values": {
+          "horizontal_speed_mps": 0.22797052633157372,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7191030979156494,
+          "up_axis_z": 0.9980043746690349
+        },
+        "tracks": []
+      },
+      {
+        "frame": 285,
+        "t_s": 5.7,
+        "values": {
+          "horizontal_speed_mps": 0.22169870505724543,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7211601734161377,
+          "up_axis_z": 0.9980596138845359
+        },
+        "tracks": []
+      },
+      {
+        "frame": 286,
+        "t_s": 5.72,
+        "values": {
+          "horizontal_speed_mps": 0.2185214709296943,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7230581045150757,
+          "up_axis_z": 0.9980853185555852
+        },
+        "tracks": []
+      },
+      {
+        "frame": 287,
+        "t_s": 5.74,
+        "values": {
+          "horizontal_speed_mps": 0.2230450569584529,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7251193523406982,
+          "up_axis_z": 0.998108755281531
+        },
+        "tracks": []
+      },
+      {
+        "frame": 288,
+        "t_s": 5.76,
+        "values": {
+          "horizontal_speed_mps": 0.2253197888195846,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7272738218307495,
+          "up_axis_z": 0.9981513632763858
+        },
+        "tracks": []
+      },
+      {
+        "frame": 289,
+        "t_s": 5.78,
+        "values": {
+          "horizontal_speed_mps": 0.22453625686050432,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7293636798858643,
+          "up_axis_z": 0.9982088927960502
+        },
+        "tracks": []
+      },
+      {
+        "frame": 290,
+        "t_s": 5.8,
+        "values": {
+          "horizontal_speed_mps": 0.22054814426061697,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.731234073638916,
+          "up_axis_z": 0.9982633055617741
+        },
+        "tracks": []
+      },
+      {
+        "frame": 291,
+        "t_s": 5.82,
+        "values": {
+          "horizontal_speed_mps": 0.21575768429376957,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7328143119812012,
+          "up_axis_z": 0.9983015632690417
+        },
+        "tracks": []
+      },
+      {
+        "frame": 292,
+        "t_s": 5.84,
+        "values": {
+          "horizontal_speed_mps": 0.2112137733870184,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.734139323234558,
+          "up_axis_z": 0.9983226273238602
+        },
+        "tracks": []
+      },
+      {
+        "frame": 293,
+        "t_s": 5.86,
+        "values": {
+          "horizontal_speed_mps": 0.20814467875725937,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7352842092514038,
+          "up_axis_z": 0.998329636628316
+        },
+        "tracks": []
+      },
+      {
+        "frame": 294,
+        "t_s": 5.88,
+        "values": {
+          "horizontal_speed_mps": 0.20540467289380887,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7362627983093262,
+          "up_axis_z": 0.9983230879910693
+        },
+        "tracks": []
+      },
+      {
+        "frame": 295,
+        "t_s": 5.9,
+        "values": {
+          "horizontal_speed_mps": 0.20262733318047454,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7370589971542358,
+          "up_axis_z": 0.9983037911970484
+        },
+        "tracks": []
+      },
+      {
+        "frame": 296,
+        "t_s": 5.92,
+        "values": {
+          "horizontal_speed_mps": 0.20062745788935576,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7376643419265747,
+          "up_axis_z": 0.9982784863065782
+        },
+        "tracks": []
+      },
+      {
+        "frame": 297,
+        "t_s": 5.94,
+        "values": {
+          "horizontal_speed_mps": 0.19741209733953233,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7380704879760742,
+          "up_axis_z": 0.9982499435445649
+        },
+        "tracks": []
+      },
+      {
+        "frame": 298,
+        "t_s": 5.96,
+        "values": {
+          "horizontal_speed_mps": 0.19416750609257183,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7382960319519043,
+          "up_axis_z": 0.9982177275306323
+        },
+        "tracks": []
+      },
+      {
+        "frame": 299,
+        "t_s": 5.98,
+        "values": {
+          "horizontal_speed_mps": 0.19148639767018424,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.738374948501587,
+          "up_axis_z": 0.9981835445928091
+        },
+        "tracks": []
+      },
+      {
+        "frame": 300,
+        "t_s": 6.0,
+        "values": {
+          "horizontal_speed_mps": 0.1873747768556259,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.738330364227295,
+          "up_axis_z": 0.998142767452873
+        },
+        "tracks": []
+      },
+      {
+        "frame": 301,
+        "t_s": 6.02,
+        "values": {
+          "horizontal_speed_mps": 0.18402267868629543,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7381904125213623,
+          "up_axis_z": 0.998093611361437
+        },
+        "tracks": []
+      },
+      {
+        "frame": 302,
+        "t_s": 6.04,
+        "values": {
+          "horizontal_speed_mps": 0.18090978736983035,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7379794120788574,
+          "up_axis_z": 0.9980377857153319
+        },
+        "tracks": []
+      },
+      {
+        "frame": 303,
+        "t_s": 6.06,
+        "values": {
+          "horizontal_speed_mps": 0.17697012547368035,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7377163171768188,
+          "up_axis_z": 0.9979721827702606
+        },
+        "tracks": []
+      },
+      {
+        "frame": 304,
+        "t_s": 6.08,
+        "values": {
+          "horizontal_speed_mps": 0.1733038834332266,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7374165058135986,
+          "up_axis_z": 0.9978968593637529
+        },
+        "tracks": []
+      },
+      {
+        "frame": 305,
+        "t_s": 6.1,
+        "values": {
+          "horizontal_speed_mps": 0.17025793920661522,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7370866537094116,
+          "up_axis_z": 0.9978154054863704
+        },
+        "tracks": []
+      },
+      {
+        "frame": 306,
+        "t_s": 6.12,
+        "values": {
+          "horizontal_speed_mps": 0.16744127315654003,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7367360591888428,
+          "up_axis_z": 0.9977303605921947
+        },
+        "tracks": []
+      },
+      {
+        "frame": 307,
+        "t_s": 6.14,
+        "values": {
+          "horizontal_speed_mps": 0.1638760818809957,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7363672256469727,
+          "up_axis_z": 0.9976400040740582
+        },
+        "tracks": []
+      },
+      {
+        "frame": 308,
+        "t_s": 6.16,
+        "values": {
+          "horizontal_speed_mps": 0.16031707886128965,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7359811067581177,
+          "up_axis_z": 0.9975443703839785
+        },
+        "tracks": []
+      },
+      {
+        "frame": 309,
+        "t_s": 6.18,
+        "values": {
+          "horizontal_speed_mps": 0.15792950563844024,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.73556387424469,
+          "up_axis_z": 0.9974488290833385
+        },
+        "tracks": []
+      },
+      {
+        "frame": 310,
+        "t_s": 6.2,
+        "values": {
+          "horizontal_speed_mps": 0.15483042350934875,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7351174354553223,
+          "up_axis_z": 0.9973548895825577
+        },
+        "tracks": []
+      },
+      {
+        "frame": 311,
+        "t_s": 6.22,
+        "values": {
+          "horizontal_speed_mps": 0.15233503557307826,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7346515655517578,
+          "up_axis_z": 0.9972615384286401
+        },
+        "tracks": []
+      },
+      {
+        "frame": 312,
+        "t_s": 6.24,
+        "values": {
+          "horizontal_speed_mps": 0.14954896544680465,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.734175205230713,
+          "up_axis_z": 0.9971674698542969
+        },
+        "tracks": []
+      },
+      {
+        "frame": 313,
+        "t_s": 6.26,
+        "values": {
+          "horizontal_speed_mps": 0.14688020142071037,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7336875200271606,
+          "up_axis_z": 0.9970713535608744
+        },
+        "tracks": []
+      },
+      {
+        "frame": 314,
+        "t_s": 6.28,
+        "values": {
+          "horizontal_speed_mps": 0.14396724131913138,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7331839799880981,
+          "up_axis_z": 0.9969715627917437
+        },
+        "tracks": []
+      },
+      {
+        "frame": 315,
+        "t_s": 6.3,
+        "values": {
+          "horizontal_speed_mps": 0.14176316178511386,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.732667326927185,
+          "up_axis_z": 0.996868703230014
+        },
+        "tracks": []
+      },
+      {
+        "frame": 316,
+        "t_s": 6.32,
+        "values": {
+          "horizontal_speed_mps": 0.1396969781754973,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7321385145187378,
+          "up_axis_z": 0.9967638346556663
+        },
+        "tracks": []
+      },
+      {
+        "frame": 317,
+        "t_s": 6.34,
+        "values": {
+          "horizontal_speed_mps": 0.13816400883203336,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7316055297851562,
+          "up_axis_z": 0.9966553992738588
+        },
+        "tracks": []
+      },
+      {
+        "frame": 318,
+        "t_s": 6.36,
+        "values": {
+          "horizontal_speed_mps": 0.13632472167876253,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7310744524002075,
+          "up_axis_z": 0.9965384522002056
+        },
+        "tracks": []
+      },
+      {
+        "frame": 319,
+        "t_s": 6.38,
+        "values": {
+          "horizontal_speed_mps": 0.1341193568653353,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.730552315711975,
+          "up_axis_z": 0.9964114294176706
+        },
+        "tracks": []
+      },
+      {
+        "frame": 320,
+        "t_s": 6.4,
+        "values": {
+          "horizontal_speed_mps": 0.13244200254974528,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7300543785095215,
+          "up_axis_z": 0.996279809745163
+        },
+        "tracks": []
+      },
+      {
+        "frame": 321,
+        "t_s": 6.42,
+        "values": {
+          "horizontal_speed_mps": 0.13125681529335506,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.729588270187378,
+          "up_axis_z": 0.9961478904179408
+        },
+        "tracks": []
+      },
+      {
+        "frame": 322,
+        "t_s": 6.44,
+        "values": {
+          "horizontal_speed_mps": 0.13036637623561564,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.729167103767395,
+          "up_axis_z": 0.9960166256037181
+        },
+        "tracks": []
+      },
+      {
+        "frame": 323,
+        "t_s": 6.46,
+        "values": {
+          "horizontal_speed_mps": 0.13049924760115839,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7288087606430054,
+          "up_axis_z": 0.9958889144488409
+        },
+        "tracks": []
+      },
+      {
+        "frame": 324,
+        "t_s": 6.48,
+        "values": {
+          "horizontal_speed_mps": 0.12976869287206055,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7285228967666626,
+          "up_axis_z": 0.9957607246507891
+        },
+        "tracks": []
+      },
+      {
+        "frame": 325,
+        "t_s": 6.5,
+        "values": {
+          "horizontal_speed_mps": 0.12915654854621011,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7283040285110474,
+          "up_axis_z": 0.9956251365882931
+        },
+        "tracks": []
+      },
+      {
+        "frame": 326,
+        "t_s": 6.52,
+        "values": {
+          "horizontal_speed_mps": 0.12904684420294274,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7281447649002075,
+          "up_axis_z": 0.9954815710780943
+        },
+        "tracks": []
+      },
+      {
+        "frame": 327,
+        "t_s": 6.54,
+        "values": {
+          "horizontal_speed_mps": 0.12918476542501622,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7280428409576416,
+          "up_axis_z": 0.9953309827981915
+        },
+        "tracks": []
+      },
+      {
+        "frame": 328,
+        "t_s": 6.56,
+        "values": {
+          "horizontal_speed_mps": 0.12928912704358614,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7279928922653198,
+          "up_axis_z": 0.9951713857344311
+        },
+        "tracks": []
+      },
+      {
+        "frame": 329,
+        "t_s": 6.58,
+        "values": {
+          "horizontal_speed_mps": 0.12947418518513462,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.72796630859375,
+          "up_axis_z": 0.9949986956440346
+        },
+        "tracks": []
+      },
+      {
+        "frame": 330,
+        "t_s": 6.6,
+        "values": {
+          "horizontal_speed_mps": 0.13033749892035107,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7279216051101685,
+          "up_axis_z": 0.9948111993994345
+        },
+        "tracks": []
+      },
+      {
+        "frame": 331,
+        "t_s": 6.62,
+        "values": {
+          "horizontal_speed_mps": 0.13189163114856922,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.727921485900879,
+          "up_axis_z": 0.9946213811736853
+        },
+        "tracks": []
+      },
+      {
+        "frame": 332,
+        "t_s": 6.64,
+        "values": {
+          "horizontal_speed_mps": 0.13508274172598167,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7280139923095703,
+          "up_axis_z": 0.9944459582103728
+        },
+        "tracks": []
+      },
+      {
+        "frame": 333,
+        "t_s": 6.66,
+        "values": {
+          "horizontal_speed_mps": 0.1367308951753473,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.728176236152649,
+          "up_axis_z": 0.9942886678262998
+        },
+        "tracks": []
+      },
+      {
+        "frame": 334,
+        "t_s": 6.68,
+        "values": {
+          "horizontal_speed_mps": 0.1353289747891765,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7281724214553833,
+          "up_axis_z": 0.9941134840114739
+        },
+        "tracks": []
+      },
+      {
+        "frame": 335,
+        "t_s": 6.7,
+        "values": {
+          "horizontal_speed_mps": 0.13562427083277775,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7279608249664307,
+          "up_axis_z": 0.9939223297064137
+        },
+        "tracks": []
+      },
+      {
+        "frame": 336,
+        "t_s": 6.72,
+        "values": {
+          "horizontal_speed_mps": 0.13701430353834396,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7275830507278442,
+          "up_axis_z": 0.9937236058271264
+        },
+        "tracks": []
+      },
+      {
+        "frame": 337,
+        "t_s": 6.74,
+        "values": {
+          "horizontal_speed_mps": 0.13959759803007893,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.727102518081665,
+          "up_axis_z": 0.9935172540450425
+        },
+        "tracks": []
+      },
+      {
+        "frame": 338,
+        "t_s": 6.76,
+        "values": {
+          "horizontal_speed_mps": 0.14272053476043028,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7265998125076294,
+          "up_axis_z": 0.9933014966778914
+        },
+        "tracks": []
+      },
+      {
+        "frame": 339,
+        "t_s": 6.78,
+        "values": {
+          "horizontal_speed_mps": 0.14685389267750548,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7261606454849243,
+          "up_axis_z": 0.9930652211911539
+        },
+        "tracks": []
+      },
+      {
+        "frame": 340,
+        "t_s": 6.8,
+        "values": {
+          "horizontal_speed_mps": 0.1480206905139891,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7258727550506592,
+          "up_axis_z": 0.992782508578829
+        },
+        "tracks": []
+      },
+      {
+        "frame": 341,
+        "t_s": 6.82,
+        "values": {
+          "horizontal_speed_mps": 0.15082870464029355,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.725798487663269,
+          "up_axis_z": 0.9924426031003519
+        },
+        "tracks": []
+      },
+      {
+        "frame": 342,
+        "t_s": 6.84,
+        "values": {
+          "horizontal_speed_mps": 0.15382769477312344,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.72594153881073,
+          "up_axis_z": 0.992037439599545
+        },
+        "tracks": []
+      },
+      {
+        "frame": 343,
+        "t_s": 6.86,
+        "values": {
+          "horizontal_speed_mps": 0.1650423836578632,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7266000509262085,
+          "up_axis_z": 0.9916409853732612
+        },
+        "tracks": []
+      },
+      {
+        "frame": 344,
+        "t_s": 6.88,
+        "values": {
+          "horizontal_speed_mps": 0.17529922273459309,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.727831244468689,
+          "up_axis_z": 0.9912948220133438
+        },
+        "tracks": []
+      },
+      {
+        "frame": 345,
+        "t_s": 6.9,
+        "values": {
+          "horizontal_speed_mps": 0.18265146521038714,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7292834520339966,
+          "up_axis_z": 0.9909481948944465
+        },
+        "tracks": []
+      },
+      {
+        "frame": 346,
+        "t_s": 6.92,
+        "values": {
+          "horizontal_speed_mps": 0.19179310904414115,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7309761047363281,
+          "up_axis_z": 0.9906336564017179
+        },
+        "tracks": []
+      },
+      {
+        "frame": 347,
+        "t_s": 6.94,
+        "values": {
+          "horizontal_speed_mps": 0.19723178300313945,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7327872514724731,
+          "up_axis_z": 0.9903757470364404
+        },
+        "tracks": []
+      },
+      {
+        "frame": 348,
+        "t_s": 6.96,
+        "values": {
+          "horizontal_speed_mps": 0.20204771452949793,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7341771125793457,
+          "up_axis_z": 0.9902064531668553
+        },
+        "tracks": []
+      },
+      {
+        "frame": 349,
+        "t_s": 6.98,
+        "values": {
+          "horizontal_speed_mps": 0.20466617853691974,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.734604001045227,
+          "up_axis_z": 0.9901483897034068
+        },
+        "tracks": []
+      },
+      {
+        "frame": 350,
+        "t_s": 7.0,
+        "values": {
+          "horizontal_speed_mps": 0.22055318900590773,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7340987920761108,
+          "up_axis_z": 0.9902661888290452
+        },
+        "tracks": []
+      },
+      {
+        "frame": 351,
+        "t_s": 7.02,
+        "values": {
+          "horizontal_speed_mps": 0.24233349608944785,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7328206300735474,
+          "up_axis_z": 0.9905676956291731
+        },
+        "tracks": []
+      },
+      {
+        "frame": 352,
+        "t_s": 7.04,
+        "values": {
+          "horizontal_speed_mps": 0.25755164022710625,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7304997444152832,
+          "up_axis_z": 0.9909015624605391
+        },
+        "tracks": []
+      },
+      {
+        "frame": 353,
+        "t_s": 7.06,
+        "values": {
+          "horizontal_speed_mps": 0.27816770925838413,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.727211356163025,
+          "up_axis_z": 0.9912028060747818
+        },
+        "tracks": []
+      },
+      {
+        "frame": 354,
+        "t_s": 7.08,
+        "values": {
+          "horizontal_speed_mps": 0.2615909116228536,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.724111557006836,
+          "up_axis_z": 0.9912789392850961
+        },
+        "tracks": []
+      },
+      {
+        "frame": 355,
+        "t_s": 7.1,
+        "values": {
+          "horizontal_speed_mps": 0.26134121548295053,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7204372882843018,
+          "up_axis_z": 0.9909878034225769
+        },
+        "tracks": []
+      },
+      {
+        "frame": 356,
+        "t_s": 7.12,
+        "values": {
+          "horizontal_speed_mps": 0.27174981301545353,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.716017484664917,
+          "up_axis_z": 0.9905705487874845
+        },
+        "tracks": []
+      },
+      {
+        "frame": 357,
+        "t_s": 7.14,
+        "values": {
+          "horizontal_speed_mps": 0.2995732328060688,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7108901739120483,
+          "up_axis_z": 0.9902581693892102
+        },
+        "tracks": []
+      },
+      {
+        "frame": 358,
+        "t_s": 7.16,
+        "values": {
+          "horizontal_speed_mps": 0.31641793459759937,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7063666582107544,
+          "up_axis_z": 0.9901681830903128
+        },
+        "tracks": []
+      },
+      {
+        "frame": 359,
+        "t_s": 7.18,
+        "values": {
+          "horizontal_speed_mps": 0.34881301502681866,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.7008135318756104,
+          "up_axis_z": 0.990396705065784
+        },
+        "tracks": []
+      },
+      {
+        "frame": 360,
+        "t_s": 7.2,
+        "values": {
+          "horizontal_speed_mps": 0.3595740038989631,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.692484736442566,
+          "up_axis_z": 0.9907973053084268
+        },
+        "tracks": []
+      },
+      {
+        "frame": 361,
+        "t_s": 7.22,
+        "values": {
+          "horizontal_speed_mps": 0.367441163597273,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.6808362007141113,
+          "up_axis_z": 0.9912001678646586
+        },
+        "tracks": []
+      },
+      {
+        "frame": 362,
+        "t_s": 7.24,
+        "values": {
+          "horizontal_speed_mps": 0.3706604936539271,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.6658070087432861,
+          "up_axis_z": 0.9914846014057013
+        },
+        "tracks": []
+      },
+      {
+        "frame": 363,
+        "t_s": 7.26,
+        "values": {
+          "horizontal_speed_mps": 0.2578180805268493,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.6500824689865112,
+          "up_axis_z": 0.9914873649251449
+        },
+        "tracks": []
+      },
+      {
+        "frame": 364,
+        "t_s": 7.28,
+        "values": {
+          "horizontal_speed_mps": 0.273349042672419,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.6394083499908447,
+          "up_axis_z": 0.9915625017841428
+        },
+        "tracks": []
+      },
+      {
+        "frame": 365,
+        "t_s": 7.3,
+        "values": {
+          "horizontal_speed_mps": 0.2589850127178417,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.6313533782958984,
+          "up_axis_z": 0.9922198989964072
+        },
+        "tracks": []
+      },
+      {
+        "frame": 366,
+        "t_s": 7.32,
+        "values": {
+          "horizontal_speed_mps": 0.2456600674256337,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.6264801025390625,
+          "up_axis_z": 0.9931861011628966
+        },
+        "tracks": []
+      },
+      {
+        "frame": 367,
+        "t_s": 7.34,
+        "values": {
+          "horizontal_speed_mps": 0.2416130545801375,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.6222237348556519,
+          "up_axis_z": 0.9940213230222169
+        },
+        "tracks": []
+      },
+      {
+        "frame": 368,
+        "t_s": 7.36,
+        "values": {
+          "horizontal_speed_mps": 0.24326023359311028,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.615500807762146,
+          "up_axis_z": 0.9946765440444301
+        },
+        "tracks": []
+      },
+      {
+        "frame": 369,
+        "t_s": 7.38,
+        "values": {
+          "horizontal_speed_mps": 0.24282211954740918,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.6069021224975586,
+          "up_axis_z": 0.9953986499853106
+        },
+        "tracks": []
+      },
+      {
+        "frame": 370,
+        "t_s": 7.4,
+        "values": {
+          "horizontal_speed_mps": 0.21593343649943572,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.59917414188385,
+          "up_axis_z": 0.9959850824606981
+        },
+        "tracks": []
+      },
+      {
+        "frame": 371,
+        "t_s": 7.42,
+        "values": {
+          "horizontal_speed_mps": 0.19855685123407893,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.5948385000228882,
+          "up_axis_z": 0.9963016374310208
+        },
+        "tracks": []
+      },
+      {
+        "frame": 372,
+        "t_s": 7.44,
+        "values": {
+          "horizontal_speed_mps": 0.20193829074153952,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.5939956903457642,
+          "up_axis_z": 0.996496944673599
+        },
+        "tracks": []
+      },
+      {
+        "frame": 373,
+        "t_s": 7.46,
+        "values": {
+          "horizontal_speed_mps": 0.20885292281131862,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.5949769020080566,
+          "up_axis_z": 0.996667326105713
+        },
+        "tracks": []
+      },
+      {
+        "frame": 374,
+        "t_s": 7.48,
+        "values": {
+          "horizontal_speed_mps": 0.2021895552778987,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.5960043668746948,
+          "up_axis_z": 0.9968395036793849
+        },
+        "tracks": []
+      },
+      {
+        "frame": 375,
+        "t_s": 7.5,
+        "values": {
+          "horizontal_speed_mps": 0.19708166181728923,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.5973261594772339,
+          "up_axis_z": 0.9970173798929889
+        },
+        "tracks": []
+      },
+      {
+        "frame": 376,
+        "t_s": 7.52,
+        "values": {
+          "horizontal_speed_mps": 0.20361950844880064,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.5994700193405151,
+          "up_axis_z": 0.997224890446896
+        },
+        "tracks": []
+      },
+      {
+        "frame": 377,
+        "t_s": 7.54,
+        "values": {
+          "horizontal_speed_mps": 0.21023634394201002,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.602270483970642,
+          "up_axis_z": 0.9974075069670563
+        },
+        "tracks": []
+      },
+      {
+        "frame": 378,
+        "t_s": 7.56,
+        "values": {
+          "horizontal_speed_mps": 0.20341806846278063,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.6045403480529785,
+          "up_axis_z": 0.9975145743652525
+        },
+        "tracks": []
+      },
+      {
+        "frame": 379,
+        "t_s": 7.58,
+        "values": {
+          "horizontal_speed_mps": 0.20075253660553627,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.6061865091323853,
+          "up_axis_z": 0.9975548410501919
+        },
+        "tracks": []
+      },
+      {
+        "frame": 380,
+        "t_s": 7.6,
+        "values": {
+          "horizontal_speed_mps": 0.20188090219571123,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.6074748039245605,
+          "up_axis_z": 0.9975762748238906
+        },
+        "tracks": []
+      },
+      {
+        "frame": 381,
+        "t_s": 7.62,
+        "values": {
+          "horizontal_speed_mps": 0.20615206612640213,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.608651876449585,
+          "up_axis_z": 0.9975975993940728
+        },
+        "tracks": []
+      },
+      {
+        "frame": 382,
+        "t_s": 7.64,
+        "values": {
+          "horizontal_speed_mps": 0.20728802055980397,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.6099854707717896,
+          "up_axis_z": 0.9976223829868347
+        },
+        "tracks": []
+      },
+      {
+        "frame": 383,
+        "t_s": 7.66,
+        "values": {
+          "horizontal_speed_mps": 0.20811585526233137,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.6113454103469849,
+          "up_axis_z": 0.9976751874215684
+        },
+        "tracks": []
+      },
+      {
+        "frame": 384,
+        "t_s": 7.68,
+        "values": {
+          "horizontal_speed_mps": 0.20943188850404387,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.612730860710144,
+          "up_axis_z": 0.9977501181529933
+        },
+        "tracks": []
+      },
+      {
+        "frame": 385,
+        "t_s": 7.7,
+        "values": {
+          "horizontal_speed_mps": 0.2078894103139544,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.6140779256820679,
+          "up_axis_z": 0.9978102434143236
+        },
+        "tracks": []
+      },
+      {
+        "frame": 386,
+        "t_s": 7.72,
+        "values": {
+          "horizontal_speed_mps": 0.20485245120322063,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.6152963638305664,
+          "up_axis_z": 0.9978333498163106
+        },
+        "tracks": []
+      },
+      {
+        "frame": 387,
+        "t_s": 7.74,
+        "values": {
+          "horizontal_speed_mps": 0.20442025832864227,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.6164394617080688,
+          "up_axis_z": 0.9978305246851644
+        },
+        "tracks": []
+      },
+      {
+        "frame": 388,
+        "t_s": 7.76,
+        "values": {
+          "horizontal_speed_mps": 0.2044407810898097,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.6176095008850098,
+          "up_axis_z": 0.997812736780174
+        },
+        "tracks": []
+      },
+      {
+        "frame": 389,
+        "t_s": 7.78,
+        "values": {
+          "horizontal_speed_mps": 0.20699334995160681,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.6188130378723145,
+          "up_axis_z": 0.9977918004986005
+        },
+        "tracks": []
+      },
+      {
+        "frame": 390,
+        "t_s": 7.8,
+        "values": {
+          "horizontal_speed_mps": 0.20710554713760856,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.6199735403060913,
+          "up_axis_z": 0.9977796059827023
+        },
+        "tracks": []
+      },
+      {
+        "frame": 391,
+        "t_s": 7.82,
+        "values": {
+          "horizontal_speed_mps": 0.20702519198319058,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.6210336685180664,
+          "up_axis_z": 0.9977819445925494
+        },
+        "tracks": []
+      },
+      {
+        "frame": 392,
+        "t_s": 7.84,
+        "values": {
+          "horizontal_speed_mps": 0.2045816687292983,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.621968150138855,
+          "up_axis_z": 0.9977866204776666
+        },
+        "tracks": []
+      },
+      {
+        "frame": 393,
+        "t_s": 7.86,
+        "values": {
+          "horizontal_speed_mps": 0.20178934805045476,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.6227383613586426,
+          "up_axis_z": 0.9977745389872809
+        },
+        "tracks": []
+      },
+      {
+        "frame": 394,
+        "t_s": 7.88,
+        "values": {
+          "horizontal_speed_mps": 0.2023542745983134,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.623439073562622,
+          "up_axis_z": 0.9977515858488023
+        },
+        "tracks": []
+      },
+      {
+        "frame": 395,
+        "t_s": 7.9,
+        "values": {
+          "horizontal_speed_mps": 0.2027400783328736,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.6243118047714233,
+          "up_axis_z": 0.9977273081127964
+        },
+        "tracks": []
+      },
+      {
+        "frame": 396,
+        "t_s": 7.92,
+        "values": {
+          "horizontal_speed_mps": 0.20279470626844937,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.6254024505615234,
+          "up_axis_z": 0.9976885499713294
+        },
+        "tracks": []
+      },
+      {
+        "frame": 397,
+        "t_s": 7.94,
+        "values": {
+          "horizontal_speed_mps": 0.20125659751277672,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.6265774965286255,
+          "up_axis_z": 0.9976182528024732
+        },
+        "tracks": []
+      },
+      {
+        "frame": 398,
+        "t_s": 7.96,
+        "values": {
+          "horizontal_speed_mps": 0.1978250108556846,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.6276370286941528,
+          "up_axis_z": 0.997508940604788
+        },
+        "tracks": []
+      },
+      {
+        "frame": 399,
+        "t_s": 7.98,
+        "values": {
+          "horizontal_speed_mps": 0.19659516645482827,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.6284375190734863,
+          "up_axis_z": 0.9973797600480118
+        },
+        "tracks": []
+      },
+      {
+        "frame": 400,
+        "t_s": 8.0,
+        "values": {
+          "horizontal_speed_mps": 0.19785855455824233,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.6290684938430786,
+          "up_axis_z": 0.9972896675535645
+        },
+        "tracks": []
+      },
+      {
+        "frame": 401,
+        "t_s": 8.02,
+        "values": {
+          "horizontal_speed_mps": 0.20058521790340636,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.6295127868652344,
+          "up_axis_z": 0.9972703158780638
+        },
+        "tracks": []
+      },
+      {
+        "frame": 402,
+        "t_s": 8.04,
+        "values": {
+          "horizontal_speed_mps": 0.2014625341602929,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.6297211647033691,
+          "up_axis_z": 0.9973044004541285
+        },
+        "tracks": []
+      },
+      {
+        "frame": 403,
+        "t_s": 8.06,
+        "values": {
+          "horizontal_speed_mps": 0.20518856343415334,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.629767894744873,
+          "up_axis_z": 0.9973528758233646
+        },
+        "tracks": []
+      },
+      {
+        "frame": 404,
+        "t_s": 8.08,
+        "values": {
+          "horizontal_speed_mps": 0.206267339550151,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.629789113998413,
+          "up_axis_z": 0.9973538632952793
+        },
+        "tracks": []
+      },
+      {
+        "frame": 405,
+        "t_s": 8.1,
+        "values": {
+          "horizontal_speed_mps": 0.20256916483854867,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.629833698272705,
+          "up_axis_z": 0.997247302015805
+        },
+        "tracks": []
+      },
+      {
+        "frame": 406,
+        "t_s": 8.12,
+        "values": {
+          "horizontal_speed_mps": 0.18558206331946508,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.6296288967132568,
+          "up_axis_z": 0.9969940295607196
+        },
+        "tracks": []
+      },
+      {
+        "frame": 407,
+        "t_s": 8.14,
+        "values": {
+          "horizontal_speed_mps": 0.20902672773391479,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.6297677755355835,
+          "up_axis_z": 0.996752893780569
+        },
+        "tracks": []
+      },
+      {
+        "frame": 408,
+        "t_s": 8.16,
+        "values": {
+          "horizontal_speed_mps": 0.2052684331484394,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.6307263374328613,
+          "up_axis_z": 0.9966466034721101
+        },
+        "tracks": []
+      },
+      {
+        "frame": 409,
+        "t_s": 8.18,
+        "values": {
+          "horizontal_speed_mps": 0.21420786234379915,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.6312683820724487,
+          "up_axis_z": 0.9965549374567136
+        },
+        "tracks": []
+      },
+      {
+        "frame": 410,
+        "t_s": 8.2,
+        "values": {
+          "horizontal_speed_mps": 0.23564974248868054,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.6311171054840088,
+          "up_axis_z": 0.9966034719646003
+        },
+        "tracks": []
+      },
+      {
+        "frame": 411,
+        "t_s": 8.22,
+        "values": {
+          "horizontal_speed_mps": 0.2508567682696213,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.6293002367019653,
+          "up_axis_z": 0.9967819295309944
+        },
+        "tracks": []
+      },
+      {
+        "frame": 412,
+        "t_s": 8.24,
+        "values": {
+          "horizontal_speed_mps": 0.25274518565651194,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.6244077682495117,
+          "up_axis_z": 0.9969855377830754
+        },
+        "tracks": []
+      },
+      {
+        "frame": 413,
+        "t_s": 8.26,
+        "values": {
+          "horizontal_speed_mps": 0.24153811440017783,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.6157876253128052,
+          "up_axis_z": 0.9970961184014356
+        },
+        "tracks": []
+      },
+      {
+        "frame": 414,
+        "t_s": 8.28,
+        "values": {
+          "horizontal_speed_mps": 0.23038776359906596,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.6034271717071533,
+          "up_axis_z": 0.9970321508626512
+        },
+        "tracks": []
+      },
+      {
+        "frame": 415,
+        "t_s": 8.3,
+        "values": {
+          "horizontal_speed_mps": 0.23097868500007826,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.5875200033187866,
+          "up_axis_z": 0.9968209066469883
+        },
+        "tracks": []
+      },
+      {
+        "frame": 416,
+        "t_s": 8.32,
+        "values": {
+          "horizontal_speed_mps": 0.22650836999209484,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.5680357217788696,
+          "up_axis_z": 0.9964777211300943
+        },
+        "tracks": []
+      },
+      {
+        "frame": 417,
+        "t_s": 8.34,
+        "values": {
+          "horizontal_speed_mps": 0.1861762109609767,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.5455653667449951,
+          "up_axis_z": 0.9960382290022796
+        },
+        "tracks": []
+      },
+      {
+        "frame": 418,
+        "t_s": 8.36,
+        "values": {
+          "horizontal_speed_mps": 0.150245656725913,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.5361237525939941,
+          "up_axis_z": 0.9963641660051241
+        },
+        "tracks": []
+      },
+      {
+        "frame": 419,
+        "t_s": 8.38,
+        "values": {
+          "horizontal_speed_mps": 0.21134976481600476,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.5346133708953857,
+          "up_axis_z": 0.996863810222362
+        },
+        "tracks": []
+      },
+      {
+        "frame": 420,
+        "t_s": 8.4,
+        "values": {
+          "horizontal_speed_mps": 0.23279780647347162,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.5349537134170532,
+          "up_axis_z": 0.9973115195515204
+        },
+        "tracks": []
+      },
+      {
+        "frame": 421,
+        "t_s": 8.42,
+        "values": {
+          "horizontal_speed_mps": 0.2399024607274306,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.5355792045593262,
+          "up_axis_z": 0.9975294955717354
+        },
+        "tracks": []
+      },
+      {
+        "frame": 422,
+        "t_s": 8.44,
+        "values": {
+          "horizontal_speed_mps": 0.24524313667185074,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.5360872745513916,
+          "up_axis_z": 0.9975254628194689
+        },
+        "tracks": []
+      },
+      {
+        "frame": 423,
+        "t_s": 8.46,
+        "values": {
+          "horizontal_speed_mps": 0.2481246976073765,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.5354418754577637,
+          "up_axis_z": 0.9973645745028044
+        },
+        "tracks": []
+      },
+      {
+        "frame": 424,
+        "t_s": 8.48,
+        "values": {
+          "horizontal_speed_mps": 0.2530987793345632,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.5326204299926758,
+          "up_axis_z": 0.997128511182888
+        },
+        "tracks": []
+      },
+      {
+        "frame": 425,
+        "t_s": 8.5,
+        "values": {
+          "horizontal_speed_mps": 0.22767225085653575,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.5318559408187866,
+          "up_axis_z": 0.9970118469452144
+        },
+        "tracks": []
+      },
+      {
+        "frame": 426,
+        "t_s": 8.52,
+        "values": {
+          "horizontal_speed_mps": 0.25064447629182135,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.532182216644287,
+          "up_axis_z": 0.997007524371158
+        },
+        "tracks": []
+      },
+      {
+        "frame": 427,
+        "t_s": 8.54,
+        "values": {
+          "horizontal_speed_mps": 0.2624285021324701,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.5328961610794067,
+          "up_axis_z": 0.9970636129584507
+        },
+        "tracks": []
+      },
+      {
+        "frame": 428,
+        "t_s": 8.56,
+        "values": {
+          "horizontal_speed_mps": 0.26986230406039585,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.5332194566726685,
+          "up_axis_z": 0.9970739097140331
+        },
+        "tracks": []
+      },
+      {
+        "frame": 429,
+        "t_s": 8.58,
+        "values": {
+          "horizontal_speed_mps": 0.27829012241384143,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.5328689813613892,
+          "up_axis_z": 0.9970267646234584
+        },
+        "tracks": []
+      },
+      {
+        "frame": 430,
+        "t_s": 8.6,
+        "values": {
+          "horizontal_speed_mps": 0.2842540841660104,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.532033920288086,
+          "up_axis_z": 0.9969336598298716
+        },
+        "tracks": []
+      },
+      {
+        "frame": 431,
+        "t_s": 8.62,
+        "values": {
+          "horizontal_speed_mps": 0.29082148109053596,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.5310544967651367,
+          "up_axis_z": 0.996798222744507
+        },
+        "tracks": []
+      },
+      {
+        "frame": 432,
+        "t_s": 8.64,
+        "values": {
+          "horizontal_speed_mps": 0.29545453366499863,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.5302047729492188,
+          "up_axis_z": 0.99662501922053
+        },
+        "tracks": []
+      },
+      {
+        "frame": 433,
+        "t_s": 8.66,
+        "values": {
+          "horizontal_speed_mps": 0.29801341924329006,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.5295567512512207,
+          "up_axis_z": 0.9964140287584162
+        },
+        "tracks": []
+      },
+      {
+        "frame": 434,
+        "t_s": 8.68,
+        "values": {
+          "horizontal_speed_mps": 0.3025848974421993,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.5289632081985474,
+          "up_axis_z": 0.9961769565554996
+        },
+        "tracks": []
+      },
+      {
+        "frame": 435,
+        "t_s": 8.7,
+        "values": {
+          "horizontal_speed_mps": 0.3071037603075662,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.5281474590301514,
+          "up_axis_z": 0.9959218355059164
+        },
+        "tracks": []
+      },
+      {
+        "frame": 436,
+        "t_s": 8.72,
+        "values": {
+          "horizontal_speed_mps": 0.31271016514572336,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.5268642902374268,
+          "up_axis_z": 0.9956483173591124
+        },
+        "tracks": []
+      },
+      {
+        "frame": 437,
+        "t_s": 8.74,
+        "values": {
+          "horizontal_speed_mps": 0.3204460783138451,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.5249872207641602,
+          "up_axis_z": 0.9953637349224006
+        },
+        "tracks": []
+      },
+      {
+        "frame": 438,
+        "t_s": 8.76,
+        "values": {
+          "horizontal_speed_mps": 0.3246206953080358,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.522835612297058,
+          "up_axis_z": 0.9950899780618749
+        },
+        "tracks": []
+      },
+      {
+        "frame": 439,
+        "t_s": 8.78,
+        "values": {
+          "horizontal_speed_mps": 0.34081283635693604,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.5210418701171875,
+          "up_axis_z": 0.9949085031730741
+        },
+        "tracks": []
+      },
+      {
+        "frame": 440,
+        "t_s": 8.8,
+        "values": {
+          "horizontal_speed_mps": 0.3575833742979926,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.5199522972106934,
+          "up_axis_z": 0.9948754641241763
+        },
+        "tracks": []
+      },
+      {
+        "frame": 441,
+        "t_s": 8.82,
+        "values": {
+          "horizontal_speed_mps": 0.3788476980640781,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.519648790359497,
+          "up_axis_z": 0.9949934448316887
+        },
+        "tracks": []
+      },
+      {
+        "frame": 442,
+        "t_s": 8.84,
+        "values": {
+          "horizontal_speed_mps": 0.395607931225134,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.5199463367462158,
+          "up_axis_z": 0.9952106906185179
+        },
+        "tracks": []
+      },
+      {
+        "frame": 443,
+        "t_s": 8.86,
+        "values": {
+          "horizontal_speed_mps": 0.39768831978524305,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.5205072164535522,
+          "up_axis_z": 0.9953872616093821
+        },
+        "tracks": []
+      },
+      {
+        "frame": 444,
+        "t_s": 8.88,
+        "values": {
+          "horizontal_speed_mps": 0.3892305896059881,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.52070152759552,
+          "up_axis_z": 0.9953828064510437
+        },
+        "tracks": []
+      },
+      {
+        "frame": 445,
+        "t_s": 8.9,
+        "values": {
+          "horizontal_speed_mps": 0.3915915250896513,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.519443392753601,
+          "up_axis_z": 0.995209173985808
+        },
+        "tracks": []
+      },
+      {
+        "frame": 446,
+        "t_s": 8.92,
+        "values": {
+          "horizontal_speed_mps": 0.37927454741491107,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.515146017074585,
+          "up_axis_z": 0.9949028237970996
+        },
+        "tracks": []
+      },
+      {
+        "frame": 447,
+        "t_s": 8.94,
+        "values": {
+          "horizontal_speed_mps": 0.3668506687137654,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.5081825256347656,
+          "up_axis_z": 0.9946124980673922
+        },
+        "tracks": []
+      },
+      {
+        "frame": 448,
+        "t_s": 8.96,
+        "values": {
+          "horizontal_speed_mps": 0.37484855627653724,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.5027612447738647,
+          "up_axis_z": 0.9946739730990962
+        },
+        "tracks": []
+      },
+      {
+        "frame": 449,
+        "t_s": 8.98,
+        "values": {
+          "horizontal_speed_mps": 0.38732093145638463,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.499124526977539,
+          "up_axis_z": 0.9949579054946537
+        },
+        "tracks": []
+      },
+      {
+        "frame": 450,
+        "t_s": 9.0,
+        "values": {
+          "horizontal_speed_mps": 0.3791909551795176,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.4965466260910034,
+          "up_axis_z": 0.9951514863724213
+        },
+        "tracks": []
+      },
+      {
+        "frame": 451,
+        "t_s": 9.02,
+        "values": {
+          "horizontal_speed_mps": 0.3792992437343559,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.491814136505127,
+          "up_axis_z": 0.9951405424760512
+        },
+        "tracks": []
+      },
+      {
+        "frame": 452,
+        "t_s": 9.04,
+        "values": {
+          "horizontal_speed_mps": 0.41104226232070923,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.482972264289856,
+          "up_axis_z": 0.9951344497691144
+        },
+        "tracks": []
+      },
+      {
+        "frame": 453,
+        "t_s": 9.06,
+        "values": {
+          "horizontal_speed_mps": 0.4032531979422713,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.474297285079956,
+          "up_axis_z": 0.9953457033354586
+        },
+        "tracks": []
+      },
+      {
+        "frame": 454,
+        "t_s": 9.08,
+        "values": {
+          "horizontal_speed_mps": 0.41243853838203515,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.4671831130981445,
+          "up_axis_z": 0.9955360404243603
+        },
+        "tracks": []
+      },
+      {
+        "frame": 455,
+        "t_s": 9.1,
+        "values": {
+          "horizontal_speed_mps": 0.41728971313900154,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.4625067710876465,
+          "up_axis_z": 0.9957524248960503
+        },
+        "tracks": []
+      },
+      {
+        "frame": 456,
+        "t_s": 9.12,
+        "values": {
+          "horizontal_speed_mps": 0.41564914953147475,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.4597469568252563,
+          "up_axis_z": 0.9959428416311057
+        },
+        "tracks": []
+      },
+      {
+        "frame": 457,
+        "t_s": 9.14,
+        "values": {
+          "horizontal_speed_mps": 0.41234941300337963,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.4576303958892822,
+          "up_axis_z": 0.9960708842748179
+        },
+        "tracks": []
+      },
+      {
+        "frame": 458,
+        "t_s": 9.16,
+        "values": {
+          "horizontal_speed_mps": 0.4074492514390097,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.455545425415039,
+          "up_axis_z": 0.9961280224363895
+        },
+        "tracks": []
+      },
+      {
+        "frame": 459,
+        "t_s": 9.18,
+        "values": {
+          "horizontal_speed_mps": 0.4093605432879414,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.4533512592315674,
+          "up_axis_z": 0.9961327008857118
+        },
+        "tracks": []
+      },
+      {
+        "frame": 460,
+        "t_s": 9.2,
+        "values": {
+          "horizontal_speed_mps": 0.415427294751683,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.450992465019226,
+          "up_axis_z": 0.9960888055072988
+        },
+        "tracks": []
+      },
+      {
+        "frame": 461,
+        "t_s": 9.22,
+        "values": {
+          "horizontal_speed_mps": 0.42499870208086066,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.4483569860458374,
+          "up_axis_z": 0.9959932584305312
+        },
+        "tracks": []
+      },
+      {
+        "frame": 462,
+        "t_s": 9.24,
+        "values": {
+          "horizontal_speed_mps": 0.434493901492027,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.4452229738235474,
+          "up_axis_z": 0.9958358890155488
+        },
+        "tracks": []
+      },
+      {
+        "frame": 463,
+        "t_s": 9.26,
+        "values": {
+          "horizontal_speed_mps": 0.43747524360474144,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.4414724111557007,
+          "up_axis_z": 0.9955980761739045
+        },
+        "tracks": []
+      },
+      {
+        "frame": 464,
+        "t_s": 9.28,
+        "values": {
+          "horizontal_speed_mps": 0.44063825562685677,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.437952995300293,
+          "up_axis_z": 0.9952616968795247
+        },
+        "tracks": []
+      },
+      {
+        "frame": 465,
+        "t_s": 9.3,
+        "values": {
+          "horizontal_speed_mps": 0.4425753474603488,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.4339475631713867,
+          "up_axis_z": 0.9948339655830741
+        },
+        "tracks": []
+      },
+      {
+        "frame": 466,
+        "t_s": 9.32,
+        "values": {
+          "horizontal_speed_mps": 0.4329461038876053,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.4280558824539185,
+          "up_axis_z": 0.99419174475086
+        },
+        "tracks": []
+      },
+      {
+        "frame": 467,
+        "t_s": 9.34,
+        "values": {
+          "horizontal_speed_mps": 0.3972511533990535,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.421008825302124,
+          "up_axis_z": 0.9933708130435698
+        },
+        "tracks": []
+      },
+      {
+        "frame": 468,
+        "t_s": 9.36,
+        "values": {
+          "horizontal_speed_mps": 0.3875142169795937,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.4134690761566162,
+          "up_axis_z": 0.9927309125795705
+        },
+        "tracks": []
+      },
+      {
+        "frame": 469,
+        "t_s": 9.38,
+        "values": {
+          "horizontal_speed_mps": 0.3797316941442308,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.4057801961898804,
+          "up_axis_z": 0.9925958087457842
+        },
+        "tracks": []
+      },
+      {
+        "frame": 470,
+        "t_s": 9.4,
+        "values": {
+          "horizontal_speed_mps": 0.37215453670711096,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.3983922004699707,
+          "up_axis_z": 0.9929177724403937
+        },
+        "tracks": []
+      },
+      {
+        "frame": 471,
+        "t_s": 9.42,
+        "values": {
+          "horizontal_speed_mps": 0.36179844519546717,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.3914839029312134,
+          "up_axis_z": 0.9934201094549748
+        },
+        "tracks": []
+      },
+      {
+        "frame": 472,
+        "t_s": 9.44,
+        "values": {
+          "horizontal_speed_mps": 0.3575193270669435,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.384966492652893,
+          "up_axis_z": 0.9938902800870106
+        },
+        "tracks": []
+      },
+      {
+        "frame": 473,
+        "t_s": 9.46,
+        "values": {
+          "horizontal_speed_mps": 0.3402891308465804,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.3766419887542725,
+          "up_axis_z": 0.9941297319218656
+        },
+        "tracks": []
+      },
+      {
+        "frame": 474,
+        "t_s": 9.48,
+        "values": {
+          "horizontal_speed_mps": 0.3182681688709995,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.3659236431121826,
+          "up_axis_z": 0.994400153662434
+        },
+        "tracks": []
+      },
+      {
+        "frame": 475,
+        "t_s": 9.5,
+        "values": {
+          "horizontal_speed_mps": 0.28175054796325366,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.35601806640625,
+          "up_axis_z": 0.9947139020070818
+        },
+        "tracks": []
+      },
+      {
+        "frame": 476,
+        "t_s": 9.52,
+        "values": {
+          "horizontal_speed_mps": 0.2608959755974676,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.348894476890564,
+          "up_axis_z": 0.99489286853963
+        },
+        "tracks": []
+      },
+      {
+        "frame": 477,
+        "t_s": 9.54,
+        "values": {
+          "horizontal_speed_mps": 0.24895188106325947,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.3455116748809814,
+          "up_axis_z": 0.995068135688945
+        },
+        "tracks": []
+      },
+      {
+        "frame": 478,
+        "t_s": 9.56,
+        "values": {
+          "horizontal_speed_mps": 0.2455666662361027,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.3443952798843384,
+          "up_axis_z": 0.9952829434782839
+        },
+        "tracks": []
+      },
+      {
+        "frame": 479,
+        "t_s": 9.58,
+        "values": {
+          "horizontal_speed_mps": 0.26998805785217606,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.3434202671051025,
+          "up_axis_z": 0.995627683479674
+        },
+        "tracks": []
+      },
+      {
+        "frame": 480,
+        "t_s": 9.6,
+        "values": {
+          "horizontal_speed_mps": 0.2549672854071586,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.3427132368087769,
+          "up_axis_z": 0.9960090731263039
+        },
+        "tracks": []
+      },
+      {
+        "frame": 481,
+        "t_s": 9.62,
+        "values": {
+          "horizontal_speed_mps": 0.24982321918017159,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.3439671993255615,
+          "up_axis_z": 0.9963424829294744
+        },
+        "tracks": []
+      },
+      {
+        "frame": 482,
+        "t_s": 9.64,
+        "values": {
+          "horizontal_speed_mps": 0.2532469617544837,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.3480302095413208,
+          "up_axis_z": 0.9965721334468037
+        },
+        "tracks": []
+      },
+      {
+        "frame": 483,
+        "t_s": 9.66,
+        "values": {
+          "horizontal_speed_mps": 0.26173197698873363,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.3527734279632568,
+          "up_axis_z": 0.9966239435549221
+        },
+        "tracks": []
+      },
+      {
+        "frame": 484,
+        "t_s": 9.68,
+        "values": {
+          "horizontal_speed_mps": 0.2648711441062356,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.356211543083191,
+          "up_axis_z": 0.9966826908646111
+        },
+        "tracks": []
+      },
+      {
+        "frame": 485,
+        "t_s": 9.7,
+        "values": {
+          "horizontal_speed_mps": 0.24057148087225125,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.357908844947815,
+          "up_axis_z": 0.9966953350707382
+        },
+        "tracks": []
+      },
+      {
+        "frame": 486,
+        "t_s": 9.72,
+        "values": {
+          "horizontal_speed_mps": 0.23228925713275267,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.3592101335525513,
+          "up_axis_z": 0.99660235211853
+        },
+        "tracks": []
+      },
+      {
+        "frame": 487,
+        "t_s": 9.74,
+        "values": {
+          "horizontal_speed_mps": 0.22318624344796587,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.3608505725860596,
+          "up_axis_z": 0.9965035119033547
+        },
+        "tracks": []
+      },
+      {
+        "frame": 488,
+        "t_s": 9.76,
+        "values": {
+          "horizontal_speed_mps": 0.21755799092778752,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.362954020500183,
+          "up_axis_z": 0.9964077802734183
+        },
+        "tracks": []
+      },
+      {
+        "frame": 489,
+        "t_s": 9.78,
+        "values": {
+          "horizontal_speed_mps": 0.21578504781846308,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.3646435737609863,
+          "up_axis_z": 0.9963144848019307
+        },
+        "tracks": []
+      },
+      {
+        "frame": 490,
+        "t_s": 9.8,
+        "values": {
+          "horizontal_speed_mps": 0.23756611707808256,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.3650645017623901,
+          "up_axis_z": 0.9963049633490481
+        },
+        "tracks": []
+      },
+      {
+        "frame": 491,
+        "t_s": 9.82,
+        "values": {
+          "horizontal_speed_mps": 0.2226489263042877,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.3653746843338013,
+          "up_axis_z": 0.996436514787018
+        },
+        "tracks": []
+      },
+      {
+        "frame": 492,
+        "t_s": 9.84,
+        "values": {
+          "horizontal_speed_mps": 0.2340904464869555,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.3665882349014282,
+          "up_axis_z": 0.9966122143288562
+        },
+        "tracks": []
+      },
+      {
+        "frame": 493,
+        "t_s": 9.86,
+        "values": {
+          "horizontal_speed_mps": 0.240783181218716,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.3686960935592651,
+          "up_axis_z": 0.9967845545212308
+        },
+        "tracks": []
+      },
+      {
+        "frame": 494,
+        "t_s": 9.88,
+        "values": {
+          "horizontal_speed_mps": 0.23662583077100088,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.3710668087005615,
+          "up_axis_z": 0.9968743700672638
+        },
+        "tracks": []
+      },
+      {
+        "frame": 495,
+        "t_s": 9.9,
+        "values": {
+          "horizontal_speed_mps": 0.22498337976658142,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.3727264404296875,
+          "up_axis_z": 0.996888691432193
+        },
+        "tracks": []
+      },
+      {
+        "frame": 496,
+        "t_s": 9.92,
+        "values": {
+          "horizontal_speed_mps": 0.21663787154062988,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.3739954233169556,
+          "up_axis_z": 0.9968683918393682
+        },
+        "tracks": []
+      },
+      {
+        "frame": 497,
+        "t_s": 9.94,
+        "values": {
+          "horizontal_speed_mps": 0.2097406410200634,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.3753868341445923,
+          "up_axis_z": 0.9968025245445324
+        },
+        "tracks": []
+      },
+      {
+        "frame": 498,
+        "t_s": 9.96,
+        "values": {
+          "horizontal_speed_mps": 0.2048057859398424,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.376765489578247,
+          "up_axis_z": 0.9966974418503385
+        },
+        "tracks": []
+      },
+      {
+        "frame": 499,
+        "t_s": 9.98,
+        "values": {
+          "horizontal_speed_mps": 0.21454388707154065,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.3772835731506348,
+          "up_axis_z": 0.9965707899570132
+        },
+        "tracks": []
+      },
+      {
+        "frame": 500,
+        "t_s": 10.0,
+        "values": {
+          "horizontal_speed_mps": 0.2262379995242306,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.3775049448013306,
+          "up_axis_z": 0.9965922154811182
+        },
+        "tracks": []
+      },
+      {
+        "frame": 501,
+        "t_s": 10.02,
+        "values": {
+          "horizontal_speed_mps": 0.21686737639713957,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.3779863119125366,
+          "up_axis_z": 0.9966903545961471
+        },
+        "tracks": []
+      },
+      {
+        "frame": 502,
+        "t_s": 10.04,
+        "values": {
+          "horizontal_speed_mps": 0.22268174258866147,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.3793975114822388,
+          "up_axis_z": 0.9968261761730355
+        },
+        "tracks": []
+      },
+      {
+        "frame": 503,
+        "t_s": 10.06,
+        "values": {
+          "horizontal_speed_mps": 0.23256116091178208,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.3810192346572876,
+          "up_axis_z": 0.9969519495274077
+        },
+        "tracks": []
+      },
+      {
+        "frame": 504,
+        "t_s": 10.08,
+        "values": {
+          "horizontal_speed_mps": 0.2213059370767708,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.3820440769195557,
+          "up_axis_z": 0.9969992096122536
+        },
+        "tracks": []
+      },
+      {
+        "frame": 505,
+        "t_s": 10.1,
+        "values": {
+          "horizontal_speed_mps": 0.21914670178762036,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.3823590278625488,
+          "up_axis_z": 0.9969854664606258
+        },
+        "tracks": []
+      },
+      {
+        "frame": 506,
+        "t_s": 10.12,
+        "values": {
+          "horizontal_speed_mps": 0.2195655091673841,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.382735013961792,
+          "up_axis_z": 0.9969507295004414
+        },
+        "tracks": []
+      },
+      {
+        "frame": 507,
+        "t_s": 10.14,
+        "values": {
+          "horizontal_speed_mps": 0.22148316147535918,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.3831970691680908,
+          "up_axis_z": 0.9968720719403231
+        },
+        "tracks": []
+      },
+      {
+        "frame": 508,
+        "t_s": 10.16,
+        "values": {
+          "horizontal_speed_mps": 0.2375307278145452,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.383317470550537,
+          "up_axis_z": 0.9967841447038767
+        },
+        "tracks": []
+      },
+      {
+        "frame": 509,
+        "t_s": 10.18,
+        "values": {
+          "horizontal_speed_mps": 0.24031271780228927,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.3832794427871704,
+          "up_axis_z": 0.9967464505898451
+        },
+        "tracks": []
+      },
+      {
+        "frame": 510,
+        "t_s": 10.2,
+        "values": {
+          "horizontal_speed_mps": 0.24682632374344607,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.383050799369812,
+          "up_axis_z": 0.9967734739001527
+        },
+        "tracks": []
+      },
+      {
+        "frame": 511,
+        "t_s": 10.22,
+        "values": {
+          "horizontal_speed_mps": 0.26173815624754276,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.3830735683441162,
+          "up_axis_z": 0.996875539257406
+        },
+        "tracks": []
+      },
+      {
+        "frame": 512,
+        "t_s": 10.24,
+        "values": {
+          "horizontal_speed_mps": 0.26922476160344366,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.3835312128067017,
+          "up_axis_z": 0.9969560707353894
+        },
+        "tracks": []
+      },
+      {
+        "frame": 513,
+        "t_s": 10.26,
+        "values": {
+          "horizontal_speed_mps": 0.2647441192813352,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.3838993310928345,
+          "up_axis_z": 0.9969290360022175
+        },
+        "tracks": []
+      },
+      {
+        "frame": 514,
+        "t_s": 10.28,
+        "values": {
+          "horizontal_speed_mps": 0.2775634364276676,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.384062647819519,
+          "up_axis_z": 0.9968390220522644
+        },
+        "tracks": []
+      },
+      {
+        "frame": 515,
+        "t_s": 10.3,
+        "values": {
+          "horizontal_speed_mps": 0.28696594256500213,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.38406503200531,
+          "up_axis_z": 0.9967103039196041
+        },
+        "tracks": []
+      },
+      {
+        "frame": 516,
+        "t_s": 10.32,
+        "values": {
+          "horizontal_speed_mps": 0.3065706806849666,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.383745789527893,
+          "up_axis_z": 0.9965515376584213
+        },
+        "tracks": []
+      },
+      {
+        "frame": 517,
+        "t_s": 10.34,
+        "values": {
+          "horizontal_speed_mps": 0.30890045129011007,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.3828438520431519,
+          "up_axis_z": 0.9963706643541489
+        },
+        "tracks": []
+      },
+      {
+        "frame": 518,
+        "t_s": 10.36,
+        "values": {
+          "horizontal_speed_mps": 0.31619230481730254,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.3812390565872192,
+          "up_axis_z": 0.9962013245293422
+        },
+        "tracks": []
+      },
+      {
+        "frame": 519,
+        "t_s": 10.38,
+        "values": {
+          "horizontal_speed_mps": 0.33197844792850356,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.3791800737380981,
+          "up_axis_z": 0.9960637539223107
+        },
+        "tracks": []
+      },
+      {
+        "frame": 520,
+        "t_s": 10.4,
+        "values": {
+          "horizontal_speed_mps": 0.3479784383795994,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.3769668340682983,
+          "up_axis_z": 0.9959073023037597
+        },
+        "tracks": []
+      },
+      {
+        "frame": 521,
+        "t_s": 10.42,
+        "values": {
+          "horizontal_speed_mps": 0.36196039913065753,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.374570608139038,
+          "up_axis_z": 0.9956831456770976
+        },
+        "tracks": []
+      },
+      {
+        "frame": 522,
+        "t_s": 10.44,
+        "values": {
+          "horizontal_speed_mps": 0.3813243024358424,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.3716533184051514,
+          "up_axis_z": 0.9953628302087308
+        },
+        "tracks": []
+      },
+      {
+        "frame": 523,
+        "t_s": 10.46,
+        "values": {
+          "horizontal_speed_mps": 0.38615299449543083,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.3676090240478516,
+          "up_axis_z": 0.9948734872462087
+        },
+        "tracks": []
+      },
+      {
+        "frame": 524,
+        "t_s": 10.48,
+        "values": {
+          "horizontal_speed_mps": 0.37615820612484585,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.3612525463104248,
+          "up_axis_z": 0.994174719929731
+        },
+        "tracks": []
+      },
+      {
+        "frame": 525,
+        "t_s": 10.5,
+        "values": {
+          "horizontal_speed_mps": 0.3571656737820131,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.3543617725372314,
+          "up_axis_z": 0.993421426946811
+        },
+        "tracks": []
+      },
+      {
+        "frame": 526,
+        "t_s": 10.52,
+        "values": {
+          "horizontal_speed_mps": 0.3449978316053063,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.3464127779006958,
+          "up_axis_z": 0.9928603734842062
+        },
+        "tracks": []
+      },
+      {
+        "frame": 527,
+        "t_s": 10.54,
+        "values": {
+          "horizontal_speed_mps": 0.3338864836199932,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.3379613161087036,
+          "up_axis_z": 0.9926802641158159
+        },
+        "tracks": []
+      },
+      {
+        "frame": 528,
+        "t_s": 10.56,
+        "values": {
+          "horizontal_speed_mps": 0.33198498842491125,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.3294334411621094,
+          "up_axis_z": 0.9928949359400165
+        },
+        "tracks": []
+      },
+      {
+        "frame": 529,
+        "t_s": 10.58,
+        "values": {
+          "horizontal_speed_mps": 0.3304558856735341,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.3209291696548462,
+          "up_axis_z": 0.9933371283460267
+        },
+        "tracks": []
+      },
+      {
+        "frame": 530,
+        "t_s": 10.6,
+        "values": {
+          "horizontal_speed_mps": 0.32379560294134974,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.311816930770874,
+          "up_axis_z": 0.9937254116736363
+        },
+        "tracks": []
+      },
+      {
+        "frame": 531,
+        "t_s": 10.62,
+        "values": {
+          "horizontal_speed_mps": 0.30513948840131344,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.3002978563308716,
+          "up_axis_z": 0.993940550005442
+        },
+        "tracks": []
+      },
+      {
+        "frame": 532,
+        "t_s": 10.64,
+        "values": {
+          "horizontal_speed_mps": 0.2589408547508056,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.2913798093795776,
+          "up_axis_z": 0.9940039804428057
+        },
+        "tracks": []
+      },
+      {
+        "frame": 533,
+        "t_s": 10.66,
+        "values": {
+          "horizontal_speed_mps": 0.24220326819219792,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.2856199741363525,
+          "up_axis_z": 0.9941513418209967
+        },
+        "tracks": []
+      },
+      {
+        "frame": 534,
+        "t_s": 10.68,
+        "values": {
+          "horizontal_speed_mps": 0.2332515636002984,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.282353401184082,
+          "up_axis_z": 0.9943280353351227
+        },
+        "tracks": []
+      },
+      {
+        "frame": 535,
+        "t_s": 10.7,
+        "values": {
+          "horizontal_speed_mps": 0.22820805822977328,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.2803599834442139,
+          "up_axis_z": 0.9945112389474935
+        },
+        "tracks": []
+      },
+      {
+        "frame": 536,
+        "t_s": 10.72,
+        "values": {
+          "horizontal_speed_mps": 0.2574500464721622,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.2780749797821045,
+          "up_axis_z": 0.9948197572802644
+        },
+        "tracks": []
+      },
+      {
+        "frame": 537,
+        "t_s": 10.74,
+        "values": {
+          "horizontal_speed_mps": 0.23206844111296923,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.2760087251663208,
+          "up_axis_z": 0.9951916518335261
+        },
+        "tracks": []
+      },
+      {
+        "frame": 538,
+        "t_s": 10.76,
+        "values": {
+          "horizontal_speed_mps": 0.23053862708017261,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.2755634784698486,
+          "up_axis_z": 0.9955205910173119
+        },
+        "tracks": []
+      },
+      {
+        "frame": 539,
+        "t_s": 10.78,
+        "values": {
+          "horizontal_speed_mps": 0.23118975105897188,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.2771022319793701,
+          "up_axis_z": 0.9958068260039012
+        },
+        "tracks": []
+      },
+      {
+        "frame": 540,
+        "t_s": 10.8,
+        "values": {
+          "horizontal_speed_mps": 0.247938961352263,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.2791533470153809,
+          "up_axis_z": 0.9960281569437374
+        },
+        "tracks": []
+      },
+      {
+        "frame": 541,
+        "t_s": 10.82,
+        "values": {
+          "horizontal_speed_mps": 0.23529357289519914,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.2802932262420654,
+          "up_axis_z": 0.9962073569635942
+        },
+        "tracks": []
+      },
+      {
+        "frame": 542,
+        "t_s": 10.84,
+        "values": {
+          "horizontal_speed_mps": 0.2228741410975515,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.2809408903121948,
+          "up_axis_z": 0.996244191364951
+        },
+        "tracks": []
+      },
+      {
+        "frame": 543,
+        "t_s": 10.86,
+        "values": {
+          "horizontal_speed_mps": 0.21652033165555026,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.281516671180725,
+          "up_axis_z": 0.9961895178461504
+        },
+        "tracks": []
+      },
+      {
+        "frame": 544,
+        "t_s": 10.88,
+        "values": {
+          "horizontal_speed_mps": 0.21411412045825265,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.2820403575897217,
+          "up_axis_z": 0.9960755783826344
+        },
+        "tracks": []
+      },
+      {
+        "frame": 545,
+        "t_s": 10.9,
+        "values": {
+          "horizontal_speed_mps": 0.22479004069926395,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.282036304473877,
+          "up_axis_z": 0.9959744928382253
+        },
+        "tracks": []
+      },
+      {
+        "frame": 546,
+        "t_s": 10.92,
+        "values": {
+          "horizontal_speed_mps": 0.2208813241802572,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.2822186946868896,
+          "up_axis_z": 0.9959640877641819
+        },
+        "tracks": []
+      },
+      {
+        "frame": 547,
+        "t_s": 10.94,
+        "values": {
+          "horizontal_speed_mps": 0.22933601141923676,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.2827072143554688,
+          "up_axis_z": 0.9960501496329324
+        },
+        "tracks": []
+      },
+      {
+        "frame": 548,
+        "t_s": 10.96,
+        "values": {
+          "horizontal_speed_mps": 0.23499534978741263,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.283719778060913,
+          "up_axis_z": 0.9962166185508657
+        },
+        "tracks": []
+      },
+      {
+        "frame": 549,
+        "t_s": 10.98,
+        "values": {
+          "horizontal_speed_mps": 0.235647420266626,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.2849448919296265,
+          "up_axis_z": 0.9963417308685152
+        },
+        "tracks": []
+      },
+      {
+        "frame": 550,
+        "t_s": 11.0,
+        "values": {
+          "horizontal_speed_mps": 0.2245927311630968,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.2856905460357666,
+          "up_axis_z": 0.9963795538363057
+        },
+        "tracks": []
+      },
+      {
+        "frame": 551,
+        "t_s": 11.02,
+        "values": {
+          "horizontal_speed_mps": 0.22292956256631336,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.286058783531189,
+          "up_axis_z": 0.9963691039074911
+        },
+        "tracks": []
+      },
+      {
+        "frame": 552,
+        "t_s": 11.04,
+        "values": {
+          "horizontal_speed_mps": 0.21810946481737814,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.2866978645324707,
+          "up_axis_z": 0.9963222615118889
+        },
+        "tracks": []
+      },
+      {
+        "frame": 553,
+        "t_s": 11.06,
+        "values": {
+          "horizontal_speed_mps": 0.21550637910003032,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.2874735593795776,
+          "up_axis_z": 0.9962131386362569
+        },
+        "tracks": []
+      },
+      {
+        "frame": 554,
+        "t_s": 11.08,
+        "values": {
+          "horizontal_speed_mps": 0.21832129444899037,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.2877694368362427,
+          "up_axis_z": 0.9960685521310001
+        },
+        "tracks": []
+      },
+      {
+        "frame": 555,
+        "t_s": 11.1,
+        "values": {
+          "horizontal_speed_mps": 0.22331383873654168,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.2881393432617188,
+          "up_axis_z": 0.9959910451001146
+        },
+        "tracks": []
+      },
+      {
+        "frame": 556,
+        "t_s": 11.12,
+        "values": {
+          "horizontal_speed_mps": 0.22445059820981014,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.2886927127838135,
+          "up_axis_z": 0.9960729282092469
+        },
+        "tracks": []
+      },
+      {
+        "frame": 557,
+        "t_s": 11.14,
+        "values": {
+          "horizontal_speed_mps": 0.22809681407941737,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.2898154258728027,
+          "up_axis_z": 0.9962788837438467
+        },
+        "tracks": []
+      },
+      {
+        "frame": 558,
+        "t_s": 11.16,
+        "values": {
+          "horizontal_speed_mps": 0.22941550926136284,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.2908803224563599,
+          "up_axis_z": 0.9964954708994184
+        },
+        "tracks": []
+      },
+      {
+        "frame": 559,
+        "t_s": 11.18,
+        "values": {
+          "horizontal_speed_mps": 0.2326772685255674,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.290853500366211,
+          "up_axis_z": 0.9966731680086786
+        },
+        "tracks": []
+      },
+      {
+        "frame": 560,
+        "t_s": 11.2,
+        "values": {
+          "horizontal_speed_mps": 0.21558723715464076,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.289944052696228,
+          "up_axis_z": 0.9967485868616732
+        },
+        "tracks": []
+      },
+      {
+        "frame": 561,
+        "t_s": 11.22,
+        "values": {
+          "horizontal_speed_mps": 0.2086632515536876,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.2893354892730713,
+          "up_axis_z": 0.9967231096207698
+        },
+        "tracks": []
+      },
+      {
+        "frame": 562,
+        "t_s": 11.24,
+        "values": {
+          "horizontal_speed_mps": 0.20929785124215308,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.2893226146697998,
+          "up_axis_z": 0.9966371868505104
+        },
+        "tracks": []
+      },
+      {
+        "frame": 563,
+        "t_s": 11.26,
+        "values": {
+          "horizontal_speed_mps": 0.2143669643086677,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.2893067598342896,
+          "up_axis_z": 0.9965258139051668
+        },
+        "tracks": []
+      },
+      {
+        "frame": 564,
+        "t_s": 11.28,
+        "values": {
+          "horizontal_speed_mps": 0.2378263959047646,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.2888435125350952,
+          "up_axis_z": 0.9965081676061216
+        },
+        "tracks": []
+      },
+      {
+        "frame": 565,
+        "t_s": 11.3,
+        "values": {
+          "horizontal_speed_mps": 0.2343395437157918,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.288069486618042,
+          "up_axis_z": 0.996597180133784
+        },
+        "tracks": []
+      },
+      {
+        "frame": 566,
+        "t_s": 11.32,
+        "values": {
+          "horizontal_speed_mps": 0.24421177191086052,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.2876718044281006,
+          "up_axis_z": 0.9967691034727412
+        },
+        "tracks": []
+      },
+      {
+        "frame": 567,
+        "t_s": 11.34,
+        "values": {
+          "horizontal_speed_mps": 0.2555770098282357,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.287876844406128,
+          "up_axis_z": 0.9969616703123314
+        },
+        "tracks": []
+      },
+      {
+        "frame": 568,
+        "t_s": 11.36,
+        "values": {
+          "horizontal_speed_mps": 0.2641508882676033,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.2884125709533691,
+          "up_axis_z": 0.9971165235263871
+        },
+        "tracks": []
+      },
+      {
+        "frame": 569,
+        "t_s": 11.38,
+        "values": {
+          "horizontal_speed_mps": 0.25692090185689076,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.288554072380066,
+          "up_axis_z": 0.9971382079294651
+        },
+        "tracks": []
+      },
+      {
+        "frame": 570,
+        "t_s": 11.4,
+        "values": {
+          "horizontal_speed_mps": 0.26199170755215845,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.2883695363998413,
+          "up_axis_z": 0.9970345628207833
+        },
+        "tracks": []
+      },
+      {
+        "frame": 571,
+        "t_s": 11.42,
+        "values": {
+          "horizontal_speed_mps": 0.280785586593992,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.288028597831726,
+          "up_axis_z": 0.9968901355152925
+        },
+        "tracks": []
+      },
+      {
+        "frame": 572,
+        "t_s": 11.44,
+        "values": {
+          "horizontal_speed_mps": 0.2900836571106379,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.2876006364822388,
+          "up_axis_z": 0.9967484438712594
+        },
+        "tracks": []
+      },
+      {
+        "frame": 573,
+        "t_s": 11.46,
+        "values": {
+          "horizontal_speed_mps": 0.298812952524609,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.2868684530258179,
+          "up_axis_z": 0.9966263555304615
+        },
+        "tracks": []
+      },
+      {
+        "frame": 574,
+        "t_s": 11.48,
+        "values": {
+          "horizontal_speed_mps": 0.3107808343774314,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.2858672142028809,
+          "up_axis_z": 0.9965533497424998
+        },
+        "tracks": []
+      },
+      {
+        "frame": 575,
+        "t_s": 11.5,
+        "values": {
+          "horizontal_speed_mps": 0.3200861040184434,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.2846908569335938,
+          "up_axis_z": 0.9964829427000533
+        },
+        "tracks": []
+      },
+      {
+        "frame": 576,
+        "t_s": 11.52,
+        "values": {
+          "horizontal_speed_mps": 0.3309767725031677,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.283280372619629,
+          "up_axis_z": 0.9963502421481987
+        },
+        "tracks": []
+      },
+      {
+        "frame": 577,
+        "t_s": 11.54,
+        "values": {
+          "horizontal_speed_mps": 0.3379631116041967,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.2814936637878418,
+          "up_axis_z": 0.9961071619397877
+        },
+        "tracks": []
+      },
+      {
+        "frame": 578,
+        "t_s": 11.56,
+        "values": {
+          "horizontal_speed_mps": 0.3549597875405745,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.279179573059082,
+          "up_axis_z": 0.9957477036608252
+        },
+        "tracks": []
+      },
+      {
+        "frame": 579,
+        "t_s": 11.58,
+        "values": {
+          "horizontal_speed_mps": 0.3716427888988173,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.2762609720230103,
+          "up_axis_z": 0.9953063654045761
+        },
+        "tracks": []
+      },
+      {
+        "frame": 580,
+        "t_s": 11.6,
+        "values": {
+          "horizontal_speed_mps": 0.3875842301573083,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.2725956439971924,
+          "up_axis_z": 0.9948383256572281
+        },
+        "tracks": []
+      },
+      {
+        "frame": 581,
+        "t_s": 11.62,
+        "values": {
+          "horizontal_speed_mps": 0.3870196886733883,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.2683093547821045,
+          "up_axis_z": 0.9943851669063203
+        },
+        "tracks": []
+      },
+      {
+        "frame": 582,
+        "t_s": 11.64,
+        "values": {
+          "horizontal_speed_mps": 0.4139475318826872,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.2649836540222168,
+          "up_axis_z": 0.9941423023569352
+        },
+        "tracks": []
+      },
+      {
+        "frame": 583,
+        "t_s": 11.66,
+        "values": {
+          "horizontal_speed_mps": 0.42713373280353933,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.2618290185928345,
+          "up_axis_z": 0.9941271490613682
+        },
+        "tracks": []
+      },
+      {
+        "frame": 584,
+        "t_s": 11.68,
+        "values": {
+          "horizontal_speed_mps": 0.42935534987352836,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.258324146270752,
+          "up_axis_z": 0.994131494981169
+        },
+        "tracks": []
+      },
+      {
+        "frame": 585,
+        "t_s": 11.7,
+        "values": {
+          "horizontal_speed_mps": 0.4106736213633748,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.2539424896240234,
+          "up_axis_z": 0.9938642708009442
+        },
+        "tracks": []
+      },
+      {
+        "frame": 586,
+        "t_s": 11.72,
+        "values": {
+          "horizontal_speed_mps": 0.43815148662841197,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.2503224611282349,
+          "up_axis_z": 0.9935820853749058
+        },
+        "tracks": []
+      },
+      {
+        "frame": 587,
+        "t_s": 11.74,
+        "values": {
+          "horizontal_speed_mps": 0.4361506085456631,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.2482966184616089,
+          "up_axis_z": 0.9933283817773949
+        },
+        "tracks": []
+      },
+      {
+        "frame": 588,
+        "t_s": 11.76,
+        "values": {
+          "horizontal_speed_mps": 0.4320807229190476,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.247113585472107,
+          "up_axis_z": 0.9929174771763366
+        },
+        "tracks": []
+      },
+      {
+        "frame": 589,
+        "t_s": 11.78,
+        "values": {
+          "horizontal_speed_mps": 0.42198892688621364,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.2457016706466675,
+          "up_axis_z": 0.9923122449162078
+        },
+        "tracks": []
+      },
+      {
+        "frame": 590,
+        "t_s": 11.8,
+        "values": {
+          "horizontal_speed_mps": 0.41987562383518023,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.2433737516403198,
+          "up_axis_z": 0.9915435707859924
+        },
+        "tracks": []
+      },
+      {
+        "frame": 591,
+        "t_s": 11.82,
+        "values": {
+          "horizontal_speed_mps": 0.43040988943930475,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.2387596368789673,
+          "up_axis_z": 0.9908360092608745
+        },
+        "tracks": []
+      },
+      {
+        "frame": 592,
+        "t_s": 11.84,
+        "values": {
+          "horizontal_speed_mps": 0.44600340440097797,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.2302110195159912,
+          "up_axis_z": 0.99045632689143
+        },
+        "tracks": []
+      },
+      {
+        "frame": 593,
+        "t_s": 11.86,
+        "values": {
+          "horizontal_speed_mps": 0.4545116350120952,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.2173514366149902,
+          "up_axis_z": 0.9903964159970458
+        },
+        "tracks": []
+      },
+      {
+        "frame": 594,
+        "t_s": 11.88,
+        "values": {
+          "horizontal_speed_mps": 0.43452305311147826,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.20260751247406,
+          "up_axis_z": 0.9906540980914921
+        },
+        "tracks": []
+      },
+      {
+        "frame": 595,
+        "t_s": 11.9,
+        "values": {
+          "horizontal_speed_mps": 0.42672431861899013,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.1910927295684814,
+          "up_axis_z": 0.9914319055843843
+        },
+        "tracks": []
+      },
+      {
+        "frame": 596,
+        "t_s": 11.92,
+        "values": {
+          "horizontal_speed_mps": 0.42336059384856195,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.18373441696167,
+          "up_axis_z": 0.992493717902065
+        },
+        "tracks": []
+      },
+      {
+        "frame": 597,
+        "t_s": 11.94,
+        "values": {
+          "horizontal_speed_mps": 0.4150740617711242,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.1792842149734497,
+          "up_axis_z": 0.993569291380838
+        },
+        "tracks": []
+      },
+      {
+        "frame": 598,
+        "t_s": 11.96,
+        "values": {
+          "horizontal_speed_mps": 0.4251904001724443,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.1732617616653442,
+          "up_axis_z": 0.9944570652786436
+        },
+        "tracks": []
+      },
+      {
+        "frame": 599,
+        "t_s": 11.98,
+        "values": {
+          "horizontal_speed_mps": 0.440315586939925,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.165196418762207,
+          "up_axis_z": 0.995320064977081
+        },
+        "tracks": []
+      },
+      {
+        "frame": 600,
+        "t_s": 12.0,
+        "values": {
+          "horizontal_speed_mps": 0.43689657246872055,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.1580023765563965,
+          "up_axis_z": 0.9960301954529097
+        },
+        "tracks": []
+      },
+      {
+        "frame": 601,
+        "t_s": 12.02,
+        "values": {
+          "horizontal_speed_mps": 0.42249518351187554,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.1529737710952759,
+          "up_axis_z": 0.9964645590681256
+        },
+        "tracks": []
+      },
+      {
+        "frame": 602,
+        "t_s": 12.04,
+        "values": {
+          "horizontal_speed_mps": 0.42358545792433094,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.1493536233901978,
+          "up_axis_z": 0.9966850705255975
+        },
+        "tracks": []
+      },
+      {
+        "frame": 603,
+        "t_s": 12.06,
+        "values": {
+          "horizontal_speed_mps": 0.4155994501887842,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.1455812454223633,
+          "up_axis_z": 0.9967782868614921
+        },
+        "tracks": []
+      },
+      {
+        "frame": 604,
+        "t_s": 12.08,
+        "values": {
+          "horizontal_speed_mps": 0.40345996861665545,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.1400529146194458,
+          "up_axis_z": 0.9967676733211945
+        },
+        "tracks": []
+      },
+      {
+        "frame": 605,
+        "t_s": 12.1,
+        "values": {
+          "horizontal_speed_mps": 0.38740020094065253,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.1316556930541992,
+          "up_axis_z": 0.9966533406743558
+        },
+        "tracks": []
+      },
+      {
+        "frame": 606,
+        "t_s": 12.12,
+        "values": {
+          "horizontal_speed_mps": 0.34069128823404826,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.1205815076828003,
+          "up_axis_z": 0.9964203244072412
+        },
+        "tracks": []
+      },
+      {
+        "frame": 607,
+        "t_s": 12.14,
+        "values": {
+          "horizontal_speed_mps": 0.3468395781494425,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.1120879650115967,
+          "up_axis_z": 0.9965041448137502
+        },
+        "tracks": []
+      },
+      {
+        "frame": 608,
+        "t_s": 12.16,
+        "values": {
+          "horizontal_speed_mps": 0.3149225329866687,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.1071288585662842,
+          "up_axis_z": 0.9968262795434488
+        },
+        "tracks": []
+      },
+      {
+        "frame": 609,
+        "t_s": 12.18,
+        "values": {
+          "horizontal_speed_mps": 0.31206646148877565,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.1065657138824463,
+          "up_axis_z": 0.9971142425248083
+        },
+        "tracks": []
+      },
+      {
+        "frame": 610,
+        "t_s": 12.2,
+        "values": {
+          "horizontal_speed_mps": 0.32167804334266636,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.10844087600708,
+          "up_axis_z": 0.9973192936816113
+        },
+        "tracks": []
+      },
+      {
+        "frame": 611,
+        "t_s": 12.22,
+        "values": {
+          "horizontal_speed_mps": 0.3221790123214299,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.1101830005645752,
+          "up_axis_z": 0.9973988894092176
+        },
+        "tracks": []
+      },
+      {
+        "frame": 612,
+        "t_s": 12.24,
+        "values": {
+          "horizontal_speed_mps": 0.3241808870062064,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.1111372709274292,
+          "up_axis_z": 0.9973690199478054
+        },
+        "tracks": []
+      },
+      {
+        "frame": 613,
+        "t_s": 12.26,
+        "values": {
+          "horizontal_speed_mps": 0.32973687447134664,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.1114691495895386,
+          "up_axis_z": 0.9972444457697068
+        },
+        "tracks": []
+      },
+      {
+        "frame": 614,
+        "t_s": 12.28,
+        "values": {
+          "horizontal_speed_mps": 0.33721926415933634,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.1111494302749634,
+          "up_axis_z": 0.9970370765185251
+        },
+        "tracks": []
+      },
+      {
+        "frame": 615,
+        "t_s": 12.3,
+        "values": {
+          "horizontal_speed_mps": 0.33668784544301866,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.1098443269729614,
+          "up_axis_z": 0.9967290218141003
+        },
+        "tracks": []
+      },
+      {
+        "frame": 616,
+        "t_s": 12.32,
+        "values": {
+          "horizontal_speed_mps": 0.335746187669313,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.106775164604187,
+          "up_axis_z": 0.9963269794907745
+        },
+        "tracks": []
+      },
+      {
+        "frame": 617,
+        "t_s": 12.34,
+        "values": {
+          "horizontal_speed_mps": 0.30853344697291973,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.1020768880844116,
+          "up_axis_z": 0.995886071800338
+        },
+        "tracks": []
+      },
+      {
+        "frame": 618,
+        "t_s": 12.36,
+        "values": {
+          "horizontal_speed_mps": 0.30884928770683323,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.0992568731307983,
+          "up_axis_z": 0.9956954206933323
+        },
+        "tracks": []
+      },
+      {
+        "frame": 619,
+        "t_s": 12.38,
+        "values": {
+          "horizontal_speed_mps": 0.3140911893915445,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.0981792211532593,
+          "up_axis_z": 0.9957837357413718
+        },
+        "tracks": []
+      },
+      {
+        "frame": 620,
+        "t_s": 12.4,
+        "values": {
+          "horizontal_speed_mps": 0.30931045659194956,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.0980535745620728,
+          "up_axis_z": 0.9959136404211388
+        },
+        "tracks": []
+      },
+      {
+        "frame": 621,
+        "t_s": 12.42,
+        "values": {
+          "horizontal_speed_mps": 0.29396672428113313,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.0964223146438599,
+          "up_axis_z": 0.9958600043821961
+        },
+        "tracks": []
+      },
+      {
+        "frame": 622,
+        "t_s": 12.44,
+        "values": {
+          "horizontal_speed_mps": 0.29557766868819163,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.0910109281539917,
+          "up_axis_z": 0.9956612592983868
+        },
+        "tracks": []
+      },
+      {
+        "frame": 623,
+        "t_s": 12.46,
+        "values": {
+          "horizontal_speed_mps": 0.2784657772348789,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.0833303928375244,
+          "up_axis_z": 0.9954883668079512
+        },
+        "tracks": []
+      },
+      {
+        "frame": 624,
+        "t_s": 12.48,
+        "values": {
+          "horizontal_speed_mps": 0.27163735944117945,
+          "command_speed_mps": 0.25,
+          "base_height_m": 1.0765740871429443,
+          "up_axis_z": 0.9955130978777033
+        },
+        "tracks": []
+      }
+    ]
+  },
+  "approval": null,
+  "result": {
+    "stage": "draft",
+    "approval_status": "unreviewed",
+    "verdict": "PASS",
+    "reason": "마감 시점 안에 조건을 시작해 필요한 유지 시간 동안 연속으로 충족했습니다.",
+    "trigger_t_s": 0.0,
+    "interval": {
+      "start_s": 0.0,
+      "end_s": 8.0
+    },
+    "examined_samples": 401,
+    "warnings": [],
+    "spec_sha256": "f14b3eef2d4e52e7bb57ca2b66139c19c6f032314c161de4e13073fb7d68ee78",
+    "observations_sha256": "c243419cd2448a20f4f3982f2272aa92351fb1af4902eee50f42af68bbd92a35",
+    "input_provenance": {
+      "kind": "recorded_h1_stairs_playback",
+      "source_path": "docs/media/stairs_h1_s172_20261030_v1/biped-stairs-down/manifest.json",
+      "source_sha256": "5ca9568a1eb08f1212f3c8af371e386934f5557fa1fc50eecfeb445a88fc7b51",
+      "source_trace": "docs/media/stairs_h1_s172_20261030_v1/biped-stairs-down/state-trace.jsonl",
+      "source_trace_sha256": "79461bec8584b79d1bff15ff5c60f7c16b46141fc8fb6b29148d76ca6c011300",
+      "source_manifest_sha256": "eb113a2aee964aaaf972bbff9f2fd9090e14052c4642334b04e8ac4e78113193",
+      "exact_frames_sha256": "29b623979d50c69528653e930ea23bb45b45ca0960fedc5ebe6a991df37083b4",
+      "video_path": "docs/media/stairs_h1_s172_20261030_v1/biped-stairs-down/video/rl-video-step-0.mp4",
+      "frame_width": 1280.0,
+      "frame_height": 720.0,
+      "capture_approved": false,
+      "model_ready": false,
+      "playback_render_synced": true,
+      "visual_evidence_status": "render_synced_playback_not_model_input_approval",
+      "time_basis": "video_frame_index / encoder_fps",
+      "state_frame_offset": 1.0,
+      "sim_time_offset_s": 0.02,
+      "motion_frame": "world",
+      "height_frame": "world_z_not_ground_clearance",
+      "scope": "stored_stairs_condition_demo_only_not_recovery_or_generalization",
+      "new_model_api_calls": 0.0,
+      "new_training_jobs": 0.0
+    },
+    "model_called": false
+  },
+  "model_calls_in_this_app": 0
+}

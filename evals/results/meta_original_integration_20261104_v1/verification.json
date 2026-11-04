@@ -1,0 +1,172 @@
+{
+  "schema": "meta-original-integration-verification-v1",
+  "checked_at": "2026-11-04T09:05:31.334418+09:00",
+  "source_commit": "8e05ed38a27e17b30c4162a6541331799fecc6b3",
+  "target_head_observed": "94fe8740277c9ecc556096fa4d00df0ad0bb7749",
+  "target_directory": "rl-triage-agent",
+  "target_main_history_merged": false,
+  "application_files_match": 50,
+  "shared_files_patched": [
+    "README.md",
+    ".gitattributes",
+    "docs\\TROUBLESHOOTING.md"
+  ],
+  "related_original_tests": {
+    "passed": 80,
+    "observed_summary": "80 passed in 3.84s",
+    "files": [
+      "tests/test_behavior_authoring_engine.py",
+      "tests/test_behavior_authoring_adapters.py",
+      "tests/test_behavior_authoring_app.py",
+      "tests/test_behavior_authoring_client.py",
+      "tests/test_behavior_authoring_live.py"
+    ],
+    "provider_transport": "injected_fixtures_only_no_external_network"
+  },
+  "static_checks_previously_passed": {
+    "python_compile": true,
+    "javascript_syntax": true,
+    "diff_check": true
+  },
+  "runtime": {
+    "url": "http://127.0.0.1:7705",
+    "launch_cwd": "C:\\Users\\LIMMM\\rl-triage-agent",
+    "launch_pythonpath": "C:/Users/LIMMM/rl-triage-agent/src",
+    "verified_local_import": "C:\\Users\\LIMMM\\rl-triage-agent\\src\\rl_triage\\behavior_authoring\\live.py",
+    "process_ids": [
+      56488,
+      154908,
+      108976
+    ],
+    "root_http": 200,
+    "served_js_matches_target": true,
+    "default_example": "h1-up",
+    "example_count": 6,
+    "quotes": {
+      "spark": {
+        "model": "muse-spark-1.3",
+        "reserved_usd": "0.372081",
+        "pricing_checked_on": "2026-11-04"
+      },
+      "sam": {
+        "model": "sam-3.1",
+        "reserved_usd": "0.250000",
+        "pricing_checked_on": "2026-11-04"
+      }
+    },
+    "observed_meta_status": {
+      "key_configured": false,
+      "credit_confirmed": false,
+      "remaining_credit_usd": "0.00",
+      "budget_usd": "1.00",
+      "reserved_usd": "0.00",
+      "available_budget_usd": "1.00",
+      "enabled": false,
+      "blockers": [
+        "MODEL_API_KEY가 설정되지 않았습니다.",
+        "Meta 제공 크레딧 확인이 필요합니다.",
+        "남은 Meta 크레딧이 로컬 예산보다 적습니다."
+      ],
+      "live_requests_started": 0
+    }
+  },
+  "cases": [
+    {
+      "id": "h1-up",
+      "video_range_http": 206,
+      "video_range_matches_original": true,
+      "state_available": true,
+      "verdict": "PASS",
+      "stage": "draft",
+      "export_sha256": "6d504f9c438d7a5e6de87d6d0647116c2999d65bfe53201a314201b3ad0b0736",
+      "export_json_roundtrip": true,
+      "saved_input_re_evaluation_equal": true
+    },
+    {
+      "id": "h1-down",
+      "video_range_http": 206,
+      "video_range_matches_original": true,
+      "state_available": true,
+      "verdict": "PASS",
+      "stage": "draft",
+      "export_sha256": "f61a3091a84a5ce1ef0cb29037b8629d075d72ce4dea91d78dbd02129aed3289",
+      "export_json_roundtrip": true,
+      "saved_input_re_evaluation_equal": true
+    },
+    {
+      "id": "go2-up-slow",
+      "video_range_http": 206,
+      "video_range_matches_original": true,
+      "state_available": true,
+      "verdict": "PASS",
+      "stage": "draft",
+      "export_sha256": "5074caa4b21f3a0e02165c090b0580f11cfa1f46014c738c87a3015b6d5742be",
+      "export_json_roundtrip": true,
+      "saved_input_re_evaluation_equal": true
+    },
+    {
+      "id": "go2-down-slow",
+      "video_range_http": 206,
+      "video_range_matches_original": true,
+      "state_available": true,
+      "verdict": "FAIL",
+      "stage": "draft",
+      "export_sha256": "10e5c4536c6bb2eae0db6f0a7eb7790195a4d9179e3eb1a95b35eb24a36f45b6",
+      "export_json_roundtrip": true,
+      "saved_input_re_evaluation_equal": true
+    },
+    {
+      "id": "go2-up-fast",
+      "video_range_http": 206,
+      "video_range_matches_original": true,
+      "state_available": false,
+      "verdict": null,
+      "stage": null,
+      "export_sha256": "ad582b5ba237fa1997da78d7d69a9324601c0c705c85a899d8abee4a69e7ff69",
+      "export_json_roundtrip": true,
+      "saved_input_re_evaluation_equal": null
+    },
+    {
+      "id": "go2-down-fast",
+      "video_range_http": 206,
+      "video_range_matches_original": true,
+      "state_available": false,
+      "verdict": null,
+      "stage": null,
+      "export_sha256": "ae3d254c347093a8007b5e790a60b67bc968c5ac1762c8558216fd26ae809e00",
+      "export_json_roundtrip": true,
+      "saved_input_re_evaluation_equal": null
+    }
+  ],
+  "cli_evaluate": {
+    "exit_code": 0,
+    "stdout": "PASS",
+    "saved_result_matches_http": true
+  },
+  "verification_scope": "original_checkout_http_and_cli; export schema serialized by verification script; browser clicks/playback/DOM not verified",
+  "provider_calls_executed_by_this_verification": 0,
+  "provider_success_verified": false,
+  "browser_interaction_verified": false,
+  "browser_blocker": "Computer Use native pipe unavailable os error 2; browser host unavailable",
+  "gpu_jobs": 0,
+  "remote_push": false,
+  "submitted": false,
+  "plan_state": {
+    "P1": "blocked_missing_key_and_credit_confirmation",
+    "P2": "waiting_P1",
+    "P3": "waiting_provider_response_and_browser",
+    "P4": "original_files_tests_cli_http_and_server_ready_main_history_preserved"
+  },
+  "artifact_sha256": {
+    "application-manifest.json": "1e00cd239c09112bf6b5d3c456ecaa726ff75ee3219eed6c4a8219a1a537981c",
+    "go2-down-fast-http-export.json": "ae3d254c347093a8007b5e790a60b67bc968c5ac1762c8558216fd26ae809e00",
+    "go2-down-slow-http-export.json": "10e5c4536c6bb2eae0db6f0a7eb7790195a4d9179e3eb1a95b35eb24a36f45b6",
+    "go2-up-fast-http-export.json": "ad582b5ba237fa1997da78d7d69a9324601c0c705c85a899d8abee4a69e7ff69",
+    "go2-up-slow-http-export.json": "5074caa4b21f3a0e02165c090b0580f11cfa1f46014c738c87a3015b6d5742be",
+    "h1-down-http-export.json": "f61a3091a84a5ce1ef0cb29037b8629d075d72ce4dea91d78dbd02129aed3289",
+    "h1-up-cli-result.json": "2f58c9688444dc9a4c18c6eecd16b312430016fb0d8a2084acf46a057bf64fde",
+    "h1-up-contract.json": "4ff6641140c2e235c3d09b648d5fd66c368d138265520f5eae729e3a51f1ed54",
+    "h1-up-http-export.json": "6d504f9c438d7a5e6de87d6d0647116c2999d65bfe53201a314201b3ad0b0736",
+    "h1-up-observations.json": "209bd76cfe334f0e529c2fe925d69282af8de8c89f87fa4fdc0dfcc3c53dabb3"
+  }
+}
