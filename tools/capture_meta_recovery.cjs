@@ -109,6 +109,7 @@ async function main(){
     if(browser)await browser.close();report.browser_closed=true;
     const recordings=await fs.readdir(path.join(out,'browser-video')).catch(()=>[]);
     report.browser_video=recordings.find(name=>name.endsWith('.webm'))||null;
+    if(report.browser_video){const raw=await fs.readFile(path.join(out,'browser-video',report.browser_video));report.browser_video_sha256=hash(raw);report.browser_video_bytes=raw.length;}
     await fs.writeFile(path.join(out,'verification.json'),JSON.stringify(report,null,2)+'\n');
   }
   process.stdout.write(JSON.stringify({passed:report.passed,checks:report.checks.length,new_model_calls:0,out})+'\n');
