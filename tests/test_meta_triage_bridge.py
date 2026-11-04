@@ -163,6 +163,9 @@ def test_confirmed_probe_connects_to_actual_correction_ledger_but_cannot_run_una
     _confirmed_loop(loops)
     source_report = {"metrics": {"lin_vel_rmse_mps": 0.95},
                      "standstill": {"lin_vel_rmse_mps": 1.0}}
+    with pytest.raises(ValueError,match='triage_case_id'):
+        prepare_registered_correction(_analysis(),load_example_view('h1-up')['observations'],'h-reward',
+                                      case_id='c1',loops=loops,source_report=source_report)
     result = prepare_registered_correction(
         _analysis(), _bundle("c1"), "h-reward", case_id="c1", loops=loops,
         source_report=source_report,

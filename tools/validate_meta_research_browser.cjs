@@ -22,6 +22,8 @@ async function main(){
     const check=name=>report.checks.push({name,passed:true});
     const downloaded=async action=>{const wait=page.waitForEvent('download');await action();const download=await wait;return fs.readFile(await download.path());};
     await page.goto(base,{waitUntil:'networkidle'});await page.waitForFunction(()=>document.querySelector('#caption').textContent.includes('H1'));
+    await page.waitForFunction(()=>document.querySelector('#video').readyState>=2);
+    await page.locator('#video').press('Space');await page.waitForFunction(()=>document.querySelector('#video').currentTime>.4);await page.locator('#video').press('Space');check('actual_recorded_h1_video_played');
     assert(await page.locator('#visionLive').isDisabled());check('additional_paid_video_call_is_locked');
     await page.locator('#visionSeed').click();await page.waitForFunction(()=>document.querySelector('#visionStatus').textContent.includes('Spark 분석 아님'));
     await page.locator('#visionStep').click();await page.waitForFunction(()=>document.querySelectorAll('#researchHistory li').length===1);
@@ -45,13 +47,13 @@ async function main(){
     check('registered_reward_proposal_downloaded_without_execution_authority');
     await page.locator('#recoveryResponse').setInputFiles(path.join(fixture,'recovery.json'));
     await page.waitForFunction(()=>!document.querySelector('#recoveryResult').hidden);
-    const recovery=JSON.parse(await page.locator('#recoveryResult').textContent());
-    assert.equal(recovery.performance_improvement_measured,false);check('fixed_evaluation_consumed_without_new_performance_claim');
+    assert((await page.locator('#recoveryResult').textContent()).includes('회복 기준 충족'));check('fixed_evaluation_consumed_without_new_performance_claim');
     const reflect=JSON.parse(await downloaded(()=>page.locator('#visionReflect').click()));
     assert(reflect.request.input[0].content[0].text.includes('imported_fixed_evaluations_unverified_execution'));
     assert(reflect.request.input[0].content[0].text.includes('recovered'));check('recovery_comparison_is_included_in_next_spark_reflection');
     const exported=JSON.parse(await downloaded(()=>page.locator('#visionExport').click()));
     assert.equal(exported.history.length,2);assert.equal(exported.external_evaluations.length,1);
+    assert.equal(exported.external_evaluations[0].comparison.performance_improvement_measured,false);
     await fs.writeFile(path.join(out,'research-session.json'),JSON.stringify(exported,null,2));check('full_hypotheses_checks_and_recovery_history_exported');
     await page.screenshot({path:path.join(out,'research-workbench.png'),fullPage:true});
     await page.locator('#threshold').fill('0.9');assert(await page.locator('#visionExport').isDisabled());

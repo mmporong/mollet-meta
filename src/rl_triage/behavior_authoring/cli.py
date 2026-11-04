@@ -46,6 +46,7 @@ def main() -> int:
     sub = parser.add_subparsers(dest='command', required=True)
     serve = sub.add_parser('serve'); serve.add_argument('--port', type=int, default=8784)
     _meta_options(serve, serve=True)
+    serve.add_argument('--attach-meta-port',type=int,help='기존 loopback 서버의 메모리 키를 유지하면서 새 화면 사용. 추가 영상 호출은 잠금')
     live = sub.add_parser('call', help='크레딧·키·예산 설정 후 Meta 요청 1회. 자동 재시도 없음')
     live.add_argument('--model', choices=['spark','sam','vision'], required=True)
     live.add_argument('--example', choices=list(STAIRS_EXAMPLES), default='h1-up')
@@ -91,7 +92,13 @@ def main() -> int:
     try:
         if args.command == 'serve':
             from .web import serve_local
-            serve_local(args.port, meta_service=_meta_service(args))
+            if args.attach_meta_port:
+                from .attached import AttachedLiveService
+                if args.attach_meta_port==args.port:raise ValueError('서버 포트와 기존 연결 포트가 같을 수 없습니다.')
+                service=AttachedLiveService(args.attach_meta_port)
+                service.status()
+            else:service=_meta_service(args)
+            serve_local(args.port, meta_service=service)
         elif args.command == 'meta-status':
             print(json.dumps(_meta_service(args).status(), ensure_ascii=False))
         elif args.command == 'call':

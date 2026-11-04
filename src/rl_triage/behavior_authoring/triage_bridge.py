@@ -262,7 +262,7 @@ def prepare_registered_correction(analysis: dict, bundle: dict, hypothesis_id: s
     if _CASE_ID.fullmatch(case_id) is None:
         raise ValueError("case_id는 경로 문자가 없는 안전한 식별자여야 합니다.")
     provenance_case = observations["provenance"].get("triage_case_id")
-    if provenance_case is not None and provenance_case != case_id:
+    if provenance_case != case_id:
         raise ValueError("관측 묶음의 triage_case_id와 교정 loop case_id가 다릅니다.")
     correction_id = selected["correction_id"]
     selected_mechanism = _CORRECTION_TO_MECHANISM.get(correction_id)

@@ -191,3 +191,23 @@ def test_recovery_source_text_preserves_fixed_eval_hash_and_enters_reflection(tm
     assert 'recovered' in prompt and 'unverified_saved_evaluation' in prompt
     with pytest.raises(ValueError,match='교정이 다릅니다'):research.recover(sid,'posture',json.dumps(comparison))
     assert not calls
+
+
+def test_attached_server_keeps_existing_key_without_exporting_it(tmp_path):
+    from rl_triage.behavior_authoring.attached import AttachedLiveService
+    live,calls=service(tmp_path)
+    server=ThreadingHTTPServer(('127.0.0.1',0),Handler);server.meta_service=live
+    thread=threading.Thread(target=server.serve_forever,daemon=True);thread.start()
+    try:
+        attached=AttachedLiveService(server.server_port)
+        assert attached.status()['key_configured'] is True
+        assert attached.status()['video_calls_enabled'] is False
+        assert 'fixture-secret' not in json.dumps(attached.status())
+        assert attached.configure({'budget_usd':'.5'})['budget_usd']=='0.50'
+        assert live.status()['key_configured'] is True
+        assert ResearchService(attached).prepare('h1-up','분석')['sent'] is False
+        with pytest.raises(ValueError,match='잠겨'):attached.analyze_video('h1-up','분석')
+        with pytest.raises(ValueError):attached._request('arbitrary-path')
+        assert not calls
+    finally:
+        server.shutdown();server.server_close();thread.join(3)

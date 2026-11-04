@@ -2,11 +2,21 @@
 
 ## 영상 추론·개선 루프 확장
 
-2026-11-04 추가 범위는 Spark에 원본 MP4와 동기화된 상태를 함께 넣는 영상 분석, 근거 프레임이 있는 가설 1~4개, 미검사 가설의 조건 검사, 결과를 포함한 다음 Spark 요청, 기존 교정·재학습 소비 경로 연결이다. 기존 text-only Spark·SAM의 실제 응답 2회와 새 영상 분석의 실행 여부를 구분한다. 새 영상 모델 호출·GPU 학습은 실행하지 않았다. 새 화면의 Chrome 검증은 진행 중이다.
+2026-11-04 추가 범위는 Spark에 원본 MP4와 동기화된 상태를 함께 넣는 영상 분석, 근거 프레임이 있는 가설 1~4개, 미검사 가설의 조건 검사, 결과를 포함한 다음 Spark 요청, 기존 교정·재학습 소비 경로 연결이다. 기존 text-only Spark·SAM의 실제 응답 2회와 새 영상 분석의 실행 여부를 구분한다. 새 영상 모델 호출·GPU 학습은 실행하지 않았다. [Chrome 검증](../evals/results/meta_video_research_20261104_v3/browser-verification.json)은 실제 H1 원본과 합성 provider 응답을 사용한 UI 통합 검사이며 실제 영상 추론 품질 평가가 아니다.
 
 화면 아래의 **영상으로 가설을 세우고, 검사 결과로 다시 검토하기**에서 요청을 저장하고 완료된 provider 응답을 가져온다. 현재 조건으로 로컬 흐름을 확인할 수도 있으며 이 경우 Spark 분석으로 표시하지 않는다. 가설의 원본 프레임 존재 여부와 조건 스키마를 검증하고, 참/거짓 표본 분할의 이진 엔트로피가 큰 미검사 가설부터 하나씩 계산한다. 이 선택 점수는 새 실험의 기대 정보 이득 추정이나 인과 확인이 아니다. 동일 기록의 조건 검사는 최대 3회이며, 새 관측을 만든 것으로 세지 않는다.
 
 보상 코드 교정은 Meta 가설만으로 실행되지 않는다. `prepare-correction`은 기존 probe loop의 confirmed 상태·abnormal 영수증·등록 메커니즘을 기존 `evals/correct.py`로 재검증하고, 선택 교정과 일치할 때만 실제 correction ledger에 GPU 예산 0의 미승인 제안을 남긴다. `prepare-training`의 설정 되돌리기는 별도 경로다. 설정 chN을 되돌린 결과를 보상 함수 코드 교정으로 표시하지 않는다. `restore_reward_family_scope`는 현 교정 원장에 등록되지 않아 HOLD다.
+
+교정 CLI의 입력 관측에는 실제 loop와 일치하는 `provenance.triage_case_id` 결합이 필요하다. 계단 예제에 임의의 과거 회복 loop를 붙여 교정 근거로 사용하지 않는다. 명령 형식은 다음과 같다. 경로는 사용자가 보유한 같은 사례의 파일로 지정한다.
+
+```powershell
+cd "$HOME/rl-triage-meta"
+$env:PYTHONPATH = "$PWD/src"
+python -m rl_triage.behavior_authoring prepare-correction --analysis "$HOME/mollet-input/analysis.json" --observations "$HOME/mollet-input/observations.json" --hypothesis reward-hypothesis --case-id case_name --loops "$HOME/mollet-input/loops" --source-report "$HOME/mollet-input/fixed-eval.json" --out "$HOME/mollet-input/correction-proposal-new.json"
+```
+
+기존 메모리 키를 유지하면서 새 화면을 띄울 때는 `serve --port 7706 --attach-meta-port 7705`를 사용한다. 고정 loopback의 기존 Meta API 경로만 연결하고 비밀키를 읽거나 파일로 옮기지 않는다. 이 모드의 추가 영상 호출은 잠금이며 기존 서버를 종료하지 않는다. 실행 중 서버를 새로 시작할 필요 없이 검증하려면 `tools/validate_meta_research.py --out <새 결과 경로>`를 실행한다. 검증기가 띄운 임시 서버와 Chrome은 종료된다.
 
 `compare-recovery`와 화면의 평가 가져오기는 기존 `behavior_oracle.recovery_outcome` 또는 `grounded_recovery.summarize_triplet`을 재사용한다. 다른 교정 ID나 변경된 고정 평가 조건은 거부한다. 가져온 결과는 미인증 저장 평가로 표시하고 다음 영상 재검토 요청에 포함한다. 이 연결 자체로 Meta의 회복 성능 향상이나 정책 재학습 성공을 주장하지 않는다.
 

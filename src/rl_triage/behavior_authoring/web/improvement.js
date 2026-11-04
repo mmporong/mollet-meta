@@ -20,6 +20,7 @@
       card.append(heading,evidence,reason,seek);return card;
     });
     $('hypothesisList').replaceChildren(...cards);
+    $('visionLimitations').replaceChildren(...(value.analysis?.limitations||[]).map(text=>{const li=document.createElement('li');li.textContent=text;return li;}));
     $('trainingHypothesis').replaceChildren(...hypotheses.map(h=>{const o=document.createElement('option');o.value=h.id;o.textContent=`${h.id} · ${h.correction_id}`;return o;}));
     $('researchHistory').replaceChildren(...value.history.map(h=>{const li=document.createElement('li');li.textContent=`${h.round}회 · ${h.selected_hypothesis_id}: ${h.result.verdict} — ${h.result.reason} (저장 기록 검사)`;return li;}));
     $('visionStep').disabled=!hypotheses.length || value.history.length >= Math.min(3,hypotheses.length);
@@ -27,7 +28,7 @@
     $('visionExport').disabled=false;$('trainingPrepare').disabled=!hypotheses.length;
   }
   function closeSession(value){if(value?.session_id)api('/api/improvement/cancel',{session_id:value.session_id}).catch(()=>{});}
-  function reset() {generation++;closeSession(research);research=null;$('hypothesisList').replaceChildren();$('researchHistory').replaceChildren();for(const id of ['visionStep','visionReflect','visionExport','trainingPrepare','visionLive'])$(id).disabled=true;$('visionStatus').textContent='입력이 변경되었습니다. 새 영상 분석 요청을 준비하세요.';}
+  function reset() {generation++;closeSession(research);research=null;$('hypothesisList').replaceChildren();$('visionLimitations').replaceChildren();$('researchHistory').replaceChildren();$('recoveryResult').hidden=true;for(const id of ['visionStep','visionReflect','visionExport','trainingPrepare','visionLive'])$(id).disabled=true;$('visionStatus').textContent='입력이 변경되었습니다. 새 영상 분석 요청을 준비하세요.';}
   // 이전 입력으로 늦게 도착한 결과를 현재 편집에 적용하지 않는다.
   $('clip').addEventListener('change',reset);for(const id of fieldIds)$(id).addEventListener('input',reset);
   $('restoreExport').addEventListener('change',reset);
@@ -42,5 +43,5 @@
   $('visionReflect').addEventListener('click',()=>action(async()=>{if(research)download('muse-spark-video-reflection-request.json',await api('/api/improvement/reflect',{session_id:research.session_id}));}));
   $('visionExport').addEventListener('click',()=>action(async()=>{if(research)download('mollet-research-session.json',await api('/api/improvement/export',{session_id:research.session_id}));}));
   $('trainingPrepare').addEventListener('click',()=>action(async()=>{if(!research)return;const value=await api('/api/improvement/training',{session_id:research.session_id,hypothesis_id:$('trainingHypothesis').value,change_id:$('trainingChange').value||null,recovery_mode:$('trainingMode').value});download('mollet-training-proposal.json',value);$('recoveryStatus').textContent='교정·재학습 제안을 저장했습니다. 실제 case 결합과 기존 승인 대기 절차가 필요하며 학습을 실행하지 않았습니다.';}));
-  $('recoveryResponse').addEventListener('change',event=>action(async apply=>{try{const file=event.target.files[0];if(!file)return;if(!research)throw new Error('분석 가설을 먼저 가져오세요.');if(file.size>10*1024*1024)throw new Error('10MB 이하 평가를 선택하세요.');const comparison=await file.text();const value=await api('/api/improvement/recovery',{session_id:research.session_id,hypothesis_id:$('trainingHypothesis').value,comparison});if(!apply(value))return;$('recoveryResult').hidden=false;$('recoveryResult').textContent=JSON.stringify(value.recovery_comparison,null,2);$('recoveryStatus').textContent='기존 회복 판정기로 비교하고 다음 재검토 입력에 연결했습니다. 새 Meta 교정의 인과 효과 측정은 아닙니다.';}finally{event.target.value='';}}));
+  $('recoveryResponse').addEventListener('change',event=>action(async apply=>{try{const file=event.target.files[0];if(!file)return;if(!research)throw new Error('분석 가설을 먼저 가져오세요.');if(file.size>10*1024*1024)throw new Error('10MB 이하 평가를 선택하세요.');const comparison=await file.text();const value=await api('/api/improvement/recovery',{session_id:research.session_id,hypothesis_id:$('trainingHypothesis').value,comparison});if(!apply(value))return;const r=value.recovery_comparison.result;const names={recovered:'회복 기준 충족',not_recovered:'회복 기준 미충족',undetermined:'판단 보류',unknown:'판단 보류',unnecessary_intervention:'불필요한 개입',regression:'성능 저하'};$('recoveryResult').hidden=false;$('recoveryResult').textContent=`${names[r.outcome||r.status]||r.outcome||r.status} · ${value.recovery_comparison.intervention.correction_id}\n저장 평가 비교 · 새 학습 실행 및 인과 효과 확인 없음`;$('recoveryStatus').textContent='기존 회복 판정기로 비교하고 다음 재검토 입력에 연결했습니다. 상세 근거는 분석 이력에 저장됩니다.';}finally{event.target.value='';}}));
 })();
