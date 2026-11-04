@@ -217,7 +217,7 @@ def _canonical_payload(saved: dict, verification_level: str, receipts: list[dict
             "verification_level": verification_level, "receipts": receipts,
             "provider_authentication": authentication,
             "evidence_verification": verification_level,
-            "notice": "저장된 실제 응답을 검증해 이어 봅니다. 현재 모델 호출은 수행하지 않았습니다.",
+            "notice": "Replaying verified saved responses. No current model call was made.",
         },
     }
 

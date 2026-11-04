@@ -99,12 +99,12 @@ class ResearchService:
             spec = deepcopy(validate_contract(contract))
             spec.pop('source', None)
             session['analysis'] = validate_analysis({
-                'summary': '사용자가 작성한 행동 조건의 로컬 검사',
+                'summary': 'Local evaluation of a user-authored behavior condition',
                 'hypotheses': [{'id': 'manual-condition', 'claim': instruction,
                                  'evidence_frames': [session['bundle']['samples'][0]['frame']],
                                  'contract': spec, 'correction_id': 'none',
-                                 'rationale': '현재 조건으로 저장 기록을 검사합니다. 원인·보상 교정을 추론하지 않았습니다.'}],
-                'limitations': ['Spark 영상 분석 응답이 아닙니다.', '재학습·회복 효과를 측정하지 않았습니다.'],
+                                 'rationale': 'Evaluate the recorded run with the current condition. No cause or reward correction was inferred.'}],
+                'limitations': ['This is not a Spark video-analysis response.', 'Retraining and recovery effects were not measured.'],
             }, session['bundle'])
             session['origin'] = 'manual_condition_not_model_analysis'
             return self._view(session_id, session)

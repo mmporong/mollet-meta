@@ -9,20 +9,20 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[3]
 ARCHIVE = Path('evals/results/vision_transferred_pull_record_dev_20261027c_v1')
 EXAMPLES = {
-    'reference': ('none', '기준 정책의 저장 기록'),
-    'case': ('f1', '보상 결함 정책의 저장 기록'),
+    'reference': ('none', 'Recorded baseline-policy run'),
+    'case': ('f1', 'Recorded reward-defect-policy run'),
 }
 H1_ARCHIVE = Path('docs/media/stairs_h1_s172_20261030_v1')
 GO2_ARCHIVE = Path('evals/results/go2_stairs_command_contrast_s200_20261101_v1')
 GO2_STATE_ARCHIVE = Path('evals/results/stairs_motion_integrity_20261101_v1/sources')
 GO2_STATE_SOURCES = {'go2-up-slow': 'go2-up', 'go2-down-slow': 'go2-down'}
 STAIRS_EXAMPLES = {
-    'h1-up': ('h1', 'biped-stairs-up', '이족 H1 · 계단 상행'),
-    'h1-down': ('h1', 'biped-stairs-down', '이족 H1 · 계단 하행'),
-    'go2-up-slow': ('go2', 'quadruped-stairs-up-step-0p05-cmd-0p25', '사족 Go2 · 계단 상행 · 0.25 m/s'),
-    'go2-down-slow': ('go2', 'quadruped-stairs-down-step-0p05-cmd-0p25', '사족 Go2 · 계단 하행 · 0.25 m/s'),
-    'go2-up-fast': ('go2', 'quadruped-stairs-up-step-0p05-cmd-0p75', '사족 Go2 · 계단 상행 · 0.75 m/s'),
-    'go2-down-fast': ('go2', 'quadruped-stairs-down-step-0p05-cmd-0p75', '사족 Go2 · 계단 하행 · 0.75 m/s'),
+    'h1-up': ('h1', 'biped-stairs-up', 'Biped H1 · stairs up'),
+    'h1-down': ('h1', 'biped-stairs-down', 'Biped H1 · stairs down'),
+    'go2-up-slow': ('go2', 'quadruped-stairs-up-step-0p05-cmd-0p25', 'Quadruped Go2 · stairs up · 0.25 m/s'),
+    'go2-down-slow': ('go2', 'quadruped-stairs-down-step-0p05-cmd-0p25', 'Quadruped Go2 · stairs down · 0.25 m/s'),
+    'go2-up-fast': ('go2', 'quadruped-stairs-up-step-0p05-cmd-0p75', 'Quadruped Go2 · stairs up · 0.75 m/s'),
+    'go2-down-fast': ('go2', 'quadruped-stairs-down-step-0p05-cmd-0p75', 'Quadruped Go2 · stairs down · 0.75 m/s'),
 }
 
 
@@ -134,7 +134,7 @@ def _state_samples(rows: list[dict], command_speed: float, fps: float) -> list[d
 
 def stairs_contract() -> dict:
     spec = default_contract()
-    spec.update(title='계단 재생 중 자세 유지', instruction='영상 시작부터 8초 동안 수직축 정렬이 0.8 이상 유지되는지 확인합니다.')
+    spec.update(title='Maintain posture during stair playback', instruction='Check whether upright alignment stays at or above 0.8 for eight seconds from the start of the video.')
     spec['trigger']['at_s'] = 0.0
     spec['condition'].update(metric='up_axis_z', threshold=0.8, deadline_s=0.0, hold_s=8.0)
     return spec
@@ -149,7 +149,7 @@ def load_example_view(example_id: str, root: Path = ROOT) -> dict:
                 'video_url': f'/media/{example_id}', 'video_sha256': bundle['video_sha256'],
                 'state_available': True, 'frame_width': 640, 'frame_height': 480,
                 'provenance': bundle['provenance'], 'recorded_assessment': None,
-                'caption': '렌더링 승인 보류 자료입니다. CLI 회귀 예제로만 보존합니다.',
+                'caption': 'Rendering approval is pending. This run is retained only as a CLI regression example.',
                 'default_contract': default_contract()}
     robot, clip, name = STAIRS_EXAMPLES[example_id]
     trace_path, video_path, metadata_path = example_paths(example_id, root)
@@ -199,7 +199,7 @@ def load_example_view(example_id: str, root: Path = ROOT) -> dict:
         assessment = {**manifest['assessment'], 'command_speed_mps': command_speed,
                       'min_up_axis_z': min(_up_axis(row) for row in rows),
                       'motion_accepted': manifest['assessment']['outcome'] == 'completed'}
-        caption = 'H1 계단 재생 원본과 렌더 동기화 상태 기록입니다. 아래 시간 조건은 저장 수치로 검사합니다. 모델 입력 승인은 별도입니다.'
+        caption = 'This H1 stair video is synchronized with the recorded render state. Time conditions use stored measurements; approval for model input is separate.'
         width, height = receipt['width'], receipt['height']
     else:
         archive_manifest = _read(root / GO2_ARCHIVE / 'manifest.json')
@@ -221,7 +221,7 @@ def load_example_view(example_id: str, root: Path = ROOT) -> dict:
                       'raw_state_trace_available': False, 'capture_approved': False, 'model_ready': False,
                       'scope': 'same_policy_command_contrast_only_not_retraining_or_recovery',
                       'new_model_api_calls': 0, 'new_training_jobs': 0}
-        caption = '동일 정책의 명령 속도 비교 원본입니다. 프레임별 상태 기록이 없어 요약 수치만 표시하며 시간 조건 판정은 보류합니다.'
+        caption = 'This source compares command speeds under the same policy. It has no frame-level state, so Mollet shows summary values and withholds a time-based verdict.'
         width, height = 1280, 720
         if example_id in GO2_STATE_SOURCES:
             state_path = root / GO2_STATE_ARCHIVE / GO2_STATE_SOURCES[example_id] / 'state-trace.jsonl'
@@ -245,10 +245,10 @@ def load_example_view(example_id: str, root: Path = ROOT) -> dict:
                     height_frame='world_z_not_ground_clearance')
                 observations = validate_observations({'schema': 'behavior-observations-v1', 'clip_id': example_id,
                     'video_sha256': video_sha, 'samples': samples, 'provenance': provenance})
-                caption = 'Go2 0.25 m/s 원본과 공개 결과의 상태 SHA가 일치하는 원문을 연결했습니다. 자세 조건과 원래 진행 판정은 따로 확인하세요.'
+                caption = 'The Go2 0.25 m/s source is joined to a raw state trace whose SHA matches the public result. Review the posture condition separately from the original progress verdict.'
     contract = stairs_contract()
     if robot == 'go2':
-        contract.update(title='계단 재생 전 구간 자세 유지', instruction='영상의 12.48초 상태 구간에서 수직축 정렬이 0.8 이상 유지되는지 확인합니다.')
+        contract.update(title='Maintain posture across the stair run', instruction='Check whether upright alignment remains at or above 0.8 throughout the 12.48-second state window.')
         contract['condition']['hold_s'] = 12.48
     return {'id': example_id, 'name': name, 'observations': observations, 'video_url': f'/media/{example_id}',
             'video_sha256': video_sha, 'frame_width': width, 'frame_height': height,
@@ -258,8 +258,8 @@ def load_example_view(example_id: str, root: Path = ROOT) -> dict:
 
 def default_contract() -> dict:
     return {
-        'schema': 'behavior-contract-v1', 'title': '명령 이후 수평 속도 유지',
-        'instruction': '3초부터 1초 안에 수평 속도가 0.4 m/s 이상이 되어 1초 이상 유지되는지 확인합니다.',
+        'schema': 'behavior-contract-v1', 'title': 'Maintain horizontal speed after command',
+        'instruction': 'Starting at 3 seconds, check whether horizontal speed reaches at least 0.4 m/s within one second and stays there for at least one second.',
         'trigger': {'kind': 'time', 'at_s': 3.0, 'region': None, 'object_id': None},
         'condition': {'metric': 'horizontal_speed_mps', 'op': 'gte', 'threshold': 0.4, 'deadline_s': 1.0, 'hold_s': 1.0},
         'max_gap_s': 0.05,

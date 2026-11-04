@@ -73,13 +73,13 @@ def _find_trigger(spec: dict, samples: list[dict], warnings: list[str]) -> tuple
             previous_inside = None
         if previous_inside is False and current_inside:
             warnings.append(
-                "영역 진입은 선택한 object_id의 bbox 중심점이 경계를 통과한 것으로 판정했습니다. "
-                "SAM 마스크는 해석하지 않았습니다."
+                "Region entry uses the selected object_id bounding-box center crossing the boundary. "
+                "SAM masks were not interpreted."
             )
             if continuity_lost:
                 warnings.append(
-                    "초기 내부 관측 또는 가림 뒤 같은 object_id를 영역 밖에서 다시 관측한 시점을 새 anchor로 삼았습니다. "
-                    "이는 재획득 뒤 관측으로 확인한 첫 진입이며, 가림 전후 대상의 물리적 동일성을 보장하지 않습니다."
+                    "After an initial inside observation or occlusion, a later outside observation of the same object_id became a new anchor. "
+                    "This is the first observed entry after reacquisition and does not prove physical identity across the occlusion."
                 )
             return sample["t_s"], None
         if previous_inside is None and current_inside:
@@ -87,13 +87,13 @@ def _find_trigger(spec: dict, samples: list[dict], warnings: list[str]) -> tuple
         previous_t = sample["t_s"]
         previous_inside = current_inside
 
-    warnings.append("영역 진입은 bbox 중심점 기준이며 SAM 마스크를 해석하지 않았습니다.")
+    warnings.append("Region entry uses the bounding-box center; SAM masks were not interpreted.")
     if continuity_lost or not saw_target:
         return (
             None,
-            "가림·관측 간격 또는 첫 관측부터 영역 내부인 구간 때문에 진입 시점을 확정할 수 없습니다.",
+            "Occlusion, observation gaps, or an initial inside observation prevent a confirmed entry time.",
         )
-    return None, "선택한 object_id의 영역 밖→안 진입이 관측되지 않았습니다."
+    return None, "No outside-to-inside entry was observed for the selected object_id."
 
 
 def _satisfies(value: float, op: str, threshold: float) -> bool:
@@ -109,7 +109,7 @@ def _evaluate_condition(spec: dict, samples: list[dict], trigger_t: float) -> tu
     relevant = [sample for sample in samples if sample["t_s"] >= trigger_t]
     examined = sum(1 for sample in relevant if sample["t_s"] <= window_end)
     if not relevant:
-        return "UNKNOWN", "트리거 이후 관측 표본이 없습니다.", None, 0, warnings
+        return "UNKNOWN", "No observation samples are available after the trigger.", None, 0, warnings
 
     run_start: float | None = None
     previous_t: float | None = None
@@ -126,7 +126,7 @@ def _evaluate_condition(spec: dict, samples: list[dict], trigger_t: float) -> tu
             if run_start <= deadline_t and t_s - run_start >= condition["hold_s"]:
                 return (
                     "PASS",
-                    "마감 시점 안에 조건을 시작해 필요한 유지 시간 동안 연속으로 충족했습니다.",
+                    "The condition started before the deadline and remained satisfied for the required hold time.",
                     {"start_s": run_start, "end_s": t_s},
                     examined,
                     warnings,
@@ -159,9 +159,9 @@ def _evaluate_condition(spec: dict, samples: list[dict], trigger_t: float) -> tu
     if not has_endpoint:
         coverage_uncertain = True
     if coverage_uncertain:
-        warnings.append("FAIL 판정에 필요한 전체 관측창이 연속적으로 덮이지 않았습니다.")
-        return "UNKNOWN", "짧은 영상, 관측 공백 또는 누락 지표 때문에 위반을 확정할 수 없습니다.", None, examined, warnings
-    return "FAIL", "전체 관측창이 덮였지만 마감 안에 시작해 유지 시간을 채운 충족 구간이 없습니다.", None, examined, warnings
+        warnings.append("The complete observation window required for a FAIL verdict is not continuously covered.")
+        return "UNKNOWN", "A short video, observation gap, or missing metric prevents a confirmed violation.", None, examined, warnings
+    return "FAIL", "The full observation window is covered, but no satisfying interval starts before the deadline and reaches the required hold time.", None, examined, warnings
 
 
 def evaluate_contract(spec: dict, bundle: dict, approval: dict | None = None) -> dict[str, Any]:
@@ -173,7 +173,7 @@ def evaluate_contract(spec: dict, bundle: dict, approval: dict | None = None) ->
     stage, approval_status, normalized_approval = _validate_approval(approval, spec_sha)
     warnings: list[str] = []
     if normalized_approval is not None:
-        warnings.append("승인 기록은 로컬 의미 검토 또는 자동 테스트 표식이며, 사람 인증이나 GPU 실행 권한이 아닙니다.")
+        warnings.append("The approval record marks local semantic review or an automated test; it is not human authentication or GPU execution authority.")
 
     capture_rejected = (
         normalized_spec["trigger"]["kind"] == "region_entry"
@@ -181,12 +181,12 @@ def evaluate_contract(spec: dict, bundle: dict, approval: dict | None = None) ->
     )
     if capture_rejected:
         warnings.append(
-            "원본 영상 캡처 승인은 사용자 조건 검토 승인과 별개이며, 명시적으로 거부된 시각 증거를 "
-            "모델 가져오기나 추적 결과로 승격하지 않았습니다."
+            "Source-video capture approval is separate from user condition review. Visual evidence explicitly marked unapproved "
+            "was not promoted by a model import or tracking result."
         )
         trigger_t = None
         verdict = "UNKNOWN"
-        reason = "원본 영상 캡처가 승인되지 않아 영역 진입을 시각 증거로 확정할 수 없습니다."
+        reason = "The source video is not approved for visual evidence, so region entry cannot be confirmed."
         interval = None
         examined = len(normalized_bundle["samples"])
     else:

@@ -276,13 +276,13 @@ class MetaClient:
         available = max(Decimal("0"), budget - reserved)
         blockers: list[str] = []
         if api_key is None:
-            blockers.append("MODEL_API_KEY가 설정되지 않았습니다.")
+            blockers.append("MODEL_API_KEY is not configured.")
         if not credit_confirmed:
-            blockers.append("Meta 제공 크레딧 확인이 필요합니다.")
+            blockers.append("Meta-provided credit must be verified.")
         if remaining_credit < budget:
-            blockers.append("남은 Meta 크레딧이 로컬 예산보다 적습니다.")
+            blockers.append("Remaining Meta credit is lower than the local budget.")
         if available <= 0:
-            blockers.append("Meta API 로컬 예산이 소진되었습니다.")
+            blockers.append("The local Meta API budget is exhausted.")
         enabled = (
             api_key is not None
             and credit_confirmed
