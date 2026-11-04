@@ -1,0 +1,262 @@
+{
+  "schema": "meta-authenticated-submission-form-v1",
+  "checked_at": "2026-11-04T22:22:08.754048+00:00",
+  "url": "https://cerebralvalley.ai/e/meta-ai-developer-hackathon/hackathon/submit",
+  "authenticated": true,
+  "total_questions": 21,
+  "required_questions": 10,
+  "required_source": "visible_asterisk_and_required_hint",
+  "character_limit_source": "visible_character_counters_not_HTML_maxlength",
+  "questions": [
+    {
+      "label": "Team Name*",
+      "required_observed": true,
+      "field_id": "teamName",
+      "control_type": "text"
+    },
+    {
+      "label": "Team Members",
+      "required_observed": false,
+      "field_id": "add-team-members",
+      "control_type": "team_member_selector"
+    },
+    {
+      "label": "Which track are you submitting to?*",
+      "required_observed": true,
+      "field_id": null,
+      "control_type": "radio_group",
+      "radio_name": "3be95792-2664-4eb4-9442-8c4d3bf74609",
+      "options": [
+        "Indie Developer Track",
+        "Startups Track"
+      ]
+    },
+    {
+      "label": "Which problem statement did you build towards?*",
+      "required_observed": true,
+      "field_id": null,
+      "control_type": "radio_group",
+      "radio_name": "2b6bc0a6-9792-4be1-8516-27cac1f135ad",
+      "options": [
+        "Build for Your World",
+        "Push the Frontier"
+      ]
+    },
+    {
+      "label": "If you're competing for the Most Viral Track, please submit your X post link here to be considered.",
+      "required_observed": false,
+      "field_id": "87e070e4-78c7-4062-b734-60a48e06089b",
+      "control_type": "text"
+    },
+    {
+      "label": "Project Description*",
+      "required_observed": true,
+      "field_id": "80775ea4-bf33-40f0-9865-7e62fd08199d",
+      "control_type": "textarea",
+      "visible_character_limit": 3000
+    },
+    {
+      "label": "Public GitHub Repository*",
+      "required_observed": true,
+      "field_id": "f2306f92-ee8c-4274-a75c-f82b14312aa7",
+      "control_type": "text"
+    },
+    {
+      "label": "3-Minute Demo Video*",
+      "required_observed": true,
+      "field_id": "9a8b2758-cb30-47c8-a349-0df698523e1c",
+      "control_type": "text"
+    },
+    {
+      "label": "Describe your use of Meta products to build the submitted project*",
+      "required_observed": true,
+      "field_id": "26163380-ef89-4460-8d2e-6c42d538370b",
+      "control_type": "textarea",
+      "visible_character_limit": 3000
+    },
+    {
+      "label": "Why are Meta's models important to your solution?*",
+      "required_observed": true,
+      "field_id": "962ca4df-6d6f-44fd-977b-ba1211d4f12d",
+      "control_type": "textarea",
+      "visible_character_limit": 3000
+    },
+    {
+      "label": "Provide feedback from your experience using partner technologies.",
+      "required_observed": false,
+      "field_id": "9bb2653b-721a-4356-b7cc-732819c9269f",
+      "control_type": "textarea",
+      "visible_character_limit": 150
+    },
+    {
+      "label": "How likely are you to build with Meta Model API?*",
+      "required_observed": true,
+      "field_id": null,
+      "control_type": "radio_group",
+      "radio_name": "b9e8920b-dd31-403a-bf98-8265e7ee7f33",
+      "options": [
+        "Very likely",
+        "Somewhat likely",
+        "Neutral",
+        "Somewhat unlikely",
+        "Very unlikely"
+      ]
+    },
+    {
+      "label": "How would you describe your overall opinion of Meta Model API?*",
+      "required_observed": true,
+      "field_id": null,
+      "control_type": "radio_group",
+      "radio_name": "08af99bf-9b9c-435a-b304-08fb62398fc2",
+      "options": [
+        "Very favorable",
+        "Somewhat favorable",
+        "Neutral",
+        "Somewhat unfavorable",
+        "Very unfavorable"
+      ]
+    },
+    {
+      "label": "By accepting, the submitter(s) grants Meta and Cerebral Valley permission to use, publish, share, and promote the submitted materials across their websites, social media, and other marketing channels.",
+      "required_observed": false,
+      "field_id": "5c837cc7-00e6-4831-a1fa-c73c04a4fec7",
+      "control_type": "checkbox"
+    },
+    {
+      "label": "How likely are you to recommend the Meta Model API to another developer or engineering team building with LLMs?",
+      "required_observed": false,
+      "field_id": null,
+      "control_type": "radio_group",
+      "radio_name": "7fe4fa17-5fd1-4606-84a7-ec78292a4367",
+      "options": [
+        "0 (not likely)",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5 (very likely)"
+      ]
+    },
+    {
+      "label": "How likely are you to recommend Muse Code to another developer or engineering team?",
+      "required_observed": false,
+      "field_id": null,
+      "control_type": "radio_group",
+      "radio_name": "1d929b1a-1931-4b9e-a058-b2c08b56c050",
+      "options": [
+        "0 (not likely)",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5 (very likely)"
+      ]
+    },
+    {
+      "label": "What was the biggest obstacle your team hit while building this project?",
+      "required_observed": false,
+      "field_id": null,
+      "control_type": "radio_group",
+      "radio_name": "e67243b9-32f0-4197-8be0-5c97858a3f31",
+      "options": [
+        "Getting access or setting up our account",
+        "Finding clear documentation or code examples",
+        "Connecting to our framework or other tools",
+        "Code or answers from the model that were wrong or not useful",
+        "The model not following our instructions",
+        "A model capability we needed was missing",
+        "Slow responses",
+        "Errors / outages or unreliable service",
+        "Rate limits or usage limits",
+        "Muse Code losing track or stalling on longer tasks",
+        "Muse Code changing things we didn't ask it to",
+        "A Muse Code capability we needed was missing (please specify)",
+        "Something else (please specify)",
+        "We didn't hit any obstacles"
+      ]
+    },
+    {
+      "label": "Compared with other AI models your team has used for the same kind of work, how did Meta’s models perform on this project?",
+      "required_observed": false,
+      "field_id": null,
+      "control_type": "radio_group",
+      "radio_name": "f4642f5f-f7b2-473a-af98-44578e737f86",
+      "options": [
+        "Much better",
+        "Somewhat better",
+        "About the same",
+        "Somewhat worse",
+        "Much worse",
+        "We've used other models but couldn't make a clear comparison",
+        "We haven't used other models for this kind of work"
+      ]
+    },
+    {
+      "label": "When your team chooses an AI model or coding tool, what matters most?",
+      "required_observed": false,
+      "field_id": null,
+      "control_type": "radio_group",
+      "radio_name": "b2ed3b70-a18e-42e5-8a39-11862cf7a7a4",
+      "options": [
+        "Quality of the answers and code",
+        "Speed",
+        "Price",
+        "Handling long context such as big documents or codebases",
+        "Agent abilities such as tool calling and multi-step tasks",
+        "Reliability and uptime",
+        "Easy integration such as SDKs or an OpenAI-compatible API",
+        "Fits our editor and workflow",
+        "Data privacy and terms of use",
+        "Open weights or self-hosting",
+        "High enough rate limits",
+        "Something else (please specify)"
+      ]
+    },
+    {
+      "label": "What makes it hardest for your team to switch to a different AI model or coding tool?",
+      "required_observed": false,
+      "field_id": null,
+      "control_type": "radio_group",
+      "radio_name": "c17eb230-f7d7-415d-b8a6-bfed5a6b08be",
+      "options": [
+        "Our product is tuned to our current model’s behavior and prompts",
+        "Testing a new model takes too long",
+        "Integration work such as new APIs SDKs or formats",
+        "Our team already knows our current tool",
+        "Contracts, credits or commitments with our current provider",
+        "Getting a new vendor approved, such as security, legal or procurement",
+        "Our data or fine-tuned models are tied to our current provider",
+        "Features we rely on that other providers don’t offer",
+        "Something else (please specify)",
+        "Nothing, switching is easy for us"
+      ]
+    },
+    {
+      "label": "If your team took this project to production, what would most likely stop you from using Meta’s models?",
+      "required_observed": false,
+      "field_id": null,
+      "control_type": "radio_group",
+      "radio_name": "058ded7b-567d-4659-9265-87a45c07e267",
+      "options": [
+        "Model quality isn’t good enough yet for our use case",
+        "Price or unpredictable costs",
+        "Rate limits or capacity too low for real traffic",
+        "Reliability or uptime",
+        "How our data and our users’ data would be stored or used",
+        "Security or compliance requirements, such as SOC 2",
+        "Not available in our country or region",
+        "Not available through our cloud provider, such as AWS, Azure or Google Cloud",
+        "Missing production features, such as batch processing or spending limits",
+        "Not sure Meta will keep supporting the API long term",
+        "Something else (please specify)",
+        "Nothing would stop us",
+        "We don’t plan to take this project to production"
+      ]
+    }
+  ],
+  "marketing_consent_required_observed": false,
+  "marketing_consent_selected": false,
+  "additional_existing_project_reuse_question_present": false,
+  "final_submit_clicked": false,
+  "private_profile_data_included": false
+}

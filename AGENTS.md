@@ -1,6 +1,6 @@
-# AGENTS.md — rl-triage-agent
+# AGENTS.md — mollet-meta
 
-이 저장소는 NVIDIA Korea Agentic AI Hackathon 2026(Mollet) 제출작이다. 작업을 시작하기 전에 `docs/HANDOFF.md`를 먼저 읽는다.
+이 저장소는 Meta Global AI Developer Hackathon 2026의 Mollet 행동 조건 작업 공간이다. 작업을 시작할 때 `README.md`와 `submission/meta-official-form-20261105-v1/README.md`에서 현재 범위와 제출 상태를 확인한다. `docs/HANDOFF.md`와 `README-RL-TRIAGE.md`는 재사용한 RL 기반의 과거 기록이다.
 
 ## 작업 규칙
 
@@ -8,7 +8,7 @@
 - 평가 공정성: 에이전트 프롬프트·도구를 바꾸면 **평가 전에 커밋**하고, 이미 본 세트로 성능을 주장하지 않는다. 새 수치는 새 seed 보류 세트로만 낸다. 재시도는 인프라 오류(과부하·빈 응답·잘림)에만 허용한다.
 - 결과 파일(`evals/results/**`)은 덮어쓰지 않는다. 새 실행은 새 `--tag` 폴더로 남긴다.
 - README·제출 문안의 수치는 결과 파일에서 계산한 값만 쓴다. 유의하지 않은 차이를 유의하다고 쓰지 않는다.
-- API 키는 저장소에 두지 않는다. WSL `~/.config/nvidia/env`에만 있다.
+- API 키는 저장소·출력·검증 파일에 두지 않는다. Meta 키는 Windows CurrentUser DPAPI의 `%LOCALAPPDATA%/Mollet/meta-model-api/credentials.dpapi` 또는 명시된 실행 환경에서 읽는다. 기존 NVIDIA용 WSL 설정을 Meta 키로 간주하지 않는다.
 - 외부 공개 행동(push 외 배포·폼 제출·메시지)은 사용자 확인 후 한다.
 
 ## 구현과 실패 기록

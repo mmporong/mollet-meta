@@ -1,0 +1,36 @@
+{
+  "schema": "meta-official-form-readback-v1",
+  "checked_at": "2026-11-04T22:35:44.945Z",
+  "official_url": "https://cerebralvalley.ai/e/meta-ai-developer-hackathon/hackathon/submit",
+  "authenticated": true,
+  "form_question_count": 21,
+  "required_field_count": 10,
+  "required_fields_populated": 10,
+  "technical_text_fields_match_draft": true,
+  "technical_character_counts": {
+    "project_description": 1629,
+    "meta_products": 1683,
+    "why_meta": 1477
+  },
+  "required_survey_responses_user_confirmed": true,
+  "private_survey_values_included": false,
+  "observed_invalid_fields": 0,
+  "submit_button_enabled": true,
+  "ready_for_user_review": true,
+  "submitted_by_assistant": false,
+  "final_submit_clicked_by_automation": false,
+  "repository_url": "https://github.com/mmporong/mollet-meta",
+  "repository_public": true,
+  "verified_application_source_commit": "44c460d5d82033116642e1a77ed38b738d6aea14",
+  "video_url": "https://cdn.jsdelivr.net/gh/mmporong/mollet-meta@44c460d5d82033116642e1a77ed38b738d6aea14/submission/meta-recovery-demo-20261105-v2/mollet-meta-recovery-demo-180s-en-captioned.mp4",
+  "video_sha256": "aaf51142b442f4957a7580214033a86677bdf1cf32a0b02fea7bcbb875d32f57",
+  "video_anonymous_playback_verified": true,
+  "meta_calls_in_original_evidence": 2,
+  "new_meta_model_calls": 0,
+  "new_gpu_jobs": 0,
+  "new_training_jobs": 0,
+  "previous_validation": {
+    "related_cpu_tests_passed": 142,
+    "chrome_workflow_checks_passed": 10
+  }
+}

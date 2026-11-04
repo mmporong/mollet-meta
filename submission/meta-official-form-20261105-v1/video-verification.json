@@ -1,0 +1,19 @@
+{
+  "schema": "meta-public-video-playback-v1",
+  "checked_at": "2026-11-04T22:34:38.024Z",
+  "url": "https://cdn.jsdelivr.net/gh/mmporong/mollet-meta@44c460d5d82033116642e1a77ed38b738d6aea14/submission/meta-recovery-demo-20261105-v2/mollet-meta-recovery-demo-180s-en-captioned.mp4",
+  "source_commit": "44c460d5d82033116642e1a77ed38b738d6aea14",
+  "anonymous_browser": true,
+  "http_status": 200,
+  "content_type": "video/mp4",
+  "content_range": "bytes 0-255/7318149",
+  "range_status": 206,
+  "bytes": 7318149,
+  "sha256": "aaf51142b442f4957a7580214033a86677bdf1cf32a0b02fea7bcbb875d32f57",
+  "duration_s": 180,
+  "width": 1280,
+  "height": 840,
+  "current_time": 0.162381,
+  "error": null,
+  "passed": true
+}
