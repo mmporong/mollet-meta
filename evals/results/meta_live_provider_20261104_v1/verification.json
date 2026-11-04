@@ -1,0 +1,174 @@
+{
+  "schema": "meta-live-provider-verification-v1",
+  "checked_at": "2026-11-04T17:26:43.975137+09:00",
+  "example_id": "h1-up",
+  "runtime_source": "rl-triage-agent/src",
+  "feature_commit_before_record": "b66d61843e3d58e177ea82fa5fde841a82ad47ee",
+  "original_head_observed": "bf1632ee6770e681e9e8c4c5b1df890ebaed12a6",
+  "receipts": {
+    "spark": {
+      "content_type": "application/json",
+      "context": {
+        "example_id": "h1-up",
+        "pricing_sha256": "442528d92537d2ec31cb82b6b9a37048e8b73ab0152e77d1df7c868b8fe2e5d4",
+        "reservation_scope": "conservative_app_reservation_not_actual_provider_charge",
+        "source_name": "이족 H1 · 계단 상행",
+        "source_trace_sha256": "ef305c390f11842ed04dd0d8a835af5159e02c93a9a51763008591d2f6831e07",
+        "video_sha256": "82107853548545c0977b8488acd45931689c1de737db29d931d1735505367f10"
+      },
+      "created_at": "2026-11-04T08:24:20.348066+00:00",
+      "directory": "C:\\Users\\LIMMM\\AppData\\Local\\Mollet\\meta-model-api\\runs\\9c20912b-fa37-4f3c-a118-11bc13bda76a",
+      "endpoint": "https://api.meta.ai/v1/responses",
+      "model": "muse-spark-1.3",
+      "provider_request_id": "1358757f-6636-4659-85a5-8e3c001e84d2",
+      "request_sha256": "363f1a845534f077a3ec9bfb5acdaa5dfda9a9cb88b4db0445ba84b60fa76012",
+      "reserved_usd": "0.372616",
+      "response_id": "resp_6aeaebc268240c6c192e444b",
+      "response_sha256": "47a20cb67dee98c9bbb6db90488307decee8ead9855134ab0c4f4da04e55e0e5",
+      "run_id": "9c20912b-fa37-4f3c-a118-11bc13bda76a",
+      "status": "completed_http"
+    },
+    "sam": {
+      "content_type": "text/event-stream",
+      "context": {
+        "example_id": "h1-up",
+        "pricing_sha256": "442528d92537d2ec31cb82b6b9a37048e8b73ab0152e77d1df7c868b8fe2e5d4",
+        "reservation_scope": "conservative_app_reservation_not_actual_provider_charge",
+        "source_name": "이족 H1 · 계단 상행",
+        "source_trace_sha256": "ef305c390f11842ed04dd0d8a835af5159e02c93a9a51763008591d2f6831e07",
+        "video_sha256": "82107853548545c0977b8488acd45931689c1de737db29d931d1735505367f10"
+      },
+      "created_at": "2026-11-04T08:24:53.121397+00:00",
+      "directory": "C:\\Users\\LIMMM\\AppData\\Local\\Mollet\\meta-model-api\\runs\\ee92f2fd-f138-4198-838e-d52b5472b91c",
+      "endpoint": "https://api.meta.ai/v1/responses",
+      "model": "sam-3.1",
+      "provider_request_id": "ce259a12-ef5d-40b9-aa9b-6291932674c8",
+      "request_sha256": "344aa7419708eade5bf2746f917e6778cd40200d8c382581e38b9dbfb1b03f8b",
+      "reserved_usd": "0.25",
+      "response_id": null,
+      "response_sha256": "88f0b62f64badc3a57ac538c926bcc10c6d9cd118ad98207bc6ddf0caf12afb1",
+      "run_id": "ee92f2fd-f138-4198-838e-d52b5472b91c",
+      "status": "completed_http"
+    }
+  },
+  "result_files_sha256": {
+    "spark_contract": "04b9ceb1086d1b01807a7ff75aa4c976ac8b10a494829d22715c3a12b2f55402",
+    "sam_observations": "51a346a5325bf6aa0380cb869f50cd56304fbeb1c5f190b2794205b4d1ffe9b9"
+  },
+  "provider_completed": {
+    "spark": "completed",
+    "sam": "completed"
+  },
+  "usage": {
+    "spark": {
+      "input_tokens": 41087,
+      "input_tokens_details": {
+        "cached_tokens": 0
+      },
+      "output_tokens": 1556,
+      "output_tokens_details": {
+        "reasoning_tokens": 1440
+      },
+      "total_tokens": 42643
+    },
+    "sam": {
+      "input_tokens": 0,
+      "input_tokens_details": {
+        "cached_tokens": 0
+      },
+      "output_tokens": 0,
+      "output_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "total_tokens": 0,
+      "video_frames_processed": 625
+    }
+  },
+  "usage_pricing_estimate_usd": {
+    "spark": "0.05797175",
+    "sam": "0.125",
+    "total": "0.18297175",
+    "source": "https://dev.meta.ai/docs/pricing-rate-limits",
+    "actual_billed_usd": null
+  },
+  "status_after": {
+    "key_configured": true,
+    "credit_confirmed": true,
+    "remaining_credit_usd": "150.00",
+    "budget_usd": "1.00",
+    "reserved_usd": "0.622616",
+    "available_budget_usd": "0.377384",
+    "enabled": true,
+    "blockers": [],
+    "live_requests_started": 2
+  },
+  "tracked_sample_count": 624,
+  "sample_count": 625,
+  "tracking_accuracy_measured": false,
+  "original_state_values_unchanged": true,
+  "semantic_review_actor": "co_meta_agent_semantic_review",
+  "draft_result": {
+    "stage": "draft",
+    "approval_status": "unreviewed",
+    "verdict": "PASS",
+    "reason": "마감 시점 안에 조건을 시작해 필요한 유지 시간 동안 연속으로 충족했습니다.",
+    "trigger_t_s": 0.0,
+    "interval": {
+      "start_s": 0.0,
+      "end_s": 0.5
+    },
+    "examined_samples": 426,
+    "warnings": [],
+    "spec_sha256": "344c1c7f9bf2908bdc0a0cef18b2b22cb924b42f1c4cc330c3c30203f7d5dcaf",
+    "observations_sha256": "a9a16ab2461290df92ba409171e6a08e6fa8761cb725e7b34deabe70e36246ae"
+  },
+  "reviewed_result": {
+    "stage": "reviewed",
+    "approval_status": "approved",
+    "verdict": "PASS",
+    "reason": "마감 시점 안에 조건을 시작해 필요한 유지 시간 동안 연속으로 충족했습니다.",
+    "trigger_t_s": 0.0,
+    "interval": {
+      "start_s": 0.0,
+      "end_s": 0.5
+    },
+    "examined_samples": 426,
+    "warnings": [
+      "승인 기록은 로컬 의미 검토 또는 자동 테스트 표식이며, 사람 인증이나 GPU 실행 권한이 아닙니다."
+    ],
+    "spec_sha256": "344c1c7f9bf2908bdc0a0cef18b2b22cb924b42f1c4cc330c3c30203f7d5dcaf",
+    "observations_sha256": "a9a16ab2461290df92ba409171e6a08e6fa8761cb725e7b34deabe70e36246ae",
+    "approval": {
+      "contract_sha256": "344c1c7f9bf2908bdc0a0cef18b2b22cb924b42f1c4cc330c3c30203f7d5dcaf",
+      "actor": "co_meta_agent_semantic_review",
+      "scope": "local_semantic_review"
+    }
+  },
+  "export_file": "mollet-behavior-contract.json",
+  "export_sha256": "775cc2c62082b50b27c2ce0d3f6811681ca3325542cb736a4dd12769d8bedb1a",
+  "export_roundtrip_equal": true,
+  "browser_playback_verified": false,
+  "browser_download_verified": false,
+  "browser_apply_verified": false,
+  "source_files_sha256": {
+    "src/rl_triage/behavior_authoring/client.py": "95ff4bf81721f27cc3554df9ff68101ff30648e062c04ab855e9ce0c12fb5a9a",
+    "src/rl_triage/behavior_authoring/live.py": "9bd690ccac6a19bc04459c3826ae5de73c46170ce6b5c3991b340bc9f5b55a79",
+    "src/rl_triage/behavior_authoring/adapters.py": "0e18b103ab64b8ed07ee24c76def87efafe8dbafc32369c72029cd1095e4cc61",
+    "src/rl_triage/behavior_authoring/datasets.py": "64d3b38becdf6e463d3300dab5b28c1bdb53bb56632497b48a02cbbd7794e420",
+    "src/rl_triage/behavior_authoring/evaluate.py": "553fd796ccfd1a367b9aaa537968be22cd40f04bc60156282ee29d88788242af",
+    "src/rl_triage/behavior_authoring/schema.py": "dbcfe2a57a5381252a43d26de905c4604eb24da6ae9cf8f650a2fb43f86efa20",
+    "src/rl_triage/behavior_authoring/web.py": "6baa614aab404b46601520a14446be7d4cf5de5ca57f185fbd547a65c3363e27",
+    "src/rl_triage/behavior_authoring/web/app.js": "93b78aa01bb98e31120fa413f85656a212bfa008e418d06590f606a5655c3fc6",
+    "src/rl_triage/behavior_authoring/web/index.html": "8f1649ad73bbfd622d2ec69c1dddf43bbdecc5b695ed602317f3244ddaaa2046",
+    "src/rl_triage/behavior_authoring/meta-pricing.json": "442528d92537d2ec31cb82b6b9a37048e8b73ab0152e77d1df7c868b8fe2e5d4"
+  },
+  "new_gpu_jobs": 0,
+  "pushed": false,
+  "submitted": false,
+  "capture_approval_preserved": true,
+  "capture_approved_value": false,
+  "model_ready_preserved": true,
+  "model_ready_value": false,
+  "http_evaluation_matches_local": true,
+  "http_evaluation_additional_model_calls": 0
+}

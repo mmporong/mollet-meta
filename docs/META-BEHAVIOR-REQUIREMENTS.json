@@ -35,14 +35,17 @@
     "submitted": false
   },
   "actual_model_status": {
-    "spark": "https_client_and_ui_implemented_not_yet_provider_verified",
-    "sam": "https_client_and_ui_bbox_import_implemented_not_yet_provider_verified",
-    "paid_api_calls": 0,
+    "spark": "authenticated_https_completed_and_contract_import_validated",
+    "sam": "authenticated_https_completed_and_bbox_import_validated",
+    "paid_api_calls": 2,
     "live_model_quality_verified": false,
-    "transport_validation": "injected_test_transport_only",
+    "transport_validation": "actual_https_provider_requests_completed",
     "app_budget_cap_usd": "1.00",
     "key_storage": "environment_or_server_memory_only",
-    "automatic_retry": false
+    "automatic_retry": false,
+    "provider_completion_verified": true,
+    "tracking_accuracy_measured": false,
+    "verification": "evals/results/meta_live_provider_20261104_v1/verification.json"
   },
   "credit_notice": {
     "channel": "organizer_email_and_linked_claim_form",
@@ -51,16 +54,28 @@
     "form_url": "https://docs.google.com/forms/d/e/1FAIpQLScam78z7tHsNYibiFyJQVFzEgr0coyBTiY568SxxNbsPa3jiw/viewform",
     "team_id_required": true,
     "distribution_guidance": "within_2_business_days_after_claim",
-    "current_account_credit_applied": null,
-    "current_account_payment_method": null,
-    "existing_key_in_local_environment_observed": false
+    "current_account_credit_applied": true,
+    "current_account_payment_method": true,
+    "existing_key_in_local_environment_observed": false,
+    "confirmation_source": "user_checked_billing_and_configured_local_ui",
+    "configured_credit_usd": "150.00",
+    "key_configured_in_server_memory": true
   },
   "local_playback": {
     "dataset_revision": "stairs-20261103-v2-state-sha-join",
     "default_example": "h1-up",
-    "h1_state_backed_examples": ["h1-up", "h1-down"],
-    "go2_state_backed_examples": ["go2-up-slow", "go2-down-slow"],
-    "go2_summary_only_examples": ["go2-up-fast", "go2-down-fast"],
+    "h1_state_backed_examples": [
+      "h1-up",
+      "h1-down"
+    ],
+    "go2_state_backed_examples": [
+      "go2-up-slow",
+      "go2-down-slow"
+    ],
+    "go2_summary_only_examples": [
+      "go2-up-fast",
+      "go2-down-fast"
+    ],
     "h1_video_frame_to_state_row_offset": 1,
     "legacy_deferred_render": "CLI_regression_only_excluded_from_UI",
     "model_input_approval_granted": false
@@ -74,7 +89,7 @@
     "submitted": false
   },
   "remaining_gates": [
-    "지원 크레딧의 실제 적용·키·결제수단 확인 후 사용자 설정과 예산 안에서만 호출",
+    "실제 모델 응답의 브라우저 화면 적용·재생·다운로드를 검증해야 함. API·로컬 JSON 판정/저장 재검증은 완료",
     "모델 응답이나 조건 검토로 영상 입력 승인·실험 실행 권한을 만들지 않음",
     "실제 브라우저 호스트가 없어 렌더링·화면 조작 검증은 미실행",
     "3분 저장 원본 편집 영상은 제작됐으며 브라우저 실제 조작 촬영은 미실행",
