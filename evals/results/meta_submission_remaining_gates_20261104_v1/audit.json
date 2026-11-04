@@ -1,0 +1,41 @@
+{
+  "checked_at": "2026-11-04T18:20:43.802076+09:00",
+  "scope": "native Goal; no OMX Conductor execution requirement",
+  "previous_goal_turn_classification": "progress: English caption video produced and verified",
+  "blocking_condition": "Computer Use native pipe and browser access host unavailable; authenticated official form cannot be inspected",
+  "consecutive_goal_turns_with_condition": 3,
+  "current_observation": {
+    "apps": [],
+    "browsers": [],
+    "native_error": "os error 2",
+    "browser_error": "browser access host unavailable"
+  },
+  "completion_audit": {
+    "actual_meta_provider_responses": "proved: Spark and SAM completed; existing total 2",
+    "local_restore_and_evaluation": "proved in Node closed DOM and Python schema; related original tests 83 passed",
+    "actual_browser_apply_playback_download": "not proved; required",
+    "ko_180_second_demo": "proved by full decode, probe, frame checks and manifest SHA",
+    "english_caption_180_second_demo": "proved by explicit full decode, matched 12 timecodes and visual frame check",
+    "source_archive_and_evidence_hashes": "proved: code snapshot 07d8f58 and delivery CRC/embedded hashes",
+    "submission_answer_bank": "prepared in Korean and English, evidence-consistent",
+    "official_field_mapping_and_reuse_rules": "not proved; required",
+    "source_publication_video_upload_final_submission": "not executed; existing external-effect prohibitions preserved"
+  },
+  "remaining_work": [
+    "restore browser connection and verify UI flow",
+    "inspect authenticated official questions and current reuse rules, then finalize field mapping"
+  ],
+  "independent_safe_work_remaining": false,
+  "new_meta_calls": 0,
+  "gpu_jobs": 0,
+  "server_restarted": false,
+  "server_retained_reason": "existing user MVP and in-memory API key",
+  "server_pids": [
+    56488,
+    154908,
+    108976
+  ],
+  "server_stop_command": "Stop-Process -Id 108976,56488,154908",
+  "full_objective_achieved": false,
+  "next_goal_status": "blocked"
+}
