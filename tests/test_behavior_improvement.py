@@ -119,6 +119,9 @@ def test_reflection_context_has_outcomes_and_no_raw_samples_or_authority():
     context = build_reflection_context(value, data, first["history"])
     assert context["outcomes"][0]["hypothesis_id"] == "h"
     assert context["hypotheses"][0]["correction_id"] == "restore_body_frame_reward"
+    assert context["hypotheses"][0]["contract"]["condition"]["threshold"] == 0.5
+    assert "source" not in context["hypotheses"][0]["contract"]
+    assert context["outcomes"][0]["interval"] == first["history"][0]["result"]["interval"]
     assert "samples" not in context
     assert all("승인" not in key and "execution" not in key for key in context)
     assert any("인과 실험" in item for item in context["uncertainty"])

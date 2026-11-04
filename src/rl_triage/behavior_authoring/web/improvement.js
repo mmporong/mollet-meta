@@ -1,5 +1,6 @@
 'use strict';
 (() => {
+  $('metaKeyOnly').addEventListener('click',()=>perform(async()=>{const key=$('metaApiKey');if(!key.value)throw new Error('기존 API 키를 입력하세요.');setLivePending(true);try{const value=await api('/api/meta/configure',{api_key:key.value});renderMetaStatus(value.status);}finally{key.value='';setLivePending(false);}}));
   let research = null, pending = false, generation = 0;
   const origins = {
     manual_condition_not_model_analysis: '사용자 조건 · Spark 분석 아님',

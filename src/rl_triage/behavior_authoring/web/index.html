@@ -48,7 +48,8 @@
         <label>이 앱의 예산 <span>최대 US$1</span><input id="metaBudget" type="number" min="0.01" max="1" step="0.01" placeholder="예: 1.00" required></label>
       </div>
       <label class="check meta-confirm"><input id="metaCreditConfirmed" type="checkbox"><span>Billing에서 크레딧과 결제 수단을 확인했습니다.</span></label>
-      <div class="buttons"><button id="metaConfigure" class="primary">연결 설정 적용</button></div>
+      <div class="buttons"><button id="metaConfigure" class="primary">연결 설정 적용</button><button id="metaKeyOnly" class="secondary">기존 설정으로 키 연결</button></div>
+      <p class="hint">서버에 이전 크레딧 확인·예산이 남아 있다면 키만 입력하고 ‘기존 설정으로 키 연결’을 누르세요. 크레딧 확인·예산은 변경하지 않습니다.</p>
       <dl class="meta-budget" aria-label="Meta API 사용 예산">
         <div><dt>예약 누적</dt><dd id="metaReserved">US$0.00</dd></div><div><dt>앱 예산 잔여</dt><dd id="metaAvailable">US$0.00</dd></div><div><dt>실제 호출</dt><dd id="metaCalls">0회</dd></div>
       </dl>

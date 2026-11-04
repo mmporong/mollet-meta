@@ -263,6 +263,8 @@ def build_reflection_context(analysis: dict, bundle: dict, history: list[dict]) 
         "hypothesis_id": entry["selected_hypothesis_id"],
         "verdict": entry["result"]["verdict"],
         "reason": entry["result"]["reason"],
+        "interval": entry["result"].get("interval"),
+        "trigger_t_s": entry["result"].get("trigger_t_s"),
         "information_gain_bits": entry["information_gain_bits"],
         "evidence_scope": entry["result"]["evidence_scope"],
     } for entry in normalized_history]
@@ -274,6 +276,7 @@ def build_reflection_context(analysis: dict, bundle: dict, history: list[dict]) 
         "hypotheses": [{
             "id": item["id"], "claim": item["claim"], "correction_id": item["correction_id"],
             "evidence_frames": item["evidence_frames"],
+            "contract": {key: deepcopy(value) for key,value in item["contract"].items() if key != "source"},
         } for item in normalized_analysis["hypotheses"]],
         "outcomes": outcomes,
         "uncertainty": normalized_analysis["limitations"] + [

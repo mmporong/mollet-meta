@@ -63,6 +63,14 @@ async function main(){
     await page.screenshot({path:path.join(out,'research-workbench.png'),fullPage:true});
     await page.locator('#threshold').fill('0.9');assert(await page.locator('#visionExport').isDisabled());
     assert.equal(await page.locator('.hypothesis-card').count(),0);check('condition_edit_invalidates_previous_research_session');
+    await page.evaluate(async()=>{const response=await fetch('/api/meta/configure',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({credit_confirmed:true,remaining_credit_usd:'150',budget_usd:'.75'})});if(!response.ok)throw new Error('test connection setup failed');});
+    await page.locator('#metaApiKey').fill('synthetic-browser-key-not-a-real-secret');
+    await page.locator('#metaKeyOnly').click();
+    await page.waitForFunction(()=>document.querySelector('#keyConfigured').textContent==='키 설정됨');
+    const restored=await page.evaluate(async()=>(await(await fetch('/api/meta/status')).json()).status);
+    assert.equal(restored.credit_confirmed,true);assert.equal(restored.budget_usd,'0.75');
+    assert.equal(restored.live_requests_started,0);assert.equal(await page.locator('#metaApiKey').inputValue(),'');
+    check('key_only_connection_preserves_previously_confirmed_credit_and_budget');
     assert.equal(report.page_errors.length,0);assert(await page.locator('#error').isHidden());
     report.passed=true;
   }catch(e){report.passed=false;report.error=String(e);if(page){report.product_error=await page.locator('#error').textContent();report.recovery_status=await page.locator('#recoveryStatus').textContent();await page.screenshot({path:path.join(out,'failed-workbench.png'),fullPage:true});}throw e;}
