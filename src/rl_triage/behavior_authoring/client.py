@@ -117,13 +117,35 @@ class MetaClient:
         self,
         *,
         api_key: str | None = None,
-        credit_confirmed: bool = False,
-        remaining_credit_usd: Decimal | str = "0",
-        budget_usd: Decimal | str = "1.00",
+        credit_confirmed: bool | None = None,
+        remaining_credit_usd: Decimal | str | None = None,
+        budget_usd: Decimal | str | None = None,
         state_dir: Path | None = None,
         transport: Transport | None = None,
         token_transport: Transport | None = None,
+        persist_credentials: bool = False,
     ) -> None:
+        if type(persist_credentials) is not bool:
+            raise MetaAPIError('암호화 저장 설정은 bool이어야 합니다.')
+        selected_state_dir = Path(state_dir) if state_dir is not None else _default_state_dir()
+        self.state_dir = selected_state_dir.expanduser().resolve()
+        self._persist_credentials = persist_credentials
+        self._credential_path = self.state_dir / 'credentials.dpapi'
+        configuration_override = any(value is not None for value in (api_key,credit_confirmed,remaining_credit_usd,budget_usd)) or os.environ.get('MODEL_API_KEY') is not None
+        saved = None
+        if persist_credentials:
+            from .credential_store import CredentialStoreError, load_settings
+            try:
+                saved = load_settings(self._credential_path)
+            except (CredentialStoreError,ValueError,OSError):
+                raise MetaAPIError('저장한 Meta 연결 설정을 복원하지 못했습니다. 암호화 원본은 보존했습니다.') from None
+        saved = saved or {}
+        if credit_confirmed is None:
+            credit_confirmed = saved.get('credit_confirmed',False)
+        if remaining_credit_usd is None:
+            remaining_credit_usd = saved.get('remaining_credit_usd','0')
+        if budget_usd is None:
+            budget_usd = saved.get('budget_usd','1.00')
         if not isinstance(credit_confirmed, bool):
             raise MetaAPIError("크레딧 확인 값은 bool이어야 합니다.")
         self._config_lock = threading.RLock()
@@ -131,18 +153,28 @@ class MetaClient:
         self._api_key = _validate_key(api_key) if api_key is not None else None
         if api_key is None:
             env_key = os.environ.get("MODEL_API_KEY")
-            self._api_key = _validate_key(env_key) if env_key is not None else None
+            existing_key = env_key if env_key is not None else saved.get('api_key')
+            self._api_key = _validate_key(existing_key) if existing_key is not None else None
         self._credit_confirmed = credit_confirmed
         self._remaining_credit_usd = _money(remaining_credit_usd, "남은 크레딧")
         self._budget_usd = self._validate_budget(budget_usd)
-        selected_state_dir = Path(state_dir) if state_dir is not None else _default_state_dir()
-        self.state_dir = selected_state_dir.expanduser().resolve()
         self._transport = transport or self._default_transport
         self._token_transport = token_transport or (lambda raw, key: self._http_transport(raw, key, TOKEN_COUNT_ENDPOINT))
         self.state_dir.mkdir(parents=True, exist_ok=True)
         (self.state_dir / "runs").mkdir(exist_ok=True)
         self._ledger_path = self.state_dir / "reservations.sqlite3"
         self._initialize_ledger()
+        if self._persist_credentials and configuration_override:
+            self._save_configuration(self._api_key,self._credit_confirmed,self._remaining_credit_usd,self._budget_usd)
+
+    def _save_configuration(self,key: str | None,credit: bool,remaining: Decimal,budget: Decimal) -> None:
+        from .credential_store import CredentialStoreError, save_settings
+        try:
+            save_settings(self._credential_path,{'api_key':key,'credit_confirmed':credit,
+                                                'remaining_credit_usd':_money_text(remaining),
+                                                'budget_usd':_money_text(budget)})
+        except (CredentialStoreError,ValueError,OSError):
+            raise MetaAPIError('Meta 연결 설정의 암호화 저장을 완료하지 못했습니다. 기존 저장값은 유지했습니다.') from None
 
     @staticmethod
     def _validate_budget(value: object) -> Decimal:
@@ -174,6 +206,8 @@ class MetaClient:
             next_budget = (
                 self._budget_usd if budget_usd is None else self._validate_budget(budget_usd)
             )
+            if self._persist_credentials:
+                self._save_configuration(next_key,next_credit_confirmed,next_remaining,next_budget)
             self._api_key = next_key
             self._credit_confirmed = next_credit_confirmed
             self._remaining_credit_usd = next_remaining
@@ -256,6 +290,9 @@ class MetaClient:
             and available > 0
         )
         return {
+            'credential_persistence_enabled': self._persist_credentials,
+            'credential_saved': self._persist_credentials and self._api_key is not None and self._credential_path.is_file(),
+            'configuration_saved': self._persist_credentials and self._credential_path.is_file(),
             'preflight_requests_started': preflights,
             'total_external_requests_started': count + preflights,
             "key_configured": api_key is not None,

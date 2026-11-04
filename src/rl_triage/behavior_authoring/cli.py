@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 from pathlib import Path
 
 from .adapters import build_sam_request, build_spark_request, import_sam_response, import_spark_response
@@ -25,9 +26,9 @@ def write_new(path: Path, value: dict) -> None:
 def _meta_options(parser: argparse.ArgumentParser, *, serve: bool = False) -> None:
     prefix = '--meta-' if serve else '--'
     parser.add_argument(prefix+'key-file', dest='meta_key_file', type=Path, help='저장소 밖의 기존 API 키 파일. 키를 명령행 값으로 받지 않음')
-    parser.add_argument(prefix+'credit-confirmed', dest='meta_credit_confirmed', action='store_true', help='Billing에서 크레딧·결제수단을 확인한 경우만 지정')
-    parser.add_argument(prefix+'remaining-credit-usd', dest='meta_remaining_credit_usd', default='0')
-    parser.add_argument(prefix+'budget-usd', dest='meta_budget_usd', default='1.00')
+    parser.add_argument(prefix+'credit-confirmed', dest='meta_credit_confirmed', action='store_true',default=None,help='Billing에서 크레딧·결제수단을 확인한 경우만 지정')
+    parser.add_argument(prefix+'remaining-credit-usd', dest='meta_remaining_credit_usd')
+    parser.add_argument(prefix+'budget-usd', dest='meta_budget_usd')
     parser.add_argument('--enable-video-calls', action='store_true', help='영상 분석과 토큰 계수의 외부 요청을 허용하는 서버/단일 호출 전용 옵션. 별도 승인 없이 사용하지 않음')
     parser.add_argument('--video-input-sha256',help='추가 영상 입력 허용을 받은 원본 SHA-256. 원본 승인 필드는 변경하지 않음')
 
@@ -37,7 +38,8 @@ def _meta_service(args: argparse.Namespace):
     from .live import LiveService, read_key_file
     key = read_key_file(args.meta_key_file) if args.meta_key_file else None
     return LiveService(MetaClient(api_key=key, credit_confirmed=args.meta_credit_confirmed,
-                                 remaining_credit_usd=args.meta_remaining_credit_usd, budget_usd=args.meta_budget_usd),
+                                 remaining_credit_usd=args.meta_remaining_credit_usd, budget_usd=args.meta_budget_usd,
+                                 persist_credentials=os.name=='nt'),
                        video_calls_enabled=args.enable_video_calls,video_input_sha256=args.video_input_sha256)
 
 
