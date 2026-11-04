@@ -170,9 +170,15 @@
     "retained_for_submission_preparation": true
   },
   "source_archive": {
-    "status": "create_outside_repository_after_final_package_verification",
-    "path": null,
-    "sha256": null
+    "status": "verified_through_external_delivery_index",
+    "delivery_index": "delivery-manifest.json",
+    "index_location": "same_directory_as_source_zip",
+    "hash_field": "source_archive.sha256",
+    "validation_fields": [
+      "source_archive.crc_passed",
+      "source_archive.clean_extraction_smoke_passed"
+    ],
+    "self_reference_policy": "Archive bytes and their hash are indexed outside the archive."
   },
   "files": {
     "FORM-ANSWERS-ko.txt": {
@@ -192,8 +198,8 @@
       "bytes": 5248
     },
     "PRE-SUBMIT.md": {
-      "sha256": "0b03c5117e16830c5b66c63f3534a5b984b7d0a0ed8720bb0dbf61992d98de4d",
-      "bytes": 9263
+      "sha256": "9b7e6bfb5b728416572f38e63bcc1692ecd2ee43c9a2f29ba99958eb0b95a66f",
+      "bytes": 9457
     }
   },
   "source_documents": {

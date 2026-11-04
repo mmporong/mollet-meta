@@ -1,0 +1,123 @@
+{
+  "schema": "meta-final-local-package-verification-v1",
+  "checked_at": "2026-11-04T16:05:33.383219+00:00",
+  "local_preparation_verified": true,
+  "ready_to_submit": false,
+  "checks": [
+    {
+      "name": "five_submission_documents_sha_and_size",
+      "passed": true
+    },
+    {
+      "name": "source_document_hashes",
+      "passed": true
+    },
+    {
+      "name": "final_video_file_sha",
+      "passed": true
+    },
+    {
+      "name": "final_video_manifest_sha",
+      "passed": true
+    },
+    {
+      "name": "korean_alternative_sha",
+      "passed": true
+    },
+    {
+      "name": "no_false_submission_state",
+      "passed": true
+    },
+    {
+      "name": "current_key_not_claimed_recovered",
+      "passed": true
+    },
+    {
+      "name": "no_forbidden_new_prose_or_replacement_characters",
+      "passed": true
+    },
+    {
+      "name": "chrome_ten_checks_and_no_errors",
+      "passed": true
+    },
+    {
+      "name": "provider_count_and_budget_unchanged",
+      "passed": true
+    },
+    {
+      "name": "browser_recording_hash_and_bytes",
+      "passed": true
+    },
+    {
+      "name": "h1_original_and_user_edit_results_distinct",
+      "passed": true
+    },
+    {
+      "name": "go2_manual_fail_not_new_model",
+      "passed": true
+    }
+  ],
+  "cpu_tests": {
+    "passed": 142,
+    "failed": 0,
+    "scope": "tests/test_behavior_authoring_*.py tests/test_meta_*.py tests/test_behavior_improvement.py"
+  },
+  "code_review": {
+    "recommendation": "APPROVE",
+    "reviewed_capture_source_commit": "604be2ed7cc52e475c027e218137399f3a83e45b",
+    "unresolved_high_medium": 0
+  },
+  "browser_evidence": {
+    "file": "evals/results/meta_recovery_browser_20261105_v5/verification.json",
+    "sha256": "19eff6acab1d5862356d0daa2d3e1a144b140a5f4db97dbfc08876263670d558"
+  },
+  "video_evidence": {
+    "file": "submission/meta-recovery-demo-20261105-v2/manifest.json",
+    "sha256": "51f6113970e8c38f815cdec91bedb078b0fbc0b42d99ef37442ea8e9ef2590a2",
+    "duration_s": 180,
+    "full_decodes_passed": 2,
+    "sapi_segments": 12,
+    "english_caption_layout_reviewed": true,
+    "mean_volume_db": -25.2,
+    "max_volume_db": -5.7
+  },
+  "submission_package": {
+    "file": "submission/meta-submit-20261105-final-v1/manifest.json",
+    "sha256": "f78ceb5f98b402ae97e2f3184ee7101a145d03a3d087d959aa0a97dbe3b6c506"
+  },
+  "public_repository_observation": {
+    "url": "https://github.com/mmporong/rl-triage-agent",
+    "visibility": "PUBLIC",
+    "license": "Apache-2.0",
+    "meta_feature_published": false
+  },
+  "official_form_observation": {
+    "requested_url": "https://cerebralvalley.ai/e/meta-ai-developer-hackathon/hackathon/submit",
+    "result": "redirect_to_login",
+    "final_url": "https://cerebralvalley.ai/auth/login",
+    "authenticated_fields_verified": false
+  },
+  "runtime": {
+    "pid": 3764,
+    "url": "http://127.0.0.1:7706",
+    "keep_reason": "제출 준비 화면과 저장된 실제 Meta 결과 재검사를 계속 사용",
+    "stop_command": "Stop-Process -Id 3764"
+  },
+  "new_model_calls": 0,
+  "gpu_jobs": 0,
+  "training_jobs": 0,
+  "push_performed": false,
+  "submitted": false,
+  "remaining_external_gates": [
+    "accessible_video_url_verified_logged_out",
+    "official_form_fields_required_flags_and_limits_mapped",
+    "verified_meta_feature_source_published_to_public_repository",
+    "existing_asset_reuse_condition_checked_in_authenticated_form_and_latest_rules",
+    "submission_authorization"
+  ],
+  "source_archive_index": {
+    "file": "delivery-manifest.json",
+    "location": "adjacent_to_source_zip",
+    "note": "Archive hash and clean-extraction checks are held in the external delivery index to avoid self-reference."
+  }
+}
