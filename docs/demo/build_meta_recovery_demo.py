@@ -14,6 +14,7 @@ import re
 import shutil
 import subprocess
 import sys
+import textwrap
 from pathlib import Path
 
 from PIL import Image, ImageDraw
@@ -27,7 +28,6 @@ for entry in (str(SRC), str(HERE)):
         sys.path.insert(0, entry)
 
 import build_meta_behavior_demo as media  # noqa: E402
-import build_meta_loop_demo as loop_media  # noqa: E402
 from rl_triage.behavior_authoring.datasets import example_paths, load_example_view  # noqa: E402
 from rl_triage.behavior_authoring.saved_run import KNOWN_RUNS, load_saved_recovery  # noqa: E402
 
@@ -306,6 +306,8 @@ def slide(path: Path, title: str, body: str, screenshot: Path | None, badges: li
         y += 32
     if screenshot:
         source = Image.open(screenshot).convert("RGB")
+        if "workspace" in screenshot.name:
+            source = source.crop((20, 125, min(770, source.width), min(555, source.height)))
         source.thumbnail((1150, 405))
         x = (media.WIDTH - source.width) // 2
         top = 242
@@ -342,6 +344,28 @@ def make_sample_frames(video: Path, folder: Path) -> list[dict]:
         frames.append({"file": target.relative_to(folder.parent).as_posix(), "at_s": at_s,
                        "sha256": sha256(target)})
     return frames
+
+
+def burn_english_captions(source: Path, target: Path, ass: Path) -> None:
+    """자막 좌표계를 최종 영상과 맞춰 하단 120px에 영어를 배치한다."""
+    lines = [
+        "[Script Info]", "ScriptType: v4.00+", "PlayResX: 1280", "PlayResY: 840", "WrapStyle: 2", "",
+        "[V4+ Styles]",
+        "Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding",
+        "Style: Default,Arial,24,&H003A2A17,&H003A2A17,&H00FFFFFF,&H00FFFFFF,0,0,0,0,100,100,0,0,1,0,0,2,50,50,15,1",
+        "", "[Events]", "Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text",
+    ]
+    def timestamp(seconds: int) -> str:
+        return f"{seconds // 3600}:{seconds // 60 % 60:02d}:{seconds % 60:02d}.00"
+    for index, (_, _, _, english) in enumerate(SCENES):
+        caption = r"\N".join(textwrap.wrap(english, width=90))
+        lines.append(f"Dialogue: 0,{timestamp(index * 15)},{timestamp((index + 1) * 15)},Default,,0,0,0,,{caption}")
+    ass.write_text("\n".join(lines) + "\n", encoding="utf-8", newline="\n")
+    escaped = str(ass.resolve()).replace("\\", "/").replace(":", "\\:").replace("'", "\\'")
+    media.run(["ffmpeg", "-hide_banner", "-loglevel", "error", "-y", "-i", str(source),
+               "-vf", f"pad=1280:840:0:0:color=white,ass=filename='{escaped}',format=yuv420p",
+               "-c:v", "libx264", "-preset", "veryfast", "-crf", "20", "-c:a", "copy", "-t", str(DURATION),
+               "-movflags", "+faststart", str(target)])
 
 
 def write_text_assets(out: Path) -> tuple[Path, Path, Path]:
@@ -381,13 +405,13 @@ def build(capture: dict, replay: dict, out: Path) -> dict:
 
     shots = capture["screenshots"]
     shot_map = {
-        "title": shots["06-full-workbench.png"], "receipts": shots["02-provider-result.png"],
+        "title": shots["01-restored-workspace.png"], "problem": shots["01-restored-workspace.png"],
         "provider-result": shots["02-provider-result.png"],
         "manual-eight": shots["03-eight-second-workspace.png"],
         "manual-roundtrip": shots["03-eight-second-workspace.png"],
         "go2-workspace": shots["04-go2-failure-workspace.png"],
         "go2-result": shots["05-go2-failure-result.png"],
-        "boundary": shots["06-full-workbench.png"], "end": shots["06-full-workbench.png"],
+        "boundary": shots["01-restored-workspace.png"], "end": shots["01-restored-workspace.png"],
     }
     media.save_tracking_overlays(overlays, replay["observations"]["samples"], replay["contract"]["condition"])
     go2 = load_example_view("go2-down-slow")
@@ -449,7 +473,8 @@ def build(capture: dict, replay: dict, out: Path) -> dict:
     media.run(["ffmpeg", "-hide_banner", "-loglevel", "error", "-i", str(final), "-f", "null", os.devnull])
 
     english = out / "mollet-meta-recovery-demo-180s-en-captioned.mp4"
-    loop_media.burn_english_captions(final, en_srt, english)
+    english_ass = out / "mollet-meta-recovery-demo-en.ass"
+    burn_english_captions(final, english, english_ass)
     english_probe = media.probe(english)
     english_stream = next(row for row in english_probe["streams"] if row["codec_type"] == "video")
     if (abs(float(english_probe["format"]["duration"]) - DURATION) > 0.1
@@ -463,6 +488,7 @@ def build(capture: dict, replay: dict, out: Path) -> dict:
         "schema": OUTPUT_SCHEMA,
         "scope": "current_chrome_capture_of_saved_historical_actual_meta_recovery",
         "source_commit": capture["source_commit"],
+        "renderer_commit": current_commit(),
         "duration_s": DURATION,
         "scenes": [{"name": row[0], "start_s": index * SCENE_DURATION,
                     "end_s": (index + 1) * SCENE_DURATION} for index, row in enumerate(SCENES)],
@@ -499,6 +525,8 @@ def build(capture: dict, replay: dict, out: Path) -> dict:
         "subtitles": {
             "ko": {"file": ko_srt.name, "sha256": sha256(ko_srt), "cues": 12},
             "en": {"file": en_srt.name, "sha256": sha256(en_srt), "cues": 12},
+            "en_ass": {"file": english_ass.name, "sha256": sha256(english_ass), "cues": 12,
+                       "play_res_x": 1280, "play_res_y": 840, "font_size": 24},
         },
         "script": {"file": script.name, "sha256": sha256(script)},
         "narration_modes": narration_modes,
