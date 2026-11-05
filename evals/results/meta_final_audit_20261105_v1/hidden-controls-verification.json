@@ -1,0 +1,31 @@
+{
+  "checked_at": "2026-11-05T00:11:11.531Z",
+  "public_url": "https://mollet-meta.vercel.app",
+  "controls": [
+    {
+      "selector": ".meta-setup",
+      "visible": false
+    },
+    {
+      "selector": "#metaApiKey",
+      "visible": false
+    },
+    {
+      "selector": "#sparkLive",
+      "visible": false
+    },
+    {
+      "selector": "#samLive",
+      "visible": false
+    },
+    {
+      "selector": "#visionLive",
+      "visible": false
+    },
+    {
+      "selector": "#trainingPrepare",
+      "visible": false
+    }
+  ],
+  "all_private_controls_hidden": true
+}

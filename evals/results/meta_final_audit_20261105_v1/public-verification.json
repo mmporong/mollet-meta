@@ -1,0 +1,69 @@
+{
+  "schema": "meta-final-public-audit-v1",
+  "checked_at": "2026-11-05T00:09:04.900Z",
+  "public_url": "https://mollet-meta.vercel.app",
+  "anonymous_browser": true,
+  "clips": [
+    {
+      "clip": "h1-up",
+      "playable": true,
+      "summary_only": false,
+      "english": true
+    },
+    {
+      "clip": "h1-down",
+      "playable": true,
+      "summary_only": false,
+      "english": true
+    },
+    {
+      "clip": "go2-up-slow",
+      "playable": true,
+      "summary_only": false,
+      "english": true
+    },
+    {
+      "clip": "go2-down-slow",
+      "playable": true,
+      "summary_only": false,
+      "english": true
+    },
+    {
+      "clip": "go2-up-fast",
+      "playable": true,
+      "summary_only": true,
+      "english": true
+    },
+    {
+      "clip": "go2-down-fast",
+      "playable": true,
+      "summary_only": true,
+      "english": true
+    }
+  ],
+  "edited_hold_pass": true,
+  "review_reset": true,
+  "export_import": true,
+  "blocked_endpoints": [
+    {
+      "route": "/api/meta/configure",
+      "status": 403
+    },
+    {
+      "route": "/api/meta/run/spark",
+      "status": 403
+    },
+    {
+      "route": "/api/improvement/analyze",
+      "status": 403
+    },
+    {
+      "route": "/api/improvement/training",
+      "status": 403
+    }
+  ],
+  "video_http_status": 200,
+  "video_sha256": "9635e770cbc0f4d01a5c5d6f348cc32da86453d02e6c54753ae6830319630fca",
+  "page_errors": [],
+  "passed": true
+}

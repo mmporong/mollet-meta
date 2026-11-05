@@ -4,7 +4,7 @@ Mollet is a behavior-condition workbench for recorded robot runs. It turns a pla
 
 This repository contains the Meta AI Developer Hackathon application built on the existing [RL Triage Agent](README-RL-TRIAGE.md). The hackathon work adds the browser workbench, Meta model adapters, saved-response replay, condition evaluation and export, and the three-minute demonstration. It does not claim that a new policy was trained or that recovery performance improved.
 
-[Watch the 180-second English demo](https://cdn.jsdelivr.net/gh/mmporong/mollet-meta@1b71e2fb2e30b3bad1f84b5e9d9e1eadf9c924f9/submission/meta-english-demo-20261105-v1/mollet-meta-demo-180s-en.mp4) · [Evidence manifest](submission/meta-english-demo-20261105-v1/manifest.json) · [Submission notes](submission/meta-official-form-20261105-v1/README.md) · [Submission receipt](submission/meta-official-form-20261105-v1/execution/receipt.json) · [Apache-2.0 license](LICENSE)
+[Watch the 180-second English demo](https://cdn.jsdelivr.net/gh/mmporong/mollet-meta@1b71e2fb2e30b3bad1f84b5e9d9e1eadf9c924f9/submission/meta-english-demo-20261105-v1/mollet-meta-demo-180s-en.mp4) · [Evidence manifest](submission/meta-english-demo-20261105-v1/manifest.json) · [Submission notes](submission/meta-official-form-20261105-v1/README.md) · [Current submission receipt](submission/meta-official-form-20261105-v1/execution/english-update-receipt.json) · [Apache-2.0 license](LICENSE)
 
 ![Mollet behavior-condition workbench](evals/results/meta_english_browser_20261105_v1/06-full-workbench.png)
 
@@ -29,7 +29,7 @@ SAM returned object locations for 624 of 625 video frames. That figure is respon
 | Recorded Go2 condition | FAIL | Manual state-trace check over 12.48 seconds |
 | SAM response coverage | 624 bounding-box locations / 625 frames | Coverage only; accuracy was not measured |
 
-The receipts, hashes, browser checks and exported contracts are preserved in [the browser verification record](evals/results/meta_recovery_browser_20261105_v5/verification.json) and [the provider verification record](evals/results/meta_live_provider_20261104_v1/verification.json).
+The receipts, hashes, browser checks and exported contracts are preserved in [the English browser verification record](evals/results/meta_english_browser_20261105_v1/verification.json) and [the provider verification record](evals/results/meta_live_provider_20261104_v1/verification.json).
 
 ## How it works
 

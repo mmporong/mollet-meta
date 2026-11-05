@@ -1,0 +1,23 @@
+{
+  "schema": "meta-final-official-form-audit-v1",
+  "checked_at": "2026-11-05T00:07:32.424Z",
+  "official_submission_id": "9dee8a3e-e5fc-4d63-8406-686f4919bc1e",
+  "authenticated": true,
+  "existing_project_update_button": true,
+  "project_write_actions": 0,
+  "saved_text_fields_matched": 6,
+  "technical_character_counts": [
+    2938,
+    2875,
+    2844
+  ],
+  "limit_per_technical_field": 3000,
+  "technical_answers_english": true,
+  "current_english_video_url_matches": true,
+  "public_repository_url_matches": true,
+  "public_demo_url_in_saved_description": true,
+  "required_fields_complete": true,
+  "invalid_fields": 0,
+  "personal_survey_values_included": false,
+  "passed": true
+}

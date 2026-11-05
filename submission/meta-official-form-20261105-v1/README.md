@@ -15,8 +15,8 @@ This package follows the authenticated Meta Global AI Developer Hackathon submis
 | [ANSWER-REVIEW.md](ANSWER-REVIEW.md) | English factual review of the technical answers |
 | [coverage.md](coverage.md) | Important requirements mapped to each answer and evidence level |
 | [form-fields.json](form-fields.json) | Observed question labels, options and visible limits |
-| [form-verification.json](form-verification.json) | Redacted readback of the prepared form |
-| [video-verification.json](video-verification.json) | Anonymous browser playback, media headers and SHA-256 |
+| [Current saved-form verification](../../evals/results/meta_final_audit_20261105_v1/official-form-verification.json) | Read-only audit of the saved English submission |
+| [English video verification](../meta-english-demo-20261105-v1/public-video-verification.json) | Anonymous playback, media headers and SHA-256 of the current video |
 
 The technical answers contain 2,938, 2,875 and 2,844 characters respectively, each below the observed 3,000-character limit. They distinguish the two completed historical Meta calls from saved-response replay and from unexecuted video-analysis, reflection and training extensions. The same submitted project now includes the English-voice video and public workbench URL. The site accepted the update with HTTP 200; both changed fields were reopened and matched. See the [English-media update receipt](execution/english-update-receipt.json).
 

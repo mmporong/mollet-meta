@@ -1,0 +1,50 @@
+{
+  "schema": "meta-final-submission-audit-v1",
+  "checked_at": "2026-11-05T00:12:44.265858+00:00",
+  "status": "passed",
+  "official_submission_id": "9dee8a3e-e5fc-4d63-8406-686f4919bc1e",
+  "submission_already_accepted": true,
+  "saved_form_values_match": 6,
+  "technical_character_counts": [
+    2938,
+    2875,
+    2844
+  ],
+  "public_clips_playable": 6,
+  "summary_only_clips_correctly_locked": 2,
+  "public_flow_passed": true,
+  "current_english_video_sha256": "9635e770cbc0f4d01a5c5d6f348cc32da86453d02e6c54753ae6830319630fca",
+  "private_controls_hidden": true,
+  "paid_execution_routes_blocked": 4,
+  "production_deployment_id": "dpl_7NuXCF5irR7n5oMhr4ATpwy58rjc",
+  "runtime_commit": "92c0c71512a35593e440fd53abd256edcf78f608",
+  "runtime_changed_in_this_audit": false,
+  "fixes": [
+    "Set repository homepage to https://mollet-meta.vercel.app",
+    "Point primary receipt link to accepted English-media update",
+    "Point submission notes to current saved-form and English-video verification"
+  ],
+  "independent_read_only_review": "PASS",
+  "unresolved_required_fixes": [],
+  "new_model_calls": 0,
+  "gpu_jobs": 0,
+  "training_jobs": 0,
+  "files": {
+    "official-form-verification.json": {
+      "sha256": "337ca7af89cd75589c83624d1aee80d939dad5eb1d8cb48690f34c2870130b8a",
+      "bytes": 692
+    },
+    "public-verification.json": {
+      "sha256": "f44269c89692302acf642979ea9e8de51c4b058ccad8c8122e7e992a106c752f",
+      "bytes": 1433
+    },
+    "hidden-controls-verification.json": {
+      "sha256": "19b4e55c838c1d09c0a352637c69eafa489f9eec924b70008ce43f3edc8e5d46",
+      "bytes": 571
+    },
+    "public-workbench.png": {
+      "sha256": "72725116f20dfc3e3a8ecac09cdb23804a7186f2460e9349f5f7384337de2571",
+      "bytes": 127550
+    }
+  }
+}
