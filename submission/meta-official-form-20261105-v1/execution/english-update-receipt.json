@@ -1,0 +1,47 @@
+{
+  "schema": "meta-english-submission-update-v1",
+  "opportunity_id": "meta-global-ai-developer-hackathon-2026",
+  "project_name": "Mollet",
+  "status": "submitted_updated",
+  "official_submission_id": "9dee8a3e-e5fc-4d63-8406-686f4919bc1e",
+  "same_submission_as_original": true,
+  "result_url": "https://cerebralvalley.ai/e/meta-ai-developer-hackathon/hackathon/9dee8a3e-e5fc-4d63-8406-686f4919bc1e/edit",
+  "server_updated_at": null,
+  "accepted_observed_at": "2026-11-04T23:54:54.540Z",
+  "verified_at": "2026-11-04T23:54:58.532Z",
+  "verification": {
+    "method": "PATCH",
+    "endpoint": "https://api.cerebralvalley.ai/v1/event/meta-ai-developer-hackathon/hackathon/submission/9dee8a3e-e5fc-4d63-8406-686f4919bc1e/update",
+    "http_status": 200,
+    "server_saved_changed_fields_match": 2,
+    "additional_update_clicks": 0,
+    "new_submission_created": false
+  },
+  "updated_resources": {
+    "public_demo_url": "https://mollet-meta.vercel.app",
+    "video_url": "https://cdn.jsdelivr.net/gh/mmporong/mollet-meta@1b71e2fb2e30b3bad1f84b5e9d9e1eadf9c924f9/submission/meta-english-demo-20261105-v1/mollet-meta-demo-180s-en.mp4",
+    "video_sha256": "9635e770cbc0f4d01a5c5d6f348cc32da86453d02e6c54753ae6830319630fca",
+    "language": {
+      "ui": "en",
+      "voice": "en-US",
+      "captions": "en"
+    },
+    "technical_character_counts": [
+      2938,
+      2875,
+      2844
+    ]
+  },
+  "production_deployment": {
+    "project": "mollet-meta",
+    "deployment_id": "dpl_7NuXCF5irR7n5oMhr4ATpwy58rjc",
+    "git_commit": "92c0c71512a35593e440fd53abd256edcf78f608",
+    "state": "READY",
+    "public_without_login": true
+  },
+  "private_evidence_published": false,
+  "personal_survey_values_included": false,
+  "new_model_calls": 0,
+  "gpu_jobs": 0,
+  "training_jobs": 0
+}

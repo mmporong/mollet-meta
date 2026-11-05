@@ -1,0 +1,16 @@
+{
+  "schema": "meta-production-full-flow-v1",
+  "checked_at": "2026-11-04T23:55:39.669Z",
+  "url": "https://mollet-meta.vercel.app",
+  "anonymous_browser": true,
+  "saved_replay": true,
+  "edited_eight_second_pass": true,
+  "review_reset": true,
+  "export": true,
+  "reimport": true,
+  "go2_full_duration_fail": true,
+  "configuration_endpoint_status": 403,
+  "page_errors": [],
+  "new_model_calls": 0,
+  "passed": true
+}

@@ -3,7 +3,8 @@
 This package follows the authenticated Meta Global AI Developer Hackathon submission form: 21 questions, including 10 required questions. The project was submitted through the official form. The server accepted the submission with HTTP 200, the event page displayed "Project Submitted" and "View Submission", and the saved submission was reopened to verify all six text fields. See the [submission receipt](execution/receipt.json) and [current status](submission-status.json).
 
 - Public source: <https://github.com/mmporong/mollet-meta>
-- Public 180-second demo: <https://cdn.jsdelivr.net/gh/mmporong/mollet-meta@44c460d5d82033116642e1a77ed38b738d6aea14/submission/meta-recovery-demo-20261105-v2/mollet-meta-recovery-demo-180s-en-captioned.mp4>
+- Public English 180-second demo: <https://cdn.jsdelivr.net/gh/mmporong/mollet-meta@1b71e2fb2e30b3bad1f84b5e9d9e1eadf9c924f9/submission/meta-english-demo-20261105-v1/mollet-meta-demo-180s-en.mp4>
+- Public workbench: <https://mollet-meta.vercel.app>
 - Official form: <https://cerebralvalley.ai/e/meta-ai-developer-hackathon/hackathon/submit>
 
 ## Contents
@@ -11,13 +12,13 @@ This package follows the authenticated Meta Global AI Developer Hackathon submis
 | File | Purpose |
 | --- | --- |
 | [answers.json](answers.json) | The three technical answers and their character counts |
-| [ANSWERS-ko.md](ANSWERS-ko.md) | Korean factual review of the technical answers |
+| [ANSWER-REVIEW.md](ANSWER-REVIEW.md) | English factual review of the technical answers |
 | [coverage.md](coverage.md) | Important requirements mapped to each answer and evidence level |
 | [form-fields.json](form-fields.json) | Observed question labels, options and visible limits |
 | [form-verification.json](form-verification.json) | Redacted readback of the prepared form |
 | [video-verification.json](video-verification.json) | Anonymous browser playback, media headers and SHA-256 |
 
-The technical answers contain 2,926, 2,875 and 2,844 characters respectively, each below the observed 3,000-character limit. They distinguish the two completed historical Meta calls from saved-response replay and from unexecuted video-analysis, reflection and training extensions.
+The technical answers contain 2,938, 2,875 and 2,844 characters respectively, each below the observed 3,000-character limit. They distinguish the two completed historical Meta calls from saved-response replay and from unexecuted video-analysis, reflection and training extensions. The same submitted project now includes the English-voice video and public workbench URL. The site accepted the update with HTTP 200; both changed fields were reopened and matched. See the [English-media update receipt](execution/english-update-receipt.json).
 
 The team and project classification fields were prepared from the project context. The user supplied the two required survey answers, which were entered in the form; those personal answers are omitted from this public package. The lower survey fields and marketing-consent checkbox were completed before submission. Individual survey answers remain private.
 

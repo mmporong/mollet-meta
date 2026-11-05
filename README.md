@@ -4,9 +4,13 @@ Mollet is a behavior-condition workbench for recorded robot runs. It turns a pla
 
 This repository contains the Meta AI Developer Hackathon application built on the existing [RL Triage Agent](README-RL-TRIAGE.md). The hackathon work adds the browser workbench, Meta model adapters, saved-response replay, condition evaluation and export, and the three-minute demonstration. It does not claim that a new policy was trained or that recovery performance improved.
 
-[Watch the 180-second English demo](https://cdn.jsdelivr.net/gh/mmporong/mollet-meta@main/submission/meta-english-demo-20261105-v1/mollet-meta-demo-180s-en.mp4) · [Evidence manifest](submission/meta-english-demo-20261105-v1/manifest.json) · [Submission notes](submission/meta-official-form-20261105-v1/README.md) · [Submission receipt](submission/meta-official-form-20261105-v1/execution/receipt.json) · [Apache-2.0 license](LICENSE)
+[Watch the 180-second English demo](https://cdn.jsdelivr.net/gh/mmporong/mollet-meta@1b71e2fb2e30b3bad1f84b5e9d9e1eadf9c924f9/submission/meta-english-demo-20261105-v1/mollet-meta-demo-180s-en.mp4) · [Evidence manifest](submission/meta-english-demo-20261105-v1/manifest.json) · [Submission notes](submission/meta-official-form-20261105-v1/README.md) · [Submission receipt](submission/meta-official-form-20261105-v1/execution/receipt.json) · [Apache-2.0 license](LICENSE)
 
 ![Mollet behavior-condition workbench](evals/results/meta_english_browser_20261105_v1/06-full-workbench.png)
+
+## Try the public demo
+
+Open [mollet-meta.vercel.app](https://mollet-meta.vercel.app) in your browser. No installation, account, or API key is required. The English workbench replays saved Meta results and evaluates recorded state; live model calls, account settings, and training are disabled in this public deployment. The three-minute video uses English narration, captions, and interface text.
 
 ## What the demo proves
 
@@ -38,7 +42,7 @@ The receipts, hashes, browser checks and exported contracts are preserved in [th
 
 The evaluator preserves uncertainty. Missing samples, a broken tracking interval, an incomplete observation window or unavailable raw state data return UNKNOWN instead of guessing.
 
-## Run locally
+## Run locally (optional)
 
 Python 3.11–3.13 is supported. The saved-result path needs no API key and installs no new package.
 

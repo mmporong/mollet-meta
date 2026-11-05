@@ -10,5 +10,10 @@
   "accepted_observed_at": "2026-11-04T23:13:33.588Z",
   "verified_at": "2026-11-04T23:14:38.263Z",
   "result_url": "https://cerebralvalley.ai/e/meta-ai-developer-hackathon/hackathon/9dee8a3e-e5fc-4d63-8406-686f4919bc1e/edit?backUrl=%2Fe%2Fmeta-ai-developer-hackathon",
-  "receipt": "execution/receipt.json"
+  "receipt": "execution/receipt.json",
+  "last_revision": "english_ui_voice_public_demo",
+  "update_verified_at": "2026-11-04T23:54:58.532Z",
+  "update_receipt": "execution/english-update-receipt.json",
+  "public_demo_url": "https://mollet-meta.vercel.app",
+  "video_url": "https://cdn.jsdelivr.net/gh/mmporong/mollet-meta@1b71e2fb2e30b3bad1f84b5e9d9e1eadf9c924f9/submission/meta-english-demo-20261105-v1/mollet-meta-demo-180s-en.mp4"
 }

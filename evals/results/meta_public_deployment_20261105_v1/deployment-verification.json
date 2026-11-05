@@ -1,0 +1,22 @@
+{
+  "schema": "meta-public-production-deployment-v1",
+  "checked_at": "2026-11-05T00:00:23.542962+00:00",
+  "public_url": "https://mollet-meta.vercel.app",
+  "deployment_id": "dpl_7NuXCF5irR7n5oMhr4ATpwy58rjc",
+  "state": "READY",
+  "git_commit": "92c0c71512a35593e440fd53abd256edcf78f608",
+  "anonymous_browser_passed": true,
+  "full_flow_verification_sha256": "2f39e5f4089a24e92eb130d5e931da77f3262d8aa33bb4701e434c8c5f2c9a46",
+  "first_attempt": {
+    "deployment_id": "dpl_6XcwyUfL75WQ3wZ4ewiE2ThKizWE",
+    "git_commit": "1b71e2fb2e30b3bad1f84b5e9d9e1eadf9c924f9",
+    "status": "ERROR",
+    "error_code": "LAMBDA_SIZE_EXCEEDED",
+    "bundle_mb": 625.3,
+    "cause_evidence": "Build log installed dependencies from the parent repository uv.lock.",
+    "fix": "Independent stdlib-only pyproject.toml, requirements.txt, and uv.lock in the public deployment root."
+  },
+  "new_model_calls": 0,
+  "gpu_jobs": 0,
+  "training_jobs": 0
+}
